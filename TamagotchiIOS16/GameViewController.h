@@ -29,7 +29,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *petImageView;
 @property (strong, nonatomic) UIImage *image1;
 @property (strong, nonatomic) UIImage *image2;
-@property (strong, nonatomic) UIImage *deadPetImage;
 @property (nonatomic) int currentImage;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableArray *storage;

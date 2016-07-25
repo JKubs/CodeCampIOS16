@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9685387D1D4658AE00386742 /* verrecke_dummes_vieh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9685387C1D4658AE00386742 /* verrecke_dummes_vieh.jpg */; };
+		96890CA01D4643F70065D77A /* TestmodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96890C9F1D4643F70065D77A /* TestmodeViewController.m */; };
 		96A611EA1D46182100F389E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611E91D46182100F389E7 /* main.m */; };
 		96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EC1D46182100F389E7 /* AppDelegate.m */; };
 		96A611F01D46182100F389E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EF1D46182100F389E7 /* ViewController.m */; };
@@ -44,7 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9685387C1D4658AE00386742 /* verrecke_dummes_vieh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = verrecke_dummes_vieh.jpg; sourceTree = "<group>"; };
 		96890C9E1D4643730065D77A /* TestmodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestmodeViewController.h; sourceTree = "<group>"; };
 		96890C9F1D4643F70065D77A /* TestmodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestmodeViewController.m; sourceTree = "<group>"; };
 		96A611E51D46182100F389E7 /* TamagotchiIOS16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TamagotchiIOS16.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +147,6 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9685387C1D4658AE00386742 /* verrecke_dummes_vieh.jpg */,
 				96A6122B1D46335E00F389E7 /* critter1.jpg */,
 				96A6122C1D46335E00F389E7 /* critter2.jpg */,
 				96A611E91D46182100F389E7 /* main.m */,
@@ -299,7 +297,6 @@
 				96A611F51D46182100F389E7 /* Assets.xcassets in Resources */,
 				96A611F31D46182100F389E7 /* Main.storyboard in Resources */,
 				96A6122E1D46335E00F389E7 /* critter2.jpg in Resources */,
-				9685387D1D4658AE00386742 /* verrecke_dummes_vieh.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
