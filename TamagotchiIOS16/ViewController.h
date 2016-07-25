@@ -12,6 +12,7 @@
 }
 
 
+@property (weak, nonatomic) IBOutlet UIButton *storeButton;
 
 @end
 

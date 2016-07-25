@@ -51,6 +51,36 @@
     }
 }
 
+- (IBAction)genRandNoti:(id)sender {
+    NSArray randomDates[5] ={
+        arc4random_uniform(86400)
+        arc4random_uniform(86400)
+        arc4random_uniform(86400)
+        arc4random_uniform(86400)
+        arc4random_uniform(86400)
+    }
+    
+    for (int *i in randomDates) {
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:i];
+        localNotification.alertBody = @"bla bla";
+        localNotification.alertAction = @"Show me the item";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    
+}
+
 
 @end
 
