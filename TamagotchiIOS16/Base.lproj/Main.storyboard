@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5vb-qB-SLt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -72,40 +72,88 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eML-y3-kLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803" y="418"/>
+            <point key="canvasLocation" x="305" y="424"/>
         </scene>
-        <!--MenuScreen-->
-        <scene sceneID="RfF-RW-3Ay">
+        <!--Testmode View Controller-->
+        <scene sceneID="UEm-qO-Gkd">
             <objects>
-                <viewController title="MenuScreen" id="5vb-qB-SLt" sceneMemberID="viewController">
+                <viewController title="Testmode View Controller" id="qw9-SK-pCY" customClass="TestmodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aWB-cN-9r8"/>
-                        <viewControllerLayoutGuide type="bottom" id="pFq-gt-Per"/>
+                        <viewControllerLayoutGuide type="top" id="5Rt-Qc-qMT"/>
+                        <viewControllerLayoutGuide type="bottom" id="IGX-vE-AiX"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fbC-jd-gMx">
+                    <view key="view" contentMode="scaleToFill" id="UaK-sU-NrG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guY-1s-yTL">
-                                <rect key="frame" x="281" y="393" width="78" height="30"/>
-                                <state key="normal" title="Start Game"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh4-Mh-foL">
+                                <rect key="frame" x="154" y="28" width="111" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="LDG-t4-Gpt"/>
+                                    <constraint firstAttribute="height" constant="30" id="hXr-M8-jbd"/>
+                                </constraints>
+                                <state key="normal" title="Add Notification"/>
                                 <connections>
-                                    <segue destination="w2A-K5-GzS" kind="show" id="DCi-a9-Nbi"/>
+                                    <action selector="sendNotification:" destination="qw9-SK-pCY" eventType="touchDown" id="BLj-q0-G2t"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't let your pet die" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1i-Yn-kze">
-                                <rect key="frame" x="222" y="118" width="196" height="81"/>
-                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="td8-Sb-HMb">
+                                <rect key="frame" x="138" y="391" width="143" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="BzO-pT-Wd3"/>
+                                </constraints>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshNoti:" destination="qw9-SK-pCY" eventType="touchDown" id="dV2-dP-DWy"/>
+                                </connections>
+                            </button>
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JZ8-wr-4w3">
+                                <rect key="frame" x="20" y="69" width="378" height="159"/>
+                                <date key="date" timeIntervalSinceReferenceDate="491146036.62974799">
+                                    <!--2016-07-25 13:27:16 +0000-->
+                                </date>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16g-Xr-iaq">
+                                <rect key="frame" x="20" y="236" width="378" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="nws-1h-5rw"/>
+                                    <constraint firstAttribute="width" constant="378" id="sdm-Yn-KUG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jh4-Mh-foL" firstAttribute="centerX" secondItem="UaK-sU-NrG" secondAttribute="centerX" id="3Ql-gi-iRL"/>
+                            <constraint firstItem="Jh4-Mh-foL" firstAttribute="centerX" secondItem="16g-Xr-iaq" secondAttribute="centerX" id="5UU-Iz-Fqb"/>
+                            <constraint firstItem="Jh4-Mh-foL" firstAttribute="leading" secondItem="UaK-sU-NrG" secondAttribute="leading" constant="154" id="JzH-hS-hAv"/>
+                            <constraint firstItem="Jh4-Mh-foL" firstAttribute="top" secondItem="5Rt-Qc-qMT" secondAttribute="bottom" constant="8" symbolic="YES" id="N58-Bd-uni"/>
+                            <constraint firstItem="Jh4-Mh-foL" firstAttribute="centerX" secondItem="16g-Xr-iaq" secondAttribute="centerX" id="Nd7-6f-Eqf"/>
+                            <constraint firstItem="IGX-vE-AiX" firstAttribute="top" secondItem="td8-Sb-HMb" secondAttribute="bottom" constant="179" id="qky-nb-QRN"/>
+                            <constraint firstItem="JZ8-wr-4w3" firstAttribute="top" secondItem="Jh4-Mh-foL" secondAttribute="bottom" constant="11" id="r5w-V2-sCq"/>
+                            <constraint firstItem="td8-Sb-HMb" firstAttribute="top" secondItem="16g-Xr-iaq" secondAttribute="bottom" constant="27" id="ug1-Xi-p3v"/>
+                            <constraint firstItem="16g-Xr-iaq" firstAttribute="centerX" secondItem="UaK-sU-NrG" secondAttribute="centerX" id="vKw-nT-1gA"/>
+                            <constraint firstItem="td8-Sb-HMb" firstAttribute="centerX" secondItem="16g-Xr-iaq" secondAttribute="centerX" id="ykM-YK-cuc"/>
+                            <constraint firstItem="Jh4-Mh-foL" firstAttribute="centerX" secondItem="JZ8-wr-4w3" secondAttribute="centerX" id="zK2-l6-gxG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3Ql-gi-iRL"/>
+                                <exclude reference="Nd7-6f-Eqf"/>
+                                <exclude reference="vKw-nT-1gA"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="JZ8-wr-4w3" id="uXY-k5-myz"/>
+                        <outlet property="nextNotiText" destination="16g-Xr-iaq" id="2NF-39-3XM"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TrB-nL-cYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0u6-KF-LWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1018" y="418"/>
+            <point key="canvasLocation" x="305" y="1200"/>
         </scene>
     </scenes>
     <resources>
