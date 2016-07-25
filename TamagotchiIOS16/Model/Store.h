@@ -1,5 +1,5 @@
 //
-//  NSObject+Storage.h
+//  NSObject+Store.h
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 25.07.16.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (Storage)
+@interface Store : NSObject
 
 @end

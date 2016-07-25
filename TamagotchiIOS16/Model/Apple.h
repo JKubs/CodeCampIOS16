@@ -1,13 +1,13 @@
 //
-//  NSObject+Storage.m
+//  Apple.h
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 25.07.16.
 //  Copyright © 2016 Codecamp. All rights reserved.
 //
 
-#import "NSObject+Storage.h"
+#import "Food.h"
 
-@implementation NSObject (Storage)
+@interface Apple : Food
 
 @end

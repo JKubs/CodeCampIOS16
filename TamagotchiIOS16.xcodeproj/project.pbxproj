@@ -14,14 +14,15 @@
 		96A611F81D46182100F389E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A611F61D46182100F389E7 /* LaunchScreen.storyboard */; };
 		96A612031D46182100F389E7 /* TamagotchiIOS16Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612021D46182100F389E7 /* TamagotchiIOS16Tests.m */; };
 		96A6120E1D46182100F389E7 /* TamagotchiIOS16UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A6120D1D46182100F389E7 /* TamagotchiIOS16UITests.m */; };
-		96A612261D46182E00F389E7 /* NSObject+Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A6121D1D46182E00F389E7 /* NSObject+Food.m */; };
-		96A612271D46182E00F389E7 /* NSObject+Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A6121F1D46182E00F389E7 /* NSObject+Owner.m */; };
-		96A612281D46182E00F389E7 /* NSObject+Pet.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612211D46182E00F389E7 /* NSObject+Pet.m */; };
-		96A612291D46182E00F389E7 /* NSObject+Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612231D46182E00F389E7 /* NSObject+Storage.m */; };
-		96A6122A1D46182E00F389E7 /* NSObject+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612251D46182E00F389E7 /* NSObject+Store.m */; };
+		96A612261D46182E00F389E7 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A6121D1D46182E00F389E7 /* Food.m */; };
+		96A612271D46182E00F389E7 /* Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A6121F1D46182E00F389E7 /* Owner.m */; };
+		96A612281D46182E00F389E7 /* Pet.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612211D46182E00F389E7 /* Pet.m */; };
+		96A612291D46182E00F389E7 /* Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612231D46182E00F389E7 /* Storage.m */; };
+		96A6122A1D46182E00F389E7 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612251D46182E00F389E7 /* Store.m */; };
 		96FC92DC1D4626FC00E49E48 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92DB1D4626FC00E49E48 /* StoreViewController.m */; };
 		96FC92DE1D462B4300E49E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92DD1D462B4300E49E48 /* main.m */; };
 		96FC92E11D464A3F00E49E48 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FC92DF1D464A3F00E49E48 /* Main2.storyboard */; };
+		96FC92EA1D4655F800E49E48 /* Apple.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92E91D4655F800E49E48 /* Apple.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,20 +58,22 @@
 		96A612091D46182100F389E7 /* TamagotchiIOS16UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TamagotchiIOS16UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A6120D1D46182100F389E7 /* TamagotchiIOS16UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TamagotchiIOS16UITests.m; sourceTree = "<group>"; };
 		96A6120F1D46182100F389E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96A6121C1D46182E00F389E7 /* NSObject+Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Food.h"; sourceTree = "<group>"; };
-		96A6121D1D46182E00F389E7 /* NSObject+Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Food.m"; sourceTree = "<group>"; };
-		96A6121E1D46182E00F389E7 /* NSObject+Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Owner.h"; sourceTree = "<group>"; };
-		96A6121F1D46182E00F389E7 /* NSObject+Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Owner.m"; sourceTree = "<group>"; };
-		96A612201D46182E00F389E7 /* NSObject+Pet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Pet.h"; sourceTree = "<group>"; };
-		96A612211D46182E00F389E7 /* NSObject+Pet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Pet.m"; sourceTree = "<group>"; };
-		96A612221D46182E00F389E7 /* NSObject+Storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Storage.h"; sourceTree = "<group>"; };
-		96A612231D46182E00F389E7 /* NSObject+Storage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Storage.m"; sourceTree = "<group>"; };
-		96A612241D46182E00F389E7 /* NSObject+Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Store.h"; sourceTree = "<group>"; };
-		96A612251D46182E00F389E7 /* NSObject+Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Store.m"; sourceTree = "<group>"; };
+		96A6121C1D46182E00F389E7 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		96A6121D1D46182E00F389E7 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		96A6121E1D46182E00F389E7 /* Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
+		96A6121F1D46182E00F389E7 /* Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Owner.m; sourceTree = "<group>"; };
+		96A612201D46182E00F389E7 /* Pet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pet.h; sourceTree = "<group>"; };
+		96A612211D46182E00F389E7 /* Pet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pet.m; sourceTree = "<group>"; };
+		96A612221D46182E00F389E7 /* Storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Storage.h; sourceTree = "<group>"; };
+		96A612231D46182E00F389E7 /* Storage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Storage.m; sourceTree = "<group>"; };
+		96A612241D46182E00F389E7 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		96A612251D46182E00F389E7 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		96FC92D81D46247800E49E48 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
 		96FC92DB1D4626FC00E49E48 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
 		96FC92DD1D462B4300E49E48 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96FC92E01D464A3F00E49E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main2.storyboard; sourceTree = "<group>"; };
+		96FC92E91D4655F800E49E48 /* Apple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apple.m; sourceTree = "<group>"; };
+		96FC92EB1D46562500E49E48 /* Apple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Apple.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,16 +170,18 @@
 		96A6121B1D46182E00F389E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				96A6121C1D46182E00F389E7 /* NSObject+Food.h */,
-				96A6121D1D46182E00F389E7 /* NSObject+Food.m */,
-				96A6121E1D46182E00F389E7 /* NSObject+Owner.h */,
-				96A6121F1D46182E00F389E7 /* NSObject+Owner.m */,
-				96A612201D46182E00F389E7 /* NSObject+Pet.h */,
-				96A612211D46182E00F389E7 /* NSObject+Pet.m */,
-				96A612221D46182E00F389E7 /* NSObject+Storage.h */,
-				96A612231D46182E00F389E7 /* NSObject+Storage.m */,
-				96A612241D46182E00F389E7 /* NSObject+Store.h */,
-				96A612251D46182E00F389E7 /* NSObject+Store.m */,
+				96A6121C1D46182E00F389E7 /* Food.h */,
+				96A6121D1D46182E00F389E7 /* Food.m */,
+				96A6121E1D46182E00F389E7 /* Owner.h */,
+				96A6121F1D46182E00F389E7 /* Owner.m */,
+				96A612201D46182E00F389E7 /* Pet.h */,
+				96A612211D46182E00F389E7 /* Pet.m */,
+				96A612221D46182E00F389E7 /* Storage.h */,
+				96A612231D46182E00F389E7 /* Storage.m */,
+				96A612241D46182E00F389E7 /* Store.h */,
+				96A612251D46182E00F389E7 /* Store.m */,
+				96FC92E91D4655F800E49E48 /* Apple.m */,
+				96FC92EB1D46562500E49E48 /* Apple.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -312,15 +317,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FC92EA1D4655F800E49E48 /* Apple.m in Sources */,
 				96A611F01D46182100F389E7 /* ViewController.m in Sources */,
-				96A612261D46182E00F389E7 /* NSObject+Food.m in Sources */,
-				96A612271D46182E00F389E7 /* NSObject+Owner.m in Sources */,
-				96A6122A1D46182E00F389E7 /* NSObject+Store.m in Sources */,
+				96A612261D46182E00F389E7 /* Food.m in Sources */,
+				96A612271D46182E00F389E7 /* Owner.m in Sources */,
+				96A6122A1D46182E00F389E7 /* Store.m in Sources */,
 				96FC92DC1D4626FC00E49E48 /* StoreViewController.m in Sources */,
 				96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */,
-				96A612281D46182E00F389E7 /* NSObject+Pet.m in Sources */,
+				96A612281D46182E00F389E7 /* Pet.m in Sources */,
 				96FC92DE1D462B4300E49E48 /* main.m in Sources */,
-				96A612291D46182E00F389E7 /* NSObject+Storage.m in Sources */,
+				96A612291D46182E00F389E7 /* Storage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
