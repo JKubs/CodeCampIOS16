@@ -1,13 +1,13 @@
 //
-//  NSObject+Food.h
+//  NSObject+Pet.m
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 25.07.16.
 //  Copyright © 2016 Codecamp. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Pet.h"
 
-@interface NSObject (Food)
+@implementation Pet
 
 @end

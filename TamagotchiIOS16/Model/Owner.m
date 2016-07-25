@@ -1,13 +1,13 @@
 //
-//  NSObject+Storage.m
+//  NSObject+Owner.m
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 25.07.16.
 //  Copyright © 2016 Codecamp. All rights reserved.
 //
 
-#import "NSObject+Storage.h"
+#import "Owner.h"
 
-@implementation NSObject (Storage)
+@implementation Owner
 
 @end

@@ -8,16 +8,67 @@
         <!--GameScreen-->
         <scene sceneID="amE-Dy-Kca">
             <objects>
-                <viewController title="GameScreen" id="w2A-K5-GzS" sceneMemberID="viewController">
+                <viewController title="GameScreen" id="w2A-K5-GzS" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7QS-n1-r2k"/>
                         <viewControllerLayoutGuide type="bottom" id="Mob-ye-0Ny"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mb7-ZC-O5r">
+                    <view key="view" contentMode="scaleToFill" id="mb7-ZC-O5r" customClass="View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efr-1S-fbK">
+                                <rect key="frame" x="86" y="519" width="69" height="30"/>
+                                <state key="normal" title="Feed"/>
+                                <connections>
+                                    <action selector="feedAction:" destination="w2A-K5-GzS" eventType="touchUpInside" id="emL-XL-pYu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOX-cm-tHh">
+                                <rect key="frame" x="270" y="519" width="58" height="30"/>
+                                <state key="normal" title="Hydrate"/>
+                                <connections>
+                                    <action selector="hydrateAction:" destination="w2A-K5-GzS" eventType="touchUpInside" id="zVE-Gw-gjd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVL-nf-idg">
+                                <rect key="frame" x="422" y="519" width="36" height="30"/>
+                                <state key="normal" title="Shop"/>
+                                <connections>
+                                    <action selector="enterShop:" destination="w2A-K5-GzS" eventType="touchUpInside" id="OnE-BI-RGZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-L6-SuV">
+                                <rect key="frame" x="498" y="519" width="62" height="30"/>
+                                <state key="normal" title="KILL PET"/>
+                                <connections>
+                                    <action selector="killThatMonster:" destination="w2A-K5-GzS" eventType="touchUpInside" id="8aJ-nf-pfQ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="critter1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VEJ-DN-UaE">
+                                <rect key="frame" x="179" y="150" width="240" height="240"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hunger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDJ-Vw-Y7G">
+                                <rect key="frame" x="41" y="41" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="thirst" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NB4-v3-Dzi">
+                                <rect key="frame" x="43" y="70" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="petImageView" destination="VEJ-DN-UaE" id="z8o-iT-t4b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eML-y3-kLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -57,4 +108,7 @@
             <point key="canvasLocation" x="1018" y="418"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="critter1.jpg" width="139" height="135"/>
+    </resources>
 </document>

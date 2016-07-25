@@ -1,13 +1,13 @@
 //
-//  NSObject+Owner.m
+//  NSObject+Pet.h
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 25.07.16.
 //  Copyright © 2016 Codecamp. All rights reserved.
 //
 
-#import "NSObject+Owner.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSObject (Owner)
+@interface Pet : NSObject
 
 @end
