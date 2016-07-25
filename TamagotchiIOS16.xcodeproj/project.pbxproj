@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		96890CA01D4643F70065D77A /* TestmodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96890C9F1D4643F70065D77A /* TestmodeViewController.m */; };
 		96A611EA1D46182100F389E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611E91D46182100F389E7 /* main.m */; };
 		96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EC1D46182100F389E7 /* AppDelegate.m */; };
 		96A611F01D46182100F389E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EF1D46182100F389E7 /* ViewController.m */; };
@@ -24,6 +23,7 @@
 		96A6122D1D46335E00F389E7 /* critter1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96A6122B1D46335E00F389E7 /* critter1.jpg */; };
 		96A6122E1D46335E00F389E7 /* critter2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96A6122C1D46335E00F389E7 /* critter2.jpg */; };
 		96A612331D46369900F389E7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612321D46369900F389E7 /* GameViewController.m */; };
+		96FC92F11D465F5100E49E48 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92F01D465F5100E49E48 /* StoreViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +76,8 @@
 		96A6122C1D46335E00F389E7 /* critter2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = critter2.jpg; sourceTree = "<group>"; };
 		96A612321D46369900F389E7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		96A612341D4636B200F389E7 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		96FC92EF1D465E9300E49E48 /* StoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
+		96FC92F01D465F5100E49E48 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,8 @@
 				96A611E81D46182100F389E7 /* Supporting Files */,
 				96890C9E1D4643730065D77A /* TestmodeViewController.h */,
 				96890C9F1D4643F70065D77A /* TestmodeViewController.m */,
+				96FC92EF1D465E9300E49E48 /* StoreViewController.h */,
+				96FC92F01D465F5100E49E48 /* StoreViewController.m */,
 			);
 			path = TamagotchiIOS16;
 			sourceTree = "<group>";
@@ -325,6 +329,7 @@
 				96A612261D46182E00F389E7 /* Food.m in Sources */,
 				96A612271D46182E00F389E7 /* Owner.m in Sources */,
 				96A6122A1D46182E00F389E7 /* Store.m in Sources */,
+				96FC92F11D465F5100E49E48 /* StoreViewController.m in Sources */,
 				96A612331D46369900F389E7 /* GameViewController.m in Sources */,
 				96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */,
 				96A611EA1D46182100F389E7 /* main.m in Sources */,
