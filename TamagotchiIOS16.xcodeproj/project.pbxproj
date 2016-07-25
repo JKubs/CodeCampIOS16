@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96890CA01D4643F70065D77A /* TestmodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96890C9F1D4643F70065D77A /* TestmodeViewController.m */; };
+		96A611EA1D46182100F389E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611E91D46182100F389E7 /* main.m */; };
 		96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EC1D46182100F389E7 /* AppDelegate.m */; };
 		96A611F01D46182100F389E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EF1D46182100F389E7 /* ViewController.m */; };
 		96A611F31D46182100F389E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A611F11D46182100F389E7 /* Main.storyboard */; };
@@ -19,10 +21,9 @@
 		96A612281D46182E00F389E7 /* Pet.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612211D46182E00F389E7 /* Pet.m */; };
 		96A612291D46182E00F389E7 /* Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612231D46182E00F389E7 /* Storage.m */; };
 		96A6122A1D46182E00F389E7 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612251D46182E00F389E7 /* Store.m */; };
-		96FC92DC1D4626FC00E49E48 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92DB1D4626FC00E49E48 /* StoreViewController.m */; };
-		96FC92DE1D462B4300E49E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92DD1D462B4300E49E48 /* main.m */; };
-		96FC92E11D464A3F00E49E48 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FC92DF1D464A3F00E49E48 /* Main2.storyboard */; };
-		96FC92EA1D4655F800E49E48 /* Apple.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92E91D4655F800E49E48 /* Apple.m */; };
+		96A6122D1D46335E00F389E7 /* critter1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96A6122B1D46335E00F389E7 /* critter1.jpg */; };
+		96A6122E1D46335E00F389E7 /* critter2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96A6122C1D46335E00F389E7 /* critter2.jpg */; };
+		96A612331D46369900F389E7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612321D46369900F389E7 /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		96890C9E1D4643730065D77A /* TestmodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestmodeViewController.h; sourceTree = "<group>"; };
+		96890C9F1D4643F70065D77A /* TestmodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestmodeViewController.m; sourceTree = "<group>"; };
 		96A611E51D46182100F389E7 /* TamagotchiIOS16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TamagotchiIOS16.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A611E91D46182100F389E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96A611EB1D46182100F389E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		96A611EC1D46182100F389E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		96A611EE1D46182100F389E7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -68,12 +72,10 @@
 		96A612231D46182E00F389E7 /* Storage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Storage.m; sourceTree = "<group>"; };
 		96A612241D46182E00F389E7 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		96A612251D46182E00F389E7 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
-		96FC92D81D46247800E49E48 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
-		96FC92DB1D4626FC00E49E48 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
-		96FC92DD1D462B4300E49E48 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		96FC92E01D464A3F00E49E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main2.storyboard; sourceTree = "<group>"; };
-		96FC92E91D4655F800E49E48 /* Apple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apple.m; sourceTree = "<group>"; };
-		96FC92EB1D46562500E49E48 /* Apple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Apple.h; sourceTree = "<group>"; };
+		96A6122B1D46335E00F389E7 /* critter1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = critter1.jpg; sourceTree = "<group>"; };
+		96A6122C1D46335E00F389E7 /* critter2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = critter2.jpg; sourceTree = "<group>"; };
+		96A612321D46369900F389E7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		96A612341D4636B200F389E7 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,13 +132,14 @@
 				96A611EE1D46182100F389E7 /* ViewController.h */,
 				96A611EF1D46182100F389E7 /* ViewController.m */,
 				96A611F11D46182100F389E7 /* Main.storyboard */,
-				96FC92DF1D464A3F00E49E48 /* Main2.storyboard */,
+				96A612321D46369900F389E7 /* GameViewController.m */,
+				96A612341D4636B200F389E7 /* GameViewController.h */,
 				96A611F41D46182100F389E7 /* Assets.xcassets */,
 				96A611F61D46182100F389E7 /* LaunchScreen.storyboard */,
 				96A611F91D46182100F389E7 /* Info.plist */,
 				96A611E81D46182100F389E7 /* Supporting Files */,
-				96FC92D81D46247800E49E48 /* StoreViewController.h */,
-				96FC92DB1D4626FC00E49E48 /* StoreViewController.m */,
+				96890C9E1D4643730065D77A /* TestmodeViewController.h */,
+				96890C9F1D4643F70065D77A /* TestmodeViewController.m */,
 			);
 			path = TamagotchiIOS16;
 			sourceTree = "<group>";
@@ -144,7 +147,9 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				96FC92DD1D462B4300E49E48 /* main.m */,
+				96A6122B1D46335E00F389E7 /* critter1.jpg */,
+				96A6122C1D46335E00F389E7 /* critter2.jpg */,
+				96A611E91D46182100F389E7 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,8 +185,6 @@
 				96A612231D46182E00F389E7 /* Storage.m */,
 				96A612241D46182E00F389E7 /* Store.h */,
 				96A612251D46182E00F389E7 /* Store.m */,
-				96FC92E91D4655F800E49E48 /* Apple.m */,
-				96FC92EB1D46562500E49E48 /* Apple.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,9 +293,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				96A611F81D46182100F389E7 /* LaunchScreen.storyboard in Resources */,
+				96A6122D1D46335E00F389E7 /* critter1.jpg in Resources */,
 				96A611F51D46182100F389E7 /* Assets.xcassets in Resources */,
-				96FC92E11D464A3F00E49E48 /* Main2.storyboard in Resources */,
 				96A611F31D46182100F389E7 /* Main.storyboard in Resources */,
+				96A6122E1D46335E00F389E7 /* critter2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,15 +321,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96FC92EA1D4655F800E49E48 /* Apple.m in Sources */,
 				96A611F01D46182100F389E7 /* ViewController.m in Sources */,
 				96A612261D46182E00F389E7 /* Food.m in Sources */,
 				96A612271D46182E00F389E7 /* Owner.m in Sources */,
 				96A6122A1D46182E00F389E7 /* Store.m in Sources */,
-				96FC92DC1D4626FC00E49E48 /* StoreViewController.m in Sources */,
+				96A612331D46369900F389E7 /* GameViewController.m in Sources */,
 				96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */,
+				96A611EA1D46182100F389E7 /* main.m in Sources */,
 				96A612281D46182E00F389E7 /* Pet.m in Sources */,
-				96FC92DE1D462B4300E49E48 /* main.m in Sources */,
 				96A612291D46182E00F389E7 /* Storage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,14 +379,6 @@
 				96A611F71D46182100F389E7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		96FC92DF1D464A3F00E49E48 /* Main2.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96FC92E01D464A3F00E49E48 /* Base */,
-			);
-			name = Main2.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
