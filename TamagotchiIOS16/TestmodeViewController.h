@@ -13,6 +13,7 @@
 }
 - (IBAction)sendNotification:(id)sender;
 - (IBAction)refreshNoti:(id)sender;
+- (IBAction)genRandNoti:(id)sender;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 
