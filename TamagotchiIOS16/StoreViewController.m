@@ -36,7 +36,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
+    Food *food = (Food *) [recipes objectAtIndex:indexPath.row];
+    cell.textLabel.text = food.name;
     return cell;
 }
 - (IBAction)handleBuy:(UIButton *)sender {

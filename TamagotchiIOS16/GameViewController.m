@@ -29,20 +29,27 @@
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
     self.petImageView.image = self.image1;
     self.currentImage = 0;
-    self.storage = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:4],SODA, nil];
+    self.storage = [self createStorage];
+    //self.storage = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:4],SODA, nil];
     self.owner = [[Owner alloc] init];
     self.owner.money = 100;
     self.owner.name = @"Bob";
     self.pet = [[Pet alloc] init];
-    self.storeViewController = [[StoreViewController alloc] init];
     NSArray *foodList = [self createFoodList];
     NSArray *drinkList = [self createDrinkList];
-    NSMutableArray *storeFood = [[NSMutableArray alloc] init];
-    [storeFood addObjectsFromArray:foodList];
+    NSMutableArray *storeFood = [NSMutableArray arrayWithArray:foodList];
+    //[storeFood addObjectsFromArray:foodList];
     [storeFood addObjectsFromArray:drinkList];
     self.foodList = foodList;
     self.drinkList = drinkList;
     self.storeFood = storeFood;
+}
+
+- (NSMutableDictionary *) createStorage {
+    NSMutableDictionary *storage = [[NSMutableDictionary alloc] init];
+    [storage setObject:[NSNumber numberWithInteger:0] forKey:@"apple"];
+    [storage setObject:[NSNumber numberWithInteger:1] forKey:@"soda"];
+    return storage;
 }
 
 - (NSArray *) createFoodList {
@@ -87,11 +94,18 @@
     }
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueName = segue.identifier;
+    if ([segueName isEqualToString: @"showStore"]) {
+        self.storeViewController = (StoreViewController *) [segue destinationViewController];
+        StoreViewController *storeViewController = self.storeViewController;
+        storeViewController.storage = self.storage;
+        storeViewController.owner = self.owner;
+        storeViewController.foodList = self.storeFood;
+    }
+}
+
 - (IBAction)enterShop:(UIButton *)sender {
-    StoreViewController *storeViewController = self.storeViewController;
-    storeViewController.storage = self.storage;
-    storeViewController.owner = self.owner;
-    storeViewController.foodList = self.storeFood;
 }
 
 //TODO just a joke. can be erased in final version

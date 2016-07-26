@@ -122,7 +122,7 @@
                                 <state key="normal" title="Shop"/>
                                 <connections>
                                     <action selector="enterShop:" destination="w2A-K5-GzS" eventType="touchUpInside" id="OnE-BI-RGZ"/>
-                                    <segue destination="1be-HK-iDp" kind="show" id="fFj-jW-DUx"/>
+                                    <segue destination="1be-HK-iDp" kind="show" identifier="showStore" id="fFj-jW-DUx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZt-Tq-Uau">
