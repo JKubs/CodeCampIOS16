@@ -14,8 +14,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     row = -1;
-    self.testLabel.text = @"test";
     recipes = self.foodList;
+    self.testLabel.text = self.owner.name;
     //recipes = [NSArray arrayWithObjects:@"1", @"2", nil];
 }
 
