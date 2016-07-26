@@ -8,15 +8,16 @@
 
 #import "StoreViewController.h"
 #import "Food.h"
+#import "GameViewController.h"
 
 @implementation StoreViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.hidesBackButton = YES;
     row = -1;
-    self.testLabel.text = @"test";
     recipes = self.foodList;
-    //recipes = [NSArray arrayWithObjects:@"1", @"2", nil];
+    self.testLabel.text = [NSString stringWithFormat:@"%d$", self.owner.money];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -36,9 +37,17 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
+    Food *food = (Food *) [recipes objectAtIndex:indexPath.row];
+    cell.textLabel.text = food.name;
+    cell.
+    textLabel.text = [cell.textLabel.text stringByAppendingFormat:@":%d$ quantity: %d", food.cost, [[self.storage valueForKey:food.name] integerValue]];
     return cell;
 }
+
+- (IBAction)closeStore:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)handleBuy:(UIButton *)sender {
     if (row != -1) {
         Food *food = [recipes objectAtIndex:row];
@@ -49,11 +58,9 @@
             quantity = quantity + 1;
             NSNumber *number = [NSNumber numberWithInteger:quantity];
             [self.storage setValue:number forKey:food.name];
-            self.testLabel.text = food.name;
-        } else {
-            self.testLabel.text = @"Not enough money.";
+            self.testLabel.text = [NSString stringWithFormat:@"%d$", self.owner.money];
+            [self.tableView reloadData];
         }
-        
     }
 }
 

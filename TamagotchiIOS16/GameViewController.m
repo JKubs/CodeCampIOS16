@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "GameViewController.h"
+#import "Apple.h"
+#import "Soda.h"
 
 #define FOOD_VARIETY 2
 #define SODA @"SODA"
@@ -27,10 +29,42 @@
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
     self.petImageView.image = self.image1;
     self.currentImage = 0;
-    self.storage = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:4],SODA, nil];
+    self.storage = [self createStorage];
+    //self.storage = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:4],SODA, nil];
     self.owner = [[Owner alloc] init];
+    self.owner.money = 100;
+    self.owner.name = @"Bob";
     self.pet = [[Pet alloc] init];
-    
+    NSArray *foodList = [self createFoodList];
+    NSArray *drinkList = [self createDrinkList];
+    NSMutableArray *storeFood = [NSMutableArray arrayWithArray:foodList];
+    [storeFood addObjectsFromArray:drinkList];
+    self.foodList = foodList;
+    self.drinkList = drinkList;
+    self.storeFood = storeFood;
+}
+
+- (NSMutableDictionary *) createStorage {
+    NSMutableDictionary *storage = [[NSMutableDictionary alloc] init];
+    [storage setObject:[NSNumber numberWithInteger:0] forKey:@"apple"];
+    [storage setObject:[NSNumber numberWithInteger:1] forKey:@"soda"];
+    return storage;
+}
+
+- (NSArray *) createFoodList {
+    Apple *apple = [[Apple alloc] init];
+    apple.name = @"apple";
+    apple.cost = 5;
+    NSArray *foodList = [[NSArray alloc] initWithObjects:apple, nil];
+    return foodList;
+}
+
+- (NSArray *) createDrinkList {
+    Soda *soda = [[Soda alloc] init];
+    soda.name = @"soda";
+    soda.cost = 5;
+    NSArray *drinkList = [[NSArray alloc] initWithObjects:soda, nil];
+    return drinkList;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,7 +77,7 @@
 }
 
 - (void)feed:(Food *)food {
-    if([[self.storage objectForKey:@"bla"] intValue] > 0) {
+    if([[self.storage objectForKey:food.name] intValue] > 0) {
         
     }
     else {
@@ -59,7 +93,19 @@
     }
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueName = segue.identifier;
+    if ([segueName isEqualToString: @"showStore"]) {
+        self.storeViewController = (StoreViewController *) [segue destinationViewController];
+        StoreViewController *storeViewController = self.storeViewController;
+        storeViewController.storage = self.storage;
+        storeViewController.owner = self.owner;
+        storeViewController.foodList = self.storeFood;
+    }
+}
+
 - (IBAction)enterShop:(UIButton *)sender {
+    
 }
 
 //TODO just a joke. can be erased in final version

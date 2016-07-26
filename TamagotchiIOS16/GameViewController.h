@@ -12,6 +12,7 @@
 #import "Pet.h"
 #import "Storage.h"
 #import "Store.h"
+#import "StoreViewController.h"
 
 @protocol GameViewControllerDelegate <NSObject>
 @required
@@ -22,14 +23,19 @@
 @interface GameViewController : UIViewController
 
 @property (strong, nonatomic) id <GameViewControllerDelegate> delegate;
+@property (strong, nonatomic) StoreViewController *storeViewController;
 @property (strong, nonatomic) IBOutlet UIImageView *petImageView;
 @property (strong, nonatomic) UIImage *image1;
 @property (strong, nonatomic) UIImage *image2;
 @property (nonatomic) int currentImage;
+@property (nonatomic) int saveSlot;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;
 @property (strong, nonatomic) Pet *pet;
 @property (strong, nonatomic) Store *store;
+@property (strong, nonatomic) NSArray *foodList;
+@property (strong, nonatomic) NSArray *drinkList;
+@property (strong, nonatomic) NSMutableArray *storeFood;
 @property (strong, nonatomic) Food *currentWish;
 
 
