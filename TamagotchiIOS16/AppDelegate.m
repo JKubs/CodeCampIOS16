@@ -53,8 +53,22 @@
 {
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"                                                        message:notification.alertBody                                                       delegate:self cancelButtonTitle:@"OK"                                              otherButtonTitles:nil];
-//        [alert show];
+        //UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Reminder"
+         //                                                              message:notification.alertBody
+         //                                                       preferredStyle:UIAlertControllerStyleAlert];
+        
+       // UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+        //                                                      handler:^(UIAlertAction * action) {}];
+        
+       // [alert addAction:defaultAction];
+        //[self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"                                                        message:notification.alertBody
+            delegate:self cancelButtonTitle:@"OK"
+            otherButtonTitles:nil];
+        [alert show];
+
+
     }
     
     // Request to reload table view data
