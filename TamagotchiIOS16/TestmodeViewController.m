@@ -13,11 +13,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    nextNotiText.text = @"";
-    for (UILocalNotification *localNotification in localNotifications) {
-        nextNotiText.text = [nextNotiText.text stringByAppendingString:[[localNotification.fireDate description] stringByAppendingString:@"\n"]];
-    }
+    refresh;
 }
 
 - (IBAction)sendNotification:(id)sender {
@@ -39,25 +35,31 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     
     // Request to reload table view data
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];    
 }
 
 - (IBAction)refreshNoti:(id)sender {
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    nextNotiText.text = @"";
-    for (UILocalNotification *localNotification in localNotifications) {
-        nextNotiText.text = [nextNotiText.text stringByAppendingString:[[localNotification.fireDate description] stringByAppendingString:@"\n"]];
-    }
+    refresh;
 }
 
 - (IBAction)genRandNoti:(id)sender {
-    NSArray randomDates[5] ={
-        arc4random_uniform(86400)
-        arc4random_uniform(86400)
-        arc4random_uniform(86400)
-        arc4random_uniform(86400)
-        arc4random_uniform(86400)
+    generateNotifications:5;
+    refresh;
+}
+
+- (IBAction)resetNotis:(id)sender {
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    refresh;
+}
+
+- (void) generateNotifications:(int)numberOfNotifications{
+    Int maxHours = 24; // 24h - sleep time
+    Int maxRand = 36 * maxHours;
+    Int randMultiplier;
+    NSArray randomDates[numberOfNotifications];
+    for (int i = 0; i < numberOfNotifications; i++) {
+        randomDates[i] = arc4random_uniform(maxRand) * 100;
     }
     
     for (int *i in randomDates) {
@@ -77,8 +79,14 @@
     
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-    
-    
+}
+
+- (void) refresh{
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    nextNotiText.text = @"";
+    for (UILocalNotification *localNotification in localNotifications) {
+        nextNotiText.text = [nextNotiText.text stringByAppendingString:[[localNotification.fireDate description] stringByAppendingString:@"\n"]];
+    }
 }
 
 
