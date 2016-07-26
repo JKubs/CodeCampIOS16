@@ -158,7 +158,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKo-Ld-3Aq">
-                                <rect key="frame" x="160" y="519" width="85" height="30"/>
+                                <rect key="frame" x="85" y="481" width="85" height="30"/>
                                 <state key="normal" title="Money Farm"/>
                                 <connections>
                                     <segue destination="9Cr-qx-s1W" kind="show" id="Q2s-zu-t41"/>
