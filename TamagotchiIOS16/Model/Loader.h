@@ -1,5 +1,5 @@
 //
-//  NSObject+Loader.h
+//  Loader.h
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 26.07.16.
@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface NSObject (Loader)
+@interface Loader : NSObject
+
++(BOOL)loadSaveState:(UIViewController *)controller;
 
 @end

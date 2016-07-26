@@ -1,13 +1,13 @@
 //
-//  NSObject+Loader.m
+//  Loader.m
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 26.07.16.
 //  Copyright © 2016 Codecamp. All rights reserved.
 //
 
-#import "NSObject+Loader.h"
+#import "Loader.h"
 
-@implementation NSObject (Loader)
+@implementation Loader
 
 @end

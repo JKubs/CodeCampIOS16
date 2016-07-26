@@ -43,7 +43,7 @@
 }
 
 - (void)feed:(Food *)food {
-    if([[self.storage objectForKey:@"bla"] intValue] > 0) {
+    if([[self.storage objectForKey:food.name] intValue] > 0) {
         
     }
     else {

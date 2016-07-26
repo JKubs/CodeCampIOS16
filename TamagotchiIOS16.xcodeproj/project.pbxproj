@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9649DAAB1D47489B007CF15E /* verrecke_dummes_vieh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */; };
+		9649DAAF1D475446007CF15E /* Saver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649DAAE1D475446007CF15E /* Saver.m */; };
+		9649DAB21D47553D007CF15E /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649DAB11D47553D007CF15E /* Loader.m */; };
 		96A611EA1D46182100F389E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611E91D46182100F389E7 /* main.m */; };
 		96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EC1D46182100F389E7 /* AppDelegate.m */; };
 		96A611F01D46182100F389E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EF1D46182100F389E7 /* ViewController.m */; };
@@ -46,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = verrecke_dummes_vieh.jpg; sourceTree = "<group>"; };
+		9649DAAD1D475446007CF15E /* Saver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Saver.h; sourceTree = "<group>"; };
+		9649DAAE1D475446007CF15E /* Saver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Saver.m; sourceTree = "<group>"; };
+		9649DAB01D47553D007CF15E /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
+		9649DAB11D47553D007CF15E /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
 		96890C9E1D4643730065D77A /* TestmodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestmodeViewController.h; sourceTree = "<group>"; };
 		96890C9F1D4643F70065D77A /* TestmodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestmodeViewController.m; sourceTree = "<group>"; };
 		96A611E51D46182100F389E7 /* TamagotchiIOS16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TamagotchiIOS16.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +113,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9649DAAC1D475403007CF15E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				9649DAAD1D475446007CF15E /* Saver.h */,
+				9649DAAE1D475446007CF15E /* Saver.m */,
+				9649DAB01D47553D007CF15E /* Loader.h */,
+				9649DAB11D47553D007CF15E /* Loader.m */,
+			);
+			name = Util;
+			path = Model;
+			sourceTree = "<group>";
+		};
 		96A611DC1D46182100F389E7 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +150,7 @@
 			children = (
 				96A611EB1D46182100F389E7 /* AppDelegate.h */,
 				96A611EC1D46182100F389E7 /* AppDelegate.m */,
+				9649DAAC1D475403007CF15E /* Util */,
 				96A6121B1D46182E00F389E7 /* Model */,
 				96A611EE1D46182100F389E7 /* ViewController.h */,
 				96A611EF1D46182100F389E7 /* ViewController.m */,
@@ -335,7 +354,9 @@
 				96A6122A1D46182E00F389E7 /* Store.m in Sources */,
 				96FC92F11D465F5100E49E48 /* StoreViewController.m in Sources */,
 				96A612331D46369900F389E7 /* GameViewController.m in Sources */,
+				9649DAB21D47553D007CF15E /* Loader.m in Sources */,
 				96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */,
+				9649DAAF1D475446007CF15E /* Saver.m in Sources */,
 				96A611EA1D46182100F389E7 /* main.m in Sources */,
 				96A612281D46182E00F389E7 /* Pet.m in Sources */,
 				96A612291D46182E00F389E7 /* Storage.m in Sources */,
