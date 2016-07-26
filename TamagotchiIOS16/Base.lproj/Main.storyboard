@@ -63,6 +63,24 @@
             </objects>
             <point key="canvasLocation" x="313" y="-280"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Wbu-c2-m3J">
+            <objects>
+                <viewController id="9Cr-qx-s1W" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W1J-ua-t2O"/>
+                        <viewControllerLayoutGuide type="bottom" id="jK7-6w-ar0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="34I-Iz-XWi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QJ3-X0-gZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1110" y="-300"/>
+        </scene>
         <!--GameScreen-->
         <scene sceneID="amE-Dy-Kca">
             <objects>
@@ -137,6 +155,13 @@
                                 <state key="normal" title="Testmode"/>
                                 <connections>
                                     <segue destination="cfc-WT-PLY" kind="show" id="75t-rR-lNK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKo-Ld-3Aq">
+                                <rect key="frame" x="160" y="519" width="85" height="30"/>
+                                <state key="normal" title="Money Farm"/>
+                                <connections>
+                                    <segue destination="9Cr-qx-s1W" kind="show" id="Q2s-zu-t41"/>
                                 </connections>
                             </button>
                         </subviews>
