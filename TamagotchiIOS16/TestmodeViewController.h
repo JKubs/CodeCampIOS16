@@ -1,5 +1,5 @@
 //
-//  TestmodeViewController.h
+// TestmodeViewController.h
 //  TamagotchiIOS16
 //
 //  Created by Codecamp on 25.07.16.
