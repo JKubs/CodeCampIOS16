@@ -101,7 +101,18 @@
         storeViewController.storage = self.storage;
         storeViewController.owner = self.owner;
         storeViewController.foodList = self.storeFood;
+    } else if ([segueName isEqualToString:@"showMoneyFarm"]) {
+        self.moneyFarmViewController = (MoneyFarmViewController *) [segue destinationViewController];
+        MoneyFarmViewController *moneyFarmViewController = self.moneyFarmViewController;
+        moneyFarmViewController.owner = self.owner;
+        //if (moneyFarmViewController.myTimer == nil) {
+        //   [moneyFarmViewController startTimer];
+        //}
     }
+}
+
+- (IBAction)enterMoneyFarm:(UIButton *)sender {
+    
 }
 
 - (IBAction)enterShop:(UIButton *)sender {

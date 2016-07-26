@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="313" y="-280"/>
         </scene>
-        <!--View Controller-->
+        <!--Money Farm View Controller-->
         <scene sceneID="Wbu-c2-m3J">
             <objects>
-                <viewController id="9Cr-qx-s1W" sceneMemberID="viewController">
+                <viewController id="9Cr-qx-s1W" customClass="MoneyFarmViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W1J-ua-t2O"/>
                         <viewControllerLayoutGuide type="bottom" id="jK7-6w-ar0"/>
@@ -74,8 +74,39 @@
                     <view key="view" contentMode="scaleToFill" id="34I-Iz-XWi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grass_background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U0V-tD-5su">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxG-lA-v8e">
+                                <rect key="frame" x="277" y="530" width="46" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeMoneyFarm:" destination="9Cr-qx-s1W" eventType="touchUpInside" id="iuZ-TV-dCL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8U-ef-Tew">
+                                <rect key="frame" x="302" y="332" width="137" height="135"/>
+                                <state key="normal" image="coin.png"/>
+                                <connections>
+                                    <action selector="clickCoin:" destination="9Cr-qx-s1W" eventType="touchUpInside" id="wfz-hi-x3l"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money:0$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqi-uz-1Ia">
+                                <rect key="frame" x="244" y="100" width="112" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="moneyLabel" destination="vqi-uz-1Ia" id="eMh-Kb-wyx"/>
+                        <outlet property="testCoin" destination="E8U-ef-Tew" id="BkM-Op-mOC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJ3-X0-gZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,16 +144,6 @@
                                     <action selector="hydrateAction:" destination="w2A-K5-GzS" eventType="touchUpInside" id="zVE-Gw-gjd"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="critter1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VEJ-DN-UaE">
-                                <rect key="frame" x="179" y="150" width="240" height="240"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="8Xc-De-iDy"/>
-                                    <constraint firstAttribute="height" constant="240" id="kv6-EP-LuW"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hunger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDJ-Vw-Y7G">
                                 <rect key="frame" x="41" y="78" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -161,9 +182,20 @@
                                 <rect key="frame" x="85" y="481" width="85" height="30"/>
                                 <state key="normal" title="Money Farm"/>
                                 <connections>
-                                    <segue destination="9Cr-qx-s1W" kind="show" id="Q2s-zu-t41"/>
+                                    <action selector="enterMoneyFarm:" destination="w2A-K5-GzS" eventType="touchUpInside" id="Dr8-Wz-6MM"/>
+                                    <segue destination="9Cr-qx-s1W" kind="show" identifier="showMoneyFarm" id="Q2s-zu-t41"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="critter1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VEJ-DN-UaE">
+                                <rect key="frame" x="179" y="150" width="240" height="240"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="8Xc-De-iDy"/>
+                                    <constraint firstAttribute="height" constant="240" id="kv6-EP-LuW"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -225,7 +257,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7NN-f2-52b">
-                                        <rect key="frame" x="0.0" y="92" width="240" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7NN-f2-52b" id="pqK-ug-1vo">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
@@ -272,6 +304,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="coin.png" width="236" height="203"/>
         <image name="critter1.jpg" width="139" height="135"/>
+        <image name="grass_background.jpg" width="512" height="512"/>
     </resources>
 </document>
