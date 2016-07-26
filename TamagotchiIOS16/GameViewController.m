@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "GameViewController.h"
 
+#define FOOD_VARIETY 2
+#define SODA @"SODA"
+#define CANDY @"CANDY"
 
 @interface GameViewController ()
 @end
@@ -24,7 +27,7 @@
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
     self.petImageView.image = self.image1;
     self.currentImage = 0;
-    self.storage = [[NSMutableArray alloc] initWithObjects:[[Food alloc] init],[[Food alloc] init], nil];
+    self.storage = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:4],SODA, nil];
     self.owner = [[Owner alloc] init];
     self.pet = [[Pet alloc] init];
     
@@ -36,9 +39,24 @@
 }
 
 - (IBAction)feedAction:(UIButton *)sender {
+    [self feed:self.currentWish];
 }
 
-- (IBAction)hydrateAction:(UIButton *)sender {
+- (void)feed:(Food *)food {
+    if([[self.storage objectForKey:@"bla"] intValue] > 0) {
+        
+    }
+    else {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                       message:@"Insufficient supplies"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (IBAction)enterShop:(UIButton *)sender {
@@ -46,6 +64,7 @@
 
 //TODO just a joke. can be erased in final version
 - (IBAction)killThatMonster:(UIButton *)sender {
+    self.petImageView.image = [UIImage imageNamed:@"verrecke_dummes_vieh.jpg"];
 }
 
 - (void)animate {
