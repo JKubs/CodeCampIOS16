@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameViewController.h"
+#import "NotificationRequest.h"
 
 @interface Saver : NSObject
 
-+(BOOL)saveChangeOn:(id)instance withValue:(id)value;
-//+(BOOL)completeSave
++(BOOL)saveChangeOn:(NSString*)key withValue:(id)value;
++(BOOL)completeSave:(GameViewController*)controller;
++(BOOL)saveNotificationSchedulesOnExiting:(NSArray*)notifications;
 
 @end

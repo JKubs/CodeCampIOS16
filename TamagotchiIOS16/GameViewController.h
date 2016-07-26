@@ -28,6 +28,7 @@
 @property (strong, nonatomic) UIImage *image1;
 @property (strong, nonatomic) UIImage *image2;
 @property (nonatomic) int currentImage;
+@property (nonatomic) int saveSlot;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;
 @property (strong, nonatomic) Pet *pet;
