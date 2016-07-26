@@ -13,10 +13,6 @@
 #import "Storage.h"
 #import "Store.h"
 
-#define FOOD_VARIETY 2
-#define SODA 0
-#define CANDY 1
-
 @protocol GameViewControllerDelegate <NSObject>
 @required
 -(void)animationReturned;
@@ -31,15 +27,17 @@
 @property (strong, nonatomic) UIImage *image2;
 @property (nonatomic) int currentImage;
 @property (strong, nonatomic) Owner *owner;
-@property (strong, nonatomic) NSMutableArray *storage;
+@property (strong, nonatomic) NSMutableDictionary *storage;
 @property (strong, nonatomic) Pet *pet;
 @property (strong, nonatomic) Store *store;
+@property (strong, nonatomic) Food *currentWish;
 
 
 - (IBAction)feedAction:(UIButton *)sender;
-- (IBAction)hydrateAction:(UIButton *)sender;
 - (IBAction)enterShop:(UIButton *)sender;
 - (IBAction)killThatMonster:(UIButton *)sender;
+
+- (void)feed:(Food*)food;
 
 -(void)animate;
 
