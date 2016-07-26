@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9649DAAB1D47489B007CF15E /* verrecke_dummes_vieh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */; };
 		9649DAB41D478A87007CF15E /* NotificationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649DAB31D478A87007CF15E /* NotificationRequest.m */; };
-		9649DAB71D479AC7007CF15E /* SaveFile.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 9649DAB61D479AC7007CF15E /* SaveFile.tsv */; };
 		969B9E921D4751C100A70029 /* TestmodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969B9E911D4751C100A70029 /* TestmodeViewController.m */; };
 		96A611EA1D46182100F389E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611E91D46182100F389E7 /* main.m */; };
 		96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EC1D46182100F389E7 /* AppDelegate.m */; };
@@ -55,7 +54,6 @@
 		9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = verrecke_dummes_vieh.jpg; sourceTree = "<group>"; };
 		9649DAB31D478A87007CF15E /* NotificationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationRequest.m; sourceTree = "<group>"; };
 		9649DAB51D478AA9007CF15E /* NotificationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationRequest.h; sourceTree = "<group>"; };
-		9649DAB61D479AC7007CF15E /* SaveFile.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SaveFile.tsv; sourceTree = "<group>"; };
 		969B9E901D47518900A70029 /* TestmodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestmodeViewController.h; sourceTree = "<group>"; };
 		969B9E911D4751C100A70029 /* TestmodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestmodeViewController.m; sourceTree = "<group>"; };
 		96A611E51D46182100F389E7 /* TamagotchiIOS16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TamagotchiIOS16.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,7 +170,6 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9649DAB61D479AC7007CF15E /* SaveFile.tsv */,
 				96A6122B1D46335E00F389E7 /* critter1.jpg */,
 				96A6122C1D46335E00F389E7 /* critter2.jpg */,
 				9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */,
@@ -338,7 +335,6 @@
 			files = (
 				96A611F81D46182100F389E7 /* LaunchScreen.storyboard in Resources */,
 				96A6122D1D46335E00F389E7 /* critter1.jpg in Resources */,
-				9649DAB71D479AC7007CF15E /* SaveFile.tsv in Resources */,
 				96A611F51D46182100F389E7 /* Assets.xcassets in Resources */,
 				96A611F31D46182100F389E7 /* Main.storyboard in Resources */,
 				96A6122E1D46335E00F389E7 /* critter2.jpg in Resources */,

@@ -13,6 +13,10 @@
 #import "Storage.h"
 #import "Store.h"
 #import "StoreViewController.h"
+#import "Loader.h"
+#import "Saver.h"
+#import "Apple.h"
+#import "Soda.h"
 
 @protocol GameViewControllerDelegate <NSObject>
 @required
@@ -28,7 +32,7 @@
 @property (strong, nonatomic) UIImage *image1;
 @property (strong, nonatomic) UIImage *image2;
 @property (nonatomic) int currentImage;
-@property (nonatomic) int saveSlot;
+@property (strong, nonatomic) NSString *saveSlot;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;
 @property (strong, nonatomic) Pet *pet;

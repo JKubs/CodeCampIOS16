@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameViewController.h"
-
+#import "Saver.h"
 
 @interface Loader : NSObject
 

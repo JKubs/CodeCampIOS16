@@ -8,12 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "GameViewController.h"
-#import "Apple.h"
-#import "Soda.h"
-
-#define FOOD_VARIETY 2
-#define SODA @"SODA"
-#define CANDY @"CANDY"
 
 @interface GameViewController ()
 @end
@@ -42,6 +36,7 @@
     self.foodList = foodList;
     self.drinkList = drinkList;
     self.storeFood = storeFood;
+    
 }
 
 - (NSMutableDictionary *) createStorage {
