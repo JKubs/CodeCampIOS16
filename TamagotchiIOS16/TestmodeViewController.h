@@ -12,10 +12,10 @@
     IBOutlet UITextView *nextNotiText;
 }
 - (IBAction)sendNotification:(id)sender;
-- (IBAction)refreshNoti:(id)sender;
 - (IBAction)genRandNoti:(id)sender;
 - (IBAction)resetNotis:(id)sender;
+- (void)refreshNoti;
+- (int)calcStuff:(int)n;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-
 
 @end
