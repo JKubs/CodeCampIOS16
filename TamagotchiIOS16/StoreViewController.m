@@ -7,6 +7,7 @@
 //
 
 #import "StoreViewController.h"
+#import "Food.h"
 
 @implementation StoreViewController
 
@@ -14,7 +15,8 @@
     [super viewDidLoad];
     row = -1;
     self.testLabel.text = @"test";
-    recipes = [NSArray arrayWithObjects:@"1", @"2", nil];
+    recipes = self.foodList;
+    //recipes = [NSArray arrayWithObjects:@"1", @"2", nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -37,10 +39,21 @@
     cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
     return cell;
 }
-
-- (IBAction)handleBuy:(id)sender {
+- (IBAction)handleBuy:(UIButton *)sender {
     if (row != -1) {
-        self.testLabel.text = [recipes objectAtIndex:row];
+        Food *food = [recipes objectAtIndex:row];
+        NSInteger currentMoney = self.owner.money;
+        if (food.cost <= currentMoney) {
+            self.owner.money = currentMoney - food.cost;
+            NSInteger quantity = [[self.storage objectForKey:food.name] integerValue];
+            quantity = quantity + 1;
+            NSNumber *number = [NSNumber numberWithInteger:quantity];
+            [self.storage setValue:number forKey:food.name];
+            self.testLabel.text = food.name;
+        } else {
+            self.testLabel.text = @"Not enough money.";
+        }
+        
     }
 }
 

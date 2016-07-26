@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Owner.h"
 
 @interface StoreViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     
-    NSArray *recipes;
+    NSMutableArray *recipes;
     NSInteger row;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *buyButton;
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
+@property (weak, nonatomic) NSMutableDictionary *storage;
+@property (weak, nonatomic) NSMutableArray *foodList;
+@property (weak, nonatomic) Owner *owner;
 
 @end
