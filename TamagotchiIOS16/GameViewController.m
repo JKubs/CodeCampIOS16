@@ -38,7 +38,6 @@
     NSArray *foodList = [self createFoodList];
     NSArray *drinkList = [self createDrinkList];
     NSMutableArray *storeFood = [NSMutableArray arrayWithArray:foodList];
-    //[storeFood addObjectsFromArray:foodList];
     [storeFood addObjectsFromArray:drinkList];
     self.foodList = foodList;
     self.drinkList = drinkList;
@@ -106,6 +105,7 @@
 }
 
 - (IBAction)enterShop:(UIButton *)sender {
+    
 }
 
 //TODO just a joke. can be erased in final version
