@@ -10,4 +10,7 @@
 
 @interface Food : NSObject
 
+@property (weak, nonatomic) NSString *name;
+@property NSInteger cost;
+
 @end

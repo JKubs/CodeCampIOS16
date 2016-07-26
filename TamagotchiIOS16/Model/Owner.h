@@ -10,4 +10,7 @@
 
 @interface Owner : NSObject
 
+@property (weak, nonatomic) NSString *name;
+@property NSInteger money;
+
 @end
