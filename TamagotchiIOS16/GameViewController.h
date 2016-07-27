@@ -15,8 +15,6 @@
 #import "StoreViewController.h"
 #import "Loader.h"
 #import "Saver.h"
-#import "Apple.h"
-#import "Soda.h"
 #import "MoneyFarmViewController.h"
 
 @class Loader;
