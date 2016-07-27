@@ -15,6 +15,10 @@
 @property (weak, nonatomic) NSTimer *myTimer;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *testCoin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *centerY;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *centerX;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonWidth;
 
 - (void)startTimer;
 
