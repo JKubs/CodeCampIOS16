@@ -25,6 +25,7 @@
 #define PET_LIVES @"petlives"
 #define PET_WISHES @"petwishes"
 #define CURRENT_WISH @"wish"
+#define CURRENT_SLOT @"currentslot"
 
 @class GameViewController;
 
