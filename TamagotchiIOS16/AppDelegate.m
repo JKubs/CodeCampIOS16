@@ -29,6 +29,8 @@
         [self findGameController];
     }
     
+    [self checkForMissedNotifications];
+    
     int dist = 1800;
     Boolean passedSleepingTime = false;
     NSInteger sleepHourStart = 23*3600;
@@ -98,23 +100,9 @@
             }
             
             //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
-            
-            UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-            localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:rand];
-            localNotification.alertBody = @"FEED ME !!!!";
-            localNotification.alertAction = @"Show me the item";
-            localNotification.timeZone = [NSTimeZone defaultTimeZone];
-            localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-            
-            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+
+            [self generateRandomNeed:[NSDate dateWithTimeIntervalSinceNow:rand]];
         }
-        
-        UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-        
-        // Request to reload table view data
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     }else if([localNotifications count] < 5){
         UILocalNotification *first = [localNotifications firstObject];
         UILocalNotification *last = [localNotifications lastObject];
@@ -186,30 +174,60 @@
             }
             
             //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld ", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
-            
-            UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-            localNotification.fireDate = [NSDate dateWithTimeInterval:rand sinceDate:lastDate];
-            localNotification.alertBody = @"FEED ME !!!!";
-            localNotification.alertAction = @"Show me the item";
-            localNotification.timeZone = [NSTimeZone defaultTimeZone];
-            localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-            
-            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+            [self generateRandomNeed:[NSDate dateWithTimeInterval:rand sinceDate:lastDate]];
         }
-        
-        UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-        
-        // Request to reload table view data
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-
-        
+    }
+    NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (locationNotification in newlocalNotifications) {
+        NSLog(@" %@ --", locationNotification.alertBody);
     }
     
-    
-    
     return YES;
+}
+
+- (void)generateRandomNeed:(NSDate*) date{
+    NSArray *needs = [NSArray arrayWithObjects:WISH_HUNGRY,WISH_THIRSTY,nil];
+    NSInteger needsRand = (int)arc4random_uniform([needs count]);
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = date;
+    localNotification.alertBody = [needs objectAtIndex:needsRand];
+    localNotification.alertAction = @"Show me the item";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+    NotificationRequest *newRequest;
+    newRequest.message = localNotification.alertBody;
+    newRequest.timestamp = localNotification.fireDate;
+    newRequest.subject = localNotification.alertBody; //TODO: change to a subject
+    [self.gameController.notificationRequests addObject:newRequest];
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+}
+
+- (void)checkForMissedNotifications{
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    NSMutableArray *missedNotis;
+    for (UILocalNotification* localNotification  in localNotifications) {
+        BOOL *gotIt = false;
+        for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
+            if([notiRequ isEqual:localNotification.fireDate]){
+                gotIt = true;
+            }
+        }
+        if (!gotIt) {
+            [missedNotis addObject:localNotification];
+            NSLog(@"missed: %@", localNotification.alertBody);
+        }
+    }
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -230,6 +248,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self checkForMissedNotifications];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

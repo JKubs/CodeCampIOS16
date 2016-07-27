@@ -21,5 +21,6 @@
 @property (weak, nonatomic) NSMutableDictionary *storage;
 @property (weak, nonatomic) NSMutableArray *foodList;
 @property (weak, nonatomic) Owner *owner;
+@property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
 
 @end
