@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9641F7F71D48C0BF009D5E03 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9641F7F61D48C0BF009D5E03 /* StatusViewController.m */; };
+		9641F7FA1D48D331009D5E03 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9641F7F91D48D331009D5E03 /* MenuViewController.m */; };
 		9649DAAB1D47489B007CF15E /* verrecke_dummes_vieh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */; };
 		9649DAB41D478A87007CF15E /* NotificationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649DAB31D478A87007CF15E /* NotificationRequest.m */; };
 		969B9E921D4751C100A70029 /* TestmodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969B9E911D4751C100A70029 /* TestmodeViewController.m */; };
@@ -53,6 +54,8 @@
 /* Begin PBXFileReference section */
 		9641F7F61D48C0BF009D5E03 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		9641F7F81D48C0D3009D5E03 /* StatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
+		9641F7F91D48D331009D5E03 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		9641F7FB1D48D342009D5E03 /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = verrecke_dummes_vieh.jpg; sourceTree = "<group>"; };
 		9649DAB31D478A87007CF15E /* NotificationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationRequest.m; sourceTree = "<group>"; };
 		9649DAB51D478AA9007CF15E /* NotificationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationRequest.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 				96CC5C771D47A55400DB090A /* MoneyFarmViewController.h */,
 				9641F7F61D48C0BF009D5E03 /* StatusViewController.m */,
 				9641F7F81D48C0D3009D5E03 /* StatusViewController.h */,
+				9641F7F91D48D331009D5E03 /* MenuViewController.m */,
+				9641F7FB1D48D342009D5E03 /* MenuViewController.h */,
 			);
 			path = TamagotchiIOS16;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				96CC5C761D47A54000DB090A /* MoneyFarmViewController.m in Sources */,
 				96A611F01D46182100F389E7 /* ViewController.m in Sources */,
 				96A612261D46182E00F389E7 /* Food.m in Sources */,
+				9641F7FA1D48D331009D5E03 /* MenuViewController.m in Sources */,
 				96A612271D46182E00F389E7 /* Owner.m in Sources */,
 				969B9E921D4751C100A70029 /* TestmodeViewController.m in Sources */,
 				9641F7F71D48C0BF009D5E03 /* StatusViewController.m in Sources */,
