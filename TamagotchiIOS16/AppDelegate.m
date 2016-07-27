@@ -203,6 +203,22 @@
     newRequest.subject = localNotification.alertBody; //TODO: change to a subject
     [self.gameController.notificationRequests addObject:newRequest];
     
+    
+    NSInteger tooLate = 1200;
+    UILocalNotification* localNotificationEnd = [[UILocalNotification alloc] init];
+    localNotificationEnd.fireDate = [date dateByAddingTimeInterval:tooLate];
+    localNotificationEnd.alertBody = WISH_TOO_LATE;
+    localNotificationEnd.alertAction = @"Show me the item";
+    localNotificationEnd.timeZone = [NSTimeZone defaultTimeZone];
+    localNotificationEnd.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotificationEnd];
+
+    NotificationRequest *newLateRequest;
+    newLateRequest.message = localNotificationEnd.alertBody;
+    newLateRequest.timestamp = localNotificationEnd.fireDate;
+    newLateRequest.subject = localNotificationEnd.alertBody; //TODO: change to a subject
+    [self.gameController.notificationRequests addObject:newLateRequest];
+    
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
@@ -227,6 +243,18 @@
             NSLog(@"missed: %@", localNotification.alertBody);
         }
     }
+    int missedHungry = 0;
+    for (NotificationRequest *notiR in missedNotis) {
+        if([notiR.message isEqualToString:WISH_HUNGRY] || [notiR isEqual:WISH_THIRSTY] ){
+            missedHungry++;
+        }
+    }
+    
+    if(missedHungry > 3){
+        
+        NSLog(@"your pet died -.- you got %d missed \"hungry\"-Notifications", missedHungry);
+    }
+    
 
 }
 

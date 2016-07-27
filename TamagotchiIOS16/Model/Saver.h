@@ -30,6 +30,7 @@
 #define WISH_HUNGRY @"GIVE ME FOOD!!!"
 #define WISH_THIRSTY @"I WANT BEER!!!"
 #define CURRENT_SLOT @"currentslot"
+#define WISH_TOO_LATE @"you were too l8! i h8 u -.-"
 
 @class GameViewController;
 
