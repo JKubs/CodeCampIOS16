@@ -39,6 +39,7 @@
     self.foodList = foodList;
     self.drinkList = drinkList;
     self.storeFood = storeFood;
+    self.saveSlot = SAVE_SLOT_1;
     
 }
 
