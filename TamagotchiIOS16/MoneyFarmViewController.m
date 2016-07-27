@@ -6,6 +6,8 @@
 //  Copyright © 2016 Codecamp. All rights reserved.
 //
 
+#include <stdlib.h>
+
 #import "MoneyFarmViewController.h"
 
 @implementation MoneyFarmViewController
@@ -14,39 +16,77 @@
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
     self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
-    //self.testCoin.enabled = NO;
-    //self.testCoin.imageView.hidden = YES;
-    //if (self.myTimer == nil) {
-    //    [self startTimer];
-    //}
+    self.testCoin.hidden = YES;
+    self.testCoin.enabled = NO;
+    [UIView animateWithDuration:0.4 animations:^{self.buttonHeight.constant=66;}];
+    [UIView animateWithDuration:0.4 animations:^{self.buttonWidth.constant=53;}];
+    if (self.myTimer == nil) {
+        [self startTimer];
+    }
 }
 
 - (void)startTimer {
-    self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 60.0 target: self
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self
                                                   selector: @selector(callAfterFiveSeconds:) userInfo: nil repeats: YES];
 }
 
+- (void)startSuccessfullTimer {
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0 target: self
+                                                  selector: @selector(callAfterTwoSeconds:) userInfo: nil repeats: NO];
+}
+
+- (void)startUnSuccessfullTimer {
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0 target: self
+                                                  selector: @selector(callAfterTwoSecondsUnSuccessfull:) userInfo: nil repeats: NO];
+}
+
 - (IBAction)clickCoin:(UIButton *)sender {
-    //if (self.myTimer != nil) {
-    //    [self.myTimer invalidate];
-    //    self.myTimer = nil;
-    //}
-    //self.testCoin.imageView.hidden = YES;
-    //self.testCoin.enabled = NO;
-    //[self startTimer];
+    if (self.myTimer != nil) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+    }
+    self.testCoin.hidden = YES;
+    self.testCoin.enabled = NO;
+    self.owner.money += 1;
+    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
+    [self startSuccessfullTimer];
 }
 
 - (IBAction)closeMoneyFarm:(UIButton *)sender {
-    //if (self.myTimer != nil) {
-    //    [self.myTimer invalidate];
-    //    self.myTimer = nil;
-    //}
+    if (self.myTimer != nil) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)callAfterFiveSeconds:(NSTimer *)timer {
-    //self.testCoin.imageView.hidden = NO;
-    //self.testCoin.enabled = YES;
+    NSInteger randX = ((int) arc4random_uniform(241))-140;
+    NSInteger randY = ((int) arc4random_uniform(241))-140;
+    [UIView animateWithDuration:0.4 animations:^{self.centerX.constant=randX;}];
+    [UIView animateWithDuration:0.4 animations:^{self.centerY.constant=randY;}];
+    self.testCoin.hidden = NO;
+    self.testCoin.enabled = YES;
+}
+
+- (void)callAfterTwoSeconds:(NSTimer *)timer {
+    NSInteger randX = ((int) arc4random_uniform(241))-140;
+    NSInteger randY = ((int) arc4random_uniform(241))-140;
+    [UIView animateWithDuration:0.4 animations:^{self.centerX.constant=randX;}];
+    [UIView animateWithDuration:0.4 animations:^{self.centerY.constant=randY;}];
+    self.testCoin.hidden = NO;
+    self.testCoin.enabled = YES;
+    [self.myTimer invalidate];
+    self.myTimer = nil;
+    [self startUnSuccessfullTimer];
+}
+
+- (void)callAfterTwoSecondsUnSuccessfull:(NSTimer *)timer {
+    self.testCoin.hidden = YES;
+    self.testCoin.enabled = NO;
+    [self.myTimer invalidate];
+    self.myTimer = nil;
+    [self startTimer];
 }
 
 @end
