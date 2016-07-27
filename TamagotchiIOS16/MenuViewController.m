@@ -88,14 +88,32 @@
     Food *apple = [[Food alloc] init];
     apple.name = @"apple";
     apple.cost = 5;
-    self.foodList = [[NSArray alloc] initWithObjects:apple, nil];
+    Food *bread = [[Food alloc] init];
+    bread.name = @"bread";
+    bread.cost = 3;
+    Food *candy = [[Food alloc] init];
+    candy.name = @"candy";
+    candy.cost = 2;
+    Food *burger = [[Food alloc] init];
+    burger.name = @"burger";
+    burger.cost = 6;
+    self.foodList = [[NSArray alloc] initWithObjects:apple, bread, candy, burger, nil];
 }
 
 - (void) setupDrinkList {
     Food *soda = [[Food alloc] init];
     soda.name = @"soda";
     soda.cost = 5;
-    self.drinkList = [[NSArray alloc] initWithObjects:soda, nil];
+    Food *water =[[Food alloc] init];
+    water.name = @"water";
+    water.cost = 2;
+    Food *beer = [[Food alloc] init];
+    beer.name = @"beer";
+    beer.cost = 4;
+    Food *wine = [[Food alloc] init];
+    wine.name = @"wine";
+    wine.cost = 7;
+    self.drinkList = [[NSArray alloc] initWithObjects:soda, water, wine, nil];
 }
 
 - (void) setupStoreFood {

@@ -17,6 +17,7 @@
     self.navigationItem.hidesBackButton = YES;
     row = -1;
     recipes = self.foodList;
+    self.greetingLabel.text = [NSString stringWithFormat:@"Hello, %@", self.owner.name];
     self.testLabel.text = [NSString stringWithFormat:@"%d$", self.owner.money];
 }
 
@@ -38,6 +39,7 @@
     }
     
     Food *food = (Food *) [recipes objectAtIndex:indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", food.name]];
     cell.textLabel.text = food.name;
     cell.
     textLabel.text = [cell.textLabel.text stringByAppendingFormat:@":%d$ | quantity: %d", food.cost, [[self.storage valueForKey:food.name] integerValue]];
