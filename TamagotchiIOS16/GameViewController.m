@@ -48,7 +48,7 @@
 }
 
 - (NSArray *) createFoodList {
-    Apple *apple = [[Apple alloc] init];
+    Food *apple = [[Food alloc] init];
     apple.name = @"apple";
     apple.cost = 5;
     NSArray *foodList = [[NSArray alloc] initWithObjects:apple, nil];
@@ -56,7 +56,7 @@
 }
 
 - (NSArray *) createDrinkList {
-    Soda *soda = [[Soda alloc] init];
+    Food *soda = [[Food alloc] init];
     soda.name = @"soda";
     soda.cost = 5;
     NSArray *drinkList = [[NSArray alloc] initWithObjects:soda, nil];
@@ -101,9 +101,16 @@
         self.moneyFarmViewController = (MoneyFarmViewController *) [segue destinationViewController];
         MoneyFarmViewController *moneyFarmViewController = self.moneyFarmViewController;
         moneyFarmViewController.owner = self.owner;
-        //if (moneyFarmViewController.myTimer == nil) {
-        //   [moneyFarmViewController startTimer];
-        //}
+        if (moneyFarmViewController.myTimer == nil) {
+           [moneyFarmViewController startTimer];
+        }
+    } else if ([segueName isEqualToString:@"showStatus"]) {
+        self.statusViewController = [segue destinationViewController];
+        StatusViewController *statusViewController= self.statusViewController;
+        statusViewController.owner = self.owner;
+        statusViewController.pet = self.pet;
+        statusViewController.storage = self.storage;
+        statusViewController.foodList = self.storeFood;
     }
 }
 

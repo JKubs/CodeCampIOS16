@@ -18,13 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-Z6-PZQ">
-                                <rect key="frame" x="20" y="20" width="129" height="30"/>
-                                <state key="normal" title="Create Notification"/>
-                                <connections>
-                                    <action selector="sendNotification:" destination="cfc-WT-PLY" eventType="touchDown" id="DLK-39-wPw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2N-D2-2ba">
                                 <rect key="frame" x="281" y="402" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
@@ -49,6 +42,13 @@
                                 <state key="normal" title="Generate Random Notifications"/>
                                 <connections>
                                     <action selector="genRandNoti:" destination="cfc-WT-PLY" eventType="touchDown" id="SF2-3w-3NU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-Z6-PZQ">
+                                <rect key="frame" x="63" y="453" width="129" height="30"/>
+                                <state key="normal" title="Create Notification"/>
+                                <connections>
+                                    <action selector="sendNotification:" destination="cfc-WT-PLY" eventType="touchDown" id="DLK-39-wPw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -78,32 +78,44 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grass_background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U0V-tD-5su">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money:0$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqi-uz-1Ia">
+                                <rect key="frame" x="224" y="100" width="112" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8U-ef-Tew">
+                                <rect key="frame" x="274" y="409" width="53" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="4Uk-6H-Xys"/>
+                                    <constraint firstAttribute="width" constant="53" id="7DN-Ct-GO5"/>
+                                </constraints>
+                                <state key="normal" image="coin.png"/>
+                                <connections>
+                                    <action selector="clickCoin:" destination="9Cr-qx-s1W" eventType="touchUpInside" id="wfz-hi-x3l"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxG-lA-v8e">
-                                <rect key="frame" x="277" y="530" width="46" height="30"/>
+                                <rect key="frame" x="257" y="542" width="46" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="closeMoneyFarm:" destination="9Cr-qx-s1W" eventType="touchUpInside" id="iuZ-TV-dCL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8U-ef-Tew">
-                                <rect key="frame" x="302" y="332" width="137" height="135"/>
-                                <state key="normal" image="coin.png"/>
-                                <connections>
-                                    <action selector="clickCoin:" destination="9Cr-qx-s1W" eventType="touchUpInside" id="wfz-hi-x3l"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money:0$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqi-uz-1Ia">
-                                <rect key="frame" x="244" y="100" width="112" height="21"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="E8U-ef-Tew" firstAttribute="centerY" secondItem="34I-Iz-XWi" secondAttribute="centerY" id="BoS-Mw-AYD"/>
+                            <constraint firstItem="E8U-ef-Tew" firstAttribute="centerX" secondItem="34I-Iz-XWi" secondAttribute="centerX" id="gOl-ma-jLV"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonHeight" destination="4Uk-6H-Xys" id="csW-Q3-eSh"/>
+                        <outlet property="buttonWidth" destination="7DN-Ct-GO5" id="O0B-s3-D0D"/>
+                        <outlet property="centerX" destination="gOl-ma-jLV" id="TyZ-JM-9IX"/>
+                        <outlet property="centerY" destination="BoS-Mw-AYD" id="cPt-Hg-iBl"/>
                         <outlet property="moneyLabel" destination="vqi-uz-1Ia" id="eMh-Kb-wyx"/>
                         <outlet property="testCoin" destination="E8U-ef-Tew" id="BkM-Op-mOC"/>
                     </connections>
@@ -112,10 +124,69 @@
             </objects>
             <point key="canvasLocation" x="1110" y="-300"/>
         </scene>
+        <!--Status View Controller-->
+        <scene sceneID="4mW-Ve-gnW">
+            <objects>
+                <viewController id="ebq-ZA-sn4" customClass="StatusViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d9i-tx-EOX"/>
+                        <viewControllerLayoutGuide type="bottom" id="n1u-gZ-HtU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vos-nT-Ivo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KHj-Yn-xXZ">
+                                <rect key="frame" x="42" y="157" width="240" height="128"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XlB-I5-ZEq">
+                                        <rect key="frame" x="0.0" y="114" width="240" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XlB-I5-ZEq" id="6lU-NV-om5">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ebq-ZA-sn4" id="skL-vy-yo4"/>
+                                    <outlet property="delegate" destination="ebq-ZA-sn4" id="efR-qW-R2q"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Storage:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhT-6P-Ywd">
+                                <rect key="frame" x="42" y="105" width="65" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5K-9Q-Ku3">
+                                <rect key="frame" x="42" y="312" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFy-Wi-dZe">
+                                <rect key="frame" x="42" y="423" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="storageList" destination="KHj-Yn-xXZ" id="NcE-iE-ZQb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hx0-1W-fbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1792" y="-300"/>
+        </scene>
         <!--GameScreen-->
         <scene sceneID="amE-Dy-Kca">
             <objects>
-                <viewController title="GameScreen" id="w2A-K5-GzS" customClass="GameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" title="GameScreen" id="w2A-K5-GzS" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7QS-n1-r2k"/>
                         <viewControllerLayoutGuide type="bottom" id="Mob-ye-0Ny"/>
@@ -175,7 +246,7 @@
                                 <rect key="frame" x="265" y="85" width="68" height="30"/>
                                 <state key="normal" title="Testmode"/>
                                 <connections>
-                                    <segue destination="cfc-WT-PLY" kind="show" id="75t-rR-lNK"/>
+                                    <segue destination="cfc-WT-PLY" kind="show" identifier="showTestmode" id="75t-rR-lNK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKo-Ld-3Aq">
@@ -196,6 +267,13 @@
                                     <constraint firstAttribute="height" constant="240" id="kv6-EP-LuW"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnH-Kd-gnt">
+                                <rect key="frame" x="97" y="419" width="44" height="30"/>
+                                <state key="normal" title="Status"/>
+                                <connections>
+                                    <segue destination="ebq-ZA-sn4" kind="show" identifier="showStatus" id="iE0-Ix-lD3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -304,7 +382,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="coin.png" width="236" height="203"/>
+        <image name="coin.png" width="79" height="91"/>
         <image name="critter1.jpg" width="139" height="135"/>
         <image name="grass_background.jpg" width="512" height="512"/>
     </resources>

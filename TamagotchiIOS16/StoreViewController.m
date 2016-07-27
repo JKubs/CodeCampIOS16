@@ -40,7 +40,7 @@
     Food *food = (Food *) [recipes objectAtIndex:indexPath.row];
     cell.textLabel.text = food.name;
     cell.
-    textLabel.text = [cell.textLabel.text stringByAppendingFormat:@":%d$ quantity: %d", food.cost, [[self.storage valueForKey:food.name] integerValue]];
+    textLabel.text = [cell.textLabel.text stringByAppendingFormat:@":%d$ | quantity: %d", food.cost, [[self.storage valueForKey:food.name] integerValue]];
     return cell;
 }
 
