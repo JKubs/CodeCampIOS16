@@ -35,6 +35,7 @@
     }
     
     Food *food = (Food *) [recipes objectAtIndex:indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", food.name]];
     cell.textLabel.text = food.name;
     cell.textLabel.text = [cell.textLabel.text stringByAppendingFormat:@" | quantity: %d", [[self.storage valueForKey:food.name] integerValue]];
     return cell;

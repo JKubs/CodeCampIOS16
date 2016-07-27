@@ -332,7 +332,6 @@
         
         //look for the nav controller in tab bar views
         for (UINavigationController *view in navigationController.viewControllers) {
-            NSLog(@"viewcontroller in navigation controller: %@", view);
             //when found, do the same thing to find the GameViewController under the nav controller
             if ([view isKindOfClass:[GameViewController class]])
                 result = (GameViewController *) view;
@@ -343,10 +342,6 @@
         }
     self.gameController = result;
     
- //   UIWindow *window=[UIApplication sharedApplication].keyWindow;
- //   UIViewController *root = [window rootViewController];
- //   UIStoryboard *storyboard = root.storyboard;
- //   self.gameController =(GameViewController *) [storyboard instantiateViewControllerWithIdentifier:@"GameViewController"];
 }
 
 @end
