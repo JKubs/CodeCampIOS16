@@ -10,4 +10,8 @@
 
 @interface Pet : NSObject
 
+@property (weak, nonatomic) NSString *type;
+@property NSInteger lives;
+@property (weak, nonatomic) NSString *currentWish;
+
 @end

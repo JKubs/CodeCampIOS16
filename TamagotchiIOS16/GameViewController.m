@@ -104,6 +104,13 @@
         if (moneyFarmViewController.myTimer == nil) {
            [moneyFarmViewController startTimer];
         }
+    } else if ([segueName isEqualToString:@"showStatus"]) {
+        self.statusViewController = [segue destinationViewController];
+        StatusViewController *statusViewController= self.statusViewController;
+        statusViewController.owner = self.owner;
+        statusViewController.pet = self.pet;
+        statusViewController.storage = self.storage;
+        statusViewController.foodList = self.storeFood;
     }
 }
 
