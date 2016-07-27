@@ -25,26 +25,24 @@
         application.applicationIconBadgeNumber = 0;
     }
     
+    int dist = 1800;
+    Boolean passedSleepingTime = false;
+    NSInteger sleepHourStart = 23*3600;
+    NSInteger sleepTime = 8*3600;
+    NSInteger sleepHourEnd = (sleepHourStart + sleepTime) % (24*3600);
+    NSInteger timeTillSleepOver = 0;
+    
     NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     if([localNotifications count] == 0){
         //same stuff as in testmodeViewControllwe TODO make a global method
         int numberOfNotifications = 5;
         
-        int dist = 1800;
-        Boolean passedSleepingTime = false;
-        NSInteger sleepHourStart = 23*3600;
-        NSInteger sleepTime = 8*3600;
-        NSInteger sleepHourEnd = (sleepHourStart + sleepTime) % (24*3600);
-        NSInteger timeTillSleepOver = 0;
-        NSInteger maxRand = 3600 * 24;
-        
         int erg = 1;
         for (int i = 1; i < numberOfNotifications-1; i++) {
             erg += i;
         }
-        
+        NSInteger maxRand = 3600 * 24;
         maxRand = maxRand - dist*erg; // - distance between time
-        // maxRand = maxRand - (sleepTime-timeTillSleepOver);
         
         NSDate *date = [NSDate date];
         NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -114,7 +112,6 @@
         // Request to reload table view data
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     }else if([localNotifications count] < 5){
-        NSInteger dist = 1800;
         UILocalNotification *first = [localNotifications firstObject];
         UILocalNotification *last = [localNotifications lastObject];
         NSDate *lastDate = [last fireDate];
@@ -124,23 +121,64 @@
         NSInteger numberOfNotifications = 5 - [localNotifications count];
         
         
-        
-        
-        Boolean passedSleepingTime = false;
-        NSInteger sleepHourStart = 23*3600;
-        NSInteger sleepTime = 8*3600;
-        NSInteger sleepHourEnd = (sleepHourStart + sleepTime) % (24*3600);
-        NSInteger timeTillSleepOver = 0;
-        NSInteger maxRand = 3600 * 24;
-        
         int erg = 1;
         for (int i = 1; i < numberOfNotifications-1; i++) {
             erg += i;
         }
         
+        NSInteger maxRand = timeToFullDay;
         maxRand = maxRand - dist*erg; // - distance between time
         
-        //TODO generate rand number from lastDate to lastDate+timeToFullDate (if timeToFullDate in or after sleeping time then lastDate+ timeToFullDate + sleepingTime)
+        NSMutableArray *randDates = [NSMutableArray array];
+        for (int i = 0; i < numberOfNotifications; i++){
+            [randDates addObject: [NSNumber numberWithInt: arc4random_uniform(maxRand)]];
+        }
+        
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        [randDates sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+
+        
+        
+        for (int i = 0; i < numberOfNotifications; i++) {
+            NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
+            rand = rand + dist*i;
+            
+            //NSLog(@"\n rand: %ld \n startSleep: %ld \n endsleep: %ld", rand+currentSecond, sleepHourStart, sleepHourEnd);
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:lastDate];
+            NSInteger lastTimeInSeconds = [components hour] * 3600 + [components minute] * 60 + [components second];
+            
+            
+            if (sleepHourStart >= sleepHourEnd &&
+                (rand+lastTimeInSeconds >= sleepHourStart || rand+lastTimeInSeconds <= sleepHourEnd)) { // if he sleeps over midnight
+                passedSleepingTime = true;
+            }else if(rand+lastTimeInSeconds >= sleepHourStart && rand+lastTimeInSeconds <= sleepHourEnd){
+                passedSleepingTime = true;
+            }
+            
+            if(passedSleepingTime){
+                rand = rand + sleepTime;
+            }
+            
+            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
+            
+            UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+            localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:rand];
+            localNotification.alertBody = @"FEED ME !!!!";
+            localNotification.alertAction = @"Show me the item";
+            localNotification.timeZone = [NSTimeZone defaultTimeZone];
+            localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+        
+        UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+        
+        // Request to reload table view data
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+
         
     }
     
