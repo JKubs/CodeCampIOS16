@@ -13,9 +13,10 @@
 +(BOOL)loadSaveStateTo:(GameViewController *)controller {
     
     NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:controller.saveSlot];
-    
-    Owner *owner =  [slot objectForKey:OWNER];
-    Pet *pet =  [slot objectForKey:PET];
+    NSData *encodedOwner = [slot objectForKey:OWNER];
+    Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
+    NSData *encodedPet = [slot objectForKey:PET];
+    Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
     
     if(owner != nil) {
         controller.owner = owner;

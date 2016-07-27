@@ -32,6 +32,6 @@
 
 +(BOOL)saveChangeOn:(NSString*)key withValue:(id)value atSaveSlot:(NSString*)saveSlot;
 +(BOOL)completeSave:(GameViewController*)controller;
-+(BOOL)saveNotificationSchedulesOnExiting:(NSArray*)notifications;
++(BOOL)saveNotificationSchedules:(NSArray*)notifications;
 
 @end

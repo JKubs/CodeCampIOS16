@@ -9,5 +9,19 @@
 #import "Food.h"
 
 @implementation Food
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeInteger:self.cost forKey:@"cost"];
+}
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if(self) {
+        self.name = [coder decodeObjectForKey:@"name"];
+        self.cost = [coder decodeIntegerForKey:@"cost"];
+    }
+    return self;
+}
 @end

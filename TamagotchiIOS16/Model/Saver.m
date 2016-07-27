@@ -13,25 +13,29 @@
 
 +(BOOL)saveChangeOn:(NSString*)key withValue:(id)value atSaveSlot:(NSString*)saveSlot {
     NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
-    [slot setValue:value forKey:key];
+    NSData *encodedValue = [NSKeyedArchiver archivedDataWithRootObject:value];
+    [slot setValue:encodedValue forKey:key];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:saveSlot];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(BOOL)completeSave:(GameViewController *)controller {
-    NSLog(@"complete save gets %@", controller);
-    NSLog(@"controller's owner: %@", controller.owner);
-    NSLog(@"controller's pet: %@", controller.pet);
-    
     NSMutableDictionary *slot = [[NSMutableDictionary alloc] init];
-    [slot setObject:controller.owner forKey:OWNER];
-    [slot setObject:controller.pet forKey:PET];
+    [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.owner] forKey:OWNER];
+    [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
-    return [[NSUserDefaults standardUserDefaults] synchronize];;
+    return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(BOOL)saveNotificationSchedulesOnExiting:(NSArray*)notifications {
-    [[NSUserDefaults standardUserDefaults] setValue:notifications forKey:NOTIFICATION_REQUESTS];
++(BOOL)saveNotificationSchedules:(NSArray*)notifications {
+    NSMutableArray *encodedNotifications = [[NSMutableArray alloc] init];
+    
+    for (NotificationRequest *notireq in notifications) {
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:notireq];
+        [encodedNotifications addObject:encodedObject];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setValue:encodedNotifications forKey:NOTIFICATION_REQUESTS];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

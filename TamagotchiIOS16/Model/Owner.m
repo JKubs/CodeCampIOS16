@@ -9,5 +9,19 @@
 #import "Owner.h"
 
 @implementation Owner
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeInteger:self.money forKey:@"money"];
+}
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if(self) {
+        self.name = [coder decodeObjectForKey:@"name"];
+        self.money = [coder decodeIntegerForKey:@"money"];
+    }
+    return self;
+}
 @end

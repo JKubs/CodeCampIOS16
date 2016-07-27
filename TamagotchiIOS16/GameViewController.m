@@ -19,17 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [Loader loadSaveStateTo:self];
+    //[Loader loadSaveStateTo:self];
     self.image1 = [UIImage imageNamed:@"critter1.jpg"];
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
     self.petImageView.image = self.image1;
     self.currentImage = 0;
     self.storage = [self createStorage];
     //self.storage = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:4],SODA, nil];
-    //self.owner = [[Owner alloc] init];
-    //self.owner.money = 100;
-    //self.owner.name = @"Bob";
-    //self.pet = [[Pet alloc] init];
+    self.owner = [[Owner alloc] init];
+    self.owner.money = 100;
+    self.owner.name = @"Bob";
+    self.pet = [[Pet alloc] init];
     NSArray *foodList = [self createFoodList];
     NSArray *drinkList = [self createDrinkList];
     NSMutableArray *storeFood = [NSMutableArray arrayWithArray:foodList];
@@ -37,6 +37,7 @@
     self.foodList = foodList;
     self.drinkList = drinkList;
     self.storeFood = storeFood;
+    self.saveSlot = SAVE_SLOT_1;
     
 }
 
