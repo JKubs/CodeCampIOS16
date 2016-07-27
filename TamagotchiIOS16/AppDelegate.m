@@ -287,13 +287,14 @@
         for (UINavigationController *view in navigationController.viewControllers) {
             NSLog(@"viewcontroller in navigation controller: %@", view);
             //when found, do the same thing to find the GameViewController under the nav controller
+            if ([view isKindOfClass:[GameViewController class]])
+                result = (GameViewController *) view;
             if ([view isKindOfClass:[UINavigationController class]])
                 for (UIViewController *view2 in view.viewControllers)
                     if ([view2 isKindOfClass:[GameViewController class]])
                         result = (GameViewController *) view2;
         }
-    self.gameController = (GameViewController*)[navigationController.viewControllers objectAtIndex:0];
-    //NSLog(@"found as result: %@", result);
+    self.gameController = result;
     
  //   UIWindow *window=[UIApplication sharedApplication].keyWindow;
  //   UIViewController *root = [window rootViewController];
