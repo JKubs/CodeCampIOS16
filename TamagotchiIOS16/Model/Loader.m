@@ -11,7 +11,6 @@
 @implementation Loader
 
 +(BOOL)loadSaveStateTo:(GameViewController *)controller {
-    
     NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:controller.saveSlot];
     NSData *encodedOwner = [slot objectForKey:OWNER];
     Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
@@ -25,8 +24,21 @@
         controller.pet = pet;
     }
     
-    
     return YES;
+}
+
++(NSString *)loadLastUsedSlot {
+    NSData *encodedSlot = [[NSUserDefaults standardUserDefaults] dataForKey:CURRENT_SLOT];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:encodedSlot];
+}
+
++(NSArray *)loadSavedNotifications {
+    NSArray *encodedArray = [[NSUserDefaults standardUserDefaults] arrayForKey:NOTIFICATION_REQUESTS];
+    NSMutableArray *decodedArray = [[NSMutableArray alloc] init];
+    for (NSData *element in encodedArray) {
+        [decodedArray addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
+    }
+    return decodedArray;
 }
 
 @end

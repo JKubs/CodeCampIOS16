@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
     self.navigationItem.hidesBackButton = YES;
     self.image1 = [UIImage imageNamed:@"critter1.jpg"];
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];

@@ -15,5 +15,7 @@
 @interface Loader : NSObject
 
 +(BOOL)loadSaveStateTo:(GameViewController *)controller;
++(NSString*)loadLastUsedSlot;
++(NSArray*)loadSavedNotifications;
 
 @end

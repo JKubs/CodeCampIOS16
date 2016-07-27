@@ -10,6 +10,8 @@
 #import "GameViewController.h"
 #import "Owner.h"
 #import "Pet.h"
+#import "Loader.h"
+#import "Saver.h"
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     
