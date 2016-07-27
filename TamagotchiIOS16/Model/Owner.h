@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Owner : NSObject
+@interface Owner : NSObject <NSCoding>
 
 @property (weak, nonatomic) NSString *name;
 @property NSInteger money;
+
+-(void)encodeWithCoder:(NSCoder *)aCoder;
+-(instancetype)initWithCoder:(NSCoder *)aDecoder;
 
 @end

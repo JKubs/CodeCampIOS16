@@ -8,6 +8,24 @@
 
 #import "Pet.h"
 
+@interface Pet ()
+
+@end
+
 @implementation Pet
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if(self) {
+        
+    }
+    return self;
+}
 
 @end

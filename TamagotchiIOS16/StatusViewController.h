@@ -21,5 +21,9 @@
 @property (weak, nonatomic) Pet *pet;
 @property (weak, nonatomic) NSMutableArray *foodList;
 @property (weak, nonatomic) IBOutlet UITableView *storageList;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *petType;
+@property (weak, nonatomic) IBOutlet UILabel *petLives;
 
 @end

@@ -223,10 +223,9 @@
     if(self.gameController == nil) {
         [self findGameController];
     }
-    GameViewController *con = (GameViewController*)self.gameController;
-    NSLog(@"%@", [con class]);
-    NSLog(@"%d", con.owner != nil);
-    [Saver completeSave:self.gameController];
+    BOOL saveSucceeded = [Saver completeSave:self.gameController];
+    if(saveSucceeded) NSLog(@"Saved game");
+    else NSLog(@"Error : saving game failed");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -243,7 +242,9 @@
         [self findGameController];
     }
     
-    [Saver completeSave:self.gameController];
+    BOOL saveSucceeded = [Saver completeSave:self.gameController];
+    if(saveSucceeded) NSLog(@"Saved game");
+    else NSLog(@"Error : saving game failed");
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

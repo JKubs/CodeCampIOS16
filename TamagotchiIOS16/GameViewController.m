@@ -30,6 +30,8 @@
     self.owner.money = 100;
     self.owner.name = @"Bob";
     self.pet = [[Pet alloc] init];
+    self.pet.type = @"Critter";
+    self.pet.lives = 3;
     NSArray *foodList = [self createFoodList];
     NSArray *drinkList = [self createDrinkList];
     NSMutableArray *storeFood = [NSMutableArray arrayWithArray:foodList];
@@ -37,6 +39,7 @@
     self.foodList = foodList;
     self.drinkList = drinkList;
     self.storeFood = storeFood;
+    self.saveSlot = SAVE_SLOT_1;
     
 }
 

@@ -14,6 +14,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     recipes = self.foodList;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.usernameLabel.text = [NSString stringWithFormat:@"Name: %@", self.owner.name];
+    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
+    self.petType.text = [NSString stringWithFormat:@"Type: %@", self.pet.type];
+    self.petLives.text = [NSString stringWithFormat:@"Lives: %d", self.pet.lives];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
