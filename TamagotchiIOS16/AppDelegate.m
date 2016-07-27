@@ -157,6 +157,13 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    if(self.gameController == nil) {
+        [self findGameController];
+    }
+    GameViewController *con = (GameViewController*)self.gameController;
+    NSLog(@"%@", [con class]);
+    NSLog(@"%d", con.owner != nil);
+    [Saver completeSave:self.gameController];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -169,6 +176,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    if(self.gameController == nil) {
+        [self findGameController];
+    }
+    
+    [Saver completeSave:self.gameController];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
@@ -198,6 +210,31 @@
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
+}
+
+-(void)findGameController {
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    GameViewController *result;
+    
+    //check to see if navbar "get" worked
+    if (navigationController.viewControllers)
+        
+        //look for the nav controller in tab bar views
+        for (UINavigationController *view in navigationController.viewControllers) {
+            NSLog(@"viewcontroller in navigation controller: %@", view);
+            //when found, do the same thing to find the GameViewController under the nav controller
+            if ([view isKindOfClass:[UINavigationController class]])
+                for (UIViewController *view2 in view.viewControllers)
+                    if ([view2 isKindOfClass:[GameViewController class]])
+                        result = (GameViewController *) view2;
+        }
+    self.gameController = (GameViewController*)[navigationController.viewControllers objectAtIndex:0];
+    //NSLog(@"found as result: %@", result);
+    
+ //   UIWindow *window=[UIApplication sharedApplication].keyWindow;
+ //   UIViewController *root = [window rootViewController];
+ //   UIStoryboard *storyboard = root.storyboard;
+ //   self.gameController =(GameViewController *) [storyboard instantiateViewControllerWithIdentifier:@"GameViewController"];
 }
 
 @end

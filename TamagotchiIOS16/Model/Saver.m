@@ -19,9 +19,13 @@
 }
 
 +(BOOL)completeSave:(GameViewController *)controller {
-    NSDictionary *slot = [[NSDictionary alloc] init];
-    [slot setValue:controller.owner forKey:OWNER];
-    [slot setValue:controller.pet forKey:PET];
+    NSLog(@"complete save gets %@", controller);
+    NSLog(@"controller's owner: %@", controller.owner);
+    NSLog(@"controller's pet: %@", controller.pet);
+    
+    NSMutableDictionary *slot = [[NSMutableDictionary alloc] init];
+    [slot setObject:controller.owner forKey:OWNER];
+    [slot setObject:controller.pet forKey:PET];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
     return [[NSUserDefaults standardUserDefaults] synchronize];;
 }
