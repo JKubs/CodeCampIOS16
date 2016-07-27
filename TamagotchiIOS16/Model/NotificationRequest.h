@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NotificationRequest : NSObject
+@interface NotificationRequest : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *subject;
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSDate *timestamp;
+
+-(void)encodeWithCoder:(NSCoder *)aCoder;
+-(instancetype)initWithCoder:(NSCoder *)aDecoder;
 
 @end

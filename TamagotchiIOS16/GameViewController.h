@@ -15,6 +15,7 @@
 #import "Saver.h"
 #import "MoneyFarmViewController.h"
 #import "StatusViewController.h"
+#import "TestmodeViewController.h"
 
 @class Loader;
 @class Saver;
@@ -31,6 +32,7 @@
 @property (strong, nonatomic) StoreViewController *storeViewController;
 @property (strong, nonatomic) MoneyFarmViewController *moneyFarmViewController;
 @property (strong, nonatomic) StatusViewController *statusViewController;
+@property (strong, nonatomic) TestmodeViewController *testmodeViewController;
 @property (strong, nonatomic) IBOutlet UIImageView *petImageView;
 @property (strong, nonatomic) UIImage *image1;
 @property (strong, nonatomic) UIImage *image2;
@@ -49,7 +51,7 @@
 - (IBAction)enterShop:(UIButton *)sender;
 - (IBAction)killThatMonster:(UIButton *)sender;
 
-- (void)feed:(Food*)food;
+- (void)feed:(NSString*)food;
 
 -(void)animate;
 

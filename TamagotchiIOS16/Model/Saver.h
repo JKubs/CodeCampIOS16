@@ -25,6 +25,7 @@
 #define PET_LIVES @"petlives"
 #define PET_WISHES @"petwishes"
 #define CURRENT_WISH @"wish"
+#define CURRENT_SLOT @"currentslot"
 
 @class GameViewController;
 
@@ -32,6 +33,6 @@
 
 +(BOOL)saveChangeOn:(NSString*)key withValue:(id)value atSaveSlot:(NSString*)saveSlot;
 +(BOOL)completeSave:(GameViewController*)controller;
-+(BOOL)saveNotificationSchedulesOnExiting:(NSArray*)notifications;
++(BOOL)saveNotificationSchedules:(NSArray*)notifications;
 
 @end

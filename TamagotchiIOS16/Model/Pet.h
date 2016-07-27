@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Pet : NSObject
+
+@interface Pet : NSObject <NSCoding>
 
 @property (weak, nonatomic) NSString *type;
 @property NSInteger lives;
 @property (weak, nonatomic) NSString *currentWish;
+
+-(void)encodeWithCoder:(NSCoder *)aCoder;
+-(instancetype)initWithCoder:(NSCoder *)aDecoder;
 
 @end

@@ -25,6 +25,8 @@
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
     self.petImageView.image = self.image1;
     self.currentImage = 0;
+    self.saveSlot = SAVE_SLOT_1;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,11 +35,14 @@
 }
 
 - (IBAction)feedAction:(UIButton *)sender {
-    [self feed:self.currentWish];
+    [self feed:self.pet.currentWish];
 }
 
-- (void)feed:(Food *)food {
-    if([[self.storage objectForKey:food.name] intValue] > 0) {
+- (void)feed:(NSString*)food {
+    
+    NSLog(@"%@", food);
+    NSLog(@"in feed.. apples: %ld", [[self.storage objectForKey:@"apple"] integerValue] );
+    if([[self.storage objectForKey:food] intValue] > 0) {
         
     }
     else {
@@ -75,6 +80,12 @@
         statusViewController.pet = self.pet;
         statusViewController.storage = self.storage;
         statusViewController.foodList = self.storeFood;
+    } else if([segueName isEqualToString:@"showTestmode"]){
+        self.testmodeViewController =[segue destinationViewController];
+        TestmodeViewController *testmodeViewController = self.testmodeViewController;
+        //testmodeViewController.currentWish = self.currentWish;
+        //testmodeViewController.foodList = self.foodList;
+        testmodeViewController.pet = self.pet;
     }
 }
 

@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Food : NSObject
+@interface Food : NSObject <NSCoding>
 
 @property (weak, nonatomic) NSString *name;
 @property NSInteger cost;
+
+-(void)encodeWithCoder:(NSCoder *)aCoder;
+-(instancetype)initWithCoder:(NSCoder *)aDecoder;
 
 @end
