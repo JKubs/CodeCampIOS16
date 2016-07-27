@@ -119,15 +119,39 @@
         NSTimeInterval timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate];
         NSInteger timeToFullDay = 24*3600 - (timeFromNowToLast + dist);
         NSInteger numberOfNotifications = 5 - [localNotifications count];
+        NSInteger maxTimeAfterWaitForSleep = sleepTime + 5; //to be changed
+        Boolean setAllNotisBeforSleep = false;
         
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:lastDate];
+        NSInteger lastTimeInSeconds = [components hour] * 3600 + [components minute] * 60 + [components second];
         
         int erg = 1;
         for (int i = 1; i < numberOfNotifications-1; i++) {
             erg += i;
         }
         
-        NSInteger maxRand = timeToFullDay;
+        NSInteger maxRand;
+        if (timeToFullDay < maxTimeAfterWaitForSleep) {
+            // maxRand is last to sleepstart
+            maxRand = (sleepHourStart < lastTimeInSeconds) ?
+                sleepHourStart + 24*3600 - lastTimeInSeconds : sleepHourStart - lastTimeInSeconds;
+            maxRand = (maxRand > timeToFullDay) ? timeToFullDay : maxRand;
+            
+            setAllNotisBeforSleep = true;
+            NSLog(@"timeToFullDay < maxTimeAfterWaitForSleep");
+        }else{
+            //maxrand is last to timeToFullDay and with "passedSleepingTime" stuff
+            maxRand = timeToFullDay;
+            setAllNotisBeforSleep = false;
+            NSLog(@"timeToFullDay > maxTimeAfterWaitForSleep");
+        }
+        
+        
         maxRand = maxRand - dist*erg; // - distance between time
+        
+
         
         NSMutableArray *randDates = [NSMutableArray array];
         for (int i = 0; i < numberOfNotifications; i++){
@@ -142,28 +166,25 @@
         for (int i = 0; i < numberOfNotifications; i++) {
             NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
             rand = rand + dist*i;
-            
-            //NSLog(@"\n rand: %ld \n startSleep: %ld \n endsleep: %ld", rand+currentSecond, sleepHourStart, sleepHourEnd);
-            NSCalendar *calendar = [NSCalendar currentCalendar];
-            NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:lastDate];
-            NSInteger lastTimeInSeconds = [components hour] * 3600 + [components minute] * 60 + [components second];
-            
-            
-            if (sleepHourStart >= sleepHourEnd &&
-                (rand+lastTimeInSeconds >= sleepHourStart || rand+lastTimeInSeconds <= sleepHourEnd)) { // if he sleeps over midnight
-                passedSleepingTime = true;
-            }else if(rand+lastTimeInSeconds >= sleepHourStart && rand+lastTimeInSeconds <= sleepHourEnd){
-                passedSleepingTime = true;
+    
+            NSLog(@"\n rand: %ld \n startSleep: %ld \n endsleep: %ld \n lasttimetillsleep: %ld \n maxRand: %ld \n timetofullday: %ld", rand+lastTimeInSeconds, sleepHourStart, sleepHourEnd, lastTimeInSeconds, maxRand, timeToFullDay);
+
+            if(!setAllNotisBeforSleep){
+                if (sleepHourStart >= sleepHourEnd &&
+                    (rand+lastTimeInSeconds >= sleepHourStart || rand+lastTimeInSeconds <= sleepHourEnd)) { // if he sleeps over midnight
+                    passedSleepingTime = true;
+                }else if(rand+lastTimeInSeconds >= sleepHourStart && rand+lastTimeInSeconds <= sleepHourEnd){
+                    passedSleepingTime = true;
+                }
+                if(passedSleepingTime){
+                    rand = rand + sleepTime;
+                }
             }
             
-            if(passedSleepingTime){
-                rand = rand + sleepTime;
-            }
-            
-            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
+            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld ", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
             
             UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-            localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:rand];
+            localNotification.fireDate = [NSDate dateWithTimeInterval:rand sinceDate:lastDate];
             localNotification.alertBody = @"FEED ME !!!!";
             localNotification.alertAction = @"Show me the item";
             localNotification.timeZone = [NSTimeZone defaultTimeZone];
