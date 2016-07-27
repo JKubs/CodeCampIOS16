@@ -29,6 +29,7 @@
 #define FOOD_SODA @"soda"
 #define WISH_HUNGRY @"GIVE ME FOOD!!!"
 #define WISH_THIRSTY @"I WANT BEER!!!"
+#define CURRENT_SLOT @"currentslot"
 
 @class GameViewController;
 

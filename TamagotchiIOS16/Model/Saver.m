@@ -24,6 +24,7 @@
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.owner] forKey:OWNER];
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
+    [[NSUserDefaults standardUserDefaults] setObject:controller.saveSlot forKey:CURRENT_SLOT];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

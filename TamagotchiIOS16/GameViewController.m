@@ -19,51 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //[Loader loadSaveStateTo:self];
+    self.navigationItem.hidesBackButton = YES;
     self.image1 = [UIImage imageNamed:@"critter1.jpg"];
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
     self.petImageView.image = self.image1;
     self.currentImage = 0;
-    self.storage = [self createStorage];
-    //self.storage = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:4],SODA, nil];
-    self.owner = [[Owner alloc] init];
-    self.owner.money = 100;
-    self.owner.name = @"Bob";
-    self.pet = [[Pet alloc] init];
-    self.pet.type = @"Critter";
-    self.pet.lives = 3;
-    NSArray *foodList = [self createFoodList];
-    NSArray *drinkList = [self createDrinkList];
-    NSMutableArray *storeFood = [NSMutableArray arrayWithArray:foodList];
-    [storeFood addObjectsFromArray:drinkList];
-    self.foodList = foodList;
-    self.drinkList = drinkList;
-    self.storeFood = storeFood;
     self.saveSlot = SAVE_SLOT_1;
     
-}
-
-- (NSMutableDictionary *) createStorage {
-    NSMutableDictionary *storage = [[NSMutableDictionary alloc] init];
-    [storage setObject:[NSNumber numberWithInteger:0] forKey:@"apple"];
-    [storage setObject:[NSNumber numberWithInteger:1] forKey:@"soda"];
-    return storage;
-}
-
-- (NSArray *) createFoodList {
-    Food *apple = [[Food alloc] init];
-    apple.name = @"apple";
-    apple.cost = 5;
-    NSArray *foodList = [[NSArray alloc] initWithObjects:apple, nil];
-    return foodList;
-}
-
-- (NSArray *) createDrinkList {
-    Food *soda = [[Food alloc] init];
-    soda.name = @"soda";
-    soda.cost = 5;
-    NSArray *drinkList = [[NSArray alloc] initWithObjects:soda, nil];
-    return drinkList;
 }
 
 - (void)didReceiveMemoryWarning {

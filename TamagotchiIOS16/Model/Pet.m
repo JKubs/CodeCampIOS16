@@ -16,14 +16,19 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    
+    [coder encodeObject:self.type forKey:@"type"];
+    [coder encodeInteger:self.lives forKey:@"lives"];
+    [coder encodeObject:self.currentWish forKey:@"currentWish"];
+
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
     if(self) {
-        
+        self.type = [coder decodeObjectForKey:@"type"];
+        self.lives = [coder decodeIntegerForKey:@"lives"];
+        self.currentWish = [coder decodeObjectForKey:@"currentWish"];
     }
     return self;
 }
