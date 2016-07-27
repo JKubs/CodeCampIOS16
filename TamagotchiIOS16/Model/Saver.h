@@ -25,6 +25,10 @@
 #define PET_LIVES @"petlives"
 #define PET_WISHES @"petwishes"
 #define CURRENT_WISH @"wish"
+#define FOOD_APPLE @"apple"
+#define FOOD_SODA @"soda"
+#define WISH_HUNGRY @"GIVE ME FOOD!!!"
+#define WISH_THIRSTY @"I WANT BEER!!!"
 
 @class GameViewController;
 

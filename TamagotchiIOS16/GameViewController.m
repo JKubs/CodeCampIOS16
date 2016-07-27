@@ -81,6 +81,7 @@
     NSLog(@"in feed.. apples: %ld", [[self.storage objectForKey:@"apple"] integerValue] );
     if([[self.storage objectForKey:food] intValue] > 0) {
         
+        
     }
     else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
