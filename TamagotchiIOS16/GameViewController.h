@@ -17,6 +17,7 @@
 #import "Saver.h"
 #import "Apple.h"
 #import "Soda.h"
+#import "MoneyFarmViewController.h"
 
 @protocol GameViewControllerDelegate <NSObject>
 @required
@@ -28,6 +29,7 @@
 
 @property (strong, nonatomic) id <GameViewControllerDelegate> delegate;
 @property (strong, nonatomic) StoreViewController *storeViewController;
+@property (strong, nonatomic) MoneyFarmViewController *moneyFarmViewController;
 @property (strong, nonatomic) IBOutlet UIImageView *petImageView;
 @property (strong, nonatomic) UIImage *image1;
 @property (strong, nonatomic) UIImage *image2;
