@@ -101,9 +101,9 @@
         self.moneyFarmViewController = (MoneyFarmViewController *) [segue destinationViewController];
         MoneyFarmViewController *moneyFarmViewController = self.moneyFarmViewController;
         moneyFarmViewController.owner = self.owner;
-        //if (moneyFarmViewController.myTimer == nil) {
-        //   [moneyFarmViewController startTimer];
-        //}
+        if (moneyFarmViewController.myTimer == nil) {
+           [moneyFarmViewController startTimer];
+        }
     }
 }
 
