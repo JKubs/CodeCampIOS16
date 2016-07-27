@@ -14,11 +14,16 @@
 +(BOOL)saveChangeOn:(NSString*)key withValue:(id)value atSaveSlot:(NSString*)saveSlot {
     NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
     [slot setValue:value forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:slot forKey:saveSlot];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(BOOL)completeSave:(GameViewController *)controller {
-    return NO;
+    NSDictionary *slot = [[NSDictionary alloc] init];
+    [slot setValue:controller.owner forKey:OWNER];
+    [slot setValue:controller.pet forKey:PET];
+    [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
+    return [[NSUserDefaults standardUserDefaults] synchronize];;
 }
 
 +(BOOL)saveNotificationSchedulesOnExiting:(NSArray*)notifications {

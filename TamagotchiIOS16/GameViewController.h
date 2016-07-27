@@ -19,6 +19,9 @@
 #import "Soda.h"
 #import "MoneyFarmViewController.h"
 
+@class Loader;
+@class Saver;
+
 @protocol GameViewControllerDelegate <NSObject>
 @required
 -(void)animationReturned;

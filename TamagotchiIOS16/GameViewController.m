@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    //[Loader loadSaveStateTo:self];
     self.image1 = [UIImage imageNamed:@"critter1.jpg"];
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
     self.petImageView.image = self.image1;

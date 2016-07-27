@@ -26,6 +26,8 @@
 #define PET_WISHES @"petwishes"
 #define CURRENT_WISH @"wish"
 
+@class GameViewController;
+
 @interface Saver : NSObject
 
 +(BOOL)saveChangeOn:(NSString*)key withValue:(id)value atSaveSlot:(NSString*)saveSlot;

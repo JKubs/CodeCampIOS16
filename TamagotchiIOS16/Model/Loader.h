@@ -10,6 +10,8 @@
 #import "GameViewController.h"
 #import "Saver.h"
 
+@class GameViewController;
+
 @interface Loader : NSObject
 
 +(BOOL)loadSaveStateTo:(GameViewController *)controller;
