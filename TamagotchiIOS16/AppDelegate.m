@@ -25,6 +25,10 @@
         application.applicationIconBadgeNumber = 0;
     }
     
+    if(self.gameController == nil) {
+        [self findGameController];
+    }
+    
     int dist = 1800;
     Boolean passedSleepingTime = false;
     NSInteger sleepHourStart = 23*3600;
@@ -116,7 +120,7 @@
         UILocalNotification *last = [localNotifications lastObject];
         NSDate *lastDate = [last fireDate];
         NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSTimeInterval timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate];
+        NSInteger timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate];
         NSInteger timeToFullDay = 24*3600 - (timeFromNowToLast + dist);
         NSInteger numberOfNotifications = 5 - [localNotifications count];
         NSInteger maxTimeAfterWaitForSleep = sleepTime + 5; //to be changed
@@ -151,7 +155,7 @@
         
         maxRand = maxRand - dist*erg; // - distance between time
         
-
+        NSLog(@"\n maxRand: %ld \n dist: %ld \n erg: %ld", maxRand, dist, erg);
         
         NSMutableArray *randDates = [NSMutableArray array];
         for (int i = 0; i < numberOfNotifications; i++){
@@ -167,7 +171,7 @@
             NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
             rand = rand + dist*i;
     
-            NSLog(@"\n rand: %ld \n startSleep: %ld \n endsleep: %ld \n lasttimetillsleep: %ld \n maxRand: %ld \n timetofullday: %ld", rand+lastTimeInSeconds, sleepHourStart, sleepHourEnd, lastTimeInSeconds, maxRand, timeToFullDay);
+            NSLog(@"\n rand: %ld \n lastTimeInSec: %ld \n startSleep: %ld \n endsleep: %ld \n lasttimetillsleep: %ld \n maxRand: %ld \n timetofullday: %ld", rand, lastTimeInSeconds, sleepHourStart, sleepHourEnd, lastTimeInSeconds, maxRand, timeToFullDay);
 
             if(!setAllNotisBeforSleep){
                 if (sleepHourStart >= sleepHourEnd &&

@@ -7,7 +7,7 @@
 //
 
 #import "TestmodeViewController.h"
-#import "GameViewController.h"
+#import "Food.h"
 
 
 @implementation TestmodeViewController
@@ -47,13 +47,9 @@
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-                                                             bundle: nil];
-    
-    GameViewController *controller = (GameViewController*)[mainStoryboard
-                                                       instantiateViewControllerWithIdentifier: @"GameViewController"];
-    controller.currentWish = [controller.storage valueForKey:@"apple"];
-    
+
+    self.pet.currentWish = @"apple";
+    NSLog(@"%@", self.pet.currentWish);
     
    [self refreshNoti];
 }
