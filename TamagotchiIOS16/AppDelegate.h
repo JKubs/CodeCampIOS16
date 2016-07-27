@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameViewController.h"
+#import "Saver.h"
+#import "Loader.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) GameViewController *gameController;
 
+- (void)findGameController;
 
 @end
 

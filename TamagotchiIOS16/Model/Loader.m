@@ -17,9 +17,13 @@
     Owner *owner =  [slot objectForKey:OWNER];
     Pet *pet =  [slot objectForKey:PET];
     
+    if(owner != nil) {
+        controller.owner = owner;
+    }
+    if(pet != nil) {
+        controller.pet = pet;
+    }
     
-    controller.owner = owner;
-    controller.pet = pet;
     
     return YES;
 }
