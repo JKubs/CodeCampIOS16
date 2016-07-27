@@ -16,6 +16,7 @@
 #import "MoneyFarmViewController.h"
 #import "StatusViewController.h"
 #import "TestmodeViewController.h"
+#import "NotificationRequest.h"
 
 @class Loader;
 @class Saver;
@@ -45,6 +46,7 @@
 @property (strong, nonatomic) NSArray *drinkList;
 @property (strong, nonatomic) NSMutableArray *storeFood;
 @property (strong, nonatomic) Food *currentWish;
+@property (strong, nonatomic) NSMutableArray *notificationRequests;
 
 
 - (IBAction)feedAction:(UIButton *)sender;

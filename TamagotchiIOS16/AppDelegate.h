@@ -17,6 +17,8 @@
 @property (strong, nonatomic) GameViewController *gameController;
 
 - (void)findGameController;
+- (void)generateRandomNeed:(NSDate*) date;
+- (void)checkForMissedNotifications;
 
 @end
 

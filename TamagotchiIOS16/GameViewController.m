@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //[Loader loadSaveStateTo:self];
     self.navigationItem.hidesBackButton = YES;
     self.image1 = [UIImage imageNamed:@"critter1.jpg"];
     self.image2 = [UIImage imageNamed:@"critter2.jpg"];
@@ -43,6 +42,7 @@
     NSLog(@"%@", food);
     NSLog(@"in feed.. apples: %ld", [[self.storage objectForKey:@"apple"] integerValue] );
     if([[self.storage objectForKey:food] intValue] > 0) {
+        
         
     }
     else {
