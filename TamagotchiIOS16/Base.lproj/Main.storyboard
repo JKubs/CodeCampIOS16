@@ -186,7 +186,7 @@
         <!--GameScreen-->
         <scene sceneID="amE-Dy-Kca">
             <objects>
-                <viewController title="GameScreen" id="w2A-K5-GzS" customClass="GameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" title="GameScreen" id="w2A-K5-GzS" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7QS-n1-r2k"/>
                         <viewControllerLayoutGuide type="bottom" id="Mob-ye-0Ny"/>
@@ -246,7 +246,7 @@
                                 <rect key="frame" x="265" y="85" width="68" height="30"/>
                                 <state key="normal" title="Testmode"/>
                                 <connections>
-                                    <segue destination="cfc-WT-PLY" kind="show" id="75t-rR-lNK"/>
+                                    <segue destination="cfc-WT-PLY" kind="show" identifier="showTestmode" id="75t-rR-lNK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKo-Ld-3Aq">
