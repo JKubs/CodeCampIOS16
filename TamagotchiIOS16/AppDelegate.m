@@ -196,7 +196,12 @@
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-   
+    
+    NotificationRequest *newRequest;
+    newRequest.message = localNotification.alertBody;
+    newRequest.timestamp = localNotification.fireDate;
+    newRequest.subject = localNotification.alertBody; //TODO: change to a subject
+    [self.gameController.notificationRequests addObject:newRequest];
     
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
