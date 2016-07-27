@@ -48,7 +48,7 @@
 }
 
 - (NSArray *) createFoodList {
-    Apple *apple = [[Apple alloc] init];
+    Food *apple = [[Food alloc] init];
     apple.name = @"apple";
     apple.cost = 5;
     NSArray *foodList = [[NSArray alloc] initWithObjects:apple, nil];
@@ -56,7 +56,7 @@
 }
 
 - (NSArray *) createDrinkList {
-    Soda *soda = [[Soda alloc] init];
+    Food *soda = [[Food alloc] init];
     soda.name = @"soda";
     soda.cost = 5;
     NSArray *drinkList = [[NSArray alloc] initWithObjects:soda, nil];
