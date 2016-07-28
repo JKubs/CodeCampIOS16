@@ -175,10 +175,14 @@
     self.currentFrame = 0;
     if ([self.petState isEqualToString:@"calm"]) {
         self.currentFrames = self.calmAnimation;
+        self.speechView.hidden = YES;
     } else if ([self.petState isEqualToString:@"hungry"]) {
         self.currentFrames = self.hungryAnimation;
+        self.speechView.hidden = NO;
+        self.speechFood.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.pet.currentWish]];
     } else if ([self.petState isEqualToString:@"happy"]) {
         self.currentFrames = self.happyAnimation;
+        self.speechView.hidden = YES;
     }
     self.petImageView.image = [self.currentFrames objectAtIndex:self.currentFrame];
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self selector: @selector(callAfterFrame:) userInfo: nil repeats: YES];
@@ -208,13 +212,6 @@
 - (void)handleHunger {
     if (self.pet.currentWish != NULL) {
         self.petState = @"hungry";
-        self.speechView.hidden = NO;
-        self.speechFood.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.pet.currentWish]];
-        [self.myTimer invalidate];
-        self.myTimer = nil;
-        [self startTimer];
-    } else {
-        self.speechView.hidden = YES;
     }
 }
 
