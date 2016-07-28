@@ -46,11 +46,20 @@
     [self feed:self.pet.currentWish];
 }
 
-- (void)feed:(NSString*)food {
-    
+- (void)feed:(NSString*)food {    
     NSLog(@"%@", food);
-    NSLog(@"in feed.. apples: %ld", [[self.storage objectForKey:@"apple"] integerValue] );
-    if([[self.storage objectForKey:food] intValue] > 0) {
+        if(food == NULL){
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                       message:@"I am not Hungry"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+
+    }else if([[self.storage objectForKey:food] intValue] > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self.pet];
         
         NotificationRequest *noti = [self.notificationRequests firstObject];
@@ -58,6 +67,15 @@
             [self removeTooLateNotiFromPushNoti:noti.timestamp];
             [self.notificationRequests removeObject:noti];
         }
+        //TODO remove 1 food item
+        
+        NSInteger quantity = [[self.storage objectForKey:food] integerValue];
+        quantity = quantity - 1;
+        NSNumber *number = [NSNumber numberWithInteger:quantity];
+        [self.storage setValue:number forKey:food];
+
+        
+        self.pet.currentWish = NULL;
     }
     else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
