@@ -129,8 +129,6 @@
     }
     
     if(self.gameController.pet.lives <= 0){
-        //TODO write in in savefile
-        
         NSLog(@"your pet died -.- %@ ", self.gameController);
     }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
         int rand = (int)arc4random_uniform([self.gameController.foodList count]);
@@ -397,7 +395,6 @@
         //look for the nav controller in tab bar views
         for (UINavigationController *view in navigationController.viewControllers) {
             //when found, do the same thing to find the GameViewController under the nav controller
-            NSLog(@"%@", view);
             if ([view isKindOfClass:[GameViewController class]])
                 result = (GameViewController *) view;
             if ([view isKindOfClass:[UINavigationController class]])

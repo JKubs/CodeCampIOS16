@@ -16,19 +16,12 @@
     }
 }
 
-- (IBAction)continueGame:(UIButton *)sender {
-}
-
-- (IBAction)loadGame:(UIButton *)sender {
-}
-
-- (IBAction)newGame:(UIButton *)sender {
-}
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
-    if ([segueName isEqualToString: @"startLoadedGame"]) {
-        NSString *lastUsedSlot = [Loader loadLastUsedSlot];
+    if ([segueName isEqualToString: @"continueGame"]) {
+        NSString *lastUsedSlot = [Loader loadLastUsedSlotString];
+        NSLog(@"%@",lastUsedSlot);
         NSDictionary *slot = [Loader loadSlot:lastUsedSlot];
         Owner *owner = [slot objectForKey:OWNER];
         Pet *pet = [slot objectForKey:PET];
