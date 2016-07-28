@@ -57,7 +57,6 @@
 - (void)removeTooLateNotiFromPushNoti:(NSDate *) date;
 - (IBAction)feedAction:(UIButton *)sender;
 - (IBAction)enterShop:(UIButton *)sender;
-- (IBAction)killThatMonster:(UIButton *)sender;
 
 - (void)feed:(NSString*)food;
 

@@ -240,9 +240,4 @@
     [self.storeFood addObjectsFromArray:self.drinkList];
 }
 
-//TODO just a joke. can be erased in final version
-- (IBAction)killThatMonster:(UIButton *)sender {
-    self.petImageView.image = [UIImage imageNamed:@"verrecke_dummes_vieh.jpg"];
-}
-
 @end
