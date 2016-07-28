@@ -62,6 +62,8 @@
         Food *randFood = [self.drinkList objectAtIndex:rand];
         self.pet.currentWish = randFood.name;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+
     NSLog(@"generated %@-wish", self.pet.currentWish);
     
    [self refreshNoti];
@@ -169,6 +171,7 @@
     for (UILocalNotification *localNotification in localNotifications) {
         nextNotiText.text = [nextNotiText.text stringByAppendingString:[[localNotification.fireDate description] stringByAppendingString:@"\n"]];
     }
+    self.notificationRequests = [[NSMutableArray alloc] init];
 }
 
 @end

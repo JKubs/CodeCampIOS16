@@ -131,15 +131,17 @@
     if(self.gameController.pet.lives <= 0){
         //TODO write in in savefile
         
-        NSLog(@"your pet died -.- ");
+        NSLog(@"your pet died -.- %@ ", self.gameController);
     }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
         int rand = (int)arc4random_uniform([self.gameController.foodList count]);
         Food *randFood = [self.gameController.foodList objectAtIndex:rand];
         self.gameController.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.gameController.pet];
     }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
         int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
         Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
         self.gameController.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.gameController.pet];
     }
 }
 
@@ -381,7 +383,7 @@
     }
     NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     for (UILocalNotification *locationNotification in newlocalNotifications) {
-        NSLog(@"Notification: %@", locationNotification.alertBody);
+        NSLog(@"Existing Notification: %@", locationNotification.alertBody);
     }
 }
 

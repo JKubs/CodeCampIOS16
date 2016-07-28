@@ -32,6 +32,10 @@
     self.happyAnimation = [[NSArray alloc] initWithObjects:happy1, happy2, nil];
     if (self.petState == nil) {
         self.petState = @"calm";
+        self.speechView.hidden = YES;
+    } else if ([self.petState isEqualToString:@"hungry"]) {
+        self.speechFood.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.pet.currentWish]];
+        self.speechView.hidden = NO;
     }
     [self setupFoodList];
     [self setupDrinkList];
@@ -150,6 +154,7 @@
         testmodeViewController.foodList = self.foodList;
         testmodeViewController.drinkList = self.drinkList;
         testmodeViewController.pet = self.pet;
+        testmodeViewController.notificationRequests = self.notificationRequests;
     }
 }
 
@@ -196,10 +201,16 @@
 }
 
 - (void)handleHunger {
-    self.petState = @"hungry";
-    [self.myTimer invalidate];
-    self.myTimer = nil;
-    [self startTimer];
+    if (self.pet.currentWish != NULL) {
+        self.petState = @"hungry";
+        self.speechView.hidden = NO;
+        self.speechFood.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.pet.currentWish]];
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+        [self startTimer];
+    } else {
+        self.speechView.hidden = YES;
+    }
 }
 
 - (void) setupFoodList {
@@ -237,11 +248,6 @@
 - (void) setupStoreFood {
     self.storeFood = [NSMutableArray arrayWithArray:self.foodList];
     [self.storeFood addObjectsFromArray:self.drinkList];
-}
-
-//TODO just a joke. can be erased in final version
-- (IBAction)killThatMonster:(UIButton *)sender {
-    self.petImageView.image = [UIImage imageNamed:@"verrecke_dummes_vieh.jpg"];
 }
 
 @end

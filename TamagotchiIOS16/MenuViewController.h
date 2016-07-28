@@ -19,8 +19,5 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
 
-- (IBAction)continueGame:(UIButton *)sender;
-- (IBAction)loadGame:(UIButton *)sender;
-- (IBAction)newGame:(UIButton *)sender;
 - (BOOL)isClearStart;
 @end

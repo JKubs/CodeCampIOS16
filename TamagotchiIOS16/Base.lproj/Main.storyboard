@@ -263,7 +263,6 @@
                                 <rect key="frame" x="269" y="377" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
-                                    <action selector="continueGame:" destination="C17-Dk-bpw" eventType="touchUpInside" id="PQ5-gZ-DSJ"/>
                                     <segue destination="w2A-K5-GzS" kind="show" identifier="continueGame" id="zIs-k9-Tz8"/>
                                 </connections>
                             </button>
@@ -271,7 +270,6 @@
                                 <rect key="frame" x="261" y="420" width="78" height="30"/>
                                 <state key="normal" title="Load Game"/>
                                 <connections>
-                                    <action selector="loadGame:" destination="C17-Dk-bpw" eventType="touchUpInside" id="ey7-CO-Fcu"/>
                                     <segue destination="1UR-hV-aay" kind="show" identifier="loadGame" id="3Lb-zk-Ja1"/>
                                 </connections>
                             </button>
@@ -279,7 +277,6 @@
                                 <rect key="frame" x="263" y="466" width="75" height="30"/>
                                 <state key="normal" title="New Game"/>
                                 <connections>
-                                    <action selector="newGame:" destination="C17-Dk-bpw" eventType="touchUpInside" id="crT-6d-Db8"/>
                                     <segue destination="FdY-HD-JaR" kind="show" identifier="newGame" id="f7F-jH-PKt"/>
                                 </connections>
                             </button>
@@ -307,7 +304,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efr-1S-fbK">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efr-1S-fbK">
                                 <rect key="frame" x="85" y="450" width="69" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="69" id="Cp8-Qc-bc4"/>
@@ -317,41 +314,12 @@
                                     <action selector="feedAction:" destination="w2A-K5-GzS" eventType="touchUpInside" id="emL-XL-pYu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOX-cm-tHh">
-                                <rect key="frame" x="271" y="450" width="58" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="58" id="KRY-RF-EuY"/>
-                                </constraints>
-                                <state key="normal" title="Hydrate"/>
-                                <connections>
-                                    <action selector="hydrateAction:" destination="w2A-K5-GzS" eventType="touchUpInside" id="zVE-Gw-gjd"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hunger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDJ-Vw-Y7G">
-                                <rect key="frame" x="41" y="78" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="thirst" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NB4-v3-Dzi">
-                                <rect key="frame" x="41" y="100" width="40" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVL-nf-idg">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVL-nf-idg">
                                 <rect key="frame" x="101" y="519" width="36" height="30"/>
                                 <state key="normal" title="Shop"/>
                                 <connections>
                                     <action selector="enterShop:" destination="w2A-K5-GzS" eventType="touchUpInside" id="OnE-BI-RGZ"/>
                                     <segue destination="1be-HK-iDp" kind="show" identifier="showStore" id="fFj-jW-DUx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-L6-SuV">
-                                <rect key="frame" x="271" y="519" width="62" height="30"/>
-                                <state key="normal" title="KILL PET"/>
-                                <connections>
-                                    <action selector="killThatMonster:" destination="w2A-K5-GzS" eventType="touchUpInside" id="8aJ-nf-pfQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9J-5B-5hJ">
@@ -370,7 +338,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="critter1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VEJ-DN-UaE">
-                                <rect key="frame" x="179" y="150" width="240" height="240"/>
+                                <rect key="frame" x="61" y="144" width="240" height="240"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -386,24 +354,33 @@
                                     <segue destination="ebq-ZA-sn4" kind="show" identifier="showStatus" id="iE0-Ix-lD3"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a0s-54-YrJ">
+                                <rect key="frame" x="245" y="150" width="199" height="109"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speech_bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="DoQ-5L-0Qy">
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="101"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mMu-ul-shv">
+                                        <rect key="frame" x="59" y="8" width="81" height="69"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VEJ-DN-UaE" firstAttribute="centerX" secondItem="mb7-ZC-O5r" secondAttribute="centerX" id="0LN-Na-UJp"/>
                             <constraint firstItem="efr-1S-fbK" firstAttribute="leading" secondItem="mb7-ZC-O5r" secondAttribute="leadingMargin" constant="65" id="1JZ-MV-NzX"/>
-                            <constraint firstItem="cpS-L6-SuV" firstAttribute="top" secondItem="lOX-cm-tHh" secondAttribute="bottom" constant="39" id="4oO-01-evE"/>
-                            <constraint firstItem="lOX-cm-tHh" firstAttribute="centerX" secondItem="mb7-ZC-O5r" secondAttribute="centerX" id="AfR-eh-zCx"/>
-                            <constraint firstItem="lOX-cm-tHh" firstAttribute="top" secondItem="VEJ-DN-UaE" secondAttribute="bottom" constant="60" id="OvX-L1-0jh"/>
                             <constraint firstItem="efr-1S-fbK" firstAttribute="centerX" secondItem="kVL-nf-idg" secondAttribute="centerX" id="SoW-Rl-qdo"/>
-                            <constraint firstItem="lOX-cm-tHh" firstAttribute="leading" secondItem="cpS-L6-SuV" secondAttribute="leading" id="TnT-JZ-zC5"/>
                             <constraint firstItem="kVL-nf-idg" firstAttribute="top" secondItem="efr-1S-fbK" secondAttribute="bottom" constant="39" id="Vqd-W5-D7P"/>
-                            <constraint firstItem="lOX-cm-tHh" firstAttribute="baseline" secondItem="efr-1S-fbK" secondAttribute="baseline" id="fSb-te-czm"/>
                             <constraint firstItem="VEJ-DN-UaE" firstAttribute="top" secondItem="mb7-ZC-O5r" secondAttribute="top" constant="150" id="vN8-lJ-3bI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bf5-72-C0o"/>
                     <connections>
                         <outlet property="petImageView" destination="VEJ-DN-UaE" id="z8o-iT-t4b"/>
+                        <outlet property="speechFood" destination="mMu-ul-shv" id="Waq-ed-rme"/>
+                        <outlet property="speechView" destination="a0s-54-YrJ" id="YPU-mm-TeR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eML-y3-kLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -804,9 +781,10 @@
         <image name="coin.png" width="79" height="91"/>
         <image name="critter1.jpg" width="139" height="135"/>
         <image name="grass_background.jpg" width="512" height="512"/>
+        <image name="speech_bubble.png" width="1280" height="964"/>
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u5i-yX-E7j"/>
+        <segue reference="u5r-m7-40I"/>
     </inferredMetricsTieBreakers>
 </document>
