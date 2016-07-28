@@ -136,10 +136,12 @@
         int rand = (int)arc4random_uniform([self.gameController.foodList count]);
         Food *randFood = [self.gameController.foodList objectAtIndex:rand];
         self.gameController.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.gameController.pet];
     }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
         int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
         Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
         self.gameController.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.gameController.pet];
     }
 }
 

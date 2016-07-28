@@ -62,6 +62,8 @@
         Food *randFood = [self.drinkList objectAtIndex:rand];
         self.pet.currentWish = randFood.name;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+
     NSLog(@"generated %@-wish", self.pet.currentWish);
     
    [self refreshNoti];
