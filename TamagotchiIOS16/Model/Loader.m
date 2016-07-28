@@ -38,8 +38,7 @@
 }
 
 +(NSString *)loadLastUsedSlotString {
-    NSData *encodedSlot = [[NSUserDefaults standardUserDefaults] dataForKey:CURRENT_SLOT];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:encodedSlot];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:CURRENT_SLOT];
 }
 
 +(NSDictionary *)loadSlot:(NSString*)slot{

@@ -195,9 +195,9 @@
 		96A611E71D46182100F389E7 /* TamagotchiIOS16 */ = {
 			isa = PBXGroup;
 			children = (
-				96C6D36B1D4A3C5200F68653 /* Montie_hungry_2.png */,
 				96A611EB1D46182100F389E7 /* AppDelegate.h */,
 				96A611EC1D46182100F389E7 /* AppDelegate.m */,
+				96A6664B1D477418000A4DF5 /* Util */,
 				96A6121B1D46182E00F389E7 /* Model */,
 				96A611EE1D46182100F389E7 /* ViewController.h */,
 				96A611EF1D46182100F389E7 /* ViewController.m */,
@@ -229,8 +229,8 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				96A6664B1D477418000A4DF5 /* Util */,
 				96C6D36A1D4A3C5200F68653 /* Montie_hungry_1.png */,
+				96C6D36B1D4A3C5200F68653 /* Montie_hungry_2.png */,
 				96C6D3691D4A3C5200F68653 /* Montie_happy_2.png */,
 				96C6D3681D4A3C5200F68653 /* Montie_happy_1.png */,
 				96C6D3641D4A34AC00F68653 /* Montie_calm_1.png */,

@@ -58,6 +58,7 @@
         gameViewController.owner = self.owner;
         gameViewController.pet = self.pet;
         gameViewController.storage = self.storage;
+        gameViewController.saveSlot = SAVE_SLOT_1;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
