@@ -78,6 +78,7 @@
         
         if (self.pet.lives < 3) {
             self.pet.lives++;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self.pet];
         }
         
         NotificationRequest *noti = [self.notificationRequests firstObject];
