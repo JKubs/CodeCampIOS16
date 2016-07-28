@@ -43,7 +43,7 @@
     NSLog(@"%@", food);
     NSLog(@"in feed.. apples: %ld", [[self.storage objectForKey:@"apple"] integerValue] );
     if([[self.storage objectForKey:food] intValue] > 0) {
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self.pet];
         
     }
     else {
@@ -66,6 +66,7 @@
         StoreViewController *storeViewController = self.storeViewController;
         storeViewController.storage = self.storage;
         storeViewController.owner = self.owner;
+        storeViewController.pet = self.pet;
         storeViewController.foodList = self.storeFood;
     } else if ([segueName isEqualToString:@"showMoneyFarm"]) {
         self.moneyFarmViewController = (MoneyFarmViewController *) [segue destinationViewController];

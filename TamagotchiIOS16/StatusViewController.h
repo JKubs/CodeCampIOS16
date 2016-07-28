@@ -25,5 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *petType;
 @property (weak, nonatomic) IBOutlet UILabel *petLives;
+@property (weak, nonatomic) IBOutlet UIView *firstHealthLabel;
+@property (weak, nonatomic) IBOutlet UIView *secondHealthLabel;
+@property (weak, nonatomic) IBOutlet UIView *thirdHealthLabel;
 
 @end
