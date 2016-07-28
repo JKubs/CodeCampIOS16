@@ -39,6 +39,12 @@
 		96A6664A1D4773F9000A4DF5 /* Saver.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A666481D4773F9000A4DF5 /* Saver.m */; };
 		96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */; };
 		96C6D35B1D4A081700F68653 /* Critter_calm_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D35A1D4A081700F68653 /* Critter_calm_2.png */; };
+		96C6D35E1D4A23E700F68653 /* Critter_happy_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D35C1D4A23E700F68653 /* Critter_happy_1.png */; };
+		96C6D35F1D4A23E700F68653 /* Critter_happy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D35D1D4A23E700F68653 /* Critter_happy_2.png */; };
+		96C6D3621D4A29ED00F68653 /* Critter_hungry_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3601D4A29ED00F68653 /* Critter_hungry_1.png */; };
+		96C6D3631D4A29ED00F68653 /* Critter_hungry_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3611D4A29ED00F68653 /* Critter_hungry_2.png */; };
+		96C6D3661D4A34AC00F68653 /* Montie_calm_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3641D4A34AC00F68653 /* Montie_calm_1.png */; };
+		96C6D3671D4A34AC00F68653 /* Montie_calm_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3651D4A34AC00F68653 /* Montie_calm_2.png */; };
 		96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96CC5C731D47A38500DB090A /* grass_background.jpg */; };
 		96CC5C761D47A54000DB090A /* MoneyFarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */; };
 		96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D1C1BC1D47B42900F49BB0 /* coin.png */; };
@@ -115,6 +121,12 @@
 		96A666481D4773F9000A4DF5 /* Saver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Saver.m; path = Model/Saver.m; sourceTree = "<group>"; };
 		96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_calm_1.png; sourceTree = "<group>"; };
 		96C6D35A1D4A081700F68653 /* Critter_calm_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_calm_2.png; sourceTree = "<group>"; };
+		96C6D35C1D4A23E700F68653 /* Critter_happy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_happy_1.png; sourceTree = "<group>"; };
+		96C6D35D1D4A23E700F68653 /* Critter_happy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_happy_2.png; sourceTree = "<group>"; };
+		96C6D3601D4A29ED00F68653 /* Critter_hungry_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_hungry_1.png; sourceTree = "<group>"; };
+		96C6D3611D4A29ED00F68653 /* Critter_hungry_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_hungry_2.png; sourceTree = "<group>"; };
+		96C6D3641D4A34AC00F68653 /* Montie_calm_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Montie_calm_1.png; sourceTree = "<group>"; };
+		96C6D3651D4A34AC00F68653 /* Montie_calm_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Montie_calm_2.png; sourceTree = "<group>"; };
 		96CC5C731D47A38500DB090A /* grass_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass_background.jpg; sourceTree = "<group>"; };
 		96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFarmViewController.m; sourceTree = "<group>"; };
 		96CC5C771D47A55400DB090A /* MoneyFarmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoneyFarmViewController.h; sourceTree = "<group>"; };
@@ -209,6 +221,12 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96C6D3641D4A34AC00F68653 /* Montie_calm_1.png */,
+				96C6D3651D4A34AC00F68653 /* Montie_calm_2.png */,
+				96C6D3601D4A29ED00F68653 /* Critter_hungry_1.png */,
+				96C6D3611D4A29ED00F68653 /* Critter_hungry_2.png */,
+				96C6D35D1D4A23E700F68653 /* Critter_happy_2.png */,
+				96C6D35C1D4A23E700F68653 /* Critter_happy_1.png */,
 				96C6D35A1D4A081700F68653 /* Critter_calm_2.png */,
 				96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */,
 				9641F80C1D48FFF9009D5E03 /* store_background.png */,
@@ -379,6 +397,7 @@
 			files = (
 				96A611F81D46182100F389E7 /* LaunchScreen.storyboard in Resources */,
 				96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */,
+				96C6D3621D4A29ED00F68653 /* Critter_hungry_1.png in Resources */,
 				96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */,
 				96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */,
 				96C6D35B1D4A081700F68653 /* Critter_calm_2.png in Resources */,
@@ -388,11 +407,16 @@
 				9641F8011D48FA33009D5E03 /* candy.png in Resources */,
 				9641F80D1D48FFF9009D5E03 /* store_background.png in Resources */,
 				96A611F51D46182100F389E7 /* Assets.xcassets in Resources */,
+				96C6D3671D4A34AC00F68653 /* Montie_calm_2.png in Resources */,
+				96C6D3661D4A34AC00F68653 /* Montie_calm_1.png in Resources */,
 				96A611F31D46182100F389E7 /* Main.storyboard in Resources */,
+				96C6D3631D4A29ED00F68653 /* Critter_hungry_2.png in Resources */,
+				96C6D35F1D4A23E700F68653 /* Critter_happy_2.png in Resources */,
 				9641F8031D48FAEA009D5E03 /* burger.png in Resources */,
 				96A6122E1D46335E00F389E7 /* critter2.jpg in Resources */,
 				9641F8091D48FC8C009D5E03 /* beer.png in Resources */,
 				9641F7FF1D48F9C8009D5E03 /* bread.png in Resources */,
+				96C6D35E1D4A23E700F68653 /* Critter_happy_1.png in Resources */,
 				9649DAAB1D47489B007CF15E /* verrecke_dummes_vieh.jpg in Resources */,
 				9641F80B1D48FD5F009D5E03 /* wine.png in Resources */,
 				9641F8071D48FC29009D5E03 /* water.png in Resources */,

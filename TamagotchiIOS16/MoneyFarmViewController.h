@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *centerX;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonWidth;
+@property (weak, nonatomic) NSString *saveSlot;
 
 - (void)startTimer;
 

@@ -30,8 +30,12 @@
     UIImage *happy1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_1.png", self.pet.type]];
     UIImage *happy2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_2.png", self.pet.type]];
     self.happyAnimation = [[NSArray alloc] initWithObjects:happy1, happy2, nil];
+    if (self.petState == nil) {
+        self.petState = @"calm";
+    }
     self.saveSlot = SAVE_SLOT_1;
-    self.petState = @"calm";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAnimation) name:@"PetAnimation" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHunger) name:@"PetHungry" object: nil];
     if (self.myTimer == nil) {
         [self startTimer];
     }
@@ -48,7 +52,7 @@
 
 - (void)feed:(NSString*)food {    
     NSLog(@"%@", food);
-        if(food == NULL){
+    if(food == NULL){
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
                                                                        message:@"I am not Hungry"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -61,6 +65,10 @@
 
     }else if([[self.storage objectForKey:food] intValue] > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self.pet];
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+        self.petState = @"happy";
+        [self startTimer];
         
         NotificationRequest *noti = [self.notificationRequests firstObject];
         if([noti.message isEqualToString:WISH_TOO_LATE]){
@@ -112,11 +120,13 @@
         storeViewController.owner = self.owner;
         storeViewController.pet = self.pet;
         storeViewController.foodList = self.storeFood;
+        storeViewController.saveSlot = self.saveSlot;
     } else if ([segueName isEqualToString:@"showMoneyFarm"]) {
         [self.myTimer invalidate];
         self.myTimer = nil;
         self.moneyFarmViewController = (MoneyFarmViewController *) [segue destinationViewController];
         MoneyFarmViewController *moneyFarmViewController = self.moneyFarmViewController;
+        moneyFarmViewController.saveSlot = self.saveSlot;
         moneyFarmViewController.owner = self.owner;
         if (moneyFarmViewController.myTimer == nil) {
            [moneyFarmViewController startTimer];
@@ -158,6 +168,7 @@
     } else if ([self.petState isEqualToString:@"happy"]) {
         self.currentFrames = self.happyAnimation;
     }
+    self.petImageView.image = [self.currentFrames objectAtIndex:self.currentFrame];
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self selector: @selector(callAfterFrame:) userInfo: nil repeats: YES];
 }
 
@@ -168,6 +179,25 @@
         self.currentFrame = 0;
     }
     self.petImageView.image = [self.currentFrames objectAtIndex:self.currentFrame];
+    if ([self.petState isEqualToString:@"happy"]) {
+        if (self.currentFrame == 1) {
+            self.petState = @"calm";
+            [self.myTimer invalidate];
+            self.myTimer = nil;
+            [self startTimer];
+        }
+    }
+}
+
+- (void)handleAnimation {
+    [self startTimer];
+}
+
+- (void)handleHunger {
+    self.petState = @"hungry";
+    [self.myTimer invalidate];
+    self.myTimer = nil;
+    [self startTimer];
 }
 
 - (void)animate {

@@ -8,7 +8,7 @@
 
 #import "StoreViewController.h"
 #import "Food.h"
-#import "GameViewController.h"
+#import "Saver.h"
 
 @implementation StoreViewController
 
@@ -54,6 +54,7 @@
 }
 
 - (IBAction)closeStore:(UIButton *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -67,6 +68,8 @@
             quantity = quantity + 1;
             NSNumber *number = [NSNumber numberWithInteger:quantity];
             [self.storage setValue:number forKey:food.name];
+            //[Saver saveChangeOn:STORAGE withValue:self.storage atSaveSlot:self.saveSlot];
+            [Saver saveChangeOn:OWNER withValue:self.owner atSaveSlot:self.saveSlot];
             self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %d$", self.owner.money];
             [self.tableView reloadData];
         }
