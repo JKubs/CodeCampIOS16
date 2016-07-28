@@ -11,7 +11,7 @@
 @implementation MenuViewController
 
 - (void) viewDidLoad {
-    NSLog(@"%i",!YES);
+    
 }
 
 - (IBAction)continueGame:(UIButton *)sender {
@@ -22,4 +22,5 @@
 
 - (IBAction)newGame:(UIButton *)sender {
 }
+
 @end

@@ -24,5 +24,6 @@
 @property (weak, nonatomic) Owner *owner;
 @property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
 @property (weak, nonatomic) Pet *pet;
+@property (weak, nonatomic) NSString *saveSlot;
 
 @end

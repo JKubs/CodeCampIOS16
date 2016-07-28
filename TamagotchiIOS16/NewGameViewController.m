@@ -13,7 +13,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    recipes = [[NSArray alloc] initWithObjects:@"Critter", nil];
+    recipes = [[NSArray alloc] initWithObjects:@"Critter", @"Montie", nil];
     self.startButton.enabled = NO;
 }
 
@@ -64,6 +64,7 @@
         gameViewController.foodList = self.foodList;
         gameViewController.drinkList = self.drinkList;
         gameViewController.storeFood = self.storeFood;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
 }
 

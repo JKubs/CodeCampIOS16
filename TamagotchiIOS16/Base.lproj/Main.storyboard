@@ -169,10 +169,6 @@
                                         <rect key="frame" x="75" y="86" width="20" height="20"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rj4-TA-5Hn">
-                                        <rect key="frame" x="105" y="86" width="20" height="20"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fW5-TV-RDk">
                                         <rect key="frame" x="135" y="86" width="20" height="20"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,6 +191,10 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rj4-TA-5Hn">
+                                        <rect key="frame" x="105" y="86" width="20" height="20"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9160743972076999" green="1" blue="0.73856642452414967" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                             </view>
@@ -233,9 +233,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="firstHealthLabel" destination="biv-co-4KE" id="c8A-xL-VCG"/>
-                        <outlet property="secondHealthLabel" destination="Rj4-TA-5Hn" id="vJY-cx-Z9e"/>
-                        <outlet property="thirdHealthLabel" destination="fW5-TV-RDk" id="LcU-E7-nTy"/>
+                        <outlet property="firstHealthLabel" destination="biv-co-4KE" id="StK-0W-IdD"/>
+                        <outlet property="moneyLabel" destination="YM0-hb-eHa" id="Zs3-xY-gie"/>
+                        <outlet property="petLives" destination="k3s-rI-6e6" id="BlT-bj-fwW"/>
+                        <outlet property="petType" destination="ZzX-JA-3MH" id="dtC-S2-jkh"/>
+                        <outlet property="secondHealthLabel" destination="Rj4-TA-5Hn" id="8ne-ux-5rz"/>
+                        <outlet property="storageList" destination="KHj-Yn-XyZ" id="juB-ka-H8S"/>
+                        <outlet property="thirdHealthLabel" destination="fW5-TV-RDk" id="BTg-g8-L7r"/>
+                        <outlet property="usernameLabel" destination="fxN-Cy-egE" id="vno-gI-yL1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hx0-1W-fbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
