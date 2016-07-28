@@ -45,6 +45,13 @@
     return cell;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
+    }
+}
+
 - (void)handleFeed {
     [self.storageList reloadData];
 }

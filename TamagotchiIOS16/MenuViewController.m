@@ -63,6 +63,7 @@
         gameViewController.foodList = self.foodList;
         gameViewController.drinkList = self.drinkList;
         gameViewController.storeFood = self.storeFood;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
 }
 
