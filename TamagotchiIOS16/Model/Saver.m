@@ -23,12 +23,13 @@
     NSMutableDictionary *slot = [[NSMutableDictionary alloc] init];
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.owner] forKey:OWNER];
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
+    [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.storage] forKey:STORAGE];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
     [[NSUserDefaults standardUserDefaults] setObject:controller.saveSlot forKey:CURRENT_SLOT];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(BOOL)saveNotificationSchedules:(NSArray*)notifications toSlot:(NSString*)saveSlot{
++(BOOL)saveNotificationSchedules:(NSMutableArray*)notifications toSlot:(NSString*)saveSlot{
     NSMutableArray *encodedNotifications = [[NSMutableArray alloc] init];
     
     for (NotificationRequest *notireq in notifications) {
@@ -37,7 +38,6 @@
     }
     
     NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
-    
     [slot setValue:encodedNotifications forKey:NOTIFICATION_REQUESTS];
     
     [[NSUserDefaults standardUserDefaults] setValue:slot forKey:saveSlot];

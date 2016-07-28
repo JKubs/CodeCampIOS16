@@ -18,7 +18,7 @@
 #define OWNER @"owner"
 #define OWNER_NAME @"ownername"
 #define OWNER_MONEY @"ownermoney"
-#define OWNER_STORAGE @"ownerstorage"
+#define STORAGE @"ownerstorage"
 #define PET @"pet"
 #define PET_NAME @"petname"
 #define PET_HEALTH @"pethealth"

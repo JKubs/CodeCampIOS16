@@ -376,6 +376,7 @@
         //look for the nav controller in tab bar views
         for (UINavigationController *view in navigationController.viewControllers) {
             //when found, do the same thing to find the GameViewController under the nav controller
+            NSLog(@"%@", view);
             if ([view isKindOfClass:[GameViewController class]])
                 result = (GameViewController *) view;
             if ([view isKindOfClass:[UINavigationController class]])
@@ -385,6 +386,13 @@
         }
     self.gameController = result;
     
+}
+
+-(BOOL)isClearStart {
+    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_1] == nil &&
+    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_2] == nil &&
+    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_3] == nil &&
+    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_4] == nil;
 }
 
 @end
