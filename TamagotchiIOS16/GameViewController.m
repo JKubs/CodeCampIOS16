@@ -148,6 +148,7 @@
         testmodeViewController.foodList = self.foodList;
         testmodeViewController.drinkList = self.drinkList;
         testmodeViewController.pet = self.pet;
+        testmodeViewController.notificationRequests = self.notificationRequests;
     }
 }
 

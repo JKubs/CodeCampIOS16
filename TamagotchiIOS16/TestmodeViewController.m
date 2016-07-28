@@ -169,6 +169,7 @@
     for (UILocalNotification *localNotification in localNotifications) {
         nextNotiText.text = [nextNotiText.text stringByAppendingString:[[localNotification.fireDate description] stringByAppendingString:@"\n"]];
     }
+    self.notificationRequests = [[NSMutableArray alloc] init];
 }
 
 @end
