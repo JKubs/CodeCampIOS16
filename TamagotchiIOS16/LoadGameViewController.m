@@ -59,20 +59,22 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"startLoadedGame"]) {
-
+        
+        NSDictionary *slot = [Loader loadSlot:self.selectedSlot];
+        Owner *owner = [slot objectForKey:OWNER];
+        Pet *pet = [slot objectForKey:PET];
+        NSMutableDictionary *storage = [slot objectForKey:STORAGE];
+        
         GameViewController *gameViewController = (GameViewController *) [segue destinationViewController];
-        gameViewController.owner = self.owner;
-        gameViewController.pet = self.pet;
-        gameViewController.storage = self.storage;
-        gameViewController.foodList = self.foodList;
-        gameViewController.drinkList = self.drinkList;
-        gameViewController.storeFood = self.storeFood;
+        gameViewController.owner = owner;
+        gameViewController.pet = pet;
+        gameViewController.storage = storage;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
 }
 
 - (IBAction)loadSlotToGame:(UIButton *)sender {
-    //init data to gamescreencontroller
-    //with selected slot name
+    
 }
 
 - (IBAction)deleteSlot:(UIButton *)sender {

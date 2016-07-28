@@ -22,9 +22,6 @@
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) Pet *pet;
 @property (strong, nonatomic) NSMutableDictionary *storage;
-@property (strong, nonatomic) NSArray *foodList;
-@property (strong, nonatomic) NSArray *drinkList;
-@property (strong, nonatomic) NSMutableArray *storeFood;
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *startButton;

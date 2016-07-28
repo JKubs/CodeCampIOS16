@@ -53,17 +53,12 @@
         [self setupOwner];
         [self setupPet];
         [self setupStorage];
-        [self setupFoodList];
-        [self setupDrinkList];
-        [self setupStoreFood];
         self.gameViewController = (GameViewController *) [segue destinationViewController];
         GameViewController *gameViewController = self.gameViewController;
         gameViewController.owner = self.owner;
         gameViewController.pet = self.pet;
         gameViewController.storage = self.storage;
-        gameViewController.foodList = self.foodList;
-        gameViewController.drinkList = self.drinkList;
-        gameViewController.storeFood = self.storeFood;
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
 }
@@ -86,41 +81,6 @@
     [self.storage setObject:[NSNumber numberWithInteger:1] forKey:@"soda"];
 }
 
-- (void) setupFoodList {
-    Food *apple = [[Food alloc] init];
-    apple.name = @"apple";
-    apple.cost = 5;
-    Food *bread = [[Food alloc] init];
-    bread.name = @"bread";
-    bread.cost = 3;
-    Food *candy = [[Food alloc] init];
-    candy.name = @"candy";
-    candy.cost = 2;
-    Food *burger = [[Food alloc] init];
-    burger.name = @"burger";
-    burger.cost = 6;
-    self.foodList = [[NSArray alloc] initWithObjects:apple, bread, candy, burger, nil];
-}
 
-- (void) setupDrinkList {
-    Food *soda = [[Food alloc] init];
-    soda.name = @"soda";
-    soda.cost = 5;
-    Food *water =[[Food alloc] init];
-    water.name = @"water";
-    water.cost = 2;
-    Food *beer = [[Food alloc] init];
-    beer.name = @"beer";
-    beer.cost = 4;
-    Food *wine = [[Food alloc] init];
-    wine.name = @"wine";
-    wine.cost = 7;
-    self.drinkList = [[NSArray alloc] initWithObjects:soda, water, wine, nil];
-}
-
-- (void) setupStoreFood {
-    self.storeFood = [NSMutableArray arrayWithArray:self.foodList];
-    [self.storeFood addObjectsFromArray:self.drinkList];
-}
 
 @end

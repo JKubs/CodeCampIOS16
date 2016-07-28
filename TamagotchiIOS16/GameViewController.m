@@ -33,7 +33,9 @@
     if (self.petState == nil) {
         self.petState = @"calm";
     }
-    self.saveSlot = SAVE_SLOT_1;
+    [self setupFoodList];
+    [self setupDrinkList];
+    [self setupStoreFood];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAnimation) name:@"PetAnimation" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHunger) name:@"PetHungry" object: nil];
     if (self.myTimer == nil) {
@@ -200,8 +202,41 @@
     [self startTimer];
 }
 
-- (void)animate {
-    
+- (void) setupFoodList {
+    Food *apple = [[Food alloc] init];
+    apple.name = @"apple";
+    apple.cost = 5;
+    Food *bread = [[Food alloc] init];
+    bread.name = @"bread";
+    bread.cost = 3;
+    Food *candy = [[Food alloc] init];
+    candy.name = @"candy";
+    candy.cost = 2;
+    Food *burger = [[Food alloc] init];
+    burger.name = @"burger";
+    burger.cost = 6;
+    self.foodList = [[NSArray alloc] initWithObjects:apple, bread, candy, burger, nil];
+}
+
+- (void) setupDrinkList {
+    Food *soda = [[Food alloc] init];
+    soda.name = @"soda";
+    soda.cost = 5;
+    Food *water =[[Food alloc] init];
+    water.name = @"water";
+    water.cost = 2;
+    Food *beer = [[Food alloc] init];
+    beer.name = @"beer";
+    beer.cost = 4;
+    Food *wine = [[Food alloc] init];
+    wine.name = @"wine";
+    wine.cost = 7;
+    self.drinkList = [[NSArray alloc] initWithObjects:soda, water, wine, nil];
+}
+
+- (void) setupStoreFood {
+    self.storeFood = [NSMutableArray arrayWithArray:self.foodList];
+    [self.storeFood addObjectsFromArray:self.drinkList];
 }
 
 //TODO just a joke. can be erased in final version
