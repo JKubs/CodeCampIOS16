@@ -180,7 +180,7 @@
     }
     self.petImageView.image = [self.currentFrames objectAtIndex:self.currentFrame];
     if ([self.petState isEqualToString:@"happy"]) {
-        if (self.currentFrame == 1) {
+        if (self.currentFrame == 0) {
             self.petState = @"calm";
             [self.myTimer invalidate];
             self.myTimer = nil;

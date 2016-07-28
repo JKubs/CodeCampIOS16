@@ -61,12 +61,12 @@
     if ([segueName isEqualToString: @"startLoadedGame"]) {
 
         GameViewController *gameViewController = (GameViewController *) [segue destinationViewController];
-        gameViewController.owner = self.owner;
-        gameViewController.pet = self.pet;
-        gameViewController.storage = self.storage;
-        gameViewController.foodList = self.foodList;
-        gameViewController.drinkList = self.drinkList;
-        gameViewController.storeFood = self.storeFood;
+        //gameViewController.owner = self.owner;
+        //gameViewController.pet = self.pet;
+        //gameViewController.storage = self.storage;
+        //gameViewController.foodList = self.foodList;
+        //gameViewController.drinkList = self.drinkList;
+        //gameViewController.storeFood = self.storeFood;
     }
 }
 

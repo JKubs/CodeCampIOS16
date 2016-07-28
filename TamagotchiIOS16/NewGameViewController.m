@@ -13,7 +13,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    recipes = [[NSArray alloc] initWithObjects:@"Critter", nil];
+    recipes = [[NSArray alloc] initWithObjects:@"Critter", @"Montie", nil];
     self.startButton.enabled = NO;
 }
 
