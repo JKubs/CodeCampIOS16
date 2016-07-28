@@ -284,7 +284,6 @@
                     <navigationItem key="navigationItem" id="dB1-cH-tFI"/>
                     <connections>
                         <outlet property="continueButton" destination="g9a-Dw-2l1" id="UfA-00-Sww"/>
-                        <outlet property="startButton" destination="g9a-Dw-2l1" id="cdu-1i-B6u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QP4-wz-cWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -803,6 +802,6 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u5i-yX-E7j"/>
+        <segue reference="zIs-k9-Tz8"/>
     </inferredMetricsTieBreakers>
 </document>
