@@ -19,6 +19,7 @@
     // Override point for customization after application launch.
     
     // Handle launching from a notification
+    
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
         // Set icon badge number to zero
@@ -29,10 +30,22 @@
         [self findGameController];
     }
     
-    [self checkForMissedNotifications];
+    if(YES){
+        //onFirstStart
+        self.firstStart = YES;
+    }else{
+        self.firstStart = NO;
+    }
+
+
+    if(!self.firstStart){
+        [self checkForMissedNotifications];
+    }else{
+        self.firstStartNotiRequ = [[NSMutableArray alloc] init];
+    }
     
     int dist = 1800;
-    Boolean passedSleepingTime = false;
+    BOOL passedSleepingTime = NO;
     NSInteger sleepHourStart = 23*3600;
     NSInteger sleepTime = 8*3600;
     NSInteger sleepHourEnd = (sleepHourStart + sleepTime) % (24*3600);
@@ -90,9 +103,9 @@
             
             if (sleepHourStart >= sleepHourEnd &&
                 (rand+currentSecond >= sleepHourStart || rand+currentSecond <= sleepHourEnd)) { // if he sleeps over midnight
-                passedSleepingTime = true;
+                passedSleepingTime = YES;
             }else if(rand+currentSecond >= sleepHourStart && rand+currentSecond <= sleepHourEnd){
-                passedSleepingTime = true;
+                passedSleepingTime = YES;
             }
             
             if(passedSleepingTime){
@@ -112,7 +125,7 @@
         NSInteger timeToFullDay = 24*3600 - (timeFromNowToLast + dist);
         NSInteger numberOfNotifications = 5 - [localNotifications count];
         NSInteger maxTimeAfterWaitForSleep = sleepTime + 5; //to be changed
-        Boolean setAllNotisBeforSleep = false;
+        BOOL setAllNotisBeforSleep = NO;
         
         
         NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -131,12 +144,12 @@
                 sleepHourStart + 24*3600 - lastTimeInSeconds : sleepHourStart - lastTimeInSeconds;
             maxRand = (maxRand > timeToFullDay) ? timeToFullDay : maxRand;
             
-            setAllNotisBeforSleep = true;
+            setAllNotisBeforSleep = YES;
             NSLog(@"timeToFullDay < maxTimeAfterWaitForSleep");
         }else{
             //maxrand is last to timeToFullDay and with "passedSleepingTime" stuff
             maxRand = timeToFullDay;
-            setAllNotisBeforSleep = false;
+            setAllNotisBeforSleep = NO;
             NSLog(@"timeToFullDay > maxTimeAfterWaitForSleep");
         }
         
@@ -164,9 +177,9 @@
             if(!setAllNotisBeforSleep){
                 if (sleepHourStart >= sleepHourEnd &&
                     (rand+lastTimeInSeconds >= sleepHourStart || rand+lastTimeInSeconds <= sleepHourEnd)) { // if he sleeps over midnight
-                    passedSleepingTime = true;
+                    passedSleepingTime = YES;
                 }else if(rand+lastTimeInSeconds >= sleepHourStart && rand+lastTimeInSeconds <= sleepHourEnd){
-                    passedSleepingTime = true;
+                    passedSleepingTime = YES;
                 }
                 if(passedSleepingTime){
                     rand = rand + sleepTime;
@@ -197,12 +210,15 @@
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     
-    NotificationRequest *newRequest;
+    NotificationRequest *newRequest = [[NotificationRequest alloc] init];
     newRequest.message = localNotification.alertBody;
     newRequest.timestamp = localNotification.fireDate;
     newRequest.subject = localNotification.alertBody; //TODO: change to a subject
-    [self.gameController.notificationRequests addObject:newRequest];
-    
+    if(self.firstStart){
+        [self.firstStartNotiRequ addObject:newRequest];
+    }else{
+        [self.gameController.notificationRequests addObject:newRequest];
+    }
     
     NSInteger tooLate = 1200;
     UILocalNotification* localNotificationEnd = [[UILocalNotification alloc] init];
@@ -213,11 +229,24 @@
     localNotificationEnd.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotificationEnd];
 
-    NotificationRequest *newLateRequest;
+    NotificationRequest *newLateRequest = [[NotificationRequest alloc] init];
     newLateRequest.message = localNotificationEnd.alertBody;
     newLateRequest.timestamp = localNotificationEnd.fireDate;
     newLateRequest.subject = localNotificationEnd.alertBody; //TODO: change to a subject
-    [self.gameController.notificationRequests addObject:newLateRequest];
+    if(self.firstStart){
+        [self.firstStartNotiRequ addObject:newLateRequest];
+    }else{
+        [self.gameController.notificationRequests addObject:newLateRequest];
+    }
+    
+//    NSLog(@"notiRequ to save:");
+//    NSLog(@"%@", newLateRequest);
+//    NSLog(@"notiRequ Saved:");
+//    NSLog(@"%@", self.gameController.notificationRequests);
+//    for (NotificationRequest *noti in self.gameController.notificationRequests) {
+//        NSLog(@"%@", noti);
+//    }
+    
     
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
@@ -230,37 +259,36 @@
 - (void)checkForMissedNotifications{
     
     NSMutableArray *missedNotis;
-    //for (UILocalNotification* localNotification  in localNotifications) {
-    //    BOOL *gotIt = false;
-    //    for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
-    //        if([notiRequ isEqual:localNotification.fireDate]){
-    //            gotIt = true;
-     //       }
-     //   }
-     //   if (!gotIt) {
-     //       [missedNotis addObject:localNotification];
-     //       NSLog(@"missed: %@", localNotification.alertBody);
-      //  }
-    //}
     
     for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
+        NSLog(@"saved notirequ here");
         if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
             [missedNotis addObject:notiRequ];
             [self.gameController.notificationRequests removeObject:notiRequ];
             NSLog(@"missed: %@", notiRequ.message);
         }
     }
+    NotificationRequest *lastMissed = [missedNotis lastObject];
     
-    int missedHungry = 0;
     for (NotificationRequest *notiR in missedNotis) {
-        if([notiR.message isEqualToString:WISH_TOO_LATE] || [notiR isEqual:WISH_THIRSTY] ){
-            missedHungry++;
+        if([notiR.message isEqualToString:WISH_TOO_LATE]){
+            self.gameController.pet.lives--;
         }
     }
     
-    if(missedHungry > 3){
+    //TODO look for health
+    if(self.gameController.pet.lives <= 0){
         //TODO write in in savefile
-        NSLog(@"your pet died -.- you got %d missed \"hungry\"-Notifications", missedHungry);
+        
+        NSLog(@"your pet died -.- ");
+    }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
+        int rand = (int)arc4random_uniform([self.gameController.foodList count]);
+        Food *randFood = [self.gameController.foodList objectAtIndex:rand];
+        self.gameController.pet.currentWish = randFood.name;
+    }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
+        int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
+        Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
+        self.gameController.pet.currentWish = randFood.name;
     }
 }
 

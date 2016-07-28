@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) GameViewController *gameController;
+@property (strong, nonatomic) NSMutableArray *firstStartNotiRequ;
+@property (assign) BOOL firstStart;
 
 - (void)findGameController;
 - (void)generateRandomNeed:(NSDate*) date;
