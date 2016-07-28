@@ -13,24 +13,14 @@
 #import "Loader.h"
 #import "Saver.h"
 
-@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface MenuViewController : UIViewController  {
     
-    NSArray *recipes;
-    NSInteger row;
-
 }
 
-@property (strong, nonatomic) GameViewController *gameViewController;
-@property (strong, nonatomic) Owner *owner;
-@property (strong, nonatomic) Pet *pet;
-@property (strong, nonatomic) NSMutableDictionary *storage;
-@property (strong, nonatomic) NSArray *foodList;
-@property (strong, nonatomic) NSArray *drinkList;
-@property (strong, nonatomic) NSMutableArray *storeFood;
-@property (weak, nonatomic) IBOutlet UITextField *userName;
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIButton *continueButton;
 
-- (IBAction)infoEdited;
+- (IBAction)continueGame:(UIButton *)sender;
+- (IBAction)loadGame:(UIButton *)sender;
+- (IBAction)newGame:(UIButton *)sender;
 
 @end

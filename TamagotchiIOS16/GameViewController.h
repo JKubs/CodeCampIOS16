@@ -20,6 +20,7 @@
 
 @class Loader;
 @class Saver;
+@class TestmodeViewController;
 
 @protocol GameViewControllerDelegate <NSObject>
 @required
@@ -53,6 +54,7 @@
 @property (strong, nonatomic) NSMutableArray *notificationRequests;
 
 
+- (void)removeTooLateNotiFromPushNoti:(NSDate *) date;
 - (IBAction)feedAction:(UIButton *)sender;
 - (IBAction)enterShop:(UIButton *)sender;
 - (IBAction)killThatMonster:(UIButton *)sender;

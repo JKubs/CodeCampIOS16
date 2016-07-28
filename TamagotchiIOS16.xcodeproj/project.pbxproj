@@ -48,6 +48,8 @@
 		96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96CC5C731D47A38500DB090A /* grass_background.jpg */; };
 		96CC5C761D47A54000DB090A /* MoneyFarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */; };
 		96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D1C1BC1D47B42900F49BB0 /* coin.png */; };
+		96D1E7011D49E99A00A747A1 /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D1E7001D49E99A00A747A1 /* NewGameViewController.m */; };
+		96D1E7041D49E9EC00A747A1 /* LoadGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D1E7031D49E9EC00A747A1 /* LoadGameViewController.m */; };
 		96FC92F11D465F5100E49E48 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC92F01D465F5100E49E48 /* StoreViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +131,10 @@
 		96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFarmViewController.m; sourceTree = "<group>"; };
 		96CC5C771D47A55400DB090A /* MoneyFarmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoneyFarmViewController.h; sourceTree = "<group>"; };
 		96D1C1BC1D47B42900F49BB0 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
+		96D1E6FF1D49E97E00A747A1 /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
+		96D1E7001D49E99A00A747A1 /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
+		96D1E7021D49E9D600A747A1 /* LoadGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGameViewController.h; sourceTree = "<group>"; };
+		96D1E7031D49E9EC00A747A1 /* LoadGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadGameViewController.m; sourceTree = "<group>"; };
 		96FC92EF1D465E9300E49E48 /* StoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
 		96FC92F01D465F5100E49E48 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +194,10 @@
 				96A611EE1D46182100F389E7 /* ViewController.h */,
 				96A611EF1D46182100F389E7 /* ViewController.m */,
 				96A611F11D46182100F389E7 /* Main.storyboard */,
+				96D1E6FF1D49E97E00A747A1 /* NewGameViewController.h */,
+				96D1E7001D49E99A00A747A1 /* NewGameViewController.m */,
+				96D1E7021D49E9D600A747A1 /* LoadGameViewController.h */,
+				96D1E7031D49E9EC00A747A1 /* LoadGameViewController.m */,
 				96A612321D46369900F389E7 /* GameViewController.m */,
 				96A612341D4636B200F389E7 /* GameViewController.h */,
 				96A611F61D46182100F389E7 /* LaunchScreen.storyboard */,
@@ -439,6 +449,8 @@
 				96A611F01D46182100F389E7 /* ViewController.m in Sources */,
 				96A612261D46182E00F389E7 /* Food.m in Sources */,
 				9641F7FA1D48D331009D5E03 /* MenuViewController.m in Sources */,
+				96D1E7041D49E9EC00A747A1 /* LoadGameViewController.m in Sources */,
+				96D1E7011D49E99A00A747A1 /* NewGameViewController.m in Sources */,
 				96A612271D46182E00F389E7 /* Owner.m in Sources */,
 				969B9E921D4751C100A70029 /* TestmodeViewController.m in Sources */,
 				9641F7F71D48C0BF009D5E03 /* StatusViewController.m in Sources */,

@@ -50,16 +50,40 @@
     [self feed:self.pet.currentWish];
 }
 
-- (void)feed:(NSString*)food {
-    
+- (void)feed:(NSString*)food {    
     NSLog(@"%@", food);
-    NSLog(@"in feed.. apples: %ld", [[self.storage objectForKey:@"apple"] integerValue] );
-    if([[self.storage objectForKey:food] intValue] > 0) {
+    if(food == NULL){
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                       message:@"I am not Hungry"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+
+    }else if([[self.storage objectForKey:food] intValue] > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self.pet];
         [self.myTimer invalidate];
         self.myTimer = nil;
         self.petState = @"happy";
         [self startTimer];
+        
+        NotificationRequest *noti = [self.notificationRequests firstObject];
+        if([noti.message isEqualToString:WISH_TOO_LATE]){
+            [self removeTooLateNotiFromPushNoti:noti.timestamp];
+            [self.notificationRequests removeObject:noti];
+        }
+        //TODO remove 1 food item
+        
+        NSInteger quantity = [[self.storage objectForKey:food] integerValue];
+        quantity = quantity - 1;
+        NSNumber *number = [NSNumber numberWithInteger:quantity];
+        [self.storage setValue:number forKey:food];
+
+        
+        self.pet.currentWish = NULL;
     }
     else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
@@ -72,6 +96,17 @@
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+- (void) removeTooLateNotiFromPushNoti:(NSDate *)date{
+    UIApplication *app = [UIApplication sharedApplication];
+    for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        if([noti.fireDate isEqual:date]){
+            NSLog(@"removed Local PushNotification");
+            [app cancelLocalNotification:noti];
+        }
+    }
+    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -110,8 +145,8 @@
         self.myTimer = nil;
         self.testmodeViewController =[segue destinationViewController];
         TestmodeViewController *testmodeViewController = self.testmodeViewController;
-        //testmodeViewController.currentWish = self.currentWish;
-        //testmodeViewController.foodList = self.foodList;
+        testmodeViewController.foodList = self.foodList;
+        testmodeViewController.drinkList = self.drinkList;
         testmodeViewController.pet = self.pet;
     }
 }
