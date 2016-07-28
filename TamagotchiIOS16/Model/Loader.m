@@ -16,12 +16,17 @@
     Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
     NSData *encodedPet = [slot objectForKey:PET];
     Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
+    NSData *encodedNotifications = [slot objectForKey:NOTIFICATION_REQUESTS];
+    NSMutableArray *notifications = [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
     
     if(owner != nil) {
         controller.owner = owner;
     }
     if(pet != nil) {
         controller.pet = pet;
+    }
+    if(notifications != nil) {
+        controller.notificationRequests = notifications;
     }
     
     return YES;
@@ -32,8 +37,9 @@
     return [NSKeyedUnarchiver unarchiveObjectWithData:encodedSlot];
 }
 
-+(NSArray *)loadSavedNotifications {
-    NSArray *encodedArray = [[NSUserDefaults standardUserDefaults] arrayForKey:NOTIFICATION_REQUESTS];
++(NSArray *)loadSavedNotificationsFromSlot:(NSString*)saveSlot {
+    NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
+    NSArray *encodedArray = [slot mutableArrayValueForKey:NOTIFICATION_REQUESTS];
     NSMutableArray *decodedArray = [[NSMutableArray alloc] init];
     for (NSData *element in encodedArray) {
         [decodedArray addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
