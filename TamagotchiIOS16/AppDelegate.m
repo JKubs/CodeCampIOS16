@@ -19,6 +19,7 @@
     // Override point for customization after application launch.
     
     // Handle launching from a notification
+    
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
         // Set icon badge number to zero
@@ -29,159 +30,24 @@
         [self findGameController];
     }
     
-    [self checkForMissedNotifications];
-    
-    int dist = 1800;
-    Boolean passedSleepingTime = false;
-    NSInteger sleepHourStart = 23*3600;
-    NSInteger sleepTime = 8*3600;
-    NSInteger sleepHourEnd = (sleepHourStart + sleepTime) % (24*3600);
-    NSInteger timeTillSleepOver = 0;
-    
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    if([localNotifications count] == 0){
-        //same stuff as in testmodeViewControllwe TODO make a global method
-        int numberOfNotifications = 5;
-        
-        int erg = 1;
-        for (int i = 1; i < numberOfNotifications-1; i++) {
-            erg += i;
-        }
-        NSInteger maxRand = 3600 * 24;
-        maxRand = maxRand - dist*erg; // - distance between time
-        
-        NSDate *date = [NSDate date];
-        NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:date];
-        NSInteger currentSecond = [components hour] * 3600 + [components minute] * 60 + [components second];
-        
-        
-        
-        if (sleepHourStart >= sleepHourEnd) { // if he sleeps over midnight
-            if(currentSecond >= sleepHourStart){ // you are in sleepTime b4 midnight
-                timeTillSleepOver = 24*3600 - currentSecond + sleepHourEnd;
-            }else if(currentSecond <= sleepHourEnd){ // you are in sleep Time after midnight
-                timeTillSleepOver = sleepHourEnd - currentSecond;
-            }
-        }else if(currentSecond >= sleepHourStart && currentSecond <= sleepHourEnd){
-            timeTillSleepOver = sleepHourEnd - currentSecond;
-        }
-        //NSLog(@"\n ttso: %ld--------------------------", timeTillSleepOver);
-        maxRand = maxRand - (sleepTime-timeTillSleepOver);
-        
-        NSMutableArray *randDates = [NSMutableArray array];
-        for (int i = 0; i < numberOfNotifications; i++){
-            [randDates addObject: [NSNumber numberWithInt: arc4random_uniform(maxRand)]];
-        }
-        
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-        [randDates sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-        
-        //NSString * result = [[randDates valueForKey:@"description"] componentsJoinedByString:@" "];
-        //NSLog(result);
-        
-        
-        for (int i = 0; i < numberOfNotifications; i++) {
-            NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
-            rand = rand + dist*i;
-            rand = rand + timeTillSleepOver;
-            
-            //NSLog(@"\n rand: %ld \n startSleep: %ld \n endsleep: %ld", rand+currentSecond, sleepHourStart, sleepHourEnd);
-            
-            if (sleepHourStart >= sleepHourEnd &&
-                (rand+currentSecond >= sleepHourStart || rand+currentSecond <= sleepHourEnd)) { // if he sleeps over midnight
-                passedSleepingTime = true;
-            }else if(rand+currentSecond >= sleepHourStart && rand+currentSecond <= sleepHourEnd){
-                passedSleepingTime = true;
-            }
-            
-            if(passedSleepingTime){
-                rand = rand + sleepTime;
-            }
-            
-            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
-
-            [self generateRandomNeed:[NSDate dateWithTimeIntervalSinceNow:rand]];
-        }
-    }else if([localNotifications count] < 5){
-        UILocalNotification *first = [localNotifications firstObject];
-        UILocalNotification *last = [localNotifications lastObject];
-        NSDate *lastDate = [last fireDate];
-        NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSInteger timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate];
-        NSInteger timeToFullDay = 24*3600 - (timeFromNowToLast + dist);
-        NSInteger numberOfNotifications = 5 - [localNotifications count];
-        NSInteger maxTimeAfterWaitForSleep = sleepTime + 5; //to be changed
-        Boolean setAllNotisBeforSleep = false;
-        
-        
-        NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:lastDate];
-        NSInteger lastTimeInSeconds = [components hour] * 3600 + [components minute] * 60 + [components second];
-        
-        int erg = 1;
-        for (int i = 1; i < numberOfNotifications-1; i++) {
-            erg += i;
-        }
-        
-        NSInteger maxRand;
-        if (timeToFullDay < maxTimeAfterWaitForSleep) {
-            // maxRand is last to sleepstart
-            maxRand = (sleepHourStart < lastTimeInSeconds) ?
-                sleepHourStart + 24*3600 - lastTimeInSeconds : sleepHourStart - lastTimeInSeconds;
-            maxRand = (maxRand > timeToFullDay) ? timeToFullDay : maxRand;
-            
-            setAllNotisBeforSleep = true;
-            NSLog(@"timeToFullDay < maxTimeAfterWaitForSleep");
-        }else{
-            //maxrand is last to timeToFullDay and with "passedSleepingTime" stuff
-            maxRand = timeToFullDay;
-            setAllNotisBeforSleep = false;
-            NSLog(@"timeToFullDay > maxTimeAfterWaitForSleep");
-        }
-        
-        
-        maxRand = maxRand - dist*erg; // - distance between time
-        
-        NSLog(@"\n maxRand: %ld \n dist: %ld \n erg: %ld", maxRand, dist, erg);
-        
-        NSMutableArray *randDates = [NSMutableArray array];
-        for (int i = 0; i < numberOfNotifications; i++){
-            [randDates addObject: [NSNumber numberWithInt: arc4random_uniform(maxRand)]];
-        }
-        
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-        [randDates sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-
-        
-        
-        for (int i = 0; i < numberOfNotifications; i++) {
-            NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
-            rand = rand + dist*i;
-    
-            NSLog(@"\n rand: %ld \n lastTimeInSec: %ld \n startSleep: %ld \n endsleep: %ld \n lasttimetillsleep: %ld \n maxRand: %ld \n timetofullday: %ld", rand, lastTimeInSeconds, sleepHourStart, sleepHourEnd, lastTimeInSeconds, maxRand, timeToFullDay);
-
-            if(!setAllNotisBeforSleep){
-                if (sleepHourStart >= sleepHourEnd &&
-                    (rand+lastTimeInSeconds >= sleepHourStart || rand+lastTimeInSeconds <= sleepHourEnd)) { // if he sleeps over midnight
-                    passedSleepingTime = true;
-                }else if(rand+lastTimeInSeconds >= sleepHourStart && rand+lastTimeInSeconds <= sleepHourEnd){
-                    passedSleepingTime = true;
-                }
-                if(passedSleepingTime){
-                    rand = rand + sleepTime;
-                }
-            }
-            
-            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld ", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
-        
-            [self generateRandomNeed:[NSDate dateWithTimeInterval:rand sinceDate:lastDate]];
-        }
+    if(YES){ //TODO change to method from John
+        //onFirstStart
+        self.firstStart = YES;
+    }else{
+        self.firstStart = NO;
     }
-    NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (locationNotification in newlocalNotifications) {
-        NSLog(@" %@ --", locationNotification.alertBody);
+
+
+    if(!self.firstStart){
+        [self checkForMissedNotifications];
+    }else{
+        self.firstStartNotiRequ = [[NSMutableArray alloc] init];
     }
+    
+    //calculates and generates
+    [self calculateDatesForNeeds];
+    
+    //TODO if first start save start notifications somewhere
     
     return YES;
 }
@@ -197,12 +63,15 @@
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     
-    NotificationRequest *newRequest;
+    NotificationRequest *newRequest = [[NotificationRequest alloc] init];
     newRequest.message = localNotification.alertBody;
     newRequest.timestamp = localNotification.fireDate;
     newRequest.subject = localNotification.alertBody; //TODO: change to a subject
-    [self.gameController.notificationRequests addObject:newRequest];
-    
+    if(self.firstStart){
+        [self.firstStartNotiRequ addObject:newRequest];
+    }else{
+        [self.gameController.notificationRequests addObject:newRequest];
+    }
     
     NSInteger tooLate = 1200;
     UILocalNotification* localNotificationEnd = [[UILocalNotification alloc] init];
@@ -213,11 +82,23 @@
     localNotificationEnd.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotificationEnd];
 
-    NotificationRequest *newLateRequest;
+    NotificationRequest *newLateRequest = [[NotificationRequest alloc] init];
     newLateRequest.message = localNotificationEnd.alertBody;
     newLateRequest.timestamp = localNotificationEnd.fireDate;
     newLateRequest.subject = localNotificationEnd.alertBody; //TODO: change to a subject
-    [self.gameController.notificationRequests addObject:newLateRequest];
+    if(self.firstStart){
+        [self.firstStartNotiRequ addObject:newLateRequest];
+    }else{
+        [self.gameController.notificationRequests addObject:newLateRequest];
+    }
+    
+//    NSLog(@"notiRequ to save:");
+//    NSLog(@"%@", newLateRequest);
+//    NSLog(@"notiRequ Saved:");
+//    NSLog(@"%@", self.gameController.notificationRequests);
+//    for (NotificationRequest *noti in self.gameController.notificationRequests) {
+//        NSLog(@"%@", noti);
+//    }
     
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
@@ -228,34 +109,39 @@
 }
 
 - (void)checkForMissedNotifications{
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     
     NSMutableArray *missedNotis;
-    for (UILocalNotification* localNotification  in localNotifications) {
-        BOOL *gotIt = false;
-        for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
-            if([notiRequ isEqual:localNotification.fireDate]){
-                gotIt = true;
-            }
-        }
-        if (!gotIt) {
-            [missedNotis addObject:localNotification];
-            NSLog(@"missed: %@", localNotification.alertBody);
+    
+    for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
+        NSLog(@"saved notirequ here");
+        if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
+            [missedNotis addObject:notiRequ];
+            [self.gameController.notificationRequests removeObject:notiRequ];
+            NSLog(@"missed: %@", notiRequ.message);
         }
     }
-    int missedHungry = 0;
+    //Only work with last Missed now, those Objects in there don't exist in self.gameController.notificationRequests anymore
+    NotificationRequest *lastMissed = [missedNotis lastObject];
+    
     for (NotificationRequest *notiR in missedNotis) {
-        if([notiR.message isEqualToString:WISH_HUNGRY] || [notiR isEqual:WISH_THIRSTY] ){
-            missedHungry++;
+        if([notiR.message isEqualToString:WISH_TOO_LATE]){
+            self.gameController.pet.lives--;
         }
     }
     
-    if(missedHungry > 3){
+    if(self.gameController.pet.lives <= 0){
+        //TODO write in in savefile
         
-        NSLog(@"your pet died -.- you got %d missed \"hungry\"-Notifications", missedHungry);
+        NSLog(@"your pet died -.- ");
+    }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
+        int rand = (int)arc4random_uniform([self.gameController.foodList count]);
+        Food *randFood = [self.gameController.foodList objectAtIndex:rand];
+        self.gameController.pet.currentWish = randFood.name;
+    }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
+        int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
+        Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
+        self.gameController.pet.currentWish = randFood.name;
     }
-    
-
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -321,6 +207,160 @@
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
+}
+
+- (void)calculateDatesForNeeds{
+    int dist = 1800;
+    BOOL passedSleepingTime = NO;
+    NSInteger sleepHourStart = 23*3600;
+    NSInteger sleepTime = 8*3600;
+    NSInteger sleepHourEnd = (sleepHourStart + sleepTime) % (24*3600);
+    NSInteger timeTillSleepOver = 0;
+    
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    if([localNotifications count] == 0){
+        //same stuff as in testmodeViewControllwe TODO make a global method
+        int numberOfNotifications = 5;
+        
+        int erg = 1;
+        for (int i = 1; i < numberOfNotifications-1; i++) {
+            erg += i;
+        }
+        NSInteger maxRand = 3600 * 24;
+        maxRand = maxRand - dist*erg; // - distance between time
+        
+        NSDate *date = [NSDate date];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:date];
+        NSInteger currentSecond = [components hour] * 3600 + [components minute] * 60 + [components second];
+        
+        
+        
+        if (sleepHourStart >= sleepHourEnd) { // if he sleeps over midnight
+            if(currentSecond >= sleepHourStart){ // you are in sleepTime b4 midnight
+                timeTillSleepOver = 24*3600 - currentSecond + sleepHourEnd;
+            }else if(currentSecond <= sleepHourEnd){ // you are in sleep Time after midnight
+                timeTillSleepOver = sleepHourEnd - currentSecond;
+            }
+        }else if(currentSecond >= sleepHourStart && currentSecond <= sleepHourEnd){
+            timeTillSleepOver = sleepHourEnd - currentSecond;
+        }
+        //NSLog(@"\n ttso: %ld--------------------------", timeTillSleepOver);
+        maxRand = maxRand - (sleepTime-timeTillSleepOver);
+        
+        NSMutableArray *randDates = [NSMutableArray array];
+        for (int i = 0; i < numberOfNotifications; i++){
+            [randDates addObject: [NSNumber numberWithInt: arc4random_uniform(maxRand)]];
+        }
+        
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        [randDates sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        
+        //NSString * result = [[randDates valueForKey:@"description"] componentsJoinedByString:@" "];
+        //NSLog(result);
+        
+        
+        for (int i = 0; i < numberOfNotifications; i++) {
+            NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
+            rand = rand + dist*i;
+            rand = rand + timeTillSleepOver;
+            
+            //NSLog(@"\n rand: %ld \n startSleep: %ld \n endsleep: %ld", rand+currentSecond, sleepHourStart, sleepHourEnd);
+            
+            if (sleepHourStart >= sleepHourEnd &&
+                (rand+currentSecond >= sleepHourStart || rand+currentSecond <= sleepHourEnd)) { // if he sleeps over midnight
+                passedSleepingTime = YES;
+            }else if(rand+currentSecond >= sleepHourStart && rand+currentSecond <= sleepHourEnd){
+                passedSleepingTime = YES;
+            }
+            
+            if(passedSleepingTime){
+                rand = rand + sleepTime;
+            }
+            
+            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
+            
+            [self generateRandomNeed:[NSDate dateWithTimeIntervalSinceNow:rand]];
+        }
+    }else if([localNotifications count] < 5){
+        UILocalNotification *first = [localNotifications firstObject];
+        UILocalNotification *last = [localNotifications lastObject];
+        NSDate *lastDate = [last fireDate];
+        NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSInteger timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate];
+        NSInteger timeToFullDay = 24*3600 - (timeFromNowToLast + dist);
+        NSInteger numberOfNotifications = 5 - [localNotifications count];
+        NSInteger maxTimeAfterWaitForSleep = sleepTime + 5; //to be changed
+        BOOL setAllNotisBeforSleep = NO;
+        
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:lastDate];
+        NSInteger lastTimeInSeconds = [components hour] * 3600 + [components minute] * 60 + [components second];
+        
+        int erg = 1;
+        for (int i = 1; i < numberOfNotifications-1; i++) {
+            erg += i;
+        }
+        
+        NSInteger maxRand;
+        if (timeToFullDay < maxTimeAfterWaitForSleep) {
+            // maxRand is last to sleepstart
+            maxRand = (sleepHourStart < lastTimeInSeconds) ?
+            sleepHourStart + 24*3600 - lastTimeInSeconds : sleepHourStart - lastTimeInSeconds;
+            maxRand = (maxRand > timeToFullDay) ? timeToFullDay : maxRand;
+            
+            setAllNotisBeforSleep = YES;
+            NSLog(@"timeToFullDay < maxTimeAfterWaitForSleep");
+        }else{
+            //maxrand is last to timeToFullDay and with "passedSleepingTime" stuff
+            maxRand = timeToFullDay;
+            setAllNotisBeforSleep = NO;
+            NSLog(@"timeToFullDay > maxTimeAfterWaitForSleep");
+        }
+        
+        
+        maxRand = maxRand - dist*erg; // - distance between time
+        
+        NSLog(@"\n maxRand: %ld \n dist: %ld \n erg: %ld", maxRand, dist, erg);
+        
+        NSMutableArray *randDates = [NSMutableArray array];
+        for (int i = 0; i < numberOfNotifications; i++){
+            [randDates addObject: [NSNumber numberWithInt: arc4random_uniform(maxRand)]];
+        }
+        
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        [randDates sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        
+        
+        
+        for (int i = 0; i < numberOfNotifications; i++) {
+            NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
+            rand = rand + dist*i;
+            
+            NSLog(@"\n rand: %ld \n lastTimeInSec: %ld \n startSleep: %ld \n endsleep: %ld \n lasttimetillsleep: %ld \n maxRand: %ld \n timetofullday: %ld", rand, lastTimeInSeconds, sleepHourStart, sleepHourEnd, lastTimeInSeconds, maxRand, timeToFullDay);
+            
+            if(!setAllNotisBeforSleep){
+                if (sleepHourStart >= sleepHourEnd &&
+                    (rand+lastTimeInSeconds >= sleepHourStart || rand+lastTimeInSeconds <= sleepHourEnd)) { // if he sleeps over midnight
+                    passedSleepingTime = YES;
+                }else if(rand+lastTimeInSeconds >= sleepHourStart && rand+lastTimeInSeconds <= sleepHourEnd){
+                    passedSleepingTime = YES;
+                }
+                if(passedSleepingTime){
+                    rand = rand + sleepTime;
+                }
+            }
+            
+            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld ", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
+            
+            [self generateRandomNeed:[NSDate dateWithTimeInterval:rand sinceDate:lastDate]];
+        }
+    }
+    NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (UILocalNotification *locationNotification in newlocalNotifications) {
+        NSLog(@"Notification: %@", locationNotification.alertBody);
+    }
 }
 
 -(void)findGameController {

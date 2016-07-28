@@ -17,6 +17,8 @@
 +(BOOL)loadSaveStateTo:(GameViewController *)controller;
 +(NSString*)loadLastUsedSlotString;
 +(NSDictionary *)loadSlot:(NSString*)slot;
-+(NSArray*)loadSavedNotificationsFromSlot:(NSString*)saveSlot;
++(NSString*)loadLastUsedSlot;
++(NSMutableArray*)loadSavedNotificationsFromSlot:(NSString*)saveSlot;
+
 
 @end

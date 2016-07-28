@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Food.h"
 #import "Pet.h"
+#import "Saver.h"
 
 @interface TestmodeViewController : UIViewController{
     IBOutlet UITextView *nextNotiText;
@@ -19,9 +20,11 @@
 - (void)refreshNoti;
 - (int)calcStuff:(int)n;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-//@property (strong, nonatomic) Food *currentWish;
-//@property (strong, nonatomic) NSArray *foodList;
 @property (strong, nonatomic) Pet *pet;
+@property (strong, nonatomic) NSArray *foodList;
+@property (strong, nonatomic) NSArray *drinkList;
+
+
 
 
 
