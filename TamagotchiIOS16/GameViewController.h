@@ -36,9 +36,13 @@
 @property (strong, nonatomic) StatusViewController *statusViewController;
 @property (strong, nonatomic) TestmodeViewController *testmodeViewController;
 @property (strong, nonatomic) IBOutlet UIImageView *petImageView;
-@property (strong, nonatomic) UIImage *image1;
-@property (strong, nonatomic) UIImage *image2;
-@property (nonatomic) int currentImage;
+@property (strong, nonatomic) NSArray *calmAnimation;
+@property (strong, nonatomic) NSArray *hungryAnimation;
+@property (strong, nonatomic) NSArray *happyAnimation;
+@property (strong, nonatomic) NSArray *currentFrames;
+@property (strong, nonatomic) NSTimer *myTimer;
+@property NSInteger currentFrame;
+@property (strong, nonatomic) NSString *petState;
 @property (strong, nonatomic) NSString *saveSlot;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;

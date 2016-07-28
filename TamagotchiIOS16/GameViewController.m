@@ -21,12 +21,20 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.navigationItem.hidesBackButton = YES;
-    self.image1 = [UIImage imageNamed:@"critter1.jpg"];
-    self.image2 = [UIImage imageNamed:@"critter2.jpg"];
-    self.petImageView.image = self.image1;
-    self.currentImage = 0;
+    UIImage *calm1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", self.pet.type]];
+    UIImage *calm2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_2.png", self.pet.type]];
+    self.calmAnimation = [[NSArray alloc] initWithObjects:calm1, calm2, nil];
+    UIImage *hungry1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_hungry_1.png", self.pet.type]];
+    UIImage *hungry2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_hungry_2.png", self.pet.type]];
+    self.hungryAnimation = [[NSArray alloc] initWithObjects:hungry1, hungry2, nil];
+    UIImage *happy1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_1.png", self.pet.type]];
+    UIImage *happy2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_2.png", self.pet.type]];
+    self.happyAnimation = [[NSArray alloc] initWithObjects:happy1, happy2, nil];
     self.saveSlot = SAVE_SLOT_1;
-    
+    self.petState = @"calm";
+    if (self.myTimer == nil) {
+        [self startTimer];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,6 +86,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"showStore"]) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
         self.storeViewController = (StoreViewController *) [segue destinationViewController];
         StoreViewController *storeViewController = self.storeViewController;
         storeViewController.storage = self.storage;
@@ -85,6 +95,8 @@
         storeViewController.pet = self.pet;
         storeViewController.foodList = self.storeFood;
     } else if ([segueName isEqualToString:@"showMoneyFarm"]) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
         self.moneyFarmViewController = (MoneyFarmViewController *) [segue destinationViewController];
         MoneyFarmViewController *moneyFarmViewController = self.moneyFarmViewController;
         moneyFarmViewController.owner = self.owner;
@@ -92,6 +104,8 @@
            [moneyFarmViewController startTimer];
         }
     } else if ([segueName isEqualToString:@"showStatus"]) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
         self.statusViewController = [segue destinationViewController];
         StatusViewController *statusViewController= self.statusViewController;
         statusViewController.owner = self.owner;
@@ -99,6 +113,8 @@
         statusViewController.storage = self.storage;
         statusViewController.foodList = self.storeFood;
     } else if([segueName isEqualToString:@"showTestmode"]){
+        [self.myTimer invalidate];
+        self.myTimer = nil;
         self.testmodeViewController =[segue destinationViewController];
         TestmodeViewController *testmodeViewController = self.testmodeViewController;
         testmodeViewController.foodList = self.foodList;
@@ -115,17 +131,34 @@
     
 }
 
-//TODO just a joke. can be erased in final version
-- (IBAction)killThatMonster:(UIButton *)sender {
-    self.petImageView.image = [UIImage imageNamed:@"verrecke_dummes_vieh.jpg"];
+- (void)startTimer {
+    self.currentFrame = 0;
+    if ([self.petState isEqualToString:@"calm"]) {
+        self.currentFrames = self.calmAnimation;
+    } else if ([self.petState isEqualToString:@"hungry"]) {
+        self.currentFrames = self.hungryAnimation;
+    } else if ([self.petState isEqualToString:@"happy"]) {
+        self.currentFrames = self.happyAnimation;
+    }
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self selector: @selector(callAfterFrame:) userInfo: nil repeats: YES];
+}
+
+- (void)callAfterFrame:(NSTimer *)timer {
+    if (self.currentFrame == 0) {
+        self.currentFrame = 1;
+    } else {
+        self.currentFrame = 0;
+    }
+    self.petImageView.image = [self.currentFrames objectAtIndex:self.currentFrame];
 }
 
 - (void)animate {
-    if(self.currentImage == 0) {
-        self.petImageView.image = self.image2;
-    }
-    else self.petImageView.image = self.image1;
-    self.currentImage = 1 - self.currentImage;
+    
+}
+
+//TODO just a joke. can be erased in final version
+- (IBAction)killThatMonster:(UIButton *)sender {
+    self.petImageView.image = [UIImage imageNamed:@"verrecke_dummes_vieh.jpg"];
 }
 
 @end
