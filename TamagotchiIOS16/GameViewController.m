@@ -76,6 +76,10 @@
         self.petState = @"happy";
         [self startTimer];
         
+        if (self.pet.lives < 3) {
+            self.pet.lives++;
+        }
+        
         NotificationRequest *noti = [self.notificationRequests firstObject];
         if([noti.message isEqualToString:WISH_TOO_LATE]){
             [self removeTooLateNotiFromPushNoti:noti.timestamp];
