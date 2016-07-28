@@ -18,7 +18,11 @@
     self.usernameLabel.text = [NSString stringWithFormat:@"Name: %@", self.owner.name];
     self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
     self.petType.text = [NSString stringWithFormat:@"Type: %@", self.pet.type];
-    self.petLives.text = [NSString stringWithFormat:@"Lives: %d", self.pet.lives];
+    [self updateHealth];
+    self.storageList.layer.borderWidth = 1.0f;
+    self.storageList.layer.borderColor = [UIColor blueColor].CGColor;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFeed) name:@"PetFeed" object:self.pet];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHealth) name:@"PetHealth" object:self.pet];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -39,6 +43,29 @@
     cell.textLabel.text = food.name;
     cell.textLabel.text = [cell.textLabel.text stringByAppendingFormat:@" | quantity: %d", [[self.storage valueForKey:food.name] integerValue]];
     return cell;
+}
+
+- (void)handleFeed {
+    [self.storageList reloadData];
+}
+
+- (void)updateHealth {
+    NSInteger health = self.pet.lives;
+    if (health >= 1) {
+        self.firstHealthLabel.backgroundColor = [UIColor redColor];
+    } else {
+        self.firstHealthLabel.backgroundColor = [UIColor whiteColor];
+    }
+    if (health >= 2) {
+        self.secondHealthLabel.backgroundColor = [UIColor redColor];
+    } else {
+        self.secondHealthLabel.backgroundColor = [UIColor whiteColor];
+    }
+    if (health >= 3) {
+        self.thirdHealthLabel.backgroundColor = [UIColor redColor];
+    } else {
+        self.thirdHealthLabel.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 @end

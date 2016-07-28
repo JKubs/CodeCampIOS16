@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Owner.h"
+#import "Pet.h"
 
 @interface StoreViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     
@@ -22,5 +23,6 @@
 @property (weak, nonatomic) NSMutableArray *foodList;
 @property (weak, nonatomic) Owner *owner;
 @property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
+@property (weak, nonatomic) Pet *pet;
 
 @end

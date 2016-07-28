@@ -19,6 +19,7 @@
     recipes = self.foodList;
     self.greetingLabel.text = [NSString stringWithFormat:@"Hello, %@", self.owner.name];
     self.testLabel.text = [NSString stringWithFormat:@"%d$", self.owner.money];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFeed) name:@"PetFeed" object:self.pet];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -44,6 +45,10 @@
     cell.
     textLabel.text = [cell.textLabel.text stringByAppendingFormat:@":%d$ | quantity: %d", food.cost, [[self.storage valueForKey:food.name] integerValue]];
     return cell;
+}
+
+- (void)handleFeed {
+    [self.tableView reloadData];
 }
 
 - (IBAction)closeStore:(UIButton *)sender {
