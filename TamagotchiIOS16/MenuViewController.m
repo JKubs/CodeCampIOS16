@@ -26,10 +26,9 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSString *lastUsedSlot = [Loader loadLastUsedSlot];
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"startLoadedGame"]) {
-        
+        NSString *lastUsedSlot = [Loader loadLastUsedSlot];
         NSDictionary *slot = [Loader loadSlot:lastUsedSlot];
         Owner *owner = [slot objectForKey:OWNER];
         Pet *pet = [slot objectForKey:PET];
@@ -40,6 +39,9 @@
         gameViewController.pet = pet;
         gameViewController.storage = storage;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
+    }
+    else if ([segueName isEqualToString: @"startLoadedGame"]) {
+        
     }
 }
 
