@@ -67,8 +67,8 @@
             [self removeTooLateNotiFromPushNoti:noti.timestamp];
             [self.notificationRequests removeObject:noti];
         }
-        //TODO remove 1 food item
         
+        //Remove 1 food item
         NSInteger quantity = [[self.storage objectForKey:food] integerValue];
         quantity = quantity - 1;
         NSNumber *number = [NSNumber numberWithInteger:quantity];
