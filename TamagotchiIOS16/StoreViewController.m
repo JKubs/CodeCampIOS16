@@ -18,7 +18,9 @@
     row = -1;
     recipes = self.foodList;
     self.greetingLabel.text = [NSString stringWithFormat:@"Hello, %@", self.owner.name];
-    self.testLabel.text = [NSString stringWithFormat:@"%d$", self.owner.money];
+    self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %d$", self.owner.money];
+    self.tableView.layer.borderWidth = 1.0f;
+    self.tableView.layer.borderColor = [UIColor blueColor].CGColor;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFeed) name:@"PetFeed" object:self.pet];
 }
 
@@ -65,7 +67,7 @@
             quantity = quantity + 1;
             NSNumber *number = [NSNumber numberWithInteger:quantity];
             [self.storage setValue:number forKey:food.name];
-            self.testLabel.text = [NSString stringWithFormat:@"%d$", self.owner.money];
+            self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %d$", self.owner.money];
             [self.tableView reloadData];
         }
     }
