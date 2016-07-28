@@ -198,6 +198,9 @@
             delegate:self cancelButtonTitle:@"OK"
             otherButtonTitles:nil];
         [alert show];
+        
+        
+        //TODO add create random wish stuff
 
 
     }
