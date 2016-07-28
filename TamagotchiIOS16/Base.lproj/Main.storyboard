@@ -338,7 +338,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="critter1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VEJ-DN-UaE">
-                                <rect key="frame" x="179" y="150" width="240" height="240"/>
+                                <rect key="frame" x="61" y="144" width="240" height="240"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -354,6 +354,18 @@
                                     <segue destination="ebq-ZA-sn4" kind="show" identifier="showStatus" id="iE0-Ix-lD3"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a0s-54-YrJ">
+                                <rect key="frame" x="245" y="150" width="199" height="109"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speech_bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="DoQ-5L-0Qy">
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="101"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mMu-ul-shv">
+                                        <rect key="frame" x="59" y="8" width="81" height="69"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -367,6 +379,8 @@
                     <navigationItem key="navigationItem" id="bf5-72-C0o"/>
                     <connections>
                         <outlet property="petImageView" destination="VEJ-DN-UaE" id="z8o-iT-t4b"/>
+                        <outlet property="speechFood" destination="mMu-ul-shv" id="Waq-ed-rme"/>
+                        <outlet property="speechView" destination="a0s-54-YrJ" id="YPU-mm-TeR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eML-y3-kLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -767,6 +781,7 @@
         <image name="coin.png" width="79" height="91"/>
         <image name="critter1.jpg" width="139" height="135"/>
         <image name="grass_background.jpg" width="512" height="512"/>
+        <image name="speech_bubble.png" width="1280" height="964"/>
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
