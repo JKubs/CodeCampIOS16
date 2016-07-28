@@ -33,6 +33,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *slot4Lives;
 @property (strong, nonatomic) IBOutlet UILabel *slot4UserName;
 @property (strong, nonatomic) IBOutlet UILabel *slot4money;
+@property (strong, nonatomic) NSString *selectedSlot;
+
 - (IBAction)loadSlotToGame:(UIButton *)sender;
 - (IBAction)deleteSlot:(UIButton *)sender;
 
