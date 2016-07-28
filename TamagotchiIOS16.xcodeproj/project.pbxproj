@@ -37,6 +37,8 @@
 		96A612331D46369900F389E7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A612321D46369900F389E7 /* GameViewController.m */; };
 		96A666491D4773F9000A4DF5 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A666461D4773F9000A4DF5 /* Loader.m */; };
 		96A6664A1D4773F9000A4DF5 /* Saver.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A666481D4773F9000A4DF5 /* Saver.m */; };
+		96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */; };
+		96C6D35B1D4A081700F68653 /* Critter_calm_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D35A1D4A081700F68653 /* Critter_calm_2.png */; };
 		96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96CC5C731D47A38500DB090A /* grass_background.jpg */; };
 		96CC5C761D47A54000DB090A /* MoneyFarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */; };
 		96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D1C1BC1D47B42900F49BB0 /* coin.png */; };
@@ -109,6 +111,8 @@
 		96A666461D4773F9000A4DF5 /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Loader.m; path = Model/Loader.m; sourceTree = "<group>"; };
 		96A666471D4773F9000A4DF5 /* Saver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Saver.h; path = Model/Saver.h; sourceTree = "<group>"; };
 		96A666481D4773F9000A4DF5 /* Saver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Saver.m; path = Model/Saver.m; sourceTree = "<group>"; };
+		96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_calm_1.png; sourceTree = "<group>"; };
+		96C6D35A1D4A081700F68653 /* Critter_calm_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_calm_2.png; sourceTree = "<group>"; };
 		96CC5C731D47A38500DB090A /* grass_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass_background.jpg; sourceTree = "<group>"; };
 		96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFarmViewController.m; sourceTree = "<group>"; };
 		96CC5C771D47A55400DB090A /* MoneyFarmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoneyFarmViewController.h; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96C6D35A1D4A081700F68653 /* Critter_calm_2.png */,
+				96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */,
 				9641F80C1D48FFF9009D5E03 /* store_background.png */,
 				9641F80A1D48FD5F009D5E03 /* wine.png */,
 				9641F8081D48FC8C009D5E03 /* beer.png */,
@@ -363,7 +369,9 @@
 			files = (
 				96A611F81D46182100F389E7 /* LaunchScreen.storyboard in Resources */,
 				96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */,
+				96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */,
 				96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */,
+				96C6D35B1D4A081700F68653 /* Critter_calm_2.png in Resources */,
 				96A6122D1D46335E00F389E7 /* critter1.jpg in Resources */,
 				9641F7FD1D48F80F009D5E03 /* apple.png in Resources */,
 				9641F8051D48FB7E009D5E03 /* soda.png in Resources */,
