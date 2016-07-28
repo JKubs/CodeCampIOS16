@@ -129,8 +129,6 @@
     }
     
     if(self.gameController.pet.lives <= 0){
-        //TODO write in in savefile
-        
         NSLog(@"your pet died -.- %@ ", self.gameController);
     }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
         int rand = (int)arc4random_uniform([self.gameController.foodList count]);
