@@ -62,7 +62,7 @@
         Food *randFood = [self.drinkList objectAtIndex:rand];
         self.pet.currentWish = randFood.name;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self.pet];
 
     NSLog(@"generated %@-wish", self.pet.currentWish);
     
@@ -172,6 +172,13 @@
         nextNotiText.text = [nextNotiText.text stringByAppendingString:[[localNotification.fireDate description] stringByAppendingString:@"\n"]];
     }
     self.notificationRequests = [[NSMutableArray alloc] init];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
+    }
 }
 
 @end
