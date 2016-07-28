@@ -228,34 +228,40 @@
 }
 
 - (void)checkForMissedNotifications{
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     
     NSMutableArray *missedNotis;
-    for (UILocalNotification* localNotification  in localNotifications) {
-        BOOL *gotIt = false;
-        for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
-            if([notiRequ isEqual:localNotification.fireDate]){
-                gotIt = true;
-            }
-        }
-        if (!gotIt) {
-            [missedNotis addObject:localNotification];
-            NSLog(@"missed: %@", localNotification.alertBody);
+    //for (UILocalNotification* localNotification  in localNotifications) {
+    //    BOOL *gotIt = false;
+    //    for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
+    //        if([notiRequ isEqual:localNotification.fireDate]){
+    //            gotIt = true;
+     //       }
+     //   }
+     //   if (!gotIt) {
+     //       [missedNotis addObject:localNotification];
+     //       NSLog(@"missed: %@", localNotification.alertBody);
+      //  }
+    //}
+    
+    for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
+        if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
+            [missedNotis addObject:notiRequ];
+            [self.gameController.notificationRequests removeObject:notiRequ];
+            NSLog(@"missed: %@", notiRequ.message);
         }
     }
+    
     int missedHungry = 0;
     for (NotificationRequest *notiR in missedNotis) {
-        if([notiR.message isEqualToString:WISH_HUNGRY] || [notiR isEqual:WISH_THIRSTY] ){
+        if([notiR.message isEqualToString:WISH_TOO_LATE] || [notiR isEqual:WISH_THIRSTY] ){
             missedHungry++;
         }
     }
     
     if(missedHungry > 3){
-        
+        //TODO write in in savefile
         NSLog(@"your pet died -.- you got %d missed \"hungry\"-Notifications", missedHungry);
     }
-    
-
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

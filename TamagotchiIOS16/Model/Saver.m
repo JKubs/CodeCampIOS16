@@ -28,7 +28,7 @@
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(BOOL)saveNotificationSchedules:(NSArray*)notifications {
++(BOOL)saveNotificationSchedules:(NSArray*)notifications toSlot:(NSString*)saveSlot{
     NSMutableArray *encodedNotifications = [[NSMutableArray alloc] init];
     
     for (NotificationRequest *notireq in notifications) {
@@ -36,7 +36,11 @@
         [encodedNotifications addObject:encodedObject];
     }
     
-    [[NSUserDefaults standardUserDefaults] setValue:encodedNotifications forKey:NOTIFICATION_REQUESTS];
+    NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
+    
+    [slot setValue:encodedNotifications forKey:NOTIFICATION_REQUESTS];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:slot forKey:saveSlot];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
