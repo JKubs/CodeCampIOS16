@@ -30,10 +30,14 @@
     // Get the current date
     NSDate *pickerDate = [self.datePicker date];
     
+    NSArray *needs = [NSArray arrayWithObjects:WISH_HUNGRY,WISH_THIRSTY,nil];
+    NSInteger needsRand = (int)arc4random_uniform([needs count]);
+
+    
     // Schedule the notification
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     localNotification.fireDate = pickerDate;
-    localNotification.alertBody = @"FEED ME !!!!";
+    localNotification.alertBody = [needs objectAtIndex:needsRand];
     localNotification.alertAction = @"Show me the item";
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
@@ -47,9 +51,17 @@
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
-
-    self.pet.currentWish = @"apple";
-    NSLog(@"%@", self.pet.currentWish);
+   
+    if ([localNotification.alertBody isEqualToString:WISH_HUNGRY]){
+        int rand = (int)arc4random_uniform([self.foodList count]);
+        Food *randFood = [self.foodList objectAtIndex:rand];
+        self.pet.currentWish = randFood.name;
+    }else if ([localNotification.alertBody isEqualToString:WISH_THIRSTY]){
+        int rand = (int)arc4random_uniform([self.drinkList count]);
+        Food *randFood = [self.drinkList objectAtIndex:rand];
+        self.pet.currentWish = randFood.name;
+    }
+    NSLog(@"generated %@-wish", self.pet.currentWish);
     
    [self refreshNoti];
 }

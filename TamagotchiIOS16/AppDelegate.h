@@ -21,6 +21,7 @@
 - (void)findGameController;
 - (void)generateRandomNeed:(NSDate*) date;
 - (void)checkForMissedNotifications;
+- (void)calculateDatesForNeeds;
 
 @end
 
