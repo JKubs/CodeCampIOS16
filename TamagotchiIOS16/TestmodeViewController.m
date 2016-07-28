@@ -51,7 +51,8 @@
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
-   
+    
+    //TODO remove when loading/saving is working and implement stuff from testmode
     if ([localNotification.alertBody isEqualToString:WISH_HUNGRY]){
         int rand = (int)arc4random_uniform([self.foodList count]);
         Food *randFood = [self.foodList objectAtIndex:rand];
