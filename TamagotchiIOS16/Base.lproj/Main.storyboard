@@ -655,7 +655,7 @@
                                 <state key="normal" title="Load"/>
                                 <connections>
                                     <action selector="loadSlotToGame:" destination="1UR-hV-aay" eventType="touchUpInside" id="dpA-ED-Cbd"/>
-                                    <segue destination="w2A-K5-GzS" kind="show" id="u5i-yX-E7j"/>
+                                    <segue destination="w2A-K5-GzS" kind="show" identifier="startLoadedGame" id="u5i-yX-E7j"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKB-AH-Ihq" customClass="UITableViewCell">
@@ -807,6 +807,6 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zIs-k9-Tz8"/>
+        <segue reference="u5i-yX-E7j"/>
     </inferredMetricsTieBreakers>
 </document>
