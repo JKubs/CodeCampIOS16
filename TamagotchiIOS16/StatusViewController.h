@@ -16,6 +16,7 @@
     
 }
 
+@property (strong, nonatomic) UIBarButtonItem *gameOverButton;
 @property (weak, nonatomic) Owner *owner;
 @property (weak, nonatomic) NSMutableDictionary *storage;
 @property (weak, nonatomic) Pet *pet;
@@ -28,5 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *firstHealthLabel;
 @property (weak, nonatomic) IBOutlet UIView *secondHealthLabel;
 @property (weak, nonatomic) IBOutlet UIView *thirdHealthLabel;
+
+- (void)gameOver:(id)sender;
 
 @end

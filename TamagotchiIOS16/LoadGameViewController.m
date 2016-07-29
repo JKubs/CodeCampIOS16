@@ -24,37 +24,67 @@
     if(slot1 != nil) {
         owner = [slot1 objectForKey:OWNER];
         pet = [slot1 objectForKey:PET];
+        if(pet.lives == 0) {
+            self.slot1isDead = YES;
+            self.slot1PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_dead.png", pet.type]];
+        }
+        else {
+            self.slot1isDead = NO;
+            self.slot1PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
+            self.slot1Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
+        }
         self.slot1UserName.text = owner.name;
         self.slot1money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
-        self.slot1Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
-        self.slot1PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
     }
     
     if(slot2 != nil) {
         owner = [slot2 objectForKey:OWNER];
         pet = [slot2 objectForKey:PET];
+
+        if(pet.lives == 0) {
+            self.slot2isDead = YES;
+            self.slot2PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_dead.png", pet.type]];
+        }
+        else {
+            self.slot2isDead = NO;
+            self.slot2PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
+            self.slot2Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
+        }
         self.slot2UserName.text = owner.name;
         self.slot2money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
-        self.slot2Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
-        self.slot2PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
     }
     
     if(slot3 != nil) {
         owner = [slot3 objectForKey:OWNER];
         pet = [slot3 objectForKey:PET];
+        if(pet.lives == 0) {
+            self.slot3isDead = YES;
+            self.slot3PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_dead.png", pet.type]];
+        }
+        else {
+            self.slot3isDead = NO;
+            self.slot3PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
+            self.slot3Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
+        }
         self.slot3UserName.text = owner.name;
         self.slot3money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
-        self.slot3Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
-        self.slot3PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
     }
     
     if(slot4 != nil) {
         owner = [slot4 objectForKey:OWNER];
         pet = [slot4 objectForKey:PET];
+        if(pet.lives == 0) {
+            self.slot4isDead = YES;
+            self.slot4PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_dead.png", pet.type]];
+        }
+        else {
+            self.slot4isDead = NO;
+            self.slot4PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
+            self.slot4Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
+        }
         self.slot4UserName.text = owner.name;
         self.slot4money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
-        self.slot4Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
-        self.slot4PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
+        
     }
     self.loadButton.enabled = NO;
     self.deleteButton.enabled = NO;
@@ -69,11 +99,13 @@
         Owner *owner = [slot objectForKey:OWNER];
         Pet *pet = [slot objectForKey:PET];
         NSMutableDictionary *storage = [slot objectForKey:STORAGE];
+        NSMutableArray *notificationRequests = [Loader loadSavedNotificationsFromSlot:self.selectedSlot];
         
         GameViewController *gameViewController = (GameViewController *) [segue destinationViewController];
         gameViewController.owner = owner;
         gameViewController.pet = pet;
         gameViewController.storage = storage;
+        gameViewController.notificationRequests = notificationRequests;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
     else if ([segueName isEqualToString: @"createGame"]) {
@@ -113,6 +145,11 @@
         self.loadButton.enabled = NO;
         self.deleteButton.enabled = NO;
     }
+    else if(self.slot1isDead) {
+        self.createButton.enabled = NO;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = YES;
+    }
     else {
         self.loadButton.enabled = YES;
         self.deleteButton.enabled = YES;
@@ -135,6 +172,11 @@
         self.createButton.enabled = YES;
         self.loadButton.enabled = NO;
         self.deleteButton.enabled = NO;
+    }
+    else if(self.slot2isDead) {
+        self.createButton.enabled = NO;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = YES;
     }
     else {
         self.loadButton.enabled = YES;
@@ -159,6 +201,11 @@
         self.loadButton.enabled = NO;
         self.deleteButton.enabled = NO;
     }
+    else if(self.slot3isDead) {
+        self.createButton.enabled = NO;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = YES;
+    }
     else {
         self.loadButton.enabled = YES;
         self.deleteButton.enabled = YES;
@@ -181,6 +228,11 @@
         self.createButton.enabled = YES;
         self.loadButton.enabled = NO;
         self.deleteButton.enabled = NO;
+    }
+    else if(self.slot4isDead) {
+        self.createButton.enabled = NO;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = YES;
     }
     else {
         self.loadButton.enabled = YES;

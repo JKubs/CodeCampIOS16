@@ -10,11 +10,19 @@
 
 #import "MoneyFarmViewController.h"
 #import  "Saver.h"
+#import "GameOverController.h"
 
 @implementation MoneyFarmViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHealth) name:@"PetHealth" object:nil];
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                           style:UIBarButtonItemStyleDone
+                                                          target:self
+                                                          action:@selector(gameOver:)];
+    self.navigationItem.rightBarButtonItem = self.gameOverButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     self.navigationItem.hidesBackButton = YES;
     self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
     self.testCoin.hidden = YES;
@@ -39,6 +47,24 @@
 - (void)startUnSuccessfullTimer {
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0 target: self
                                                   selector: @selector(callAfterTwoSecondsUnSuccessfull:) userInfo: nil repeats: NO];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueName = segue.identifier;
+    if ([segueName isEqualToString:@"GameToOver"]) {
+        GameOverController *gameOverController = [segue destinationViewController];
+        gameOverController.pet = self.pet;
+    }
+}
+
+- (void)gameOver:(id)sender {
+    [self performSegueWithIdentifier:@"MoneyToOver" sender:sender];
+}
+
+- (void)updateHealth {
+    if (self.pet.lives == 0) {
+        [self gameOver:self];
+    }
 }
 
 - (IBAction)clickCoin:(UIButton *)sender {

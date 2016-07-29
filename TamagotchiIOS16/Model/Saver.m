@@ -65,7 +65,7 @@
 
     NSData *encodedNotifications = [NSKeyedArchiver archivedDataWithRootObject:notifications];
     
-    NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
+    NSMutableDictionary *slot = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot]];
     [slot setValue:encodedNotifications forKey:NOTIFICATION_REQUESTS];
     
     [[NSUserDefaults standardUserDefaults] setValue:slot forKey:saveSlot];
