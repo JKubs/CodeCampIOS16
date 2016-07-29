@@ -78,12 +78,12 @@
         int rand = (int)arc4random_uniform((uint32_t)[self.foodList count]);
         Food *randFood = [self.foodList objectAtIndex:rand];
         self.pet.currentWish = randFood.name;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petHungry" object:self.pet];
     }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
         int rand = (int)arc4random_uniform((uint32_t)[self.drinkList count]);
         Food *randFood = [self.drinkList objectAtIndex:rand];
         self.pet.currentWish = randFood.name;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petHungry" object:self.pet];
     }
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
 
