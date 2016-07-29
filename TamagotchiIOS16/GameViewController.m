@@ -48,10 +48,10 @@
     
     
     //notification stuff
-    NSMutableArray *newNotificationrequests = [[NSMutableArray alloc] init];
-    newNotificationrequests = [NotificationCreater createNotifications:newNotificationrequests];
+
+    self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
     
-    NSMutableArray *missedNotis = [self deleteMissedNotifications:newNotificationrequests];
+    NSMutableArray *missedNotis = [self deleteMissedNotifications:self.notificationRequests];
     
     NotificationRequest *lastMissed = [missedNotis lastObject];
     
