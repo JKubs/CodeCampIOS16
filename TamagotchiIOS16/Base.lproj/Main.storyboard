@@ -292,17 +292,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWQ-71-rzO">
-                                <rect key="frame" x="261" y="420" width="78" height="30"/>
-                                <state key="normal" title="Load Game"/>
+                                <rect key="frame" x="243" y="420" width="114" height="30"/>
+                                <state key="normal" title="Load/New Game"/>
                                 <connections>
-                                    <segue destination="1UR-hV-aay" kind="show" identifier="loadGame" id="3Lb-zk-Ja1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V94-Mv-0vj">
-                                <rect key="frame" x="263" y="466" width="75" height="30"/>
-                                <state key="normal" title="New Game"/>
-                                <connections>
-                                    <segue destination="FdY-HD-JaR" kind="show" identifier="newGame" id="f7F-jH-PKt"/>
+                                    <segue destination="1UR-hV-aay" kind="show" identifier="newloadGame" id="3Lb-zk-Ja1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -743,6 +736,13 @@
                                 <state key="normal" title="Load"/>
                                 <connections>
                                     <segue destination="w2A-K5-GzS" kind="show" identifier="startLoadedGame" id="kOc-tp-UP1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjo-jH-9kh">
+                                <rect key="frame" x="277" y="520" width="46" height="30"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <segue destination="FdY-HD-JaR" kind="show" id="8zH-Ih-DHm"/>
                                 </connections>
                             </button>
                         </subviews>
