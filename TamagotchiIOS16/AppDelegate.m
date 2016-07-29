@@ -46,7 +46,6 @@
     //resets notis TODO REMOVE LATER
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
-    
     return YES;
 }
 

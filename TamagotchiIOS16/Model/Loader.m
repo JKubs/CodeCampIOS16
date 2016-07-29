@@ -16,30 +16,27 @@
     Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
     NSData *encodedPet = [slot objectForKey:PET];
     Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
-    NSArray *encodedNotifications = [slot mutableArrayValueForKey:NOTIFICATION_REQUESTS];
-    NSMutableArray *notifications = [[NSMutableArray alloc] init];
-    for (NSData *element in encodedNotifications) {
-        [notifications addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
-    }
-    NSData *encodedStorage = [slot mutableArrayValueForKey:STORAGE];
-    NSMutableDictionary *storage = [[NSMutableDictionary alloc] init];
-//    for (NSData *element in encodedStorage) {
-//        
-//        [storage setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>
-//    }
-//    Food *food = [NSKeyedUnarchiver unarchiveObjectWithData:element];
-    
-    //http://stackoverflow.com/questions/5513075/how-can-i-convert-nsdictionary-to-nsdata-and-vice-versa
-         
+    //NSArray *encodedNotifications = [slot mutableArrayValueForKey:NOTIFICATION_REQUESTS];
+    //NSMutableArray *notifications = [[NSMutableArray alloc] init];
+    //for (NSData *element in encodedNotifications) {
+    //    [notifications addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
+    //}
+    NSLog(@"bla");
+    NSData *encodedStorage = [slot objectForKey:STORAGE];
+    NSLog(@"%@",encodedStorage);
+    NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
+
+    NSLog(@"%@", storage);
+    //NSLog(@"%@",notifications);
     if(owner != nil) {
         controller.owner = owner;
     }
     if(pet != nil) {
         controller.pet = pet;
     }
-    if(notifications != nil) {
-        controller.notificationRequests = notifications;
-    }
+    //if(notifications != nil) {
+    //    controller.notificationRequests = notifications;
+    //}
     if(storage != nil) {
         controller.storage = storage;
     }
@@ -57,11 +54,11 @@
     Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
     NSData *encodedPet = [encodedSlot objectForKey:PET];
     Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
-    NSData *encodedNotifications = [encodedSlot objectForKey:NOTIFICATION_REQUESTS];
-    NSMutableArray *notifications = [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
+    //NSData *encodedNotifications = [encodedSlot objectForKey:NOTIFICATION_REQUESTS];
+    //NSMutableArray *notifications = [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
     NSData *encodedStorage = [encodedSlot objectForKey:STORAGE];
-    NSMutableDictionary *storage = [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
-    return [NSDictionary dictionaryWithObjectsAndKeys:owner,OWNER,pet,PET,notifications,NOTIFICATION_REQUESTS,
+    NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
+    return [NSDictionary dictionaryWithObjectsAndKeys:owner,OWNER,pet,PET,/*notifications,NOTIFICATION_REQUESTS,*/
             storage,STORAGE,nil];
 }
 

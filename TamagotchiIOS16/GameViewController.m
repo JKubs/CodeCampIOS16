@@ -30,10 +30,11 @@
     UIImage *happy1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_1.png", self.pet.type]];
     UIImage *happy2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_2.png", self.pet.type]];
     self.happyAnimation = [[NSArray alloc] initWithObjects:happy1, happy2, nil];
-    if (self.petState == nil) {
+    if (self.pet.currentWish == nil) {
         self.petState = @"calm";
         self.speechView.hidden = YES;
-    } else if ([self.petState isEqualToString:@"hungry"]) {
+    } else {
+        self.petState = @"hungry";
         self.speechFood.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.pet.currentWish]];
         self.speechView.hidden = NO;
     }

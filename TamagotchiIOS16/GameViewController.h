@@ -55,6 +55,10 @@
 @property (strong, nonatomic) NSMutableArray *notificationRequests;
 @property (weak, nonatomic) IBOutlet UIView *speechView;
 @property (weak, nonatomic) IBOutlet UIImageView *speechFood;
+@property (weak, nonatomic) IBOutlet UIButton *moneyButton;
+@property (weak, nonatomic) IBOutlet UIButton *statsButton;
+@property (weak, nonatomic) IBOutlet UIButton *feedButton;
+@property (weak, nonatomic) IBOutlet UIButton *storeButton;
 
 
 - (void)removeTooLateNotiFromPushNoti:(NSDate *) date;

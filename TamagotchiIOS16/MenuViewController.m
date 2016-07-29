@@ -31,6 +31,7 @@
         gameViewController.owner = owner;
         gameViewController.pet = pet;
         gameViewController.storage = storage;
+        gameViewController.saveSlot = lastUsedSlot;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
     else if ([segueName isEqualToString: @"startLoadedGame"]) {

@@ -21,28 +21,49 @@
 
 +(BOOL)completeSave:(GameViewController *)controller {
     NSMutableDictionary *slot = [[NSMutableDictionary alloc] init];
+    
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.owner] forKey:OWNER];
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
-    NSMutableArray *encodedStorage = [[NSMutableArray alloc] init];
-    
-    for (Food *food in controller.storage) {
-        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:food];
-        [encodedStorage addObject:encodedObject];
-    }
+    NSData *encodedStorage = [NSKeyedArchiver archivedDataWithRootObject:controller.storage];
     
     [slot setObject:encodedStorage forKey:STORAGE];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
     [[NSUserDefaults standardUserDefaults] setObject:controller.saveSlot forKey:CURRENT_SLOT];
+    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(BOOL)saveNotificationSchedules:(NSMutableArray*)notifications toSlot:(NSString*)saveSlot{
-    NSMutableArray *encodedNotifications = [[NSMutableArray alloc] init];
+ /*   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save;
     
-    for (NotificationRequest *notireq in notifications) {
-        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:notireq];
-        [encodedNotifications addObject:encodedObject];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
     }
+    else {
+        save = [[NSMutableDictionary alloc] init];
+    }
+    NSMutableDictionary *slot;
+    if([save objectForKey:saveSlot] == nil) {
+        slot = [[NSMutableDictionary alloc] init];
+    }
+    else {
+        slot = [save objectForKey:saveSlot];
+    }
+    [slot setObject:notifications forKey:NOTIFICATION_REQUESTS];
+    
+    [save setObject:slot forKey:saveSlot];
+    
+    
+    BOOL succeed = [save writeToFile:filePath atomically:YES];
+    if (!succeed){
+        return NO;
+    }
+    return YES;*/
+
+    NSData *encodedNotifications = [NSKeyedArchiver archivedDataWithRootObject:notifications];
     
     NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
     [slot setValue:encodedNotifications forKey:NOTIFICATION_REQUESTS];
