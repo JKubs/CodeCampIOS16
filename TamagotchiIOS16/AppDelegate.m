@@ -18,7 +18,7 @@
 - (void)gotStartedGame{
     self.gotStartedGameBool = YES;
     [self findGameController];
-    NSLog(@"got gamecontroller %@", self.gameController);
+    //NSLog(@"got gamecontroller %@", self.gameController);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -55,11 +55,11 @@
     NSMutableArray *deleteShit;
     
     for (NotificationRequest *notiRequ in notificationRequests) {
-        NSLog(@"saved notirequ here");
+        //NSLog(@"saved notirequ here");
         if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
             [missedNotis addObject:notiRequ];
             [deleteShit addObject:notiRequ];
-            NSLog(@"missed: %@", notiRequ.message);
+            //NSLog(@"missed: %@", notiRequ.message);
         }
     }
     for (NotificationRequest *del in deleteShit) {
@@ -157,7 +157,7 @@
             NSMutableArray *deleteShit = [[NSMutableArray alloc] init];
             for (NotificationRequest *noti in notificationReqests) {
                 if([noti.timestamp isEqualToDate:notification.fireDate]){
-                    NSLog(@"remove notification: %@ at time %@", noti, noti.timestamp);
+                   // NSLog(@"remove notification: %@ at time %@", noti, noti.timestamp);
                     [deleteShit addObject:noti];
                 }
             }
@@ -233,10 +233,7 @@
 
 
 -(BOOL)isClearStart {
-    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_1] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_2] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_3] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_4] == nil;
+    return [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SLOT] == nil;
 }
 
 @end

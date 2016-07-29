@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LoadGameViewController.h"
+#import "NewGameViewController.h"
 
 @implementation LoadGameViewController {
 
@@ -57,7 +58,9 @@
     }
     self.loadButton.enabled = NO;
     self.deleteButton.enabled = NO;
+    self.createButton.enabled = NO;
 }
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"startLoadedGame"]) {
@@ -73,11 +76,21 @@
         gameViewController.storage = storage;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
+    else if ([segueName isEqualToString: @"createGame"]) {
+     
+        NewGameViewController *controller = (NewGameViewController *) [segue destinationViewController];
+        controller.saveSlot = self.selectedSlot;
+        
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
+    }
+
 }
 
 
 - (IBAction)deleteSlot:(UIButton *)sender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.selectedSlot];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:CURRENT_SLOT];
     self.selectedPetImage.image = nil;
     self.selectedUserName.text = @"empty";
     self.selectedLives.text = @"0";
@@ -95,8 +108,16 @@
     self.slot4View.selected = NO;
     self.selectedSlot = SAVE_SLOT_1;
     self.selectedView = self.slot1View;
-    self.loadButton.enabled = YES;
-    self.deleteButton.enabled = YES;
+    if(self.slot1PetImage.image == nil) {
+        self.createButton.enabled = YES;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = NO;
+    }
+    else {
+        self.loadButton.enabled = YES;
+        self.deleteButton.enabled = YES;
+        self.createButton.enabled = NO;
+    }
     self.selectedPetImage = self.slot1PetImage;
     self.selectedUserName = self.slot1UserName;
     self.selectedLives = self.slot1Lives;
@@ -110,8 +131,16 @@
     self.slot4View.selected = NO;
     self.selectedSlot = SAVE_SLOT_2;
     self.selectedView = self.slot2View;
-    self.loadButton.enabled = YES;
-    self.deleteButton.enabled = YES;
+    if(self.slot2PetImage.image == nil) {
+        self.createButton.enabled = YES;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = NO;
+    }
+    else {
+        self.loadButton.enabled = YES;
+        self.deleteButton.enabled = YES;
+        self.createButton.enabled = NO;
+    }
     self.selectedPetImage = self.slot2PetImage;
     self.selectedUserName = self.slot2UserName;
     self.selectedLives = self.slot2Lives;
@@ -125,8 +154,16 @@
     self.slot4View.selected = NO;
     self.selectedSlot = SAVE_SLOT_3;
     self.selectedView = self.slot3View;
-    self.loadButton.enabled = YES;
-    self.deleteButton.enabled = YES;
+    if(self.slot3PetImage.image == nil) {
+        self.createButton.enabled = YES;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = NO;
+    }
+    else {
+        self.loadButton.enabled = YES;
+        self.deleteButton.enabled = YES;
+        self.createButton.enabled = NO;
+    }
     self.selectedPetImage = self.slot3PetImage;
     self.selectedUserName = self.slot3UserName;
     self.selectedLives = self.slot3Lives;
@@ -140,8 +177,16 @@
     self.slot4View.selected = YES;
     self.selectedSlot = SAVE_SLOT_4;
     self.selectedView = self.slot4View;
-    self.loadButton.enabled = YES;
-    self.deleteButton.enabled = YES;
+    if(self.slot4PetImage.image == nil) {
+        self.createButton.enabled = YES;
+        self.loadButton.enabled = NO;
+        self.deleteButton.enabled = NO;
+    }
+    else {
+        self.loadButton.enabled = YES;
+        self.deleteButton.enabled = YES;
+        self.createButton.enabled = NO;
+    }
     self.selectedPetImage = self.slot4PetImage;
     self.selectedUserName = self.slot4UserName;
     self.selectedLives = self.slot4Lives;
