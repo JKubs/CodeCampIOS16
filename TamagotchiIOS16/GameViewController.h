@@ -17,6 +17,7 @@
 #import "StatusViewController.h"
 #import "TestmodeViewController.h"
 #import "NotificationRequest.h"
+#import "NotificationCreater.h"
 
 @class Loader;
 @class Saver;

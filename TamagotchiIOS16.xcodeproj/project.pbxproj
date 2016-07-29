@@ -21,6 +21,7 @@
 		9649DAAB1D47489B007CF15E /* verrecke_dummes_vieh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */; };
 		9649DAB41D478A87007CF15E /* NotificationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649DAB31D478A87007CF15E /* NotificationRequest.m */; };
 		969B9E921D4751C100A70029 /* TestmodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969B9E911D4751C100A70029 /* TestmodeViewController.m */; };
+		96A5BC5E1D4B3A71001E45E0 /* NotificationCreater.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5BC5D1D4B3A71001E45E0 /* NotificationCreater.m */; };
 		96A611EA1D46182100F389E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611E91D46182100F389E7 /* main.m */; };
 		96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EC1D46182100F389E7 /* AppDelegate.m */; };
 		96A611F01D46182100F389E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A611EF1D46182100F389E7 /* ViewController.m */; };
@@ -97,6 +98,8 @@
 		9649DAB51D478AA9007CF15E /* NotificationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationRequest.h; sourceTree = "<group>"; };
 		969B9E901D47518900A70029 /* TestmodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestmodeViewController.h; sourceTree = "<group>"; };
 		969B9E911D4751C100A70029 /* TestmodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestmodeViewController.m; sourceTree = "<group>"; };
+		96A5BC5D1D4B3A71001E45E0 /* NotificationCreater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCreater.m; sourceTree = "<group>"; };
+		96A5BC601D4B3AE3001E45E0 /* NotificationCreater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCreater.h; sourceTree = "<group>"; };
 		96A611E51D46182100F389E7 /* TamagotchiIOS16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TamagotchiIOS16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A611E91D46182100F389E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96A611EB1D46182100F389E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 				96A666461D4773F9000A4DF5 /* Loader.m */,
 				96A666471D4773F9000A4DF5 /* Saver.h */,
 				96A666481D4773F9000A4DF5 /* Saver.m */,
+				96A5BC5D1D4B3A71001E45E0 /* NotificationCreater.m */,
+				96A5BC601D4B3AE3001E45E0 /* NotificationCreater.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -493,6 +498,7 @@
 				96A611ED1D46182100F389E7 /* AppDelegate.m in Sources */,
 				96A611EA1D46182100F389E7 /* main.m in Sources */,
 				96A612281D46182E00F389E7 /* Pet.m in Sources */,
+				96A5BC5E1D4B3A71001E45E0 /* NotificationCreater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

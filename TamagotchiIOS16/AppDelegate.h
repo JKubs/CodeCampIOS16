@@ -10,6 +10,7 @@
 #import "GameViewController.h"
 #import "Saver.h"
 #import "Loader.h"
+#import "NotificationCreater.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -17,14 +18,13 @@
 @property (strong, nonatomic) GameViewController *gameController;
 @property (strong, nonatomic) NSMutableArray *firstStartNotiRequ;
 @property (assign) BOOL firstStart;
+@property (assign) BOOL gotStartedGameBool;
 @property (strong, nonatomic) NSDictionary *gameControllerDic;
 
-
+- (void)gotStartedGame;
 - (void)findGameController;
-- (void)generateRandomNeed:(NSDate*) date;
-- (void)checkForMissedNotifications;
+- (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests;
 - (BOOL)isClearStart;
-- (void)calculateDatesForNeeds;
 
 @end
 

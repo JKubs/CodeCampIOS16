@@ -23,12 +23,12 @@
     }
     NSData *encodedStorage = [slot mutableArrayValueForKey:STORAGE];
     NSMutableDictionary *storage = [[NSMutableDictionary alloc] init];
-    for (NSData *element in encodedStorage) {
-        
-        [storage setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>
-    }
-    Food *food = [NSKeyedUnarchiver unarchiveObjectWithData:element];
-         
+//    for (NSData *element in encodedStorage) {
+//        
+//        [storage setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>
+//    }
+//    Food *food = [NSKeyedUnarchiver unarchiveObjectWithData:element];
+    
     //http://stackoverflow.com/questions/5513075/how-can-i-convert-nsdictionary-to-nsdata-and-vice-versa
          
     if(owner != nil) {

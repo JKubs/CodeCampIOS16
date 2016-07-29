@@ -52,21 +52,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
     
-    //TODO remove when loading/saving is working and implement stuff from testmode
-    if ([localNotification.alertBody isEqualToString:WISH_HUNGRY]){
-        int rand = (int)arc4random_uniform([self.foodList count]);
-        Food *randFood = [self.foodList objectAtIndex:rand];
-        self.pet.currentWish = randFood.name;
-    }else if ([localNotification.alertBody isEqualToString:WISH_THIRSTY]){
-        int rand = (int)arc4random_uniform([self.drinkList count]);
-        Food *randFood = [self.drinkList objectAtIndex:rand];
-        self.pet.currentWish = randFood.name;
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self.pet];
-
-    NSLog(@"generated %@-wish", self.pet.currentWish);
-    
-   [self refreshNoti];
+    [self refreshNoti];
 }
 
 - (int)calcStuff:(int)n{
