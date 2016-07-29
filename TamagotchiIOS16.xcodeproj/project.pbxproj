@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9631EDF31D4B865A00E0BAD8 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 9631EDF21D4B865A00E0BAD8 /* heart.png */; };
 		9641F7F71D48C0BF009D5E03 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9641F7F61D48C0BF009D5E03 /* StatusViewController.m */; };
 		9641F7FA1D48D331009D5E03 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9641F7F91D48D331009D5E03 /* MenuViewController.m */; };
 		9641F7FD1D48F80F009D5E03 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 9641F7FC1D48F80F009D5E03 /* apple.png */; };
@@ -86,6 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9631EDF21D4B865A00E0BAD8 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		9641F7F61D48C0BF009D5E03 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		9641F7F81D48C0D3009D5E03 /* StatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
 		9641F7F91D48D331009D5E03 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9631EDF21D4B865A00E0BAD8 /* heart.png */,
 				96A6A3FC1D4B6F99000D6B1B /* gameover.png */,
 				96A6A3F81D4B49E9000D6B1B /* buttonBar.png */,
 				96A6A3F61D4B42A3000D6B1B /* shop.png */,
@@ -451,6 +454,7 @@
 				96C6D3621D4A29ED00F68653 /* Critter_hungry_1.png in Resources */,
 				96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */,
 				96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */,
+				9631EDF31D4B865A00E0BAD8 /* heart.png in Resources */,
 				96A6A3FD1D4B6F99000D6B1B /* gameover.png in Resources */,
 				96C6D35B1D4A081700F68653 /* Critter_calm_2.png in Resources */,
 				96C6D36F1D4A3C5200F68653 /* Montie_hungry_2.png in Resources */,
