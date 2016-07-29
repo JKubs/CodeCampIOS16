@@ -34,6 +34,7 @@
         self.firstStart = YES;
     }else{
         self.firstStart = NO;
+   //     self.gameControllerDic = [Loader loadSavedNotificationsFromSlot:[Loader loadLastUsedSlotString]];
     }
 
 
@@ -41,6 +42,9 @@
         self.firstStartNotiRequ = [[NSMutableArray alloc] init];
     }else{
         [self checkForMissedNotifications];
+        self.gameController = [[GameViewController alloc] init];
+        self.gameController.pet = [self.gameControllerDic objectForKey:PET];
+        self.gameController.notificationRequests = [self.gameControllerDic objectForKey:NOTIFICATION_REQUESTS];
     }
     
     //calculates and generates
@@ -105,6 +109,8 @@
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
+//    [Saver saveNotificationSchedules:self.gameController toSlot:[Loader loadLastUsedSlotString]];
+//    [Saver saveChangeOn:PET withValue:self.gameController.pet atSaveSlot:[Loader loadLastUsedSlotString]];
 }
 
 - (void)checkForMissedNotifications{
@@ -146,8 +152,6 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    [self checkForMissedNotifications];
-    [self calculateDatesForNeeds];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -164,6 +168,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [self checkForMissedNotifications];
+    [self calculateDatesForNeeds];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -202,26 +207,26 @@
         
         
         //TODO implement when loading/saving is working and remove stuff from testmode
-//        if ([notification.alertBody isEqualToString:WISH_HUNGRY]){
-//            int rand = (int)arc4random_uniform([self.gameController.foodList count]);
-//            Food *randFood = [self.gameController.foodList objectAtIndex:rand];
-//            self.gameController.pet.currentWish = randFood.name;
-//        }else if ([notification.alertBody isEqualToString:WISH_THIRSTY]){
-//            int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
-//            Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
-//            self.gameController.pet.currentWish = randFood.name;
-//        }else if ([notification.alertBody isEqualToString:WISH_TOO_LATE]){
-//            self.gameController.pet.lives--;
-//            self.gameController.pet.currentWish = NULL;
-//        }
-//        
-//        //remove current shown alert from notification requests
-//        for (NotificationRequest *noti in self.gameController.notificationRequests) {
-//            if([noti.timestamp isEqualToDate:notification.fireDate]){
-//                NSLog(@"remove notification: %@ at time %@", noti, noti.timestamp);
-//                [self.gameController.notificationRequests removeObject: noti];
-//            }
-//        }
+        if ([notification.alertBody isEqualToString:WISH_HUNGRY]){
+            int rand = (int)arc4random_uniform([self.gameController.foodList count]);
+            Food *randFood = [self.gameController.foodList objectAtIndex:rand];
+            self.gameController.pet.currentWish = randFood.name;
+        }else if ([notification.alertBody isEqualToString:WISH_THIRSTY]){
+            int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
+            Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
+            self.gameController.pet.currentWish = randFood.name;
+        }else if ([notification.alertBody isEqualToString:WISH_TOO_LATE]){
+            self.gameController.pet.lives--;
+            self.gameController.pet.currentWish = NULL;
+        }
+        
+        //remove current shown alert from notification requests
+        for (NotificationRequest *noti in self.gameController.notificationRequests) {
+            if([noti.timestamp isEqualToDate:notification.fireDate]){
+                NSLog(@"remove notification: %@ at time %@", noti, noti.timestamp);
+                [self.gameController.notificationRequests removeObject: noti];
+            }
+        }
     }
     
     // Request to reload table view data
