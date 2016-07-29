@@ -60,6 +60,25 @@
     return notificationRequests;
 }
 
++ (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests{
+    
+    NSMutableArray *missedNotis = [[NSMutableArray alloc] init];
+    NSMutableArray *deleteShit = [[NSMutableArray alloc]init];
+    
+    for (NotificationRequest *notiRequ in notificationRequests) {
+//        if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
+        if ([notiRequ.timestamp timeIntervalSinceNow] < 0) {
+            [missedNotis addObject:notiRequ];
+            [deleteShit addObject:notiRequ];
+            NSLog(@"missed: %@ , %@, %@", notiRequ, notiRequ.timestamp, notiRequ.message);
+        }
+    }
+    for (NotificationRequest *del in deleteShit) {
+        [notificationRequests removeObject:del];
+    }
+    return missedNotis;
+}
+
 
 + (NSMutableArray*)createNotifications:(NSMutableArray*) notificationRequests{
     int dist = 1800;

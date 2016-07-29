@@ -45,13 +45,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHunger) name:@"PetHungry" object: nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"GameStarted" object:self];
 
-    
+    if(self.notificationRequests == nil){
+        self.notificationRequests = [[NSMutableArray alloc]init];
+    }
     
     //notification stuff
 
     self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
     
-    NSMutableArray *missedNotis = [self deleteMissedNotifications:self.notificationRequests];
+    NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.notificationRequests];
     
     NotificationRequest *lastMissed = [missedNotis lastObject];
     
@@ -74,6 +76,7 @@
         self.pet.currentWish = randFood.name;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
     }
+    [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
 
     
     if (self.myTimer == nil) {
@@ -154,26 +157,6 @@
     
 }
 
-- (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests{
-    
-    NSMutableArray *missedNotis;
-    NSMutableArray *deleteShit;
-    
-    for (NotificationRequest *notiRequ in notificationRequests) {
-        NSLog(@"saved notirequ here");
-        if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
-            [missedNotis addObject:notiRequ];
-            [deleteShit addObject:notiRequ];
-            NSLog(@"missed: %@", notiRequ.message);
-        }
-    }
-    for (NotificationRequest *del in deleteShit) {
-        [missedNotis removeObject:del];
-    }    
-    return missedNotis;
-}
-
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"showStore"]) {
@@ -214,6 +197,8 @@
         testmodeViewController.drinkList = self.drinkList;
         testmodeViewController.pet = self.pet;
         testmodeViewController.notificationRequests = self.notificationRequests;
+        testmodeViewController.gameController = self;
+        
     }
 }
 

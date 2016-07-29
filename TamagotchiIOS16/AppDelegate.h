@@ -23,7 +23,6 @@
 
 - (void)gotStartedGame;
 - (void)findGameController;
-- (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests;
 - (BOOL)isClearStart;
 
 @end
