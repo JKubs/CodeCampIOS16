@@ -51,6 +51,7 @@
     [self calculateDatesForNeeds];
     
     //TODO if first start save start notifications somewhere
+    self.gameController = nil;
     
     return YES;
 }

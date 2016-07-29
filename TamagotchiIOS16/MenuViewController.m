@@ -21,7 +21,6 @@
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"continueGame"]) {
         NSString *lastUsedSlot = [Loader loadLastUsedSlotString];
-        NSLog(@"%@",lastUsedSlot);
         NSDictionary *slot = [Loader loadSlot:lastUsedSlot];
         Owner *owner = [slot objectForKey:OWNER];
         Pet *pet = [slot objectForKey:PET];
@@ -31,6 +30,7 @@
         gameViewController.owner = owner;
         gameViewController.pet = pet;
         gameViewController.storage = storage;
+        gameViewController.saveSlot = lastUsedSlot;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
     else if ([segueName isEqualToString: @"startLoadedGame"]) {

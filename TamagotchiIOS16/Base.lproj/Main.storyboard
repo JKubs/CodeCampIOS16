@@ -549,7 +549,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62e-YO-856" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62e-YO-856" customClass="UIButton">
                                 <rect key="frame" x="67" y="184" width="466" height="71"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usD-3L-9Fb">
@@ -584,8 +584,11 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot2Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="bX7-NE-pXW"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbB-yz-GrJ" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbB-yz-GrJ" customClass="UIButton">
                                 <rect key="frame" x="67" y="287" width="466" height="71"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w7J-A8-f2E">
@@ -620,8 +623,11 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot3Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="GlG-RX-G8H"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWA-1e-hDl" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWA-1e-hDl" customClass="UIButton">
                                 <rect key="frame" x="67" y="392" width="466" height="71"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHb-FK-9CR">
@@ -656,6 +662,9 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot4Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="nFn-Pf-dwO"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyF-Mj-B3H">
                                 <rect key="frame" x="177" y="520" width="48" height="30"/>
@@ -664,15 +673,7 @@
                                     <action selector="deleteSlot:" destination="1UR-hV-aay" eventType="touchUpInside" id="2al-95-86O"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9r-JW-DP3">
-                                <rect key="frame" x="368" y="520" width="34" height="30"/>
-                                <state key="normal" title="Load"/>
-                                <connections>
-                                    <action selector="loadSlotToGame:" destination="1UR-hV-aay" eventType="touchUpInside" id="dpA-ED-Cbd"/>
-                                    <segue destination="w2A-K5-GzS" kind="show" identifier="startLoadedGame" id="u5i-yX-E7j"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKB-AH-Ihq" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKB-AH-Ihq" customClass="UIButton">
                                 <rect key="frame" x="67" y="85" width="466" height="71"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BaX-hS-MPd">
@@ -707,11 +708,23 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot1Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="JyJ-5h-iwd"/>
+                                </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9r-JW-DP3">
+                                <rect key="frame" x="397" y="520" width="34" height="30"/>
+                                <state key="normal" title="Load"/>
+                                <connections>
+                                    <segue destination="w2A-K5-GzS" kind="show" identifier="startLoadedGame" id="kOc-tp-UP1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="deleteButton" destination="QyF-Mj-B3H" id="JFh-Ws-w1m"/>
+                        <outlet property="loadButton" destination="m9r-JW-DP3" id="kZ3-zh-tdO"/>
                         <outlet property="slot1Lives" destination="xDe-LF-HTB" id="VZe-3m-OOC"/>
                         <outlet property="slot1PetImage" destination="BaX-hS-MPd" id="QDS-Rz-c0C"/>
                         <outlet property="slot1UserName" destination="Bqp-E9-bHd" id="nEz-gV-WfQ"/>
@@ -827,6 +840,6 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zIs-k9-Tz8"/>
+        <segue reference="kOc-tp-UP1"/>
     </inferredMetricsTieBreakers>
 </document>

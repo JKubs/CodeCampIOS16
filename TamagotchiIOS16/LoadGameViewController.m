@@ -55,6 +55,8 @@
         self.slot4Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
         self.slot4PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
     }
+    self.loadButton.enabled = NO;
+    self.deleteButton.enabled = NO;
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
@@ -73,11 +75,74 @@
     }
 }
 
-- (IBAction)loadSlotToGame:(UIButton *)sender {
-    
-}
 
 - (IBAction)deleteSlot:(UIButton *)sender {
-    //remove slot from userdefaults and update gui
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.selectedSlot];
+    self.selectedPetImage = nil;
+    self.selectedUserName.text = @"empty";
+    self.selectedLives.text = @"0";
+    self.selectedView.selected = NO;
 }
+
+
+- (IBAction)slot1Pressed:(UIButton *)sender {
+    self.slot1View.selected = YES;
+    self.slot2View.selected = NO;
+    self.slot3View.selected = NO;
+    self.slot4View.selected = NO;
+    self.selectedSlot = SAVE_SLOT_1;
+    self.selectedView = self.slot1View;
+    self.loadButton.enabled = YES;
+    self.deleteButton.enabled = YES;
+    self.selectedPetImage = self.slot1PetImage;
+    self.selectedUserName = self.slot1UserName;
+    self.selectedLives = self.slot1Lives;
+    self.selectedmoney = self.slot1money;
+}
+
+- (IBAction)slot2Pressed:(UIButton *)sender {
+    self.slot1View.selected = NO;
+    self.slot2View.selected = YES;
+    self.slot3View.selected = NO;
+    self.slot4View.selected = NO;
+    self.selectedSlot = SAVE_SLOT_2;
+    self.selectedView = self.slot2View;
+    self.loadButton.enabled = YES;
+    self.deleteButton.enabled = YES;
+    self.selectedPetImage = self.slot2PetImage;
+    self.selectedUserName = self.slot2UserName;
+    self.selectedLives = self.slot2Lives;
+    self.selectedmoney = self.slot2money;
+}
+
+- (IBAction)slot3Pressed:(UIButton *)sender {
+    self.slot1View.selected = NO;
+    self.slot2View.selected = NO;
+    self.slot3View.selected = YES;
+    self.slot4View.selected = NO;
+    self.selectedSlot = SAVE_SLOT_3;
+    self.selectedView = self.slot3View;
+    self.loadButton.enabled = YES;
+    self.deleteButton.enabled = YES;
+    self.selectedPetImage = self.slot3PetImage;
+    self.selectedUserName = self.slot3UserName;
+    self.selectedLives = self.slot3Lives;
+    self.selectedmoney = self.slot3money;
+}
+
+- (IBAction)slot4Pressed:(UIButton *)sender {
+    self.slot1View.selected = NO;
+    self.slot2View.selected = NO;
+    self.slot3View.selected = NO;
+    self.slot4View.selected = YES;
+    self.selectedSlot = SAVE_SLOT_4;
+    self.selectedView = self.slot4View;
+    self.loadButton.enabled = YES;
+    self.deleteButton.enabled = YES;
+    self.selectedPetImage = self.slot4PetImage;
+    self.selectedUserName = self.slot4UserName;
+    self.selectedLives = self.slot4Lives;
+    self.selectedmoney = self.slot4money;
+}
+
 @end
