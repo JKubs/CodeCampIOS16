@@ -21,6 +21,7 @@
 @property (strong, nonatomic) GameViewController *gameViewController;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) Pet *pet;
+@property (strong, nonatomic) NSString *saveSlot;
 @property (strong, nonatomic) NSMutableDictionary *storage;
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

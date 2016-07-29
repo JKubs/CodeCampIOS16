@@ -756,13 +756,14 @@
                                 <rect key="frame" x="277" y="520" width="46" height="30"/>
                                 <state key="normal" title="Create"/>
                                 <connections>
-                                    <segue destination="FdY-HD-JaR" kind="show" id="8zH-Ih-DHm"/>
+                                    <segue destination="FdY-HD-JaR" kind="show" identifier="createGame" id="8zH-Ih-DHm"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="createButton" destination="Kjo-jH-9kh" id="wre-wa-bzx"/>
                         <outlet property="deleteButton" destination="QyF-Mj-B3H" id="JFh-Ws-w1m"/>
                         <outlet property="loadButton" destination="m9r-JW-DP3" id="kZ3-zh-tdO"/>
                         <outlet property="slot1Lives" destination="xDe-LF-HTB" id="VZe-3m-OOC"/>

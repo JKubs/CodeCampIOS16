@@ -37,6 +37,7 @@
 @property (strong, nonatomic) NSString *selectedSlot;
 @property (strong, nonatomic) IBOutlet UIButton *loadButton;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
+@property (strong, nonatomic) IBOutlet UIButton *createButton;
 @property (strong, nonatomic) UIImageView *selectedPetImage;
 @property (strong, nonatomic) UILabel *selectedLives;
 @property (strong, nonatomic) UILabel *selectedUserName;

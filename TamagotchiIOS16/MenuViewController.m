@@ -33,15 +33,12 @@
         gameViewController.saveSlot = lastUsedSlot;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
-    else if ([segueName isEqualToString: @"startLoadedGame"]) {
+    else if ([segueName isEqualToString: @"newloadGame"]) {
         
     }
 }
 
 -(BOOL)isClearStart {
-    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_1] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_2] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_3] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_4] == nil;
+    return [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SLOT] == nil;
 }
 @end

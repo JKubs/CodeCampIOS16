@@ -21,11 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@"Button"
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                         style:UIBarButtonItemStyleDone
                                                                        target:self
                                                                        action:@selector(gameOver:)];
-    self.navigationItem.rightBarButtonItems = @[_gameOverButton];
+    self.navigationItem.rightBarButtonItem = self.gameOverButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     self.navigationItem.hidesBackButton = YES;
     UIImage *calm1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", self.pet.type]];
     UIImage *calm2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_2.png", self.pet.type]];
@@ -52,19 +53,22 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHealth) name:@"PetHealth" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"GameStarted" object:self];
 
-    
+    if(self.notificationRequests == nil){
+        self.notificationRequests = [[NSMutableArray alloc]init];
+    }
     
     //notification stuff
 
     self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
     
-    NSMutableArray *missedNotis = [self deleteMissedNotifications:self.notificationRequests];
+    NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.notificationRequests];
     
     NotificationRequest *lastMissed = [missedNotis lastObject];
     
     for (NotificationRequest *notiR in missedNotis) {
         if([notiR.message isEqualToString:WISH_TOO_LATE]){
             self.pet.lives--;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
         }
     }
     
@@ -81,6 +85,7 @@
         self.pet.currentWish = randFood.name;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
     }
+    [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
 
     
     if (self.myTimer == nil) {
@@ -231,6 +236,7 @@
         testmodeViewController.drinkList = self.drinkList;
         testmodeViewController.pet = self.pet;
         testmodeViewController.notificationRequests = self.notificationRequests;
+        testmodeViewController.gameController = self;
     } else if ([segueName isEqualToString:@"GameToOver"]) {
         GameOverController *gameOverController = [segue destinationViewController];
         gameOverController.pet = self.pet;

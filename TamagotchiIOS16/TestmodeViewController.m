@@ -37,7 +37,7 @@
     NSDate *pickerDate = [self.datePicker date];
     
     NSArray *needs = [NSArray arrayWithObjects:WISH_HUNGRY,WISH_THIRSTY,nil];
-    NSInteger needsRand = (int)arc4random_uniform([needs count]);
+    NSInteger needsRand = (int)arc4random_uniform((int32_t)[needs count]);
 
     
     // Schedule the notification
@@ -47,6 +47,13 @@
     localNotification.alertAction = @"Show me the item";
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    NotificationRequest *newRequest = [[NotificationRequest alloc] init];
+    newRequest.message = localNotification.alertBody;
+    newRequest.timestamp = localNotification.fireDate;
+    newRequest.subject = localNotification.alertBody; //TODO: change to a subject
+    [self.gameController.notificationRequests addObject:newRequest];
+    //TODO save noti
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     
