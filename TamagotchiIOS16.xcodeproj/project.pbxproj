@@ -52,6 +52,7 @@
 		96C6D3731D4A466C00F68653 /* Critter_dead.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3701D4A466C00F68653 /* Critter_dead.png */; };
 		96C6D3741D4A466C00F68653 /* Montie_dead.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3711D4A466C00F68653 /* Montie_dead.png */; };
 		96C6D3751D4A466C00F68653 /* speech_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3721D4A466C00F68653 /* speech_bubble.png */; };
+		96C6D3771D4A53CD00F68653 /* gameScreen_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3761D4A53CD00F68653 /* gameScreen_background.png */; };
 		96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96CC5C731D47A38500DB090A /* grass_background.jpg */; };
 		96CC5C761D47A54000DB090A /* MoneyFarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */; };
 		96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D1C1BC1D47B42900F49BB0 /* coin.png */; };
@@ -141,6 +142,7 @@
 		96C6D3701D4A466C00F68653 /* Critter_dead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_dead.png; sourceTree = "<group>"; };
 		96C6D3711D4A466C00F68653 /* Montie_dead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Montie_dead.png; sourceTree = "<group>"; };
 		96C6D3721D4A466C00F68653 /* speech_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speech_bubble.png; sourceTree = "<group>"; };
+		96C6D3761D4A53CD00F68653 /* gameScreen_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameScreen_background.png; sourceTree = "<group>"; };
 		96CC5C731D47A38500DB090A /* grass_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass_background.jpg; sourceTree = "<group>"; };
 		96CC5C751D47A54000DB090A /* MoneyFarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFarmViewController.m; sourceTree = "<group>"; };
 		96CC5C771D47A55400DB090A /* MoneyFarmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoneyFarmViewController.h; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96C6D3761D4A53CD00F68653 /* gameScreen_background.png */,
 				96C6D3701D4A466C00F68653 /* Critter_dead.png */,
 				96C6D3711D4A466C00F68653 /* Montie_dead.png */,
 				96C6D3721D4A466C00F68653 /* speech_bubble.png */,
@@ -416,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C6D3771D4A53CD00F68653 /* gameScreen_background.png in Resources */,
 				96A611F81D46182100F389E7 /* LaunchScreen.storyboard in Resources */,
 				96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */,
 				96C6D3621D4A29ED00F68653 /* Critter_hungry_1.png in Resources */,
