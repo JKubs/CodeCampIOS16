@@ -62,6 +62,32 @@
             </objects>
             <point key="canvasLocation" x="1047" y="-291"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="nIw-jW-ZRn">
+            <objects>
+                <viewController id="NbX-Tr-qfC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D1H-pg-A8Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="EQ8-gK-EBg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8qQ-D4-KOu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please close the app." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwm-Ti-u8A">
+                                <rect key="frame" x="93" y="395" width="163" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7sk-G4-bOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1792" y="-984"/>
+        </scene>
         <!--Money Farm View Controller-->
         <scene sceneID="Wbu-c2-m3J">
             <objects>
