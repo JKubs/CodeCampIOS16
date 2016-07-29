@@ -149,7 +149,6 @@
                 self.gameController.pet.lives--;
                 self.gameController.pet.currentWish = NULL;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
-
             }
             
             NSMutableArray *notificationReqests = [Loader loadSavedNotificationsFromSlot:[Loader loadLastUsedSlotString]];

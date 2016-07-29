@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameViewController.h"
+#import "GameOverController.h"
 
 @interface GameViewController ()
 @end
@@ -20,6 +21,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@"Button"
+                                                                        style:UIBarButtonItemStyleDone
+                                                                       target:self
+                                                                       action:@selector(gameOver:)];
+    self.navigationItem.rightBarButtonItems = @[_gameOverButton];
     self.navigationItem.hidesBackButton = YES;
     UIImage *calm1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", self.pet.type]];
     UIImage *calm2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_2.png", self.pet.type]];
@@ -43,6 +49,7 @@
     [self setupStoreFood];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAnimation) name:@"PetAnimation" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHunger) name:@"PetHungry" object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHealth) name:@"PetHealth" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"GameStarted" object:self];
 
     
@@ -173,6 +180,15 @@
     return missedNotis;
 }
 
+- (void)gameOver:(id)sender {
+    [self performSegueWithIdentifier:@"GameToOver" sender:sender];
+}
+
+- (void)updateHealth {
+    if (self.pet.lives == 0) {
+        [self gameOver:self];
+    }
+}
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
@@ -192,6 +208,7 @@
         self.moneyFarmViewController = (MoneyFarmViewController *) [segue destinationViewController];
         MoneyFarmViewController *moneyFarmViewController = self.moneyFarmViewController;
         moneyFarmViewController.saveSlot = self.saveSlot;
+        moneyFarmViewController.pet = self.pet;
         moneyFarmViewController.owner = self.owner;
         if (moneyFarmViewController.myTimer == nil) {
            [moneyFarmViewController startTimer];
@@ -214,6 +231,9 @@
         testmodeViewController.drinkList = self.drinkList;
         testmodeViewController.pet = self.pet;
         testmodeViewController.notificationRequests = self.notificationRequests;
+    } else if ([segueName isEqualToString:@"GameToOver"]) {
+        GameOverController *gameOverController = [segue destinationViewController];
+        gameOverController.pet = self.pet;
     }
 }
 
@@ -266,6 +286,11 @@
 - (void)handleHunger {
     if (self.pet.currentWish != NULL) {
         self.petState = @"hungry";
+        if (self.myTimer != nil) {
+            [self.myTimer invalidate];
+            self.myTimer = nil;
+        }
+        [self startTimer];
     }
 }
 

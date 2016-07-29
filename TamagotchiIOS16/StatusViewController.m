@@ -8,11 +8,17 @@
 
 #import "StatusViewController.h"
 #import "Food.h"
+#import "GameOverController.h"
 
 @implementation StatusViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@"Button"
+                                                           style:UIBarButtonItemStyleDone
+                                                          target:self
+                                                          action:@selector(gameOver:)];
+    self.navigationItem.rightBarButtonItems = @[_gameOverButton];
     recipes = self.foodList;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.usernameLabel.text = [NSString stringWithFormat:@"Name: %@", self.owner.name];
@@ -52,6 +58,18 @@
     }
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueName = segue.identifier;
+    if ([segueName isEqualToString:@"GameToOver"]) {
+        GameOverController *gameOverController = [segue destinationViewController];
+        gameOverController.pet = self.pet;
+    }
+}
+
+- (void)gameOver:(id)sender {
+    [self performSegueWithIdentifier:@"StatusToOver" sender:sender];
+}
+
 - (void)handleFeed {
     [self.storageList reloadData];
 }
@@ -72,6 +90,9 @@
         self.thirdHealthLabel.backgroundColor = [UIColor redColor];
     } else {
         self.thirdHealthLabel.backgroundColor = [UIColor whiteColor];
+    }
+    if (health == 0) {
+        [self gameOver:self];
     }
 }
 

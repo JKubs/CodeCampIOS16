@@ -20,6 +20,8 @@
 - (IBAction)resetNotis:(id)sender;
 - (void)refreshNoti;
 - (int)calcStuff:(int)n;
+- (void)gameOver:(id)sender;
+@property (strong, nonatomic) UIBarButtonItem *gameOverButton;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (strong, nonatomic) Pet *pet;
 @property (strong, nonatomic) NSArray *foodList;

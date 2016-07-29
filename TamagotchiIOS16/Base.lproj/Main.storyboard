@@ -56,16 +56,17 @@
                     <connections>
                         <outlet property="datePicker" destination="CEJ-pS-6kp" id="1Nk-Lj-hQo"/>
                         <outlet property="nextNotiText" destination="rCP-lh-B2u" id="cJ7-H4-pdH"/>
+                        <segue destination="NbX-Tr-qfC" kind="show" identifier="TestToOver" id="Hdy-Q0-wJP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PpU-7q-PQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047" y="-291"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Over Controller-->
         <scene sceneID="nIw-jW-ZRn">
             <objects>
-                <viewController id="NbX-Tr-qfC" sceneMemberID="viewController">
+                <viewController id="NbX-Tr-qfC" customClass="GameOverController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D1H-pg-A8Q"/>
                         <viewControllerLayoutGuide type="bottom" id="EQ8-gK-EBg"/>
@@ -75,14 +76,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please close the app." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwm-Ti-u8A">
-                                <rect key="frame" x="93" y="395" width="163" height="21"/>
+                                <rect key="frame" x="119" y="449" width="163" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gameover.png" translatesAutoresizingMaskIntoConstraints="NO" id="KeS-5D-Azu">
+                                <rect key="frame" x="55" y="49" width="291" height="184"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-CB-ZYI">
+                                <rect key="frame" x="80" y="258" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="petImage" destination="6Sn-CB-ZYI" id="hI2-ym-Laf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sk-G4-bOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,6 +152,7 @@
                         <outlet property="centerY" destination="BoS-Mw-AYD" id="cPt-Hg-iBl"/>
                         <outlet property="moneyLabel" destination="vqi-uz-1Ia" id="eMh-Kb-wyx"/>
                         <outlet property="testCoin" destination="E8U-ef-Tew" id="BkM-Op-mOC"/>
+                        <segue destination="NbX-Tr-qfC" kind="show" identifier="MoneyToOver" id="D1w-E3-DHT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJ3-X0-gZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -266,6 +277,7 @@
                         <outlet property="storageList" destination="KHj-Yn-XyZ" id="juB-ka-H8S"/>
                         <outlet property="thirdHealthLabel" destination="fW5-TV-RDk" id="BTg-g8-L7r"/>
                         <outlet property="usernameLabel" destination="fxN-Cy-egE" id="vno-gI-yL1"/>
+                        <segue destination="NbX-Tr-qfC" kind="show" identifier="StatusToOver" id="wOR-0p-Fgo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hx0-1W-fbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -437,6 +449,7 @@
                         <outlet property="speechView" destination="a0s-54-YrJ" id="YPU-mm-TeR"/>
                         <outlet property="statsButton" destination="wnH-Kd-gnt" id="6kM-8h-glJ"/>
                         <outlet property="storeButton" destination="kVL-nf-idg" id="vdd-b5-Kqu"/>
+                        <segue destination="NbX-Tr-qfC" kind="show" identifier="GameToOver" id="trl-Ub-J3W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eML-y3-kLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,6 +545,7 @@
                         <outlet property="greetingLabel" destination="qZg-yY-sBu" id="Bfa-l8-MkN"/>
                         <outlet property="tableView" destination="KxZ-fC-UfU" id="g33-Fu-oPO"/>
                         <outlet property="testLabel" destination="hwn-DX-Fnp" id="bdb-mV-Fxo"/>
+                        <segue destination="NbX-Tr-qfC" kind="show" identifier="StoreToOver" id="XA6-xi-PoG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTb-US-ubq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -859,6 +873,7 @@
         <image name="critter1.jpg" width="139" height="135"/>
         <image name="feed.png" width="236" height="232"/>
         <image name="gameScreen_background.png" width="1280" height="960"/>
+        <image name="gameover.png" width="1280" height="720"/>
         <image name="grass_background.jpg" width="512" height="512"/>
         <image name="shop.png" width="350" height="327"/>
         <image name="speech_bubble.png" width="1280" height="964"/>
@@ -867,5 +882,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kOc-tp-UP1"/>
+        <segue reference="Hdy-Q0-wJP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Owner.h"
+#import "Pet.h"
 
 @interface MoneyFarmViewController : UIViewController
 
+@property (strong, nonatomic) UIBarButtonItem *gameOverButton;
 @property (weak, nonatomic) Owner *owner;
+@property (weak, nonatomic) Pet *pet;
 @property (weak, nonatomic) NSTimer *myTimer;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *testCoin;
@@ -22,5 +25,6 @@
 @property (weak, nonatomic) NSString *saveSlot;
 
 - (void)startTimer;
+- (void)gameOver:(id)sender;
 
 @end
