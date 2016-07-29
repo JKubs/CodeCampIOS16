@@ -68,8 +68,8 @@
             quantity = quantity + 1;
             NSNumber *number = [NSNumber numberWithInteger:quantity];
             [self.storage setValue:number forKey:food.name];
-            //[Saver saveChangeOn:STORAGE withValue:self.storage atSaveSlot:self.saveSlot];
-            //[Saver saveChangeOn:OWNER withValue:self.owner atSaveSlot:self.saveSlot];
+            [Saver saveChangeOn:STORAGE withValue:self.storage atSaveSlot:self.saveSlot];
+            [Saver saveChangeOn:OWNER withValue:self.owner atSaveSlot:self.saveSlot];
             self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %d$", self.owner.money];
             [self.tableView reloadData];
         }
