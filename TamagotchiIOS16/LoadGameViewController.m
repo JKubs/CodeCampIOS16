@@ -78,10 +78,13 @@
 
 - (IBAction)deleteSlot:(UIButton *)sender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.selectedSlot];
-    self.selectedPetImage = nil;
+    self.selectedPetImage.image = nil;
     self.selectedUserName.text = @"empty";
     self.selectedLives.text = @"0";
+    self.selectedmoney.text = @"0";
     self.selectedView.selected = NO;
+    self.loadButton.enabled = NO;
+    self.deleteButton.enabled = NO;
 }
 
 
