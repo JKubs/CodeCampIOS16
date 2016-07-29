@@ -8,6 +8,7 @@
 
 #import "TestmodeViewController.h"
 #import "Food.h"
+#import "GameOverController.h"
 
 
 @implementation TestmodeViewController
@@ -22,6 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                           style:UIBarButtonItemStyleDone
+                                                          target:self
+                                                          action:@selector(gameOver:)];
+    self.navigationItem.rightBarButtonItem = self.gameOverButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     // Do any additional setup after loading the view, typically from a nib.
     [self refreshNoti];
 }
@@ -55,6 +62,7 @@
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHealth) name:@"PetHealth" object:nil];
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
@@ -70,6 +78,23 @@
     return erg;
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueName = segue.identifier;
+    if ([segueName isEqualToString:@"TestToOver"]) {
+        GameOverController *gameOverController = [segue destinationViewController];
+        gameOverController.pet = self.pet;
+    }
+}
+
+- (void)gameOver:(id)sender {
+    [self performSegueWithIdentifier:@"TestToOver" sender:sender];
+}
+
+- (void)updateHealth {
+    if (self.pet.lives == 0) {
+        [self gameOver:self];
+    }
+}
 
 - (IBAction)genRandNoti:(id)sender {
     int numberOfNotifications = 5;

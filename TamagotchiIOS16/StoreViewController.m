@@ -9,11 +9,18 @@
 #import "StoreViewController.h"
 #import "Food.h"
 #import "Saver.h"
+#import "GameOverController.h"
 
 @implementation StoreViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                           style:UIBarButtonItemStyleDone
+                                                          target:self
+                                                          action:@selector(gameOver:)];
+    self.navigationItem.rightBarButtonItem = self.gameOverButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     self.navigationItem.hidesBackButton = YES;
     row = -1;
     recipes = self.foodList;
@@ -51,6 +58,24 @@
 
 - (void)handleFeed {
     [self.tableView reloadData];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueName = segue.identifier;
+    if ([segueName isEqualToString:@"StoreToOver"]) {
+        GameOverController *gameOverController = [segue destinationViewController];
+        gameOverController.pet = self.pet;
+    }
+}
+
+- (void)gameOver:(id)sender {
+    [self performSegueWithIdentifier:@"StoreToOver" sender:sender];
+}
+
+- (void)updateHealth {
+    if (self.pet.lives == 0) {
+        [self gameOver:self];
+    }
 }
 
 - (IBAction)closeStore:(UIButton *)sender {

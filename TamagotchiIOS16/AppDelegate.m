@@ -85,12 +85,12 @@
             int rand = (int)arc4random_uniform((uint32_t)[self.gameController.foodList count]);
             Food *randFood = [self.gameController.foodList objectAtIndex:rand];
             self.gameController.pet.currentWish = randFood.name;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self.gameController.pet];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self.gameController.pet];
         }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
             int rand = (int)arc4random_uniform((uint32_t)[self.gameController.drinkList count]);
             Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
             self.gameController.pet.currentWish = randFood.name;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self.gameController.pet];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self.gameController.pet];
         }
         [Saver saveChangeOn:PET withValue:self.gameController.pet atSaveSlot:self.gameController.saveSlot];
 
@@ -128,12 +128,12 @@
                 int rand = (int)arc4random_uniform((uint32_t)[[self setupFoodList] count]);
                 Food *randFood = [[self setupFoodList] objectAtIndex:rand];
                 self.gameController.pet.currentWish = randFood.name;
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self];
             }else if ([notification.alertBody isEqualToString:WISH_THIRSTY]){
                 int rand = (int)arc4random_uniform((uint32_t)[[self setupDrinkList] count]);
                 Food *randFood = [[self setupDrinkList] objectAtIndex:rand];
                 self.gameController.pet.currentWish = randFood.name;
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self];
             }else if ([notification.alertBody isEqualToString:WISH_TOO_LATE]){
                 self.gameController.pet.lives--;
                 self.gameController.pet.currentWish = NULL;

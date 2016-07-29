@@ -31,6 +31,7 @@
 
 @interface GameViewController : UIViewController
 
+@property (strong, nonatomic) UIBarButtonItem *gameOverButton;
 @property (strong, nonatomic) id <GameViewControllerDelegate> delegate;
 @property (strong, nonatomic) StoreViewController *storeViewController;
 @property (strong, nonatomic) MoneyFarmViewController *moneyFarmViewController;
@@ -60,7 +61,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *feedButton;
 @property (weak, nonatomic) IBOutlet UIButton *storeButton;
 
-
+- (void)gameOver:(id)sender;
 - (void)removeTooLateNotiFromPushNoti:(NSDate *) date;
 - (IBAction)feedAction:(UIButton *)sender;
 - (IBAction)enterShop:(UIButton *)sender;

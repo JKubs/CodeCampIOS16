@@ -16,6 +16,7 @@
     NSInteger row;
 }
 
+@property (strong, nonatomic) UIBarButtonItem *gameOverButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *buyButton;
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
@@ -25,5 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
 @property (weak, nonatomic) Pet *pet;
 @property (weak, nonatomic) NSString *saveSlot;
+
+- (void)gameOver:(id)sender;
 
 @end

@@ -43,6 +43,8 @@
 		96A6A3F51D4B419F000D6B1B /* feed.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A6A3F41D4B419F000D6B1B /* feed.png */; };
 		96A6A3F71D4B42A3000D6B1B /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A6A3F61D4B42A3000D6B1B /* shop.png */; };
 		96A6A3F91D4B49E9000D6B1B /* buttonBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A6A3F81D4B49E9000D6B1B /* buttonBar.png */; };
+		96A6A3FB1D4B6F8C000D6B1B /* GameOverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A6A3FA1D4B6F8C000D6B1B /* GameOverController.m */; };
+		96A6A3FD1D4B6F99000D6B1B /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A6A3FC1D4B6F99000D6B1B /* gameover.png */; };
 		96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */; };
 		96C6D35B1D4A081700F68653 /* Critter_calm_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D35A1D4A081700F68653 /* Critter_calm_2.png */; };
 		96C6D35E1D4A23E700F68653 /* Critter_happy_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C6D35C1D4A23E700F68653 /* Critter_happy_1.png */; };
@@ -140,6 +142,9 @@
 		96A6A3F41D4B419F000D6B1B /* feed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feed.png; sourceTree = "<group>"; };
 		96A6A3F61D4B42A3000D6B1B /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
 		96A6A3F81D4B49E9000D6B1B /* buttonBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBar.png; sourceTree = "<group>"; };
+		96A6A3FA1D4B6F8C000D6B1B /* GameOverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverController.m; sourceTree = "<group>"; };
+		96A6A3FC1D4B6F99000D6B1B /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameover.png; sourceTree = "<group>"; };
+		96A6A3FE1D4B6FAE000D6B1B /* GameOverController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameOverController.h; sourceTree = "<group>"; };
 		96C6D3581D4A06FD00F68653 /* Critter_calm_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_calm_1.png; sourceTree = "<group>"; };
 		96C6D35A1D4A081700F68653 /* Critter_calm_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_calm_2.png; sourceTree = "<group>"; };
 		96C6D35C1D4A23E700F68653 /* Critter_happy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Critter_happy_1.png; sourceTree = "<group>"; };
@@ -243,6 +248,8 @@
 				9641F7F81D48C0D3009D5E03 /* StatusViewController.h */,
 				9641F7F91D48D331009D5E03 /* MenuViewController.m */,
 				9641F7FB1D48D342009D5E03 /* MenuViewController.h */,
+				96A6A3FA1D4B6F8C000D6B1B /* GameOverController.m */,
+				96A6A3FE1D4B6FAE000D6B1B /* GameOverController.h */,
 			);
 			path = TamagotchiIOS16;
 			sourceTree = "<group>";
@@ -251,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				9631EDF21D4B865A00E0BAD8 /* heart.png */,
+				96A6A3FC1D4B6F99000D6B1B /* gameover.png */,
 				96A6A3F81D4B49E9000D6B1B /* buttonBar.png */,
 				96A6A3F61D4B42A3000D6B1B /* shop.png */,
 				96A6A3F41D4B419F000D6B1B /* feed.png */,
@@ -447,6 +455,7 @@
 				96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */,
 				96D1C1BD1D47B42900F49BB0 /* coin.png in Resources */,
 				9631EDF31D4B865A00E0BAD8 /* heart.png in Resources */,
+				96A6A3FD1D4B6F99000D6B1B /* gameover.png in Resources */,
 				96C6D35B1D4A081700F68653 /* Critter_calm_2.png in Resources */,
 				96C6D36F1D4A3C5200F68653 /* Montie_hungry_2.png in Resources */,
 				96C6D3751D4A466C00F68653 /* speech_bubble.png in Resources */,
@@ -506,6 +515,7 @@
 				96A611F01D46182100F389E7 /* ViewController.m in Sources */,
 				96A612261D46182E00F389E7 /* Food.m in Sources */,
 				9641F7FA1D48D331009D5E03 /* MenuViewController.m in Sources */,
+				96A6A3FB1D4B6F8C000D6B1B /* GameOverController.m in Sources */,
 				96D1E7041D49E9EC00A747A1 /* LoadGameViewController.m in Sources */,
 				96D1E7011D49E99A00A747A1 /* NewGameViewController.m in Sources */,
 				96A612271D46182E00F389E7 /* Owner.m in Sources */,
