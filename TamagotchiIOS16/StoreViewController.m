@@ -15,11 +15,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@"Button"
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@""
                                                            style:UIBarButtonItemStyleDone
                                                           target:self
                                                           action:@selector(gameOver:)];
-    self.navigationItem.rightBarButtonItems = @[_gameOverButton];
+    self.navigationItem.rightBarButtonItem = self.gameOverButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     self.navigationItem.hidesBackButton = YES;
     row = -1;
     recipes = self.foodList;

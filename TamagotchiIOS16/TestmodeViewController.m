@@ -23,11 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@"Button"
+    self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@""
                                                            style:UIBarButtonItemStyleDone
                                                           target:self
                                                           action:@selector(gameOver:)];
-    self.navigationItem.rightBarButtonItems = @[_gameOverButton];
+    self.navigationItem.rightBarButtonItem = self.gameOverButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     // Do any additional setup after loading the view, typically from a nib.
     [self refreshNoti];
 }
