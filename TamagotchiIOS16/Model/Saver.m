@@ -23,7 +23,14 @@
     NSMutableDictionary *slot = [[NSMutableDictionary alloc] init];
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.owner] forKey:OWNER];
     [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
-    [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.storage] forKey:STORAGE];
+    NSMutableArray *encodedStorage = [[NSMutableArray alloc] init];
+    
+    for (Food *food in controller.storage) {
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:food];
+        [encodedStorage addObject:encodedObject];
+    }
+    
+    [slot setObject:encodedStorage forKey:STORAGE];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
     [[NSUserDefaults standardUserDefaults] setObject:controller.saveSlot forKey:CURRENT_SLOT];
     return [[NSUserDefaults standardUserDefaults] synchronize];

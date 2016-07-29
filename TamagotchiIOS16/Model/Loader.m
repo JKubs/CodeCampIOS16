@@ -16,11 +16,21 @@
     Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
     NSData *encodedPet = [slot objectForKey:PET];
     Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
-    NSData *encodedNotifications = [slot objectForKey:NOTIFICATION_REQUESTS];
-    NSMutableArray *notifications = [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
-    NSData *encodedStorage = [slot objectForKey:STORAGE];
-    NSMutableDictionary *storage = [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
-    
+    NSArray *encodedNotifications = [slot mutableArrayValueForKey:NOTIFICATION_REQUESTS];
+    NSMutableArray *notifications = [[NSMutableArray alloc] init];
+    for (NSData *element in encodedNotifications) {
+        [notifications addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
+    }
+    NSData *encodedStorage = [slot mutableArrayValueForKey:STORAGE];
+    NSMutableDictionary *storage = [[NSMutableDictionary alloc] init];
+    for (NSData *element in encodedStorage) {
+        
+        [storage setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>
+    }
+    Food *food = [NSKeyedUnarchiver unarchiveObjectWithData:element];
+         
+    //http://stackoverflow.com/questions/5513075/how-can-i-convert-nsdictionary-to-nsdata-and-vice-versa
+         
     if(owner != nil) {
         controller.owner = owner;
     }
