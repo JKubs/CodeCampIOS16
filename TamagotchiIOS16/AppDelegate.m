@@ -15,9 +15,16 @@
 @implementation AppDelegate
 
 
+- (void)gotStartedGame{
+    self.gotStartedGameBool = YES;
+    [self findGameController];
+    NSLog(@"got gamecontroller %@", self.gameController);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotStartedGame) name:@"GameStarted" object: nil];
+
     // Handle launching from a notification
     
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -34,120 +41,32 @@
         self.firstStart = YES;
     }else{
         self.firstStart = NO;
-   //     self.gameControllerDic = [Loader loadSavedNotificationsFromSlot:[Loader loadLastUsedSlotString]];
-    }
-
-
-    if(self.firstStart){
-        self.firstStartNotiRequ = [[NSMutableArray alloc] init];
-    }else{
-        [self checkForMissedNotifications];
-        self.gameController = [[GameViewController alloc] init];
-        self.gameController.pet = [self.gameControllerDic objectForKey:PET];
-        self.gameController.notificationRequests = [self.gameControllerDic objectForKey:NOTIFICATION_REQUESTS];
-    }
+    }    
     
-    //calculates and generates
-    [self calculateDatesForNeeds];
-    
-    //TODO if first start save start notifications somewhere
-    self.gameController = nil;
+    //resets notis TODO REMOVE LATER
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     return YES;
 }
 
-- (void)generateRandomNeed:(NSDate*) date{
-    NSArray *needs = [NSArray arrayWithObjects:WISH_HUNGRY,WISH_THIRSTY,nil];
-    NSInteger needsRand = (int)arc4random_uniform([needs count]);
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = date;
-    localNotification.alertBody = [needs objectAtIndex:needsRand];
-    localNotification.alertAction = @"Show me the item";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
-    NotificationRequest *newRequest = [[NotificationRequest alloc] init];
-    newRequest.message = localNotification.alertBody;
-    newRequest.timestamp = localNotification.fireDate;
-    newRequest.subject = localNotification.alertBody; //TODO: change to a subject
-    if(self.firstStart){
-        [self.firstStartNotiRequ addObject:newRequest];
-    }else{
-        [self.gameController.notificationRequests addObject:newRequest];
-    }
-    
-    NSInteger tooLate = 1200;
-    UILocalNotification* localNotificationEnd = [[UILocalNotification alloc] init];
-    localNotificationEnd.fireDate = [date dateByAddingTimeInterval:tooLate];
-    localNotificationEnd.alertBody = WISH_TOO_LATE;
-    localNotificationEnd.alertAction = @"Show me the item";
-    localNotificationEnd.timeZone = [NSTimeZone defaultTimeZone];
-    localNotificationEnd.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotificationEnd];
-
-    NotificationRequest *newLateRequest = [[NotificationRequest alloc] init];
-    newLateRequest.message = localNotificationEnd.alertBody;
-    newLateRequest.timestamp = localNotificationEnd.fireDate;
-    newLateRequest.subject = localNotificationEnd.alertBody; //TODO: change to a subject
-    if(self.firstStart){
-        [self.firstStartNotiRequ addObject:newLateRequest];
-    }else{
-        [self.gameController.notificationRequests addObject:newLateRequest];
-    }
-    
-//    NSLog(@"notiRequ to save:");
-//    NSLog(@"%@", newLateRequest);
-//    NSLog(@"notiRequ Saved:");
-//    NSLog(@"%@", self.gameController.notificationRequests);
-//    for (NotificationRequest *noti in self.gameController.notificationRequests) {
-//        NSLog(@"%@", noti);
-//    }
-    
-    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-    // Request to reload table view data
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-    
-//    [Saver saveNotificationSchedules:self.gameController toSlot:[Loader loadLastUsedSlotString]];
-//    [Saver saveChangeOn:PET withValue:self.gameController.pet atSaveSlot:[Loader loadLastUsedSlotString]];
-}
-
-- (void)checkForMissedNotifications{
+- (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests{
     
     NSMutableArray *missedNotis;
+    NSMutableArray *deleteShit;
     
-    for (NotificationRequest *notiRequ in self.gameController.notificationRequests) {
+    for (NotificationRequest *notiRequ in notificationRequests) {
         NSLog(@"saved notirequ here");
         if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
             [missedNotis addObject:notiRequ];
-            [self.gameController.notificationRequests removeObject:notiRequ];
+            [deleteShit addObject:notiRequ];
             NSLog(@"missed: %@", notiRequ.message);
         }
     }
-    //Only work with last Missed now, those Objects in there don't exist in self.gameController.notificationRequests anymore
-    NotificationRequest *lastMissed = [missedNotis lastObject];
-    
-    for (NotificationRequest *notiR in missedNotis) {
-        if([notiR.message isEqualToString:WISH_TOO_LATE]){
-            self.gameController.pet.lives--;
-        }
+    for (NotificationRequest *del in deleteShit) {
+        [missedNotis removeObject:del];
     }
     
-    if(self.gameController.pet.lives <= 0){
-        NSLog(@"your pet died -.- %@ ", self.gameController);
-    }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
-        int rand = (int)arc4random_uniform([self.gameController.foodList count]);
-        Food *randFood = [self.gameController.foodList objectAtIndex:rand];
-        self.gameController.pet.currentWish = randFood.name;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.gameController.pet];
-    }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
-        int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
-        Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
-        self.gameController.pet.currentWish = randFood.name;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.gameController.pet];
-    }
+    return missedNotis;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -168,8 +87,8 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [self checkForMissedNotifications];
-    [self calculateDatesForNeeds];
+//    [self checkForMissedNotifications];
+//    [self calculateDatesForNeeds];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -207,27 +126,48 @@
         [alert show];
         
         
-        //TODO implement when loading/saving is working and remove stuff from testmode
-        if ([notification.alertBody isEqualToString:WISH_HUNGRY]){
-            int rand = (int)arc4random_uniform([self.gameController.foodList count]);
-            Food *randFood = [self.gameController.foodList objectAtIndex:rand];
-            self.gameController.pet.currentWish = randFood.name;
-        }else if ([notification.alertBody isEqualToString:WISH_THIRSTY]){
-            int rand = (int)arc4random_uniform([self.gameController.drinkList count]);
-            Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
-            self.gameController.pet.currentWish = randFood.name;
-        }else if ([notification.alertBody isEqualToString:WISH_TOO_LATE]){
-            self.gameController.pet.lives--;
-            self.gameController.pet.currentWish = NULL;
-        }
         
-        //remove current shown alert from notification requests
-        for (NotificationRequest *noti in self.gameController.notificationRequests) {
-            if([noti.timestamp isEqualToDate:notification.fireDate]){
-                NSLog(@"remove notification: %@ at time %@", noti, noti.timestamp);
-                [self.gameController.notificationRequests removeObject: noti];
+//        NSString *lastUsedSlot = [Loader loadLastUsedSlotString];
+//        NSLog(@"%@",lastUsedSlot);
+//        NSDictionary *slot = [Loader loadSlot:lastUsedSlot];
+//        Pet *pet = [slot objectForKey:PET];
+        
+        
+        //TODO implement when loading/saving is working and remove stuff from testmode
+        if (self.gotStartedGameBool) {
+
+        
+            if ([notification.alertBody isEqualToString:WISH_HUNGRY]){
+                int rand = (int)arc4random_uniform((uint32_t)[[self setupFoodList] count]);
+                Food *randFood = [[self setupFoodList] objectAtIndex:rand];
+                self.gameController.pet.currentWish = randFood.name;
+            }else if ([notification.alertBody isEqualToString:WISH_THIRSTY]){
+                int rand = (int)arc4random_uniform((uint32_t)[[self setupDrinkList] count]);
+                Food *randFood = [[self setupDrinkList] objectAtIndex:rand];
+                self.gameController.pet.currentWish = randFood.name;
+            }else if ([notification.alertBody isEqualToString:WISH_TOO_LATE]){
+                self.gameController.pet.lives--;
+                self.gameController.pet.currentWish = NULL;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
+
+            }
+            
+            NSMutableArray *notificationReqests = [Loader loadSavedNotificationsFromSlot:[Loader loadLastUsedSlotString]];
+            //remove current shown alert from notification requests
+            NSMutableArray *deleteShit = [[NSMutableArray alloc] init];
+            for (NotificationRequest *noti in notificationReqests) {
+                if([noti.timestamp isEqualToDate:notification.fireDate]){
+                    NSLog(@"remove notification: %@ at time %@", noti, noti.timestamp);
+                    [deleteShit addObject:noti];
+                }
+            }
+            for (NotificationRequest *noti in deleteShit) {
+                [notificationReqests delete:noti];
             }
         }
+        
+//        Saver saveNotificationSchedules:notificationReqests toSlot:
+        
     }
     
     // Request to reload table view data
@@ -237,159 +177,6 @@
     application.applicationIconBadgeNumber = 0;
 }
 
-- (void)calculateDatesForNeeds{
-    int dist = 1800;
-    BOOL passedSleepingTime = NO;
-    NSInteger sleepHourStart = 23*3600;
-    NSInteger sleepTime = 8*3600;
-    NSInteger sleepHourEnd = (sleepHourStart + sleepTime) % (24*3600);
-    NSInteger timeTillSleepOver = 0;
-    
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    if([localNotifications count] == 0){
-        //same stuff as in testmodeViewControllwe TODO make a global method
-        int numberOfNotifications = 5;
-        
-        int erg = 1;
-        for (int i = 1; i < numberOfNotifications-1; i++) {
-            erg += i;
-        }
-        NSInteger maxRand = 3600 * 24;
-        maxRand = maxRand - dist*erg; // - distance between time
-        
-        NSDate *date = [NSDate date];
-        NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:date];
-        NSInteger currentSecond = [components hour] * 3600 + [components minute] * 60 + [components second];
-        
-        
-        
-        if (sleepHourStart >= sleepHourEnd) { // if he sleeps over midnight
-            if(currentSecond >= sleepHourStart){ // you are in sleepTime b4 midnight
-                timeTillSleepOver = 24*3600 - currentSecond + sleepHourEnd;
-            }else if(currentSecond <= sleepHourEnd){ // you are in sleep Time after midnight
-                timeTillSleepOver = sleepHourEnd - currentSecond;
-            }
-        }else if(currentSecond >= sleepHourStart && currentSecond <= sleepHourEnd){
-            timeTillSleepOver = sleepHourEnd - currentSecond;
-        }
-        //NSLog(@"\n ttso: %ld--------------------------", timeTillSleepOver);
-        maxRand = maxRand - (sleepTime-timeTillSleepOver);
-        
-        NSMutableArray *randDates = [NSMutableArray array];
-        for (int i = 0; i < numberOfNotifications; i++){
-            [randDates addObject: [NSNumber numberWithInt: arc4random_uniform(maxRand)]];
-        }
-        
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-        [randDates sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-        
-        //NSString * result = [[randDates valueForKey:@"description"] componentsJoinedByString:@" "];
-        //NSLog(result);
-        
-        
-        for (int i = 0; i < numberOfNotifications; i++) {
-            NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
-            rand = rand + dist*i;
-            rand = rand + timeTillSleepOver;
-            
-            //NSLog(@"\n rand: %ld \n startSleep: %ld \n endsleep: %ld", rand+currentSecond, sleepHourStart, sleepHourEnd);
-            
-            if (sleepHourStart >= sleepHourEnd &&
-                (rand+currentSecond >= sleepHourStart || rand+currentSecond <= sleepHourEnd)) { // if he sleeps over midnight
-                passedSleepingTime = YES;
-            }else if(rand+currentSecond >= sleepHourStart && rand+currentSecond <= sleepHourEnd){
-                passedSleepingTime = YES;
-            }
-            
-            if(passedSleepingTime){
-                rand = rand + sleepTime;
-            }
-            
-            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
-            
-            [self generateRandomNeed:[NSDate dateWithTimeIntervalSinceNow:rand]];
-        }
-    }else if([localNotifications count] < 5){
-        UILocalNotification *first = [localNotifications firstObject];
-        UILocalNotification *last = [localNotifications lastObject];
-        NSDate *lastDate = [last fireDate];
-        NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSInteger timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate];
-        NSInteger timeToFullDay = 24*3600 - (timeFromNowToLast + dist);
-        NSInteger numberOfNotifications = 5 - [localNotifications count];
-        NSInteger maxTimeAfterWaitForSleep = sleepTime + 5; //to be changed
-        BOOL setAllNotisBeforSleep = NO;
-        
-        
-        NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:lastDate];
-        NSInteger lastTimeInSeconds = [components hour] * 3600 + [components minute] * 60 + [components second];
-        
-        int erg = 1;
-        for (int i = 1; i < numberOfNotifications-1; i++) {
-            erg += i;
-        }
-        
-        NSInteger maxRand;
-        if (timeToFullDay < maxTimeAfterWaitForSleep) {
-            // maxRand is last to sleepstart
-            maxRand = (sleepHourStart < lastTimeInSeconds) ?
-            sleepHourStart + 24*3600 - lastTimeInSeconds : sleepHourStart - lastTimeInSeconds;
-            maxRand = (maxRand > timeToFullDay) ? timeToFullDay : maxRand;
-            
-            setAllNotisBeforSleep = YES;
-            NSLog(@"timeToFullDay < maxTimeAfterWaitForSleep");
-        }else{
-            //maxrand is last to timeToFullDay and with "passedSleepingTime" stuff
-            maxRand = timeToFullDay;
-            setAllNotisBeforSleep = NO;
-            NSLog(@"timeToFullDay > maxTimeAfterWaitForSleep");
-        }
-        
-        
-        maxRand = maxRand - dist*erg; // - distance between time
-        
-        NSLog(@"\n maxRand: %ld \n dist: %ld \n erg: %ld", maxRand, dist, erg);
-        
-        NSMutableArray *randDates = [NSMutableArray array];
-        for (int i = 0; i < numberOfNotifications; i++){
-            [randDates addObject: [NSNumber numberWithInt: arc4random_uniform(maxRand)]];
-        }
-        
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-        [randDates sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-        
-        
-        
-        for (int i = 0; i < numberOfNotifications; i++) {
-            NSInteger rand = [[randDates objectAtIndex:i ] integerValue];
-            rand = rand + dist*i;
-            
-            NSLog(@"\n rand: %ld \n lastTimeInSec: %ld \n startSleep: %ld \n endsleep: %ld \n lasttimetillsleep: %ld \n maxRand: %ld \n timetofullday: %ld", rand, lastTimeInSeconds, sleepHourStart, sleepHourEnd, lastTimeInSeconds, maxRand, timeToFullDay);
-            
-            if(!setAllNotisBeforSleep){
-                if (sleepHourStart >= sleepHourEnd &&
-                    (rand+lastTimeInSeconds >= sleepHourStart || rand+lastTimeInSeconds <= sleepHourEnd)) { // if he sleeps over midnight
-                    passedSleepingTime = YES;
-                }else if(rand+lastTimeInSeconds >= sleepHourStart && rand+lastTimeInSeconds <= sleepHourEnd){
-                    passedSleepingTime = YES;
-                }
-                if(passedSleepingTime){
-                    rand = rand + sleepTime;
-                }
-            }
-            
-            //NSLog(@"\npassedSleepingTime: %d \n rand: %ld \n startSleep: %ld \n endsleep: %ld ", passedSleepingTime, rand +currentSecond, sleepHourStart, sleepHourEnd);
-            
-            [self generateRandomNeed:[NSDate dateWithTimeInterval:rand sinceDate:lastDate]];
-        }
-    }
-    NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (UILocalNotification *locationNotification in newlocalNotifications) {
-        NSLog(@"Existing Notification: %@", locationNotification.alertBody);
-    }
-}
 
 -(void)findGameController {
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
@@ -411,6 +198,39 @@
     self.gameController = result;
     
 }
+
+- (NSArray*) setupFoodList {
+    Food *apple = [[Food alloc] init];
+    apple.name = @"apple";
+    apple.cost = 5;
+    Food *bread = [[Food alloc] init];
+    bread.name = @"bread";
+    bread.cost = 3;
+    Food *candy = [[Food alloc] init];
+    candy.name = @"candy";
+    candy.cost = 2;
+    Food *burger = [[Food alloc] init];
+    burger.name = @"burger";
+    burger.cost = 6;
+    return [[NSArray alloc] initWithObjects:apple, bread, candy, burger, nil];
+}
+
+- (NSArray*) setupDrinkList {
+    Food *soda = [[Food alloc] init];
+    soda.name = @"soda";
+    soda.cost = 5;
+    Food *water =[[Food alloc] init];
+    water.name = @"water";
+    water.cost = 2;
+    Food *beer = [[Food alloc] init];
+    beer.name = @"beer";
+    beer.cost = 4;
+    Food *wine = [[Food alloc] init];
+    wine.name = @"wine";
+    wine.cost = 7;
+    return [[NSArray alloc] initWithObjects:soda, water, wine, nil];
+}
+
 
 -(BOOL)isClearStart {
     return [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_1] == nil &&

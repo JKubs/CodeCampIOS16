@@ -43,6 +43,39 @@
     [self setupStoreFood];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAnimation) name:@"PetAnimation" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHunger) name:@"PetHungry" object: nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GameStarted" object:self];
+
+    
+    
+    //notification stuff
+    NSMutableArray *newNotificationrequests = [[NSMutableArray alloc] init];
+    newNotificationrequests = [NotificationCreater createNotifications:newNotificationrequests];
+    
+    NSMutableArray *missedNotis = [self deleteMissedNotifications:newNotificationrequests];
+    
+    NotificationRequest *lastMissed = [missedNotis lastObject];
+    
+    for (NotificationRequest *notiR in missedNotis) {
+        if([notiR.message isEqualToString:WISH_TOO_LATE]){
+            self.pet.lives--;
+        }
+    }
+    
+    if(self.pet.lives <= 0){
+        NSLog(@"your pet died -.- ");
+    }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
+        int rand = (int)arc4random_uniform((uint32_t)[self.foodList count]);
+        Food *randFood = [self.foodList objectAtIndex:rand];
+        self.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+    }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
+        int rand = (int)arc4random_uniform((uint32_t)[self.drinkList count]);
+        Food *randFood = [self.drinkList objectAtIndex:rand];
+        self.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+    }
+
+    
     if (self.myTimer == nil) {
         [self startTimer];
     }
@@ -120,6 +153,26 @@
     }
     
 }
+
+- (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests{
+    
+    NSMutableArray *missedNotis;
+    NSMutableArray *deleteShit;
+    
+    for (NotificationRequest *notiRequ in notificationRequests) {
+        NSLog(@"saved notirequ here");
+        if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
+            [missedNotis addObject:notiRequ];
+            [deleteShit addObject:notiRequ];
+            NSLog(@"missed: %@", notiRequ.message);
+        }
+    }
+    for (NotificationRequest *del in deleteShit) {
+        [missedNotis removeObject:del];
+    }    
+    return missedNotis;
+}
+
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
