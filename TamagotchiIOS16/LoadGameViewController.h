@@ -42,6 +42,10 @@
 @property (strong, nonatomic) UILabel *selectedLives;
 @property (strong, nonatomic) UILabel *selectedUserName;
 @property (strong, nonatomic) UILabel *selectedmoney;
+@property (nonatomic) BOOL slot1isDead;
+@property (nonatomic) BOOL slot2isDead;
+@property (nonatomic) BOOL slot3isDead;
+@property (nonatomic) BOOL slot4isDead;
 
 - (IBAction)deleteSlot:(UIButton *)sender;
 - (IBAction)slot1Pressed:(UIButton *)sender;
