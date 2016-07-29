@@ -12,7 +12,7 @@
 @implementation Saver
 
 +(BOOL)saveChangeOn:(NSString*)key withValue:(id)value atSaveSlot:(NSString*)saveSlot {
-    NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
+    NSMutableDictionary *slot = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot]];
     NSData *encodedValue = [NSKeyedArchiver archivedDataWithRootObject:value];
     [slot setValue:encodedValue forKey:key];
     [[NSUserDefaults standardUserDefaults] setObject:slot forKey:saveSlot];

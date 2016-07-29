@@ -30,10 +30,11 @@
     UIImage *happy1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_1.png", self.pet.type]];
     UIImage *happy2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@_happy_2.png", self.pet.type]];
     self.happyAnimation = [[NSArray alloc] initWithObjects:happy1, happy2, nil];
-    if (self.petState == nil) {
+    if (self.pet.currentWish == nil) {
         self.petState = @"calm";
         self.speechView.hidden = YES;
-    } else if ([self.petState isEqualToString:@"hungry"]) {
+    } else {
+        self.petState = @"hungry";
         self.speechFood.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.pet.currentWish]];
         self.speechView.hidden = NO;
     }
@@ -42,6 +43,39 @@
     [self setupStoreFood];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAnimation) name:@"PetAnimation" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHunger) name:@"PetHungry" object: nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GameStarted" object:self];
+
+    
+    
+    //notification stuff
+
+    self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
+    
+    NSMutableArray *missedNotis = [self deleteMissedNotifications:self.notificationRequests];
+    
+    NotificationRequest *lastMissed = [missedNotis lastObject];
+    
+    for (NotificationRequest *notiR in missedNotis) {
+        if([notiR.message isEqualToString:WISH_TOO_LATE]){
+            self.pet.lives--;
+        }
+    }
+    
+    if(self.pet.lives <= 0){
+        NSLog(@"your pet died -.- ");
+    }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
+        int rand = (int)arc4random_uniform((uint32_t)[self.foodList count]);
+        Food *randFood = [self.foodList objectAtIndex:rand];
+        self.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+    }else if ([lastMissed.message isEqualToString:WISH_THIRSTY]){
+        int rand = (int)arc4random_uniform((uint32_t)[self.drinkList count]);
+        Food *randFood = [self.drinkList objectAtIndex:rand];
+        self.pet.currentWish = randFood.name;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
+    }
+
+    
     if (self.myTimer == nil) {
         [self startTimer];
     }
@@ -92,9 +126,9 @@
         quantity = quantity - 1;
         NSNumber *number = [NSNumber numberWithInteger:quantity];
         [self.storage setValue:number forKey:food];
-
-        
         self.pet.currentWish = NULL;
+        [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
+        [Saver saveChangeOn:STORAGE withValue:self.storage atSaveSlot:self.saveSlot];
     }
     else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
@@ -119,6 +153,26 @@
     }
     
 }
+
+- (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests{
+    
+    NSMutableArray *missedNotis;
+    NSMutableArray *deleteShit;
+    
+    for (NotificationRequest *notiRequ in notificationRequests) {
+        NSLog(@"saved notirequ here");
+        if (notiRequ.timestamp < [NSDate dateWithTimeIntervalSinceNow:0]) {
+            [missedNotis addObject:notiRequ];
+            [deleteShit addObject:notiRequ];
+            NSLog(@"missed: %@", notiRequ.message);
+        }
+    }
+    for (NotificationRequest *del in deleteShit) {
+        [missedNotis removeObject:del];
+    }    
+    return missedNotis;
+}
+
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
