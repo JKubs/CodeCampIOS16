@@ -126,9 +126,9 @@
         quantity = quantity - 1;
         NSNumber *number = [NSNumber numberWithInteger:quantity];
         [self.storage setValue:number forKey:food];
-
-        
         self.pet.currentWish = NULL;
+        [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
+        [Saver saveChangeOn:STORAGE withValue:self.storage atSaveSlot:self.saveSlot];
     }
     else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
