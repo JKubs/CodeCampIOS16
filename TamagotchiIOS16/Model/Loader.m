@@ -21,12 +21,9 @@
     //for (NSData *element in encodedNotifications) {
     //    [notifications addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
     //}
-    NSLog(@"bla");
     NSData *encodedStorage = [slot objectForKey:STORAGE];
-    NSLog(@"%@",encodedStorage);
     NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
 
-    NSLog(@"%@", storage);
     //NSLog(@"%@",notifications);
     if(owner != nil) {
         controller.owner = owner;

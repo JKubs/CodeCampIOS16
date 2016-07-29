@@ -18,7 +18,7 @@
 - (void)gotStartedGame{
     self.gotStartedGameBool = YES;
     [self findGameController];
-    NSLog(@"got gamecontroller %@", self.gameController);
+    //NSLog(@"got gamecontroller %@", self.gameController);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -117,16 +117,6 @@
 {
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
-        //UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Reminder"
-         //                                                              message:notification.alertBody
-         //                                                       preferredStyle:UIAlertControllerStyleAlert];
-        
-       // UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-        //                                                      handler:^(UIAlertAction * action) {}];
-        
-       // [alert addAction:defaultAction];
-        //[self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"                                                        message:notification.alertBody
             delegate:self cancelButtonTitle:@"OK"
             otherButtonTitles:nil];
@@ -230,10 +220,7 @@
 
 
 -(BOOL)isClearStart {
-    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_1] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_2] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_3] == nil &&
-    [[NSUserDefaults standardUserDefaults] dictionaryForKey:SAVE_SLOT_4] == nil;
+    return [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SLOT] == nil;
 }
 
 @end

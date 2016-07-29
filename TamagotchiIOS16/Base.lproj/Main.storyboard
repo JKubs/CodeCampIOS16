@@ -62,6 +62,32 @@
             </objects>
             <point key="canvasLocation" x="1047" y="-291"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="nIw-jW-ZRn">
+            <objects>
+                <viewController id="NbX-Tr-qfC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D1H-pg-A8Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="EQ8-gK-EBg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8qQ-D4-KOu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please close the app." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwm-Ti-u8A">
+                                <rect key="frame" x="93" y="395" width="163" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7sk-G4-bOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1792" y="-984"/>
+        </scene>
         <!--Money Farm View Controller-->
         <scene sceneID="Wbu-c2-m3J">
             <objects>
@@ -266,17 +292,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWQ-71-rzO">
-                                <rect key="frame" x="261" y="420" width="78" height="30"/>
-                                <state key="normal" title="Load Game"/>
+                                <rect key="frame" x="243" y="420" width="114" height="30"/>
+                                <state key="normal" title="Load/New Game"/>
                                 <connections>
-                                    <segue destination="1UR-hV-aay" kind="show" identifier="loadGame" id="3Lb-zk-Ja1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V94-Mv-0vj">
-                                <rect key="frame" x="263" y="466" width="75" height="30"/>
-                                <state key="normal" title="New Game"/>
-                                <connections>
-                                    <segue destination="FdY-HD-JaR" kind="show" identifier="newGame" id="f7F-jH-PKt"/>
+                                    <segue destination="1UR-hV-aay" kind="show" identifier="newloadGame" id="3Lb-zk-Ja1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -549,7 +568,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62e-YO-856" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62e-YO-856" customClass="UIButton">
                                 <rect key="frame" x="67" y="184" width="466" height="71"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usD-3L-9Fb">
@@ -584,8 +603,11 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot2Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="bX7-NE-pXW"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbB-yz-GrJ" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbB-yz-GrJ" customClass="UIButton">
                                 <rect key="frame" x="67" y="287" width="466" height="71"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w7J-A8-f2E">
@@ -620,8 +642,11 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot3Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="GlG-RX-G8H"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWA-1e-hDl" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWA-1e-hDl" customClass="UIButton">
                                 <rect key="frame" x="67" y="392" width="466" height="71"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHb-FK-9CR">
@@ -656,6 +681,9 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot4Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="nFn-Pf-dwO"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyF-Mj-B3H">
                                 <rect key="frame" x="177" y="520" width="48" height="30"/>
@@ -664,15 +692,7 @@
                                     <action selector="deleteSlot:" destination="1UR-hV-aay" eventType="touchUpInside" id="2al-95-86O"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9r-JW-DP3">
-                                <rect key="frame" x="368" y="520" width="34" height="30"/>
-                                <state key="normal" title="Load"/>
-                                <connections>
-                                    <action selector="loadSlotToGame:" destination="1UR-hV-aay" eventType="touchUpInside" id="dpA-ED-Cbd"/>
-                                    <segue destination="w2A-K5-GzS" kind="show" identifier="startLoadedGame" id="u5i-yX-E7j"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKB-AH-Ihq" customClass="UITableViewCell">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKB-AH-Ihq" customClass="UIButton">
                                 <rect key="frame" x="67" y="85" width="466" height="71"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BaX-hS-MPd">
@@ -707,11 +727,31 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" selected="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <action selector="slot1Pressed:" destination="1UR-hV-aay" eventType="touchUpInside" id="JyJ-5h-iwd"/>
+                                </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9r-JW-DP3">
+                                <rect key="frame" x="397" y="520" width="34" height="30"/>
+                                <state key="normal" title="Load"/>
+                                <connections>
+                                    <segue destination="w2A-K5-GzS" kind="show" identifier="startLoadedGame" id="kOc-tp-UP1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjo-jH-9kh">
+                                <rect key="frame" x="277" y="520" width="46" height="30"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <segue destination="FdY-HD-JaR" kind="show" identifier="createGame" id="8zH-Ih-DHm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="createButton" destination="Kjo-jH-9kh" id="wre-wa-bzx"/>
+                        <outlet property="deleteButton" destination="QyF-Mj-B3H" id="JFh-Ws-w1m"/>
+                        <outlet property="loadButton" destination="m9r-JW-DP3" id="kZ3-zh-tdO"/>
                         <outlet property="slot1Lives" destination="xDe-LF-HTB" id="VZe-3m-OOC"/>
                         <outlet property="slot1PetImage" destination="BaX-hS-MPd" id="QDS-Rz-c0C"/>
                         <outlet property="slot1UserName" destination="Bqp-E9-bHd" id="nEz-gV-WfQ"/>
@@ -827,6 +867,6 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zIs-k9-Tz8"/>
+        <segue reference="kOc-tp-UP1"/>
     </inferredMetricsTieBreakers>
 </document>
