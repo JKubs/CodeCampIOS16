@@ -11,6 +11,7 @@
 #import "Pet.h"
 #import "Saver.h"
 #import "NotificationRequest.h"
+#import "GameViewController.h"
 
 @interface TestmodeViewController : UIViewController{
     IBOutlet UITextView *nextNotiText;
@@ -25,6 +26,6 @@
 @property (strong, nonatomic) NSArray *foodList;
 @property (strong, nonatomic) NSArray *drinkList;
 @property (strong, nonatomic) NSArray *notificationRequests;
-
+@property (strong, nonatomic) GameViewController *gameController;
 
 @end
