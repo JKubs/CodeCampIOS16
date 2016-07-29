@@ -187,18 +187,18 @@
             maxRand = (maxRand > timeToFullDay) ? timeToFullDay : maxRand;
             
             setAllNotisBeforSleep = YES;
-            NSLog(@"timeToFullDay < maxTimeAfterWaitForSleep");
+         //   NSLog(@"timeToFullDay < maxTimeAfterWaitForSleep");
         }else{
             //maxrand is last to timeToFullDay and with "passedSleepingTime" stuff
             maxRand = timeToFullDay;
             setAllNotisBeforSleep = NO;
-            NSLog(@"timeToFullDay > maxTimeAfterWaitForSleep");
+        //    NSLog(@"timeToFullDay > maxTimeAfterWaitForSleep");
         }
         
         
         maxRand = maxRand - dist*erg; // - distance between time
         
-        NSLog(@"\n maxRand: %ld \n dist: %d \n erg: %d", maxRand, dist, erg);
+      //  NSLog(@"\n maxRand: %ld \n dist: %d \n erg: %d", maxRand, dist, erg);
         
         NSMutableArray *randDates = [NSMutableArray array];
         for (int i = 0; i < numberOfNotifications; i++){
@@ -235,10 +235,10 @@
         }
     }
     NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (UILocalNotification *locationNotification in newlocalNotifications) {
-        NSLog(@"Existing Notification: %@", locationNotification.alertBody);
-    }
-    NSLog(@"%@", notificationRequests);
+    //for (UILocalNotification *locationNotification in newlocalNotifications) {
+    //    NSLog(@"Existing Notification: %@", locationNotification.alertBody);
+    //}
+    //NSLog(@"%@", notificationRequests);
     return notificationRequests;
 }
 @end

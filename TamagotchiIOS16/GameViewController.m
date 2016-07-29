@@ -60,6 +60,8 @@
     for (NotificationRequest *notiR in missedNotis) {
         if([notiR.message isEqualToString:WISH_TOO_LATE]){
             self.pet.lives--;
+            self.pet.currentWish = NULL;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
         }
     }
     
@@ -77,6 +79,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"petFeed" object:self.pet];
     }
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
+    [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
 
     
     if (self.myTimer == nil) {

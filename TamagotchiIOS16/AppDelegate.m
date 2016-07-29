@@ -44,7 +44,7 @@
     }    
     
     //resets notis TODO REMOVE LATER
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    //[[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     return YES;
 }
@@ -69,13 +69,16 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     if(self.gotStartedGameBool){
         NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.gameController.notificationRequests];
-        
+         [Saver saveNotificationSchedules:self.gameController.notificationRequests toSlot:self.gameController.saveSlot];
         
         NotificationRequest *lastMissed = [missedNotis lastObject];
         
         for (NotificationRequest *notiR in missedNotis) {
             if([notiR.message isEqualToString:WISH_TOO_LATE]){
                 self.gameController.pet.lives--;
+                self.gameController.pet.currentWish = NULL;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
+
             }
         }
         NSLog(@"last missed noti text: %@", lastMissed.message);
@@ -92,7 +95,10 @@
             self.gameController.pet.currentWish = randFood.name;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"PetFeed" object:self.gameController.pet];
         }
+        
+        [NotificationCreater createNotifications:self.gameController.notificationRequests];
         [Saver saveChangeOn:PET withValue:self.gameController.pet atSaveSlot:self.gameController.saveSlot];
+       
 
 
     }
@@ -155,6 +161,7 @@
         
         //TODO save noti
         [Saver saveChangeOn:PET withValue:self.gameController.pet atSaveSlot:self.gameController.saveSlot];
+        [Saver saveNotificationSchedules:self.gameController.notificationRequests toSlot:self.gameController.saveSlot];
     }
     
     // Request to reload table view data
