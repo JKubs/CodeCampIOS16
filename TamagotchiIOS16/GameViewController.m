@@ -88,6 +88,7 @@
     }
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
     [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
+    //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 
     
     if (self.myTimer == nil) {

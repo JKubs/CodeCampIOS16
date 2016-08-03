@@ -772,6 +772,7 @@
                         <outlet property="slot1View" destination="zKB-AH-Ihq" id="vmX-Bk-nmi"/>
                         <outlet property="slot1money" destination="AlS-nA-5kS" id="Ocp-ge-87a"/>
                         <outlet property="slot2Lives" destination="ush-zu-AB2" id="QM6-Nu-9re"/>
+                        <outlet property="slot2PetImage" destination="usD-3L-9Fb" id="zyt-TK-0kE"/>
                         <outlet property="slot2UserName" destination="a8C-sL-tEb" id="c9k-fR-RsG"/>
                         <outlet property="slot2View" destination="62e-YO-856" id="QNL-4d-zIw"/>
                         <outlet property="slot2money" destination="ZIm-vh-UGS" id="68T-Mh-j3a"/>
@@ -884,6 +885,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kOc-tp-UP1"/>
-        <segue reference="Hdy-Q0-wJP"/>
+        <segue reference="wOR-0p-Fgo"/>
     </inferredMetricsTieBreakers>
 </document>

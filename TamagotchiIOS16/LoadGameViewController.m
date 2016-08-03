@@ -106,6 +106,7 @@
         gameViewController.pet = pet;
         gameViewController.storage = storage;
         gameViewController.notificationRequests = notificationRequests;
+        gameViewController.saveSlot = self.selectedSlot;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
     else if ([segueName isEqualToString: @"createGame"]) {

@@ -12,6 +12,7 @@
 @implementation Saver
 
 +(BOOL)saveChangeOn:(NSString*)key withValue:(id)value atSaveSlot:(NSString*)saveSlot {
+    //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     NSMutableDictionary *slot = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot]];
     NSData *encodedValue = [NSKeyedArchiver archivedDataWithRootObject:value];
     [slot setValue:encodedValue forKey:key];
@@ -20,16 +21,20 @@
 }
 
 +(BOOL)completeSave:(GameViewController *)controller {
-    NSMutableDictionary *slot = [[NSMutableDictionary alloc] init];
     
-    [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.owner] forKey:OWNER];
-    [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
-    NSData *encodedStorage = [NSKeyedArchiver archivedDataWithRootObject:controller.storage];
+    if(controller.saveSlot != nil) {
+        NSMutableDictionary *slot = [[NSMutableDictionary alloc] init];
+        
+        [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.owner] forKey:OWNER];
+        [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
+        NSData *encodedStorage = [NSKeyedArchiver archivedDataWithRootObject:controller.storage];
+        
+        [slot setObject:encodedStorage forKey:STORAGE];
+        [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
+        [[NSUserDefaults standardUserDefaults] setObject:controller.saveSlot forKey:CURRENT_SLOT];
+    }
     
-    [slot setObject:encodedStorage forKey:STORAGE];
-    [[NSUserDefaults standardUserDefaults] setObject:slot forKey:controller.saveSlot];
-    [[NSUserDefaults standardUserDefaults] setObject:controller.saveSlot forKey:CURRENT_SLOT];
-    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    //NSLog(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
