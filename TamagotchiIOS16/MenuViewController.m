@@ -11,11 +11,15 @@
 @implementation MenuViewController
 
 - (void) viewDidLoad {
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     if([self isClearStart]) {
         self.continueButton.hidden = YES;
     }
+    [super viewWillAppear:animated];
 }
-
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
@@ -39,6 +43,6 @@
 }
 
 -(BOOL)isClearStart {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SLOT] == nil;
+    return [Loader loadLastUsedSlotString] == nil;
 }
 @end

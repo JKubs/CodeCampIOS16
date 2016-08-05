@@ -13,6 +13,7 @@
 #import "StoreViewController.h"
 #import "Loader.h"
 #import "Saver.h"
+#import "Constants.h"
 #import "MoneyFarmViewController.h"
 #import "StatusViewController.h"
 #import "TestmodeViewController.h"

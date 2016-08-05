@@ -101,6 +101,7 @@
 		9641F8081D48FC8C009D5E03 /* beer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer.png; sourceTree = "<group>"; };
 		9641F80A1D48FD5F009D5E03 /* wine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wine.png; sourceTree = "<group>"; };
 		9641F80C1D48FFF9009D5E03 /* store_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = store_background.png; sourceTree = "<group>"; };
+		9643F3B21D54F7B10025A3E8 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9649DAAA1D47489B007CF15E /* verrecke_dummes_vieh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = verrecke_dummes_vieh.jpg; sourceTree = "<group>"; };
 		9649DAB31D478A87007CF15E /* NotificationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationRequest.m; sourceTree = "<group>"; };
 		9649DAB51D478AA9007CF15E /* NotificationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationRequest.h; sourceTree = "<group>"; };
@@ -340,6 +341,7 @@
 				96A666481D4773F9000A4DF5 /* Saver.m */,
 				96A5BC5D1D4B3A71001E45E0 /* NotificationCreater.m */,
 				96A5BC601D4B3AE3001E45E0 /* NotificationCreater.h */,
+				9643F3B21D54F7B10025A3E8 /* Constants.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";

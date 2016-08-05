@@ -10,6 +10,7 @@
 #import "GameViewController.h"
 #import "Saver.h"
 #import "Loader.h"
+#import "Constants.h"
 #import "NotificationCreater.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

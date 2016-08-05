@@ -223,7 +223,7 @@
 
 
 -(BOOL)isClearStart {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SLOT] == nil;
+    return [Loader loadLastUsedSlotString] == nil;
 }
 
 @end

@@ -103,6 +103,7 @@
     self.createButton.enabled = NO;
 }
 
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"startLoadedGame"]) {
@@ -134,8 +135,7 @@
 
 
 - (IBAction)deleteSlot:(UIButton *)sender {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.selectedSlot];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:CURRENT_SLOT];
+    [Saver deleteSlot:self.selectedSlot];
     self.selectedPetImage.image = nil;
     self.selectedUserName.text = @"empty";
     self.selectedLives.text = @"0";
