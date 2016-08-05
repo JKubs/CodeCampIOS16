@@ -36,6 +36,9 @@
         self.slot1UserName.text = owner.name;
         self.slot1money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
     }
+    else {
+        self.slot1UserName.text = @"empty";
+    }
     
     if(slot2 != nil) {
         owner = [slot2 objectForKey:OWNER];
@@ -53,6 +56,9 @@
         self.slot2UserName.text = owner.name;
         self.slot2money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
     }
+    else {
+        self.slot2UserName.text = @"empty";
+    }
     
     if(slot3 != nil) {
         owner = [slot3 objectForKey:OWNER];
@@ -68,6 +74,9 @@
         }
         self.slot3UserName.text = owner.name;
         self.slot3money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
+    }
+    else {
+        self.slot3UserName.text = @"empty";
     }
     
     if(slot4 != nil) {
@@ -85,6 +94,9 @@
         self.slot4UserName.text = owner.name;
         self.slot4money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
         
+    }
+    else {
+        self.slot4UserName.text = @"empty";
     }
     self.loadButton.enabled = NO;
     self.deleteButton.enabled = NO;

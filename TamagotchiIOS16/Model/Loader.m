@@ -11,7 +11,22 @@
 @implementation Loader
 
 +(BOOL)loadSaveStateTo:(GameViewController *)controller {
-    NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:controller.saveSlot];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    }
+    else {
+        //create empty save file
+        save = [[NSMutableDictionary alloc] init];
+        [save writeToFile:filePath atomically:YES];
+    }
+    
+    NSDictionary *slot = [save objectForKey:controller.saveSlot];
+    //NSLog(@"slot loaded: %@", slot);
     NSData *encodedOwner = [slot objectForKey:OWNER];
     Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
     NSData *encodedPet = [slot objectForKey:PET];
@@ -42,11 +57,30 @@
 }
 
 +(NSString *)loadLastUsedSlotString {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:CURRENT_SLOT];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save =[NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    return [save objectForKey:CURRENT_SLOT];
 }
 
 +(NSDictionary *)loadSlot:(NSString*)slot{
-    NSDictionary *encodedSlot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:slot];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    }
+    else {
+        //create empty save file
+        save = [[NSMutableDictionary alloc] init];
+        [save writeToFile:filePath atomically:YES];
+    }
+    NSDictionary *encodedSlot = [save objectForKey:slot];
+    //NSLog(@"slot loaded: %@", slot);
+    
     NSData *encodedOwner = [encodedSlot objectForKey:OWNER];
     Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
     NSData *encodedPet = [encodedSlot objectForKey:PET];
