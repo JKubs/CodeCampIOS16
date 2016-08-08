@@ -24,36 +24,39 @@
         save = [[NSMutableDictionary alloc] init];
         [save writeToFile:filePath atomically:YES];
     }
-    
-    NSDictionary *slot = [save objectForKey:controller.saveSlot];
-    //NSLog(@"slot loaded: %@", slot);
-    NSData *encodedOwner = [slot objectForKey:OWNER];
-    Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
-    NSData *encodedPet = [slot objectForKey:PET];
-    Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
-    //NSArray *encodedNotifications = [slot mutableArrayValueForKey:NOTIFICATION_REQUESTS];
-    //NSMutableArray *notifications = [[NSMutableArray alloc] init];
-    //for (NSData *element in encodedNotifications) {
-    //    [notifications addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
-    //}
-    NSData *encodedStorage = [slot objectForKey:STORAGE];
-    NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
+    if([save objectForKey:controller.saveSlot] != nil) {
+        
+        NSDictionary *slot = [save objectForKey:controller.saveSlot];
+        //NSLog(@"slot loaded: %@", slot);
+        NSData *encodedOwner = [slot objectForKey:OWNER];
+        Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
+        NSData *encodedPet = [slot objectForKey:PET];
+        Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
+        //NSArray *encodedNotifications = [slot mutableArrayValueForKey:NOTIFICATION_REQUESTS];
+        //NSMutableArray *notifications = [[NSMutableArray alloc] init];
+        //for (NSData *element in encodedNotifications) {
+        //    [notifications addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
+        //}
+        NSData *encodedStorage = [slot objectForKey:STORAGE];
+        NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
 
-    //NSLog(@"%@",notifications);
-    if(owner != nil) {
-        controller.owner = owner;
-    }
-    if(pet != nil) {
-        controller.pet = pet;
-    }
-    //if(notifications != nil) {
-    //    controller.notificationRequests = notifications;
-    //}
-    if(storage != nil) {
-        controller.storage = storage;
-    }
+        //NSLog(@"%@",notifications);
+        if(owner != nil) {
+            controller.owner = owner;
+        }
+        if(pet != nil) {
+            controller.pet = pet;
+        }
+        //if(notifications != nil) {
+        //    controller.notificationRequests = notifications;
+        //}
+        if(storage != nil) {
+            controller.storage = storage;
+        }
     
-    return YES;
+        return YES;
+    }
+    return NO;
 }
 
 +(NSString *)loadLastUsedSlotString {
@@ -78,19 +81,23 @@
         save = [[NSMutableDictionary alloc] init];
         [save writeToFile:filePath atomically:YES];
     }
-    NSDictionary *encodedSlot = [save objectForKey:slot];
-    //NSLog(@"slot loaded: %@", slot);
+    if([save objectForKey:slot] != nil) {
+        NSDictionary *encodedSlot = [save objectForKey:slot];
+        //NSLog(@"slot loaded: %@", slot);
     
-    NSData *encodedOwner = [encodedSlot objectForKey:OWNER];
-    Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
-    NSData *encodedPet = [encodedSlot objectForKey:PET];
-    Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
-    //NSData *encodedNotifications = [encodedSlot objectForKey:NOTIFICATION_REQUESTS];
-    //NSMutableArray *notifications = [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
-    NSData *encodedStorage = [encodedSlot objectForKey:STORAGE];
-    NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
-    return [NSDictionary dictionaryWithObjectsAndKeys:owner,OWNER,pet,PET,/*notifications,NOTIFICATION_REQUESTS,*/
+        NSData *encodedOwner = [encodedSlot objectForKey:OWNER];
+        Owner *owner =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedOwner];
+        NSData *encodedPet = [encodedSlot objectForKey:PET];
+        Pet *pet =  [NSKeyedUnarchiver unarchiveObjectWithData:encodedPet];
+        //NSData *encodedNotifications = [encodedSlot objectForKey:NOTIFICATION_REQUESTS];
+        //NSMutableArray *notifications = [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
+        NSData *encodedStorage = [encodedSlot objectForKey:STORAGE];
+        NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
+        return [NSDictionary dictionaryWithObjectsAndKeys:owner,OWNER,pet,PET,/*notifications,NOTIFICATION_REQUESTS,*/
             storage,STORAGE,nil];
+
+    }
+    return nil;
 }
 
 +(NSMutableArray *)loadSavedNotificationsFromSlot:(NSString*)saveSlot {

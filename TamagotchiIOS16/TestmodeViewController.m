@@ -192,6 +192,11 @@
     self.notificationRequests = [[NSMutableArray alloc] init];
 }
 
+- (IBAction)killPet:(UIButton *)sender {
+    self.pet.lives = 0;
+    [self updateHealth];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {

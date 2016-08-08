@@ -19,6 +19,7 @@
 - (IBAction)sendNotification:(id)sender;
 - (IBAction)genRandNoti:(id)sender;
 - (IBAction)resetNotis:(id)sender;
+- (IBAction)killPet:(UIButton *)sender;
 - (void)refreshNoti;
 - (int)calcStuff:(int)n;
 - (void)gameOver:(id)sender;
