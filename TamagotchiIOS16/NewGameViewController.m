@@ -13,6 +13,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    row = -1;
     recipes = [[NSArray alloc] initWithObjects:@"Critter", @"Montie", nil];
     self.startButton.enabled = NO;
 }
@@ -23,6 +24,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     row = indexPath.row;
+    if ([self.userName.text length] != 0) {
+        self.startButton.enabled = YES;
+    } else {
+        self.startButton.enabled = NO;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -40,7 +46,7 @@
 }
 
 - (IBAction)edited:(UITextField *)sender {
-    if ([self.userName.text length] != 0) {
+    if ([self.userName.text length] != 0 && row != -1) {
         self.startButton.enabled = YES;
     } else {
         self.startButton.enabled = NO;

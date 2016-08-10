@@ -69,7 +69,14 @@
     }
     
     //NSLog(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-    return [save writeToFile:filePath atomically:YES];
+    if([save writeToFile:filePath atomically:YES]) {
+        NSLog(@"Saved game");
+        return YES;
+    }
+    else {
+        NSLog(@"Error : saving game failed");
+        return NO;
+    }
 }
 
 +(BOOL)saveNotificationSchedules:(NSMutableArray*)notifications toSlot:(NSString*)saveSlot{
@@ -100,6 +107,8 @@
     
     BOOL succeed = [save writeToFile:filePath atomically:YES];
     if (!succeed){
+        //error handling
+        NSLog(@"Error: notification schedules of %@ could not be saved", saveSlot);
         return NO;
     }
     return YES;
@@ -121,6 +130,8 @@
     [save removeObjectForKey:CURRENT_SLOT];
     BOOL succeed = [save writeToFile:filePath atomically:YES];
     if (!succeed){
+        //error handling
+        NSLog(@"Error: %@ could not be deleted", saveSlot);
         return NO;
     }
     return YES;

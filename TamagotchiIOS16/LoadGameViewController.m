@@ -147,10 +147,10 @@
 
 
 - (IBAction)slot1Pressed:(UIButton *)sender {
-    self.slot1View.selected = YES;
-    self.slot2View.selected = NO;
-    self.slot3View.selected = NO;
-    self.slot4View.selected = NO;
+    self.slot1View.alpha = 1.0f;
+    self.slot2View.alpha = 0.5f;
+    self.slot3View.alpha = 0.5f;
+    self.slot4View.alpha = 0.5f;
     self.selectedSlot = SAVE_SLOT_1;
     self.selectedView = self.slot1View;
     if(self.slot1PetImage.image == nil) {
@@ -175,10 +175,10 @@
 }
 
 - (IBAction)slot2Pressed:(UIButton *)sender {
-    self.slot1View.selected = NO;
-    self.slot2View.selected = YES;
-    self.slot3View.selected = NO;
-    self.slot4View.selected = NO;
+    self.slot1View.alpha = 0.5f;
+    self.slot2View.alpha = 1.0f;
+    self.slot3View.alpha = 0.5f;
+    self.slot4View.alpha = 0.5f;
     self.selectedSlot = SAVE_SLOT_2;
     self.selectedView = self.slot2View;
     if(self.slot2PetImage.image == nil) {
@@ -203,10 +203,10 @@
 }
 
 - (IBAction)slot3Pressed:(UIButton *)sender {
-    self.slot1View.selected = NO;
-    self.slot2View.selected = NO;
-    self.slot3View.selected = YES;
-    self.slot4View.selected = NO;
+    self.slot1View.alpha = 0.5f;
+    self.slot2View.alpha = 0.5f;
+    self.slot3View.alpha = 1.0f;
+    self.slot4View.alpha = 0.5f;
     self.selectedSlot = SAVE_SLOT_3;
     self.selectedView = self.slot3View;
     if(self.slot3PetImage.image == nil) {
@@ -231,10 +231,10 @@
 }
 
 - (IBAction)slot4Pressed:(UIButton *)sender {
-    self.slot1View.selected = NO;
-    self.slot2View.selected = NO;
-    self.slot3View.selected = NO;
-    self.slot4View.selected = YES;
+    self.slot1View.alpha = 0.5f;
+    self.slot2View.alpha = 0.5f;
+    self.slot3View.alpha = 0.5f;
+    self.slot4View.alpha = 1.0f;
     self.selectedSlot = SAVE_SLOT_4;
     self.selectedView = self.slot4View;
     if(self.slot4PetImage.image == nil) {
