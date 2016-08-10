@@ -26,9 +26,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *storageList;
 @property (weak, nonatomic) IBOutlet UILabel *petType;
 @property (weak, nonatomic) IBOutlet UILabel *petLives;
-@property (weak, nonatomic) IBOutlet UIView *firstHealthLabel;
-@property (weak, nonatomic) IBOutlet UIView *secondHealthLabel;
-@property (weak, nonatomic) IBOutlet UIView *thirdHealthLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *firstHealthLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *secondHealthLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *thirdHealthLabel;
+
 
 - (void)gameOver:(id)sender;
 

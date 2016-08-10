@@ -23,7 +23,7 @@
     recipes = self.foodList;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.usernameLabel.text = [NSString stringWithFormat:@"Name: %@", self.owner.name];
-    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
+    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %ld$", (long)self.owner.money];
     self.petType.text = [NSString stringWithFormat:@"Type: %@", self.pet.type];
     [self updateHealth];
     self.storageList.layer.borderWidth = 1.0f;
@@ -48,7 +48,7 @@
     Food *food = (Food *) [recipes objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", food.name]];
     cell.textLabel.text = food.name;
-    cell.textLabel.text = [cell.textLabel.text stringByAppendingFormat:@" | quantity: %d", [[self.storage valueForKey:food.name] integerValue]];
+    cell.textLabel.text = [cell.textLabel.text stringByAppendingFormat:@" | quantity: %ld", [[self.storage valueForKey:food.name] integerValue]];
     return cell;
 }
 
@@ -77,20 +77,14 @@
 
 - (void)updateHealth {
     NSInteger health = self.pet.lives;
-    if (health >= 1) {
-        self.firstHealthLabel.backgroundColor = [UIColor redColor];
-    } else {
-        self.firstHealthLabel.backgroundColor = [UIColor whiteColor];
+    if (health < 3) {
+        self.thirdHealthLabel.hidden = YES;
     }
-    if (health >= 2) {
-        self.secondHealthLabel.backgroundColor = [UIColor redColor];
-    } else {
-        self.secondHealthLabel.backgroundColor = [UIColor whiteColor];
+    if (health < 2) {
+        self.secondHealthLabel.hidden = YES;
     }
-    if (health >= 3) {
-        self.thirdHealthLabel.backgroundColor = [UIColor redColor];
-    } else {
-        self.thirdHealthLabel.backgroundColor = [UIColor whiteColor];
+    if (health < 1) {
+        self.firstHealthLabel.hidden = YES;
     }
     if (health == 0) {
         [self gameOver:self];
