@@ -80,6 +80,8 @@
     self.pet = [[Pet alloc] init];
     self.pet.type = [recipes objectAtIndex:row];
     self.pet.lives = 3;
+    self.pet.exp = 0;
+    self.pet.lvl = 1;
 }
 
 - (void) setupStorage {

@@ -33,11 +33,14 @@
             self.slot1PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
             self.slot1Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
         }
+        self.slot1XP.text = [[NSNumber numberWithInteger:pet.exp] stringValue];
+        self.slot1lvl.text = [[NSNumber numberWithInteger:pet.lvl] stringValue];
         self.slot1UserName.text = owner.name;
         self.slot1money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
     }
     else {
         self.slot1UserName.text = @"empty";
+        self.slot1Content.hidden = YES;
     }
     
     if(slot2 != nil) {
@@ -53,11 +56,14 @@
             self.slot2PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
             self.slot2Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
         }
+        self.slot2XP.text = [[NSNumber numberWithInteger:pet.exp] stringValue];
+        self.slot2lvl.text = [[NSNumber numberWithInteger:pet.lvl] stringValue];
         self.slot2UserName.text = owner.name;
         self.slot2money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
     }
     else {
         self.slot2UserName.text = @"empty";
+        self.slot2Content.hidden = YES;
     }
     
     if(slot3 != nil) {
@@ -72,11 +78,14 @@
             self.slot3PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
             self.slot3Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
         }
+        self.slot3XP.text = [[NSNumber numberWithInteger:pet.exp] stringValue];
+        self.slot3lvl.text = [[NSNumber numberWithInteger:pet.lvl] stringValue];
         self.slot3UserName.text = owner.name;
         self.slot3money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
     }
     else {
         self.slot3UserName.text = @"empty";
+        self.slot3Content.hidden = YES;
     }
     
     if(slot4 != nil) {
@@ -91,12 +100,15 @@
             self.slot4PetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_calm_1.png", pet.type]];
             self.slot4Lives.text = [[NSNumber numberWithInteger:pet.lives] stringValue];
         }
+        self.slot4XP.text = [[NSNumber numberWithInteger:pet.exp] stringValue];
+        self.slot4lvl.text = [[NSNumber numberWithInteger:pet.lvl] stringValue];
         self.slot4UserName.text = owner.name;
         self.slot4money.text = [[NSNumber numberWithInteger:owner.money] stringValue];
         
     }
     else {
         self.slot4UserName.text = @"empty";
+        self.slot4Content.hidden = YES;
     }
     self.loadButton.enabled = NO;
     self.deleteButton.enabled = NO;
@@ -136,23 +148,22 @@
 
 - (IBAction)deleteSlot:(UIButton *)sender {
     [Saver deleteSlot:self.selectedSlot];
-    self.selectedPetImage.image = nil;
     self.selectedUserName.text = @"empty";
-    self.selectedLives.text = @"0";
-    self.selectedmoney.text = @"0";
-    self.selectedView.selected = NO;
+    self.selectedPetImage.image = nil;
+    
+    self.selectedView.hidden = YES;
     self.loadButton.enabled = NO;
     self.deleteButton.enabled = NO;
+    self.createButton.enabled = YES;
 }
 
-
-- (IBAction)slot1Pressed:(UIButton *)sender {
+- (IBAction)slot1pressed:(UIView *)sender {
     self.slot1View.alpha = 1.0f;
     self.slot2View.alpha = 0.5f;
     self.slot3View.alpha = 0.5f;
     self.slot4View.alpha = 0.5f;
     self.selectedSlot = SAVE_SLOT_1;
-    self.selectedView = self.slot1View;
+    self.selectedView = self.slot1Content;
     if(self.slot1PetImage.image == nil) {
         self.createButton.enabled = YES;
         self.loadButton.enabled = NO;
@@ -168,19 +179,18 @@
         self.deleteButton.enabled = YES;
         self.createButton.enabled = NO;
     }
-    self.selectedPetImage = self.slot1PetImage;
+
     self.selectedUserName = self.slot1UserName;
-    self.selectedLives = self.slot1Lives;
-    self.selectedmoney = self.slot1money;
+    self.selectedPetImage = self.slot1PetImage;
 }
 
-- (IBAction)slot2Pressed:(UIButton *)sender {
+- (IBAction)slot2pressed:(UIButton *)sender {
     self.slot1View.alpha = 0.5f;
     self.slot2View.alpha = 1.0f;
     self.slot3View.alpha = 0.5f;
     self.slot4View.alpha = 0.5f;
     self.selectedSlot = SAVE_SLOT_2;
-    self.selectedView = self.slot2View;
+    self.selectedView = self.slot2Content;
     if(self.slot2PetImage.image == nil) {
         self.createButton.enabled = YES;
         self.loadButton.enabled = NO;
@@ -196,19 +206,19 @@
         self.deleteButton.enabled = YES;
         self.createButton.enabled = NO;
     }
-    self.selectedPetImage = self.slot2PetImage;
+
     self.selectedUserName = self.slot2UserName;
-    self.selectedLives = self.slot2Lives;
-    self.selectedmoney = self.slot2money;
+    self.selectedPetImage = self.slot2PetImage;
+
 }
 
-- (IBAction)slot3Pressed:(UIButton *)sender {
+- (IBAction)slot3pressed:(UIButton *)sender {
     self.slot1View.alpha = 0.5f;
     self.slot2View.alpha = 0.5f;
     self.slot3View.alpha = 1.0f;
     self.slot4View.alpha = 0.5f;
     self.selectedSlot = SAVE_SLOT_3;
-    self.selectedView = self.slot3View;
+    self.selectedView = self.slot3Content;
     if(self.slot3PetImage.image == nil) {
         self.createButton.enabled = YES;
         self.loadButton.enabled = NO;
@@ -224,19 +234,19 @@
         self.deleteButton.enabled = YES;
         self.createButton.enabled = NO;
     }
-    self.selectedPetImage = self.slot3PetImage;
+
     self.selectedUserName = self.slot3UserName;
-    self.selectedLives = self.slot3Lives;
-    self.selectedmoney = self.slot3money;
+    self.selectedPetImage = self.slot3PetImage;
+
 }
 
-- (IBAction)slot4Pressed:(UIButton *)sender {
+- (IBAction)slot4pressed:(UIButton *)sender {
     self.slot1View.alpha = 0.5f;
     self.slot2View.alpha = 0.5f;
     self.slot3View.alpha = 0.5f;
     self.slot4View.alpha = 1.0f;
     self.selectedSlot = SAVE_SLOT_4;
-    self.selectedView = self.slot4View;
+    self.selectedView = self.slot4Content;
     if(self.slot4PetImage.image == nil) {
         self.createButton.enabled = YES;
         self.loadButton.enabled = NO;
@@ -252,10 +262,27 @@
         self.deleteButton.enabled = YES;
         self.createButton.enabled = NO;
     }
-    self.selectedPetImage = self.slot4PetImage;
+
     self.selectedUserName = self.slot4UserName;
-    self.selectedLives = self.slot4Lives;
-    self.selectedmoney = self.slot4money;
+    self.selectedPetImage = self.slot4PetImage;
 }
+
+- (IBAction)empty1pressed:(UIButton *)sender {
+    [self slot1pressed:sender];
+}
+
+- (IBAction)empty2pressed:(UIButton *)sender {
+    [self slot2pressed:sender];
+}
+
+- (IBAction)empty3pressed:(UIButton *)sender {
+    [self slot3pressed:sender];
+}
+
+- (IBAction)empty4pressed:(UIButton *)sender {
+    [self slot4pressed:sender];
+}
+
+
 
 @end

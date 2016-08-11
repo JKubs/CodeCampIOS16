@@ -13,6 +13,8 @@
 
 @property (weak, nonatomic) NSString *type;
 @property NSInteger lives;
+@property NSInteger exp;
+@property NSInteger lvl;
 @property (weak, nonatomic) NSString *currentWish;
 
 -(void)encodeWithCoder:(NSCoder *)aCoder;

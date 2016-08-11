@@ -18,6 +18,8 @@
 {
     [coder encodeObject:self.type forKey:@"type"];
     [coder encodeInteger:self.lives forKey:@"lives"];
+    [coder encodeInteger:self.exp forKey:@"exp"];
+    [coder encodeInteger:self.lvl forKey:@"lvl"];
     [coder encodeObject:self.currentWish forKey:@"currentWish"];
 
 }
@@ -28,6 +30,8 @@
     if(self) {
         self.type = [coder decodeObjectForKey:@"type"];
         self.lives = [coder decodeIntegerForKey:@"lives"];
+        self.exp = [coder decodeIntegerForKey:@"exp"];
+        self.lvl = [coder decodeIntegerForKey:@"lvl"];
         self.currentWish = [coder decodeObjectForKey:@"currentWish"];
     }
     return self;

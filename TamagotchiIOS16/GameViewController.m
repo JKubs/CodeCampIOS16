@@ -90,6 +90,9 @@
     [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
     //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 
+    self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+    //TODO ../needed exp
+    self.expBar.progress = self.pet.exp/20;
     
     if (self.myTimer == nil) {
         [self startTimer];

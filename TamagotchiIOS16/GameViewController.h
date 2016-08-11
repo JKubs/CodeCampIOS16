@@ -61,6 +61,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *statsButton;
 @property (weak, nonatomic) IBOutlet UIButton *feedButton;
 @property (weak, nonatomic) IBOutlet UIButton *storeButton;
+@property (strong, nonatomic) IBOutlet UIProgressView *expBar;
+@property (strong, nonatomic) IBOutlet UILabel *lvlLabel;
 
 - (void)gameOver:(id)sender;
 - (void)removeTooLateNotiFromPushNoti:(NSDate *) date;
