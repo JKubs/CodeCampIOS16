@@ -147,14 +147,26 @@
 
 
 - (IBAction)deleteSlot:(UIButton *)sender {
-    [Saver deleteSlot:self.selectedSlot];
-    self.selectedUserName.text = @"empty";
-    self.selectedPetImage.image = nil;
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Deletion"
+                                                                   message:@"Are you sure you want to delete?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
-    self.selectedView.hidden = YES;
-    self.loadButton.enabled = NO;
-    self.deleteButton.enabled = NO;
-    self.createButton.enabled = YES;
+    UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {[Saver deleteSlot:self.selectedSlot];
+                                                              self.selectedUserName.text = @"empty";
+                                                              self.selectedPetImage.image = nil;
+                                                              
+                                                              self.selectedView.hidden = YES;
+                                                              self.loadButton.enabled = NO;
+                                                              self.deleteButton.enabled = NO;
+                                                              self.createButton.enabled = YES;}];
+    
+    [alert addAction:deleteAction];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {}];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 - (IBAction)slot1pressed:(UIView *)sender {
