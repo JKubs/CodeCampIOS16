@@ -31,6 +31,8 @@
 #define CURRENT_SLOT @"currentslot"
 #define WISH_TOO_LATE @"you were too l8! i h8 u -.-"
 #define SAVE_FILE_NAME @"SaveFile.txt"
+#define EXP_CAP_FOR_LVL 10
+#define MAX_LEVEL 3
 
 @interface Constants : NSObject
 

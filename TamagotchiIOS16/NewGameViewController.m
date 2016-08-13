@@ -73,7 +73,7 @@
 - (void) setupOwner {
     self.owner = [[Owner alloc] init];
     self.owner.name = self.userName.text;
-    self.owner.money = 100;
+    self.owner.money = 10;
 }
 
 - (void) setupPet {

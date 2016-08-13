@@ -206,7 +206,7 @@
                                 <color key="backgroundColor" red="0.97886071105708761" green="1" blue="0.73131647101577513" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vYT-qW-Mam">
-                                <rect key="frame" x="61" y="433" width="301" height="128"/>
+                                <rect key="frame" x="61" y="433" width="301" height="152"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzX-JA-3MH">
                                         <rect key="frame" x="23" y="47" width="241" height="21"/>
@@ -235,6 +235,42 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-w6-xic">
                                         <rect key="frame" x="132" y="85" width="20" height="20"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qi-Ja-5pj">
+                                        <rect key="frame" x="170" y="47" width="45" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exp:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaG-7I-fTH">
+                                        <rect key="frame" x="170" y="84" width="33" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poL-EG-7So">
+                                        <rect key="frame" x="253" y="123" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKP-bk-SFf">
+                                        <rect key="frame" x="253" y="84" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGQ-OX-Gfp">
+                                        <rect key="frame" x="253" y="47" width="11" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exp to next Level:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21W-8c-Ivl">
+                                        <rect key="frame" x="23" y="123" width="134" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9160743972076999" green="1" blue="0.73856642452414967" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                             </view>
@@ -275,7 +311,10 @@
                     <connections>
                         <outlet property="firstHealthLabel" destination="S6M-2d-e4Z" id="Qou-8h-Bey"/>
                         <outlet property="moneyLabel" destination="YM0-hb-eHa" id="Zs3-xY-gie"/>
+                        <outlet property="neededExp" destination="poL-EG-7So" id="pEA-vI-r1Z"/>
+                        <outlet property="petExp" destination="gKP-bk-SFf" id="res-Lv-8ey"/>
                         <outlet property="petLives" destination="k3s-rI-6e6" id="BlT-bj-fwW"/>
+                        <outlet property="petLvl" destination="qGQ-OX-Gfp" id="Xik-mJ-SLK"/>
                         <outlet property="petType" destination="ZzX-JA-3MH" id="dtC-S2-jkh"/>
                         <outlet property="secondHealthLabel" destination="3fj-FR-rgQ" id="H1f-Gc-TEe"/>
                         <outlet property="storageList" destination="KHj-Yn-XyZ" id="juB-ka-H8S"/>

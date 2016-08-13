@@ -91,8 +91,7 @@
     //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 
     self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
-    //TODO ../needed exp
-    self.expBar.progress = self.pet.exp/20;
+    self.expBar.progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
     
     if (self.myTimer == nil) {
         [self startTimer];
@@ -145,6 +144,19 @@
         NSNumber *number = [NSNumber numberWithInteger:quantity];
         [self.storage setValue:number forKey:food];
         self.pet.currentWish = NULL;
+        if(self.pet.lvl < MAX_LEVEL) {
+            self.pet.exp += 1;
+            if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
+                self.pet.exp -= EXP_CAP_FOR_LVL*self.pet.lvl;
+                self.pet.lvl++;
+                self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+            }
+            float progress;
+            if(self.pet.lvl < MAX_LEVEL) progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
+            else progress = 1.0f;
+            [self.expBar setProgress:progress animated:YES];
+        }
+        
         [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
         [Saver saveChangeOn:STORAGE withValue:self.storage atSaveSlot:self.saveSlot];
     }

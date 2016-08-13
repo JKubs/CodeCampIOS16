@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Owner.h"
 #import "Pet.h"
+#import "Constants.h"
 
 @interface StatusViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     
@@ -29,6 +30,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *firstHealthLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *secondHealthLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *thirdHealthLabel;
+@property (strong, nonatomic) IBOutlet UILabel *petLvl;
+@property (strong, nonatomic) IBOutlet UILabel *petExp;
+@property (strong, nonatomic) IBOutlet UILabel *neededExp;
 
 
 - (void)gameOver:(id)sender;

@@ -25,6 +25,10 @@
     self.usernameLabel.text = [NSString stringWithFormat:@"Name: %@", self.owner.name];
     self.moneyLabel.text = [NSString stringWithFormat:@"Money: %ld$", (long)self.owner.money];
     self.petType.text = [NSString stringWithFormat:@"Type: %@", self.pet.type];
+    self.petExp.text = [[NSNumber numberWithInteger:self.pet.exp] stringValue];
+    self.petLvl.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+    if(self.pet.lvl == MAX_LEVEL) self.neededExp.text = @"-";
+    else self.neededExp.text = [[NSNumber numberWithInteger:self.pet.lvl*EXP_CAP_FOR_LVL-self.pet.exp] stringValue];
     [self updateHealth];
     self.storageList.layer.borderWidth = 1.0f;
     self.storageList.layer.borderColor = [UIColor blueColor].CGColor;
