@@ -11,12 +11,23 @@
 @implementation MenuViewController
 
 - (void) viewDidLoad {
-    
+    self.leftPetImage.image = [UIImage imageNamed:@"Critter_calm_1.png"];
+    self.rightPetImage.image = [UIImage imageNamed:@"Montie_calm_1.png"];
+    [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
+}
+
+- (void) nextFrame:(NSTimer*)timer{
+    self.currentFrame = (1 - self.currentFrame);
+    self.leftPetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"Critter_calm_%i.png", self.currentFrame+1]];
+    self.rightPetImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"Montie_calm_%i.png", self.currentFrame+1]];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     if([self isClearStart]) {
-        self.continueButton.hidden = YES;
+        self.continueButton.enabled = NO;
+    }
+    else {
+        self.continueButton.enabled = YES;
     }
     [super viewWillAppear:animated];
 }

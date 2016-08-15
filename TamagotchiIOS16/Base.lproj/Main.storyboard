@@ -353,9 +353,22 @@
                                     <segue destination="1UR-hV-aay" kind="show" identifier="newloadGame" id="3Lb-zk-Ja1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Don't starve your pet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIy-0M-l4f">
+                                <rect key="frame" x="179" y="167" width="243" height="89"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbh-gu-H6H">
+                                <rect key="frame" x="163" y="306" width="75" height="75"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FHS-Ky-y2d">
+                                <rect key="frame" x="356" y="306" width="75" height="75"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.63140096731423967" blue="0.23173659914013578" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="IIy-0M-l4f" firstAttribute="centerX" secondItem="axa-Uw-n2i" secondAttribute="centerX" id="6C3-Nb-wc5"/>
                             <constraint firstItem="bWQ-71-rzO" firstAttribute="centerX" secondItem="axa-Uw-n2i" secondAttribute="centerX" id="8nu-x4-CC4"/>
                             <constraint firstItem="g9a-Dw-2l1" firstAttribute="centerX" secondItem="axa-Uw-n2i" secondAttribute="centerX" id="fGg-xl-qN5"/>
                             <constraint firstItem="bWQ-71-rzO" firstAttribute="centerY" secondItem="axa-Uw-n2i" secondAttribute="centerY" constant="135" id="ozf-Zy-3oD"/>
@@ -365,6 +378,8 @@
                     <navigationItem key="navigationItem" id="dB1-cH-tFI"/>
                     <connections>
                         <outlet property="continueButton" destination="g9a-Dw-2l1" id="UfA-00-Sww"/>
+                        <outlet property="leftPetImage" destination="fbh-gu-H6H" id="BaY-D8-NmO"/>
+                        <outlet property="rightPetImage" destination="FHS-Ky-y2d" id="oe2-jP-VwZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QP4-wz-cWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -961,7 +976,7 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.63140096729999995" blue="0.2317365991" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="m9r-JW-DP3" firstAttribute="centerY" secondItem="QZw-Zk-Cpg" secondAttribute="centerY" constant="236" id="0lS-SE-rpL"/>
                             <constraint firstItem="zKB-AH-Ihq" firstAttribute="centerY" secondItem="QZw-Zk-Cpg" secondAttribute="centerY" constant="-180" id="16o-xN-PYl"/>
@@ -1088,7 +1103,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.63140096729999995" blue="0.2317365991" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Wjo-TE-WJJ" firstAttribute="centerY" secondItem="BX6-Nu-z1g" secondAttribute="centerY" id="3xF-js-9xb"/>
                             <constraint firstItem="gzj-cO-2P8" firstAttribute="centerX" secondItem="BX6-Nu-z1g" secondAttribute="centerX" constant="-168" id="83E-q9-iat"/>
@@ -1130,7 +1145,7 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kOc-tp-UP1"/>
+        <segue reference="u5r-m7-40I"/>
         <segue reference="wOR-0p-Fgo"/>
     </inferredMetricsTieBreakers>
 </document>

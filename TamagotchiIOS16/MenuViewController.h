@@ -16,8 +16,11 @@
 @interface MenuViewController : UIViewController  {
     
 }
-
+@property (nonatomic) int currentFrame;
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
+@property (strong, nonatomic) IBOutlet UIImageView *leftPetImage;
+@property (strong, nonatomic) IBOutlet UIImageView *rightPetImage;
 
 - (BOOL)isClearStart;
+- (void)nextFrame:(NSTimer*)timer;
 @end

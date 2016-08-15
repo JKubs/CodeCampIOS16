@@ -99,14 +99,9 @@
 
 +(NSMutableArray *)loadSavedNotificationsFromSlot:(NSString*)saveSlot {
     NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
-    NSMutableArray *encodedArray = [slot mutableArrayValueForKey:NOTIFICATION_REQUESTS];
-    NSMutableArray *decodedArray = [[NSMutableArray alloc] init];
-    //NSLog(@"decodedArray: %@", decodedArray);
-    //NSLog(@"save slot: %@", saveSlot);
-    for (NSData *element in encodedArray) {
-        [decodedArray addObject:[NSKeyedUnarchiver unarchiveObjectWithData:element]];
-    }
-    return decodedArray;
+    NSData *encodedNotifications = [slot objectForKey:NOTIFICATION_REQUESTS];
+    NSMutableArray *notifications = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
+    return notifications;
 }
 
 @end
