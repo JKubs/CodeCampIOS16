@@ -14,6 +14,7 @@
     self.leftPetImage.image = [UIImage imageNamed:@"Critter_calm_1.png"];
     self.rightPetImage.image = [UIImage imageNamed:@"Montie_calm_1.png"];
     [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
+    //[[UIAccelerometer sharedAccelerometer]setDelegate:self];
 }
 
 - (void) nextFrame:(NSTimer*)timer{
@@ -55,5 +56,9 @@
 
 -(BOOL)isClearStart {
     return [Loader loadLastUsedSlotString] == nil;
+}
+
+-(void)setupAchievements {
+    NSMutableDictionary *globalAchievements = [[NSMutableDictionary alloc] init];
 }
 @end

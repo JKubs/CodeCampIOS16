@@ -18,6 +18,8 @@
 #define OWNER_NAME @"ownername"
 #define OWNER_MONEY @"ownermoney"
 #define STORAGE @"ownerstorage"
+#define LOCAL_ACHIEVEMENTS @"localachievements"
+#define GLOBAL_ACHIEVEMENTS @"globalachievements"
 #define PET @"pet"
 #define PET_NAME @"petname"
 #define PET_HEALTH @"pethealth"
@@ -32,7 +34,7 @@
 #define WISH_TOO_LATE @"you were too l8! i h8 u -.-"
 #define SAVE_FILE_NAME @"SaveFile.txt"
 #define EXP_CAP_FOR_LVL 10
-#define MAX_LEVEL 3
+#define MAX_LEVEL 5
 
 @interface Constants : NSObject
 

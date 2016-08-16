@@ -63,6 +63,7 @@
         [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
         NSData *encodedStorage = [NSKeyedArchiver archivedDataWithRootObject:controller.storage];
         [slot setObject:encodedStorage forKey:STORAGE];
+        [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.achievements] forKey:LOCAL_ACHIEVEMENTS];
         
         [save setObject:slot forKey:controller.saveSlot];
         [save setObject:controller.saveSlot forKey:CURRENT_SLOT];

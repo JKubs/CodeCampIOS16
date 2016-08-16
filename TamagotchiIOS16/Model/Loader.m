@@ -36,7 +36,9 @@
         NSMutableArray *notifications = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
         NSData *encodedStorage = [slot objectForKey:STORAGE];
         NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
-
+        NSData *encodedAchievements = [slot objectForKey:LOCAL_ACHIEVEMENTS];
+        NSMutableDictionary *achievements = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
+        
         //NSLog(@"%@",notifications);
         if(owner != nil) {
             controller.owner = owner;
@@ -49,6 +51,9 @@
         }
         if(storage != nil) {
             controller.storage = storage;
+        }
+        if(achievements != nil) {
+            controller.achievements = achievements;
         }
     
         return YES;
@@ -90,8 +95,10 @@
         NSMutableArray *notifications = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
         NSData *encodedStorage = [encodedSlot objectForKey:STORAGE];
         NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
+        NSData *encodedAchievements = [encodedSlot objectForKey:LOCAL_ACHIEVEMENTS];
+        NSMutableDictionary *achievements = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
         return [NSDictionary dictionaryWithObjectsAndKeys:owner,OWNER,pet,PET,notifications,NOTIFICATION_REQUESTS,
-            storage,STORAGE,nil];
+            storage,STORAGE,achievements,LOCAL_ACHIEVEMENTS,nil];
 
     }
     return nil;

@@ -259,6 +259,9 @@
         GameOverController *gameOverController = [segue destinationViewController];
         gameOverController.pet = self.pet;
     }
+    else if ([segueName isEqualToString:@"showAchievements"]){
+        
+    }
 }
 
 - (IBAction)enterMoneyFarm:(UIButton *)sender {

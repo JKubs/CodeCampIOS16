@@ -49,6 +49,7 @@
 @property (strong, nonatomic) NSString *saveSlot;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;
+@property (strong, nonatomic) NSMutableDictionary *achievements;
 @property (strong, nonatomic) Pet *pet;
 @property (strong, nonatomic) NSArray *foodList;
 @property (strong, nonatomic) NSArray *drinkList;
