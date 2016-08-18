@@ -37,7 +37,7 @@
         NSData *encodedStorage = [slot objectForKey:STORAGE];
         NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
         NSData *encodedAchievements = [slot objectForKey:LOCAL_ACHIEVEMENTS];
-        NSMutableDictionary *achievements = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
+        NSMutableArray *localAchievements = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
         
         //NSLog(@"%@",notifications);
         if(owner != nil) {
@@ -52,8 +52,8 @@
         if(storage != nil) {
             controller.storage = storage;
         }
-        if(achievements != nil) {
-            controller.achievements = achievements;
+        if(localAchievements != nil) {
+            controller.localAchievements = localAchievements;
         }
     
         return YES;
@@ -96,7 +96,7 @@
         NSData *encodedStorage = [encodedSlot objectForKey:STORAGE];
         NSMutableDictionary *storage = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedStorage];
         NSData *encodedAchievements = [encodedSlot objectForKey:LOCAL_ACHIEVEMENTS];
-        NSMutableDictionary *achievements = (NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
+        NSMutableArray *achievements = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
         return [NSDictionary dictionaryWithObjectsAndKeys:owner,OWNER,pet,PET,notifications,NOTIFICATION_REQUESTS,
             storage,STORAGE,achievements,LOCAL_ACHIEVEMENTS,nil];
 
@@ -105,10 +105,70 @@
 }
 
 +(NSMutableArray *)loadSavedNotificationsFromSlot:(NSString*)saveSlot {
-    NSDictionary *slot = [[NSUserDefaults standardUserDefaults] dictionaryForKey:saveSlot];
-    NSData *encodedNotifications = [slot objectForKey:NOTIFICATION_REQUESTS];
-    NSMutableArray *notifications = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
-    return notifications;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    }
+    else {
+        //create empty save file
+        save = [[NSMutableDictionary alloc] init];
+        [save writeToFile:filePath atomically:YES];
+    }
+    if([save objectForKey:saveSlot] != nil) {
+        NSDictionary *slot = [save objectForKey:saveSlot];
+        NSData *encodedNotifications = [slot objectForKey:NOTIFICATION_REQUESTS];
+        NSMutableArray *notifications = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
+        return notifications;
+    }
+    return nil;
+}
+
++(NSMutableArray *)loadGlobalAchievements {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+        NSData *encodedAchievements = [save objectForKey:GLOBAL_ACHIEVEMENTS];
+        NSMutableArray *achievements = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
+        return achievements;
+    }
+    else {
+        //create empty save file
+        save = [[NSMutableDictionary alloc] init];
+        [save writeToFile:filePath atomically:YES];
+        return nil;
+    }
+}
+
++(NSMutableArray *)loadLocalAchievements:(NSString *)fromSlot {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    }
+    else {
+        //create empty save file
+        save = [[NSMutableDictionary alloc] init];
+        [save writeToFile:filePath atomically:YES];
+    }
+    if([save objectForKey:fromSlot] != nil) {
+        NSDictionary *slot = [save objectForKey:fromSlot];
+        NSData *encodedAchievements = [slot objectForKey:LOCAL_ACHIEVEMENTS];
+        NSMutableArray *localachievements = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
+        NSLog(@"%@",localachievements);
+        return localachievements;
+    }
+    return nil;
 }
 
 @end

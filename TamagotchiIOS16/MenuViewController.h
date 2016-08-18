@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GameViewController.h"
+#import "LoadGameViewController.h"
+#import "AchievementViewController.h"
 #import "Owner.h"
 #import "Pet.h"
 #import "Loader.h"
@@ -17,12 +19,14 @@
     
 }
 @property (nonatomic) int currentFrame;
+@property (strong, nonatomic) NSMutableArray *globalAchievements;
+@property (strong, nonatomic) NSMutableArray *localAchievements;
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIImageView *leftPetImage;
 @property (strong, nonatomic) IBOutlet UIImageView *rightPetImage;
-@property (strong, nonatomic) NSMutableDictionary *achievements;
 
 - (BOOL)isClearStart;
 - (void)nextFrame:(NSTimer*)timer;
-- (void)setupAchievements;
+-(NSMutableArray*)createLocalAchievementsForSlot:(NSString*)slot;
+-(NSMutableArray*)createGlobalAchievements;
 @end

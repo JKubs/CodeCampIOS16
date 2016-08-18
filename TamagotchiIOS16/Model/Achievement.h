@@ -11,18 +11,20 @@
 
 @interface Achievement : NSObject <NSCoding>
 
-@property (weak, nonatomic) NSString *title;
-@property (weak, nonatomic) NSString *achievementDescription;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *achievementDescription;
 @property NSInteger progress;
-@property void (^rewardMethod)(void);
-@property (weak, nonatomic) NSString *rewardDescription;
+//@property void (^rewardMethod)(void);
+@property (strong, nonatomic) NSString *rewardDescription;
 @property BOOL isAchieved;
+@property (strong, nonatomic) NSString *affectionKey;
 @property NSInteger goal;
-@property (weak, nonatomic) NSString *scope;
+@property (strong, nonatomic) NSString *scope;
+@property (strong, nonatomic) NSString *achievementImage;
 
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;
 -(BOOL)isAffected:(NSString*)byKey;
--(void)bookProgress:(NSInteger)newValue;
+-(BOOL)bookProgress:(NSInteger)newValue;
 
 @end

@@ -25,6 +25,7 @@
 #define PET_HEALTH @"pethealth"
 #define PET_LIVES @"petlives"
 #define PET_WISHES @"petwishes"
+#define PET_LEVEL @"petlevel"
 #define CURRENT_WISH @"wish"
 #define FOOD_APPLE @"apple"
 #define FOOD_SODA @"soda"

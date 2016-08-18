@@ -13,10 +13,17 @@
 #import "Pet.h"
 #import "Loader.h"
 #import "Saver.h"
+#import "Achievement.h"
 
-@interface AchievementViewController : UIViewController {
-    
+@interface AchievementViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+    NSMutableArray *recipes;
 }
 @property (strong, nonatomic) IBOutlet UITableView *achievementTable;
+@property (strong, nonatomic) NSMutableArray *globalAchievements;
+@property (strong, nonatomic) NSMutableArray *localAchievements;
+@property BOOL showLocal;
+@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
+
+- (IBAction)deleteProgress:(UIButton *)sender;
 
 @end

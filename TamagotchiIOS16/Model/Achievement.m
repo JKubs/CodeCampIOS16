@@ -19,12 +19,14 @@
 {
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.achievementDescription forKey:@"desription"];
-    [coder encodeObject:self.rewardMethod forKey:@"rewardMethod"];
+    //[coder encodeObject:self.rewardMethod forKey:@"rewardMethod"];
     [coder encodeObject:self.rewardDescription forKey:@"rewardDescription"];
     [coder encodeBool:self.isAchieved forKey:@"isAchieved"];
     [coder encodeInteger:self.progress forKey:@"progress"];
     [coder encodeInteger:self.goal forKey:@"goal"];
     [coder encodeObject:self.scope forKey:@"scope"];
+    [coder encodeObject:self.affectionKey forKey:@"affectionKey"];
+    [coder encodeObject:self.achievementImage forKey:@"image"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -33,27 +35,33 @@
     if(self) {
         self.title = [coder decodeObjectForKey:@"title"];
         self.achievementDescription = [coder decodeObjectForKey:@"description"];
-        self.rewardMethod = [coder decodeObjectForKey:@"rewardMethod"];
+        //self.rewardMethod = [coder decodeObjectForKey:@"rewardMethod"];
         self.rewardDescription = [coder decodeObjectForKey:@"rewardDescription"];
         self.isAchieved = [coder decodeBoolForKey:@"isAchieved"];
         self.progress = [coder decodeIntegerForKey:@"progress"];
         self.goal = [coder decodeIntegerForKey:@"goal"];
         self.scope = [coder decodeObjectForKey:@"scope"];
+        self.affectionKey = [coder decodeObjectForKey:@"affectionKey"];
+        self.achievementImage = [coder decodeObjectForKey:@"image"];
     }
     return self;
 }
 
 -(BOOL)isAffected:(NSString *)byKey {
-    return YES;
+    return [self.affectionKey isEqualToString:byKey];
 }
 
--(void)bookProgress:(NSInteger)newValue {
-    self.progress = newValue;
-    if(self.progress >= self.goal) {
-        self.progress = self.goal;
-        self.isAchieved = YES;
-        //[self rewardMethod];
+-(BOOL)bookProgress:(NSInteger)newValue {
+    if(newValue > self.progress) {
+        self.progress = newValue;
+        if(self.progress >= self.goal) {
+            self.progress = self.goal;
+            self.isAchieved = YES;
+            //[self rewardMethod];
+        }
+        return YES;
     }
+    return NO;
 }
 
 @end

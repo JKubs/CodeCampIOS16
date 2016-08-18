@@ -65,6 +65,8 @@
         gameViewController.pet = self.pet;
         gameViewController.storage = self.storage;
         gameViewController.saveSlot = self.saveSlot;
+        gameViewController.localAchievements = self.localAchievements;
+        gameViewController.globalAchievements = self.globalAchievements;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }

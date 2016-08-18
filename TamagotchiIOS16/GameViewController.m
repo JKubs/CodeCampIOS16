@@ -20,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
     self.gameOverButton = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                         style:UIBarButtonItemStyleDone
                                                                        target:self
@@ -88,14 +87,28 @@
     }
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
     [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
-    //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-
-    self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
-    self.expBar.progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
     
     if (self.myTimer == nil) {
         [self startTimer];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+    
+    if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
+        self.pet.exp -= EXP_CAP_FOR_LVL*self.pet.lvl;
+        self.pet.lvl++;
+        self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+    }
+    float progress;
+    if(self.pet.lvl < MAX_LEVEL) progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
+    else progress = 1.0f;
+    self.expBar.progress = progress;
+    
+    [self updateAchievements:OWNER_MONEY forValue:self.owner.money];
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,16 +158,7 @@
         [self.storage setValue:number forKey:food];
         self.pet.currentWish = NULL;
         if(self.pet.lvl < MAX_LEVEL) {
-            self.pet.exp += 1;
-            if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
-                self.pet.exp -= EXP_CAP_FOR_LVL*self.pet.lvl;
-                self.pet.lvl++;
-                self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
-            }
-            float progress;
-            if(self.pet.lvl < MAX_LEVEL) progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
-            else progress = 1.0f;
-            [self.expBar setProgress:progress animated:YES];
+            [self addExp:10];
         }
         
         [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
@@ -171,6 +175,39 @@
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+- (void)addExp:(NSInteger)exp {
+    self.pet.exp += exp;
+    if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
+        self.pet.exp -= EXP_CAP_FOR_LVL*self.pet.lvl;
+        self.pet.lvl++;
+        self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+    }
+    float progress;
+    if(self.pet.lvl < MAX_LEVEL) progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
+    else progress = 1.0f;
+    [self.expBar setProgress:progress animated:YES];
+    [self updateAchievements:PET_LEVEL forValue:self.pet.lvl];
+}
+
+-(void)updateAchievements:(NSString *)withKey forValue:(NSInteger)value {
+    BOOL localChanged = NO, globalChanged = NO;
+    for (Achievement* achievement in self.globalAchievements) {
+        if(![achievement isAchieved] && [achievement isAffected:withKey]) {
+            globalChanged = [achievement bookProgress:value];
+        }
+    }
+    for (Achievement* achievement in self.localAchievements) {
+        if(![achievement isAchieved] && [achievement isAffected:withKey]) {
+            localChanged = [achievement bookProgress:value];
+        }
+    }
+    if(localChanged)
+        [Saver saveChangeOn:LOCAL_ACHIEVEMENTS withValue:self.localAchievements atSaveSlot:self.saveSlot];
+    if(globalChanged)
+        [Saver saveChangeOn:GLOBAL_ACHIEVEMENTS withValue:self.globalAchievements atSaveSlot:self.saveSlot];
+    
 }
 
 - (void) removeTooLateNotiFromPushNoti:(NSDate *)date{
@@ -260,7 +297,11 @@
         gameOverController.pet = self.pet;
     }
     else if ([segueName isEqualToString:@"showAchievements"]){
-        
+        AchievementViewController *controller = (AchievementViewController*) [segue destinationViewController];
+        controller.showLocal = YES;
+        controller.deleteButton.hidden = YES;
+        controller.localAchievements = self.localAchievements;
+        controller.globalAchievements = self.globalAchievements;
     }
 }
 

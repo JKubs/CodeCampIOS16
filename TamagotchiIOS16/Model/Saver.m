@@ -24,16 +24,24 @@
     else {
         save = [[NSMutableDictionary alloc] init];
     }
-    NSMutableDictionary *slot;
-    if([save objectForKey:saveSlot] == nil) {
-        slot = [[NSMutableDictionary alloc] init];
+    
+    if([key isEqualToString:GLOBAL_ACHIEVEMENTS]) {
+        NSData *encodedValue = [NSKeyedArchiver archivedDataWithRootObject:value];
+        [save setObject:encodedValue forKey:GLOBAL_ACHIEVEMENTS];
     }
     else {
-        slot = [save objectForKey:saveSlot];
+        NSMutableDictionary *slot;
+        if([save objectForKey:saveSlot] == nil) {
+            slot = [[NSMutableDictionary alloc] init];
+        }
+        else {
+            slot = [save objectForKey:saveSlot];
+        }
+        NSData *encodedValue = [NSKeyedArchiver archivedDataWithRootObject:value];
+        [slot setValue:encodedValue forKey:key];
+        [save setObject:slot forKey:saveSlot];
     }
-    NSData *encodedValue = [NSKeyedArchiver archivedDataWithRootObject:value];
-    [slot setValue:encodedValue forKey:key];
-    [save setObject:slot forKey:saveSlot];
+    
     return [save writeToFile:filePath atomically:YES];
 }
 
@@ -63,8 +71,9 @@
         [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.pet] forKey:PET];
         NSData *encodedStorage = [NSKeyedArchiver archivedDataWithRootObject:controller.storage];
         [slot setObject:encodedStorage forKey:STORAGE];
-        [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.achievements] forKey:LOCAL_ACHIEVEMENTS];
+        [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.localAchievements] forKey:LOCAL_ACHIEVEMENTS];
         
+        [save setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.globalAchievements] forKey:GLOBAL_ACHIEVEMENTS];
         [save setObject:slot forKey:controller.saveSlot];
         [save setObject:controller.saveSlot forKey:CURRENT_SLOT];
     }

@@ -25,7 +25,7 @@
     row = -1;
     recipes = self.foodList;
     self.greetingLabel.text = [NSString stringWithFormat:@"Hello, %@", self.owner.name];
-    self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %d$", self.owner.money];
+    self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %ld$", self.owner.money];
     self.tableView.layer.borderWidth = 1.0f;
     self.tableView.layer.borderColor = [UIColor blueColor].CGColor;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFeed) name:@"PetFeed" object:self.pet];
@@ -52,7 +52,7 @@
     cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", food.name]];
     cell.textLabel.text = food.name;
     cell.
-    textLabel.text = [cell.textLabel.text stringByAppendingFormat:@":%d$ | quantity: %d", food.cost, [[self.storage valueForKey:food.name] integerValue]];
+    textLabel.text = [cell.textLabel.text stringByAppendingFormat:@":%ld$ | quantity: %ld", food.cost, [[self.storage valueForKey:food.name] integerValue]];
     return cell;
 }
 
@@ -95,8 +95,19 @@
             [self.storage setValue:number forKey:food.name];
             [Saver saveChangeOn:STORAGE withValue:self.storage atSaveSlot:self.saveSlot];
             [Saver saveChangeOn:OWNER withValue:self.owner atSaveSlot:self.saveSlot];
-            self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %d$", self.owner.money];
+            self.testLabel.text = [NSString stringWithFormat:@"Your Balance: %ld$", self.owner.money];
             [self.tableView reloadData];
+        }
+        else {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                           message:@"Insufficient funds"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }
 }

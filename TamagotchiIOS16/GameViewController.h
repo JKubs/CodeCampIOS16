@@ -16,6 +16,7 @@
 #import "Constants.h"
 #import "MoneyFarmViewController.h"
 #import "StatusViewController.h"
+#import "AchievementViewController.h"
 #import "TestmodeViewController.h"
 #import "NotificationRequest.h"
 #import "NotificationCreater.h"
@@ -49,7 +50,8 @@
 @property (strong, nonatomic) NSString *saveSlot;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;
-@property (strong, nonatomic) NSMutableDictionary *achievements;
+@property (strong, nonatomic) NSMutableArray *localAchievements;
+@property (strong, nonatomic) NSMutableArray *globalAchievements;
 @property (strong, nonatomic) Pet *pet;
 @property (strong, nonatomic) NSArray *foodList;
 @property (strong, nonatomic) NSArray *drinkList;
@@ -71,8 +73,8 @@
 - (IBAction)enterShop:(UIButton *)sender;
 
 - (void)feed:(NSString*)food;
-
--(void)animate;
+- (void)addExp:(NSInteger)exp;
+- (void)updateAchievements:(NSString*)withKey forValue:(NSInteger)value;
 
 @end
 

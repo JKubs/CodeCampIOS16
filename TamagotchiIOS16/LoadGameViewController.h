@@ -51,6 +51,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *loadButton;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 @property (strong, nonatomic) IBOutlet UIButton *createButton;
+@property (strong, nonatomic) NSMutableArray *globalAchievements;
+@property (strong, nonatomic) NSMutableArray *localAchievements;
 
 @property (strong, nonatomic) UILabel *selectedUserName;
 @property (strong, nonatomic) UIImageView *selectedPetImage;

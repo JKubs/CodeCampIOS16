@@ -132,13 +132,16 @@
         gameViewController.storage = storage;
         gameViewController.notificationRequests = notificationRequests;
         gameViewController.saveSlot = self.selectedSlot;
+        gameViewController.localAchievements = self.localAchievements;
+        gameViewController.globalAchievements = self.globalAchievements;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
     else if ([segueName isEqualToString: @"createGame"]) {
      
         NewGameViewController *controller = (NewGameViewController *) [segue destinationViewController];
         controller.saveSlot = self.selectedSlot;
-        
+        controller.localAchievements = self.localAchievements;
+        controller.globalAchievements = self.globalAchievements;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }

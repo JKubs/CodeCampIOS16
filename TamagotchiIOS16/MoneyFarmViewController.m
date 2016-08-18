@@ -24,7 +24,7 @@
     self.navigationItem.rightBarButtonItem = self.gameOverButton;
     self.navigationItem.rightBarButtonItem.enabled = NO;
     self.navigationItem.hidesBackButton = YES;
-    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
+    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %ld$", self.owner.money];
     self.testCoin.hidden = YES;
     self.testCoin.enabled = NO;
     [UIView animateWithDuration:0.4 animations:^{self.buttonHeight.constant=66;}];
@@ -76,7 +76,7 @@
     self.testCoin.enabled = NO;
     self.owner.money += 1;
     [Saver saveChangeOn:OWNER withValue:self.owner atSaveSlot:self.saveSlot];
-    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %d$", self.owner.money];
+    self.moneyLabel.text = [NSString stringWithFormat:@"Money: %ld$", self.owner.money];
     [self startSuccessfullTimer];
 }
 

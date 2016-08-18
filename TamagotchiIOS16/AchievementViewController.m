@@ -14,5 +14,95 @@
 
 @implementation AchievementViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    for (Achievement* a in self.globalAchievements) {
+        NSLog(@"%@", a.title);
+        NSLog(@"%@", a.achievementDescription);
+        NSLog(@"%ld", a.goal);
+    }
+    
+    if(self.showLocal) {
+        recipes = self.localAchievements;
+        [recipes addObjectsFromArray:self.globalAchievements];
+    }
+    else {
+        recipes = self.globalAchievements;
+    }
+
+    self.achievementTable.layer.borderWidth = 1.0f;
+    //self.achievementTable.layer.borderColor = [UIColor blueColor].CGColor;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [recipes count];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Achievement *achievement = [recipes objectAtIndex:indexPath.row];
+    NSString *msg = [achievement.achievementDescription stringByAppendingFormat:@"\nProgress: %ld/%ld\nReward: %@",achievement.progress, achievement.goal, achievement.rewardDescription];
+    UIAlertController* detailView = [UIAlertController alertControllerWithTitle:achievement.title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {}];
+    
+    [detailView addAction:action];
+    [self presentViewController:detailView animated:YES completion:nil];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *simpleTableIdentifier = @"SimpleTable";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+    }
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    Achievement *achievement = (Achievement *) [recipes objectAtIndex:indexPath.row];
+    //cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", food.name]];
+    //NSString *label = achievement.title;
+    //label = [label stringByAppendingFormat:@"\n%@: %ld/%ld\nReward: %@",achievement.achievementDescription, achievement.progress,achievement.goal,achievement.rewardDescription];
+    //cell.textLabel.text = label;
+    cell.imageView.image = [UIImage imageNamed:achievement.achievementImage];
+    cell.textLabel.text = achievement.title;
+    cell.detailTextLabel.text = @"Select for details";
+    cell.backgroundColor = (achievement.isAchieved ? [UIColor yellowColor] : [UIColor lightGrayColor]);
+    
+    return cell;
+}
+
+- (IBAction)deleteProgress:(UIButton *)sender {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Deletion"
+                                                                   message:@"Are you sure you want to delete your Achievement progress?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                             for (Achievement* achievement in self.globalAchievements) {
+                                                                 achievement.progress = 0;
+                                                                 achievement.isAchieved = NO;
+                                                             }
+                                                             [ Saver saveChangeOn:GLOBAL_ACHIEVEMENTS withValue:self.globalAchievements atSaveSlot:nil];
+                                                             [self.achievementTable reloadData];
+                                                         }];
+    
+    [alert addAction:deleteAction];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {}];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
 
 @end

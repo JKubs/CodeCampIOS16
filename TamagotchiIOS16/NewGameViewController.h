@@ -23,6 +23,8 @@
 @property (strong, nonatomic) Pet *pet;
 @property (strong, nonatomic) NSString *saveSlot;
 @property (strong, nonatomic) NSMutableDictionary *storage;
+@property (strong, nonatomic) NSMutableArray *globalAchievements;
+@property (strong, nonatomic) NSMutableArray *localAchievements;
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *startButton;

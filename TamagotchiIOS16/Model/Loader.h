@@ -18,6 +18,7 @@
 +(NSString*)loadLastUsedSlotString;
 +(NSDictionary *)loadSlot:(NSString*)slot;
 +(NSMutableArray*)loadSavedNotificationsFromSlot:(NSString*)saveSlot;
-
++(NSMutableArray*)loadGlobalAchievements;
++(NSMutableArray*)loadLocalAchievements:(NSString*)fromSlot;
 
 @end
