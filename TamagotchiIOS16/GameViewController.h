@@ -75,6 +75,7 @@
 - (void)feed:(NSString*)food;
 - (void)addExp:(NSInteger)exp;
 - (void)updateExp;
+- (NSInteger)expFor:(NSString*)food;
 - (void)updateAchievements:(NSString*)withKey forValue:(NSInteger)value;
 
 @end

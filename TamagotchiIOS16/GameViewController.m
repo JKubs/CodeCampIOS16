@@ -178,8 +178,7 @@
         [self.storage setValue:number forKey:food];
         self.pet.currentWish = NULL;
         if(self.pet.lvl < MAX_LEVEL) {
-            Food *item = [self.storage objectForKey:food];
-            [self addExp:item.expReward];
+            [self addExp:[self expFor:food]];
         }
         
         [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
@@ -430,19 +429,19 @@
 
 - (void) setupFoodList {
     Food *apple = [[Food alloc] init];
-    apple.name = @"apple";
+    apple.name = FOOD_APPLE;
     apple.cost = 5;
     apple.expReward = 1;
     Food *bread = [[Food alloc] init];
-    bread.name = @"bread";
+    bread.name = FOOD_BREAD;
     bread.cost = 3;
     bread.expReward = 1;
     Food *candy = [[Food alloc] init];
-    candy.name = @"candy";
+    candy.name = FOOD_CANDY;
     candy.cost = 2;
     candy.expReward = 1;
     Food *burger = [[Food alloc] init];
-    burger.name = @"burger";
+    burger.name = FOOD_BURGER;
     burger.cost = 6;
     burger.expReward = 3;
     if(self.pet.lvl >= 3) {
@@ -458,23 +457,23 @@
 
 - (void) setupDrinkList {
     Food *soda = [[Food alloc] init];
-    soda.name = @"soda";
+    soda.name = FOOD_SODA;
     soda.cost = 5;
     soda.expReward = 1;
     Food *water =[[Food alloc] init];
-    water.name = @"water";
+    water.name = FOOD_WATER;
     water.cost = 2;
     water.expReward = 1;
     Food *beer = [[Food alloc] init];
-    beer.name = @"beer";
+    beer.name = FOOD_BEER;
     beer.cost = 4;
     beer.expReward = 2;
     Food *wine = [[Food alloc] init];
-    wine.name = @"wine";
+    wine.name = FOOD_WINE;
     wine.cost = 7;
     wine.expReward = 3;
     Food *milk = [[Food alloc] init];
-    milk.name = @"milk";
+    milk.name = FOOD_MILK;
     milk.cost = 3;
     milk.expReward = 2;
     if(self.pet.lvl >= 3) {
@@ -491,6 +490,34 @@
 - (void) setupStoreFood {
     self.storeFood = [NSMutableArray arrayWithArray:self.foodList];
     [self.storeFood addObjectsFromArray:self.drinkList];
+}
+
+-(NSInteger)expFor:(NSString *)food {
+    if([food isEqualToString:FOOD_SODA]) {
+        return 1;
+    }
+    else if([food isEqualToString:FOOD_WATER]) {
+        return 1;
+    }
+    else if([food isEqualToString:FOOD_BEER]) {
+        return 2;
+    }
+    else if([food isEqualToString:FOOD_WINE]) {
+        return 3;
+    }
+    else if([food isEqualToString:FOOD_APPLE]) {
+        return 1;
+    }
+    else if([food isEqualToString:FOOD_BREAD]) {
+        return 1;
+    }
+    else if([food isEqualToString:FOOD_BURGER]) {
+        return 3;
+    }
+    else if([food isEqualToString:FOOD_CANDY]) {
+        return 1;
+    }
+    else return 0;
 }
 
 @end
