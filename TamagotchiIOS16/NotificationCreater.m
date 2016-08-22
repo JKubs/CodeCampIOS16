@@ -234,7 +234,7 @@
                 [self generateRandomNeed:[NSDate dateWithTimeInterval:rand sinceDate:lastDate] andNoti:notificationRequests];
         }
     }
-    NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    //NSArray *newlocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     //for (UILocalNotification *locationNotification in newlocalNotifications) {
     //    NSLog(@"Existing Notification: %@", locationNotification.alertBody);
     //}

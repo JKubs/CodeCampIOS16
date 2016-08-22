@@ -18,15 +18,15 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:self.title forKey:@"title"];
-    [coder encodeObject:self.achievementDescription forKey:@"desription"];
+    //[coder encodeObject:self.achievementDescription forKey:@"desription"];
     //[coder encodeObject:self.rewardMethod forKey:@"rewardMethod"];
-    [coder encodeObject:self.rewardDescription forKey:@"rewardDescription"];
-    [coder encodeBool:self.isAchieved forKey:@"isAchieved"];
+    //[coder encodeObject:self.rewardDescription forKey:@"rewardDescription"];
+    //[coder encodeBool:self.isAchieved forKey:@"isAchieved"];
     [coder encodeInteger:self.progress forKey:@"progress"];
-    [coder encodeInteger:self.goal forKey:@"goal"];
-    [coder encodeObject:self.scope forKey:@"scope"];
-    [coder encodeObject:self.affectionKey forKey:@"affectionKey"];
-    [coder encodeObject:self.achievementImage forKey:@"image"];
+    //[coder encodeInteger:self.goal forKey:@"goal"];
+    //[coder encodeObject:self.scope forKey:@"scope"];
+    //[coder encodeObject:self.affectionKey forKey:@"affectionKey"];
+    //[coder encodeObject:self.achievementImage forKey:@"image"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -34,15 +34,15 @@
     self = [super init];
     if(self) {
         self.title = [coder decodeObjectForKey:@"title"];
-        self.achievementDescription = [coder decodeObjectForKey:@"description"];
+        //self.achievementDescription = [coder decodeObjectForKey:@"description"];
         //self.rewardMethod = [coder decodeObjectForKey:@"rewardMethod"];
-        self.rewardDescription = [coder decodeObjectForKey:@"rewardDescription"];
-        self.isAchieved = [coder decodeBoolForKey:@"isAchieved"];
+        //self.rewardDescription = [coder decodeObjectForKey:@"rewardDescription"];
+        //self.isAchieved = [coder decodeBoolForKey:@"isAchieved"];
         self.progress = [coder decodeIntegerForKey:@"progress"];
-        self.goal = [coder decodeIntegerForKey:@"goal"];
-        self.scope = [coder decodeObjectForKey:@"scope"];
-        self.affectionKey = [coder decodeObjectForKey:@"affectionKey"];
-        self.achievementImage = [coder decodeObjectForKey:@"image"];
+        //self.goal = [coder decodeIntegerForKey:@"goal"];
+        //self.scope = [coder decodeObjectForKey:@"scope"];
+        //self.affectionKey = [coder decodeObjectForKey:@"affectionKey"];
+        //self.achievementImage = [coder decodeObjectForKey:@"image"];
     }
     return self;
 }
@@ -52,7 +52,16 @@
 }
 
 -(BOOL)bookProgress:(NSInteger)newValue {
-    if(newValue > self.progress) {
+    if([self.affectionKey isEqualToString: ALCOHOL_FED]) {
+        self.progress = newValue;
+        if(self.progress >= self.goal) {
+            self.progress = self.goal;
+            self.isAchieved = YES;
+            //[self rewardMethod];
+        }
+        return YES;
+    }
+    else if(newValue > self.progress) {
         self.progress = newValue;
         if(self.progress >= self.goal) {
             self.progress = self.goal;

@@ -37,8 +37,17 @@
         else {
             slot = [save objectForKey:saveSlot];
         }
+        /*if([key isEqualToString:LOCAL_ACHIEVEMENTS]) {
+            NSMutableArray *localAchievements = (NSMutableArray*) value;
+            for (Achievement* a in localAchievements) {
+                NSLog(@"saving: %@",a.title);
+                NSLog(@"saving: %ld",a.progress);
+            }
+        }*/
+        
         NSData *encodedValue = [NSKeyedArchiver archivedDataWithRootObject:value];
         [slot setValue:encodedValue forKey:key];
+        [save setObject:saveSlot forKey:CURRENT_SLOT];
         [save setObject:slot forKey:saveSlot];
     }
     
@@ -72,7 +81,6 @@
         NSData *encodedStorage = [NSKeyedArchiver archivedDataWithRootObject:controller.storage];
         [slot setObject:encodedStorage forKey:STORAGE];
         [slot setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.localAchievements] forKey:LOCAL_ACHIEVEMENTS];
-        
         [save setObject:[NSKeyedArchiver archivedDataWithRootObject:controller.globalAchievements] forKey:GLOBAL_ACHIEVEMENTS];
         [save setObject:slot forKey:controller.saveSlot];
         [save setObject:controller.saveSlot forKey:CURRENT_SLOT];

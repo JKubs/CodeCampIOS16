@@ -17,18 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    for (Achievement* a in self.globalAchievements) {
-        NSLog(@"%@", a.title);
-        NSLog(@"%@", a.achievementDescription);
-        NSLog(@"%ld", a.goal);
-    }
-    
     if(self.showLocal) {
-        recipes = self.localAchievements;
-        [recipes addObjectsFromArray:self.globalAchievements];
+        self.recipes = self.localAchievements;
+        [self.recipes addObjectsFromArray:self.globalAchievements];
+        self.deleteButton.hidden = YES;
     }
     else {
-        recipes = self.globalAchievements;
+        self.recipes = self.globalAchievements;
     }
 
     self.achievementTable.layer.borderWidth = 1.0f;
@@ -41,11 +36,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [recipes count];
+    return [self.recipes count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Achievement *achievement = [recipes objectAtIndex:indexPath.row];
+    Achievement *achievement = [self.recipes objectAtIndex:indexPath.row];
     NSString *msg = [achievement.achievementDescription stringByAppendingFormat:@"\nProgress: %ld/%ld\nReward: %@",achievement.progress, achievement.goal, achievement.rewardDescription];
     UIAlertController* detailView = [UIAlertController alertControllerWithTitle:achievement.title
                                                                    message:msg
@@ -67,7 +62,7 @@
     }
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    Achievement *achievement = (Achievement *) [recipes objectAtIndex:indexPath.row];
+    Achievement *achievement = (Achievement *) [self.recipes objectAtIndex:indexPath.row];
     //cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", food.name]];
     //NSString *label = achievement.title;
     //label = [label stringByAppendingFormat:@"\n%@: %ld/%ld\nReward: %@",achievement.achievementDescription, achievement.progress,achievement.goal,achievement.rewardDescription];

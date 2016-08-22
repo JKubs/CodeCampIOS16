@@ -41,6 +41,7 @@
     }
     
     NSString *petType = (NSString *) [recipes objectAtIndex:indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:[petType stringByAppendingString:@"_calm_1.png"]];
     cell.textLabel.text = petType;
     return cell;
 }

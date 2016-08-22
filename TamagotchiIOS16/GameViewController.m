@@ -68,6 +68,7 @@
         if([notiR.message isEqualToString:WISH_TOO_LATE]){
             self.pet.lives--;
             self.pet.currentWish = NULL;
+            self.speechFood.hidden = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
         }
     }
@@ -88,12 +89,31 @@
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
     [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
     
+    NSMutableArray* loadedGlobal = [Loader loadGlobalAchievements];
+    NSMutableArray* loadedLocal = [Loader loadLocalAchievements:self.saveSlot];
+    int i = 0;
+    for (Achievement* emptyAchv in self.globalAchievements) {
+        Achievement *fillingAchv = [loadedGlobal objectAtIndex:i];
+        if([emptyAchv.title isEqualToString:fillingAchv.title]) {
+            [emptyAchv bookProgress:fillingAchv.progress];
+        }
+    }
+    i = 0;
+    for (Achievement* emptyAchv in self.localAchievements) {
+        Achievement *fillingAchv = [loadedLocal objectAtIndex:i];
+        if([emptyAchv.title isEqualToString:fillingAchv.title]) {
+            [emptyAchv bookProgress:fillingAchv.progress];
+        }
+    }
+    
     if (self.myTimer == nil) {
         [self startTimer];
     }
 }
 
--(void)viewWillAppear:(BOOL)animated {
+-(void)viewDidAppear:(BOOL)animated {
+    [self.localAchievements removeObjectsInArray:self.globalAchievements];
+    
     self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
     
     if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
@@ -108,7 +128,7 @@
     
     [self updateAchievements:OWNER_MONEY forValue:self.owner.money];
     
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,9 +140,9 @@
     [self feed:self.pet.currentWish];
 }
 
-- (void)feed:(NSString*)food {    
-    NSLog(@"%@", food);
-    if(food == NULL){
+- (void)feed:(NSString*)food {
+    
+    if(food == nil){
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
                                                                        message:@"I am not Hungry"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -158,7 +178,8 @@
         [self.storage setValue:number forKey:food];
         self.pet.currentWish = NULL;
         if(self.pet.lvl < MAX_LEVEL) {
-            [self addExp:10];
+            Food *item = [self.storage objectForKey:food];
+            [self addExp:item.expReward];
         }
         
         [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
@@ -179,16 +200,9 @@
 
 - (void)addExp:(NSInteger)exp {
     self.pet.exp += exp;
-    if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
-        self.pet.exp -= EXP_CAP_FOR_LVL*self.pet.lvl;
-        self.pet.lvl++;
-        self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+    if(self.pet.lvl < MAX_LEVEL) {
+        [self updateExp];
     }
-    float progress;
-    if(self.pet.lvl < MAX_LEVEL) progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
-    else progress = 1.0f;
-    [self.expBar setProgress:progress animated:YES];
-    [self updateAchievements:PET_LEVEL forValue:self.pet.lvl];
 }
 
 -(void)updateAchievements:(NSString *)withKey forValue:(NSInteger)value {
@@ -196,11 +210,44 @@
     for (Achievement* achievement in self.globalAchievements) {
         if(![achievement isAchieved] && [achievement isAffected:withKey]) {
             globalChanged = [achievement bookProgress:value];
+            if(achievement.isAchieved) {
+                NSString *msg = achievement.achievementDescription;
+                [msg stringByAppendingFormat:@"\nReward: %@", achievement.rewardDescription];
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Achievement unlocked"
+                                                                               message:msg
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {
+                                                                          achievement.rewardMethod(self.owner, self.pet,
+                                                                                                   self.storage);
+                                                                          [self updateExp];}];
+                
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }
         }
     }
     for (Achievement* achievement in self.localAchievements) {
         if(![achievement isAchieved] && [achievement isAffected:withKey]) {
             localChanged = [achievement bookProgress:value];
+            if(achievement.isAchieved) {
+                NSString *msg = achievement.achievementDescription;
+                [msg stringByAppendingFormat:@"\nReward: %@", achievement.rewardDescription];
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Achievement unlocked"
+                                                                               message:msg
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {
+                                                                          achievement.rewardMethod(self.owner, self.pet,
+                                                                                                   self.storage);
+                                                                          [self updateExp];}];
+                
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
         }
     }
     if(localChanged)
@@ -242,6 +289,26 @@
 
 - (void)gameOver:(id)sender {
     [self performSegueWithIdentifier:@"GameToOver" sender:sender];
+}
+
+- (void)updateExp {
+    if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
+        self.pet.exp -= EXP_CAP_FOR_LVL*self.pet.lvl;
+        self.pet.lvl++;
+        self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
+        [self setupFoodList];
+        [self setupDrinkList];
+        [self setupStoreFood];
+        [self updateAchievements:[PET_LEVEL stringByAppendingString:self.pet.type] forValue:self.pet.lvl];
+    }
+    [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
+    
+    float progress;
+    if(self.pet.lvl < MAX_LEVEL)
+        progress = (float) self.pet.exp/(float)(EXP_CAP_FOR_LVL*self.pet.lvl);
+    else
+        progress = 1.0f;
+    [self.expBar setProgress:progress animated:YES];
 }
 
 - (void)updateHealth {
@@ -299,7 +366,6 @@
     else if ([segueName isEqualToString:@"showAchievements"]){
         AchievementViewController *controller = (AchievementViewController*) [segue destinationViewController];
         controller.showLocal = YES;
-        controller.deleteButton.hidden = YES;
         controller.localAchievements = self.localAchievements;
         controller.globalAchievements = self.globalAchievements;
     }
@@ -366,32 +432,60 @@
     Food *apple = [[Food alloc] init];
     apple.name = @"apple";
     apple.cost = 5;
+    apple.expReward = 1;
     Food *bread = [[Food alloc] init];
     bread.name = @"bread";
     bread.cost = 3;
+    bread.expReward = 1;
     Food *candy = [[Food alloc] init];
     candy.name = @"candy";
     candy.cost = 2;
+    candy.expReward = 1;
     Food *burger = [[Food alloc] init];
     burger.name = @"burger";
     burger.cost = 6;
-    self.foodList = [[NSArray alloc] initWithObjects:apple, bread, candy, burger, nil];
+    burger.expReward = 3;
+    if(self.pet.lvl >= 3) {
+         self.foodList = [[NSArray alloc] initWithObjects:apple, bread, candy, burger, nil];
+    }
+    else if(self.pet.lvl >= 2) {
+        self.foodList = [[NSArray alloc] initWithObjects:apple, bread, candy, nil];
+    }
+    else {
+        self.foodList = [[NSArray alloc] initWithObjects:apple, bread, nil];
+    }
 }
 
 - (void) setupDrinkList {
     Food *soda = [[Food alloc] init];
     soda.name = @"soda";
     soda.cost = 5;
+    soda.expReward = 1;
     Food *water =[[Food alloc] init];
     water.name = @"water";
     water.cost = 2;
+    water.expReward = 1;
     Food *beer = [[Food alloc] init];
     beer.name = @"beer";
     beer.cost = 4;
+    beer.expReward = 2;
     Food *wine = [[Food alloc] init];
     wine.name = @"wine";
     wine.cost = 7;
-    self.drinkList = [[NSArray alloc] initWithObjects:soda, water, wine, nil];
+    wine.expReward = 3;
+    Food *milk = [[Food alloc] init];
+    milk.name = @"milk";
+    milk.cost = 3;
+    milk.expReward = 2;
+    if(self.pet.lvl >= 3) {
+        self.drinkList = [[NSArray alloc] initWithObjects:soda, water, wine, beer, milk, nil];
+    }
+    else if(self.pet.lvl >= 2) {
+        self.drinkList = [[NSArray alloc] initWithObjects:soda, water, milk, nil];
+    }
+    else {
+        self.drinkList = [[NSArray alloc] initWithObjects:water, milk, nil];
+    }
 }
 
 - (void) setupStoreFood {

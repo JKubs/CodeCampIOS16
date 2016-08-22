@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) NSString *name;
 @property NSInteger cost;
+@property NSInteger expReward;
 
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;

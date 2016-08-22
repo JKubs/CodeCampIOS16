@@ -8,13 +8,16 @@
 
 
 #import <Foundation/Foundation.h>
+#import "Saver.h"
+
+#define ALCOHOL_FED @"alcoholfed"
 
 @interface Achievement : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *achievementDescription;
 @property NSInteger progress;
-//@property void (^rewardMethod)(void);
+@property void (^rewardMethod)(Owner *owner, Pet *pet, NSMutableDictionary *storage);
 @property (strong, nonatomic) NSString *rewardDescription;
 @property BOOL isAchieved;
 @property (strong, nonatomic) NSString *affectionKey;

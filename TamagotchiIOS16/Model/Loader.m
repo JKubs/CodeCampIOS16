@@ -165,7 +165,10 @@
         NSDictionary *slot = [save objectForKey:fromSlot];
         NSData *encodedAchievements = [slot objectForKey:LOCAL_ACHIEVEMENTS];
         NSMutableArray *localachievements = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedAchievements];
-        NSLog(@"%@",localachievements);
+        //for (Achievement* a in localachievements) {
+        //   NSLog(@"loaded: %@",a.title);
+        //    NSLog(@"loaded: %ld",a.progress);
+        //}
         return localachievements;
     }
     return nil;

@@ -16,11 +16,11 @@
 #import "Achievement.h"
 
 @interface AchievementViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
-    NSMutableArray *recipes;
 }
 @property (strong, nonatomic) IBOutlet UITableView *achievementTable;
 @property (strong, nonatomic) NSMutableArray *globalAchievements;
 @property (strong, nonatomic) NSMutableArray *localAchievements;
+@property (strong, nonatomic)NSMutableArray *recipes;
 @property BOOL showLocal;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 

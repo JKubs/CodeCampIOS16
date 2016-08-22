@@ -121,7 +121,6 @@
             otherButtonTitles:nil];
         [alert show];
         
-        
         if (self.gotStartedGameBool) {
             if ([notification.alertBody isEqualToString:WISH_HUNGRY]){
                 int rand = (int)arc4random_uniform((uint32_t)[[self setupFoodList] count]);

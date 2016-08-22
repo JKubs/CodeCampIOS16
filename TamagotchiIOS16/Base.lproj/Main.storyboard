@@ -410,7 +410,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gameScreen_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="SoX-NH-rhK">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </imageView>
-                            <view contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcu-XK-59c">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcu-XK-59c">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9J-5B-5hJ">
@@ -1175,7 +1175,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YE4-Zr-apu">
-                                        <rect key="frame" x="0.0" y="92" width="350" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="350" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YE4-Zr-apu" id="MYl-Jq-pUU">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43"/>
@@ -1189,7 +1189,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.63140096729999995" blue="0.2317365991" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="t5W-q4-P6H" firstAttribute="centerX" secondItem="amJ-cM-Trr" secondAttribute="centerX" id="5FW-18-mcH"/>
                             <constraint firstItem="SiD-FC-wEi" firstAttribute="centerX" secondItem="amJ-cM-Trr" secondAttribute="centerX" id="fRe-ir-4DC"/>
@@ -1221,8 +1221,8 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aAF-bN-Weo"/>
         <segue reference="zIs-k9-Tz8"/>
+        <segue reference="D7L-Zi-1CE"/>
         <segue reference="trl-Ub-J3W"/>
     </inferredMetricsTieBreakers>
 </document>

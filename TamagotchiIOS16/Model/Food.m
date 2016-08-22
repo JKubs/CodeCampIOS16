@@ -13,6 +13,7 @@
 {
     [coder encodeObject:self.name forKey:@"name"];
     [coder encodeInteger:self.cost forKey:@"cost"];
+    [coder encodeInteger:self.expReward forKey:@"exp"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -21,6 +22,7 @@
     if(self) {
         self.name = [coder decodeObjectForKey:@"name"];
         self.cost = [coder decodeIntegerForKey:@"cost"];
+        self.expReward = [coder decodeIntegerForKey:@"exp"];
     }
     return self;
 }
