@@ -99,6 +99,7 @@
     
     
     NSLog(@"locnotiCount %ld", [wishLocNoti count]);
+    NSLog(@"locnotiCount %ld", [notificationRequests count]);
     if([wishLocNoti count] == 0){
         //same stuff as in testmodeViewControllwe TODO make a global method
         int numberOfNotifications = 5;
@@ -164,7 +165,8 @@
         UILocalNotification *last = [wishLocNoti lastObject];
         NSDate *lastDate = [last fireDate];
         NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSInteger timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate];
+        NSInteger timeFromNowToLast = [lastDate timeIntervalSinceDate:currentDate]; //sometimes its realy high
+        NSLog(@" lD: %@, cD: %@, tFNTL: %ld", lastDate, currentDate, timeFromNowToLast);
         NSInteger timeToFullDay = 24*3600 - (timeFromNowToLast + dist);
         NSInteger numberOfNotifications = 5 - [wishLocNoti count];
         NSInteger maxTimeAfterWaitForSleep = sleepTime + 5; //to be changed
@@ -239,6 +241,7 @@
     //    NSLog(@"Existing Notification: %@", locationNotification.alertBody);
     //}
     //NSLog(@"%@", notificationRequests);
+    
     return notificationRequests;
 }
 @end

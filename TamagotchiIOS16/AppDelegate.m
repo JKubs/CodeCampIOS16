@@ -43,9 +43,6 @@
         self.firstStart = NO;
     }    
     
-    //resets notis TODO REMOVE LATER
-    //[[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
     return YES;
 }
 
@@ -74,9 +71,9 @@
                 self.gameController.pet.lives--;
                 self.gameController.pet.currentWish = NULL;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
-
             }
         }
+        
         NSLog(@"last missed noti text: %@", lastMissed.message);
         if(self.gameController.pet.lives <= 0){
             NSLog(@"your pet died -.- ");
@@ -95,8 +92,6 @@
         [NotificationCreater createNotifications:self.gameController.notificationRequests];
         [Saver saveChangeOn:PET withValue:self.gameController.pet atSaveSlot:self.gameController.saveSlot];
        
-
-
     }
 }
 
@@ -123,16 +118,19 @@
         
         if (self.gotStartedGameBool) {
             if ([notification.alertBody isEqualToString:WISH_HUNGRY]){
-                int rand = (int)arc4random_uniform((uint32_t)[[self setupFoodList] count]);
-                Food *randFood = [[self setupFoodList] objectAtIndex:rand];
+                //choose random food for need
+                int rand = (int)arc4random_uniform((uint32_t)[self.gameController.foodList count]);
+                Food *randFood = [self.gameController.foodList objectAtIndex:rand];
                 self.gameController.pet.currentWish = randFood.name;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self];
             }else if ([notification.alertBody isEqualToString:WISH_THIRSTY]){
-                int rand = (int)arc4random_uniform((uint32_t)[[self setupDrinkList] count]);
-                Food *randFood = [[self setupDrinkList] objectAtIndex:rand];
+                //choose random drink for need
+                int rand = (int)arc4random_uniform((uint32_t)[self.gameController.drinkList count]);
+                Food *randFood = [self.gameController.drinkList objectAtIndex:rand];
                 self.gameController.pet.currentWish = randFood.name;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHungry" object:self];
             }else if ([notification.alertBody isEqualToString:WISH_TOO_LATE]){
+                //remove live is notification is a "missed notification"
                 self.gameController.pet.lives--;
                 self.gameController.pet.currentWish = NULL;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
@@ -184,39 +182,6 @@
     self.gameController = result;
     
 }
-
-- (NSArray*) setupFoodList {
-    Food *apple = [[Food alloc] init];
-    apple.name = @"apple";
-    apple.cost = 5;
-    Food *bread = [[Food alloc] init];
-    bread.name = @"bread";
-    bread.cost = 3;
-    Food *candy = [[Food alloc] init];
-    candy.name = @"candy";
-    candy.cost = 2;
-    Food *burger = [[Food alloc] init];
-    burger.name = @"burger";
-    burger.cost = 6;
-    return [[NSArray alloc] initWithObjects:apple, bread, candy, burger, nil];
-}
-
-- (NSArray*) setupDrinkList {
-    Food *soda = [[Food alloc] init];
-    soda.name = @"soda";
-    soda.cost = 5;
-    Food *water =[[Food alloc] init];
-    water.name = @"water";
-    water.cost = 2;
-    Food *beer = [[Food alloc] init];
-    beer.name = @"beer";
-    beer.cost = 4;
-    Food *wine = [[Food alloc] init];
-    wine.name = @"wine";
-    wine.cost = 7;
-    return [[NSArray alloc] initWithObjects:soda, water, wine, nil];
-}
-
 
 -(BOOL)isClearStart {
     return [Loader loadLastUsedSlotString] == nil;

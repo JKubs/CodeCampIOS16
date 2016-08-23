@@ -64,6 +64,7 @@
     
     NotificationRequest *lastMissed = [missedNotis lastObject];
     
+    //remove 1 live for each missed "too late" notification
     for (NotificationRequest *notiR in missedNotis) {
         if([notiR.message isEqualToString:WISH_TOO_LATE]){
             self.pet.lives--;
@@ -87,8 +88,11 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"petHungry" object:self.pet];
     }
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
+    //BUG: Wont save or load
     [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
     
+    
+    //Achivement stuff
     NSMutableArray* loadedGlobal = [Loader loadGlobalAchievements];
     NSMutableArray* loadedLocal = [Loader loadLocalAchievements:self.saveSlot];
     int i = 0;

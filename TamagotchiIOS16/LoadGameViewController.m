@@ -125,7 +125,7 @@
         Pet *pet = [slot objectForKey:PET];
         NSMutableDictionary *storage = [slot objectForKey:STORAGE];
         NSMutableArray *notificationRequests = [Loader loadSavedNotificationsFromSlot:self.selectedSlot];
-        
+        NSLog(@"Loaded NotificationRequests: %@", notificationRequests);
         GameViewController *gameViewController = (GameViewController *) [segue destinationViewController];
         gameViewController.owner = owner;
         gameViewController.pet = pet;
