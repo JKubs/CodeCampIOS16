@@ -88,7 +88,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"petHungry" object:self.pet];
     }
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
-    //BUG: Wont save or load
+    //BUG: Wont save or load -> weil keine notis übergeben werden:
+    NSLog(@"notis created: %@", self.notificationRequests);
     [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
     
     

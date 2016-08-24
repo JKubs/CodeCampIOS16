@@ -51,6 +51,7 @@
         gameViewController.storage = storage;
         gameViewController.saveSlot = lastUsedSlot;
         gameViewController.globalAchievements = self.globalAchievements;
+        gameViewController.notificationRequests = [Loader loadSavedNotificationsFromSlot:lastUsedSlot];
         //self.localAchievements = [Loader loadLocalAchievements:lastUsedSlot];
         if (self.localAchievements == nil) self.localAchievements = [self createLocalAchievementsForSlot:lastUsedSlot];
         gameViewController.localAchievements = self.localAchievements;

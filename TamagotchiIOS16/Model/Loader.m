@@ -122,6 +122,7 @@
         NSDictionary *slot = [save objectForKey:saveSlot];
         NSData *encodedNotifications = [slot objectForKey:NOTIFICATION_REQUESTS];
         NSMutableArray *notifications = (NSMutableArray*) [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotifications];
+        NSLog(@"loaded notifications: %@", notifications);
         return notifications;
     }
     return nil;

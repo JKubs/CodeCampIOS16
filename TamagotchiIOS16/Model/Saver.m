@@ -116,6 +116,7 @@
     else {
         slot = [save objectForKey:saveSlot];
     }
+    NSLog(@"saving notis to slot %@: %@",saveSlot, notifications);
     NSData *encodedNotifications = [NSKeyedArchiver archivedDataWithRootObject:notifications];
 
     [slot setObject:encodedNotifications forKey:NOTIFICATION_REQUESTS];
