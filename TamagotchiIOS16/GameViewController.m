@@ -76,6 +76,7 @@
     
     if(self.pet.lives <= 0){
         NSLog(@"your pet died -.- ");
+        [self updateAchievements:PET_DEATHS forValue:1];
     }else if ([lastMissed.message isEqualToString:WISH_HUNGRY]){
         int rand = (int)arc4random_uniform((uint32_t)[self.foodList count]);
         Food *randFood = [self.foodList objectAtIndex:rand];
@@ -102,6 +103,7 @@
         if([emptyAchv.title isEqualToString:fillingAchv.title]) {
             [emptyAchv bookProgress:fillingAchv.progress];
         }
+        i++;
     }
     i = 0;
     for (Achievement* emptyAchv in self.localAchievements) {
@@ -109,6 +111,7 @@
         if([emptyAchv.title isEqualToString:fillingAchv.title]) {
             [emptyAchv bookProgress:fillingAchv.progress];
         }
+        i++;
     }
     
     [Saver completeSave:self];
@@ -119,6 +122,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    //self.navigationItem.title = @"Return to menu";
+    //self.navigationItem.backBarButtonItem.action = @selector(returnToMenu:);
     [self.localAchievements removeObjectsInArray:self.globalAchievements];
     
     self.lvlLabel.text = [[NSNumber numberWithInteger:self.pet.lvl] stringValue];
@@ -297,6 +302,10 @@
     [self performSegueWithIdentifier:@"GameToOver" sender:sender];
 }
 
+- (void)returnToMenu:(id)sender {
+    [self performSegueWithIdentifier:@"showMenu" sender:sender];
+}
+
 - (void)updateExp {
     if(self.pet.exp >= EXP_CAP_FOR_LVL*self.pet.lvl) {
         self.pet.exp -= EXP_CAP_FOR_LVL*self.pet.lvl;
@@ -374,6 +383,10 @@
         controller.showLocal = YES;
         controller.localAchievements = self.localAchievements;
         controller.globalAchievements = self.globalAchievements;
+    }  else if ([segueName isEqualToString:@"showMoneyFarm"]) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+        [Saver completeSave:self];
     }
 }
 

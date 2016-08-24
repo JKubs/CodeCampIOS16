@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9602AB011D6DCCC700DE986C /* gravestone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9602AAFF1D6DCCC700DE986C /* gravestone.png */; };
+		9602AB021D6DCCC700DE986C /* questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9602AB001D6DCCC700DE986C /* questionmark.png */; };
 		9631EDF31D4B865A00E0BAD8 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 9631EDF21D4B865A00E0BAD8 /* heart.png */; };
 		9641F7F71D48C0BF009D5E03 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9641F7F61D48C0BF009D5E03 /* StatusViewController.m */; };
 		9641F7FA1D48D331009D5E03 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9641F7F91D48D331009D5E03 /* MenuViewController.m */; };
@@ -91,6 +93,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9602AAFF1D6DCCC700DE986C /* gravestone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gravestone.png; sourceTree = "<group>"; };
+		9602AB001D6DCCC700DE986C /* questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = questionmark.png; sourceTree = "<group>"; };
 		9631EDF21D4B865A00E0BAD8 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		9641F7F61D48C0BF009D5E03 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		9641F7F81D48C0D3009D5E03 /* StatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 		96A611E81D46182100F389E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9602AAFF1D6DCCC700DE986C /* gravestone.png */,
+				9602AB001D6DCCC700DE986C /* questionmark.png */,
 				966EC2B41D6B51BE00172595 /* milk.png */,
 				964F40061D6356F5001F1DF2 /* golden-trophy-icon-53521.png */,
 				9631EDF21D4B865A00E0BAD8 /* heart.png */,
@@ -470,6 +476,7 @@
 				96A611F81D46182100F389E7 /* LaunchScreen.storyboard in Resources */,
 				96CC5C741D47A38500DB090A /* grass_background.jpg in Resources */,
 				966EC2B51D6B51BE00172595 /* milk.png in Resources */,
+				9602AB021D6DCCC700DE986C /* questionmark.png in Resources */,
 				96C6D3621D4A29ED00F68653 /* Critter_hungry_1.png in Resources */,
 				96C6D3591D4A06FD00F68653 /* Critter_calm_1.png in Resources */,
 				964F40071D6356F5001F1DF2 /* golden-trophy-icon-53521.png in Resources */,
@@ -486,6 +493,7 @@
 				9641F80D1D48FFF9009D5E03 /* store_background.png in Resources */,
 				96A611F51D46182100F389E7 /* Assets.xcassets in Resources */,
 				96A6A3F91D4B49E9000D6B1B /* buttonBar.png in Resources */,
+				9602AB011D6DCCC700DE986C /* gravestone.png in Resources */,
 				96C6D3741D4A466C00F68653 /* Montie_dead.png in Resources */,
 				96C6D3671D4A34AC00F68653 /* Montie_calm_2.png in Resources */,
 				96C6D3661D4A34AC00F68653 /* Montie_calm_1.png in Resources */,

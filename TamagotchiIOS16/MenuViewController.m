@@ -11,13 +11,41 @@
 @implementation MenuViewController
 
 - (void) viewDidLoad {
-    //self.globalAchievements = [Loader loadGlobalAchievements];
+
     if (self.globalAchievements == nil) self.globalAchievements = [self createGlobalAchievements];
     
-    self.leftPetImage.image = [UIImage imageNamed:@"Critter_calm_1.png"];
-    self.rightPetImage.image = [UIImage imageNamed:@"Montie_calm_1.png"];
-    [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
+    
+    
     //[[UIAccelerometer sharedAccelerometer]setDelegate:self];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    self.navigationItem.hidesBackButton = YES;
+    
+    [self updateAchievementProgress];
+    if([Loader loadFlag:HORRIBLE_SHAME]) {
+        self.leftPetImage.image = [UIImage imageNamed:@"Critter_dead.png"];
+        self.rightPetImage.image = [UIImage imageNamed:@"Montie_dead.png"];
+    }
+    else {
+        self.leftPetImage.image = [UIImage imageNamed:@"Critter_calm_1.png"];
+        self.rightPetImage.image = [UIImage imageNamed:@"Montie_calm_1.png"];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.5 target: self selector: @selector(nextFrame:) userInfo: nil repeats: YES];
+    }
+    [super viewDidAppear:animated];
+}
+
+-(void)updateAchievementProgress {
+    NSMutableArray* loadedGlobal = [Loader loadGlobalAchievements];
+    int i = 0;
+    for (Achievement* emptyAchv in self.globalAchievements) {
+        Achievement *fillingAchv = [loadedGlobal objectAtIndex:i];
+        if([emptyAchv.title isEqualToString:fillingAchv.title]) {
+            [emptyAchv bookProgress:fillingAchv.progress];
+        }
+        i++;
+    }
+    
 }
 
 - (void) nextFrame:(NSTimer*)timer{
@@ -39,6 +67,10 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueName = segue.identifier;
     if ([segueName isEqualToString: @"continueGame"]) {
+        if(self.timer != nil) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
         NSString *lastUsedSlot = [Loader loadLastUsedSlotString];
         NSDictionary *slot = [Loader loadSlot:lastUsedSlot];
         Owner *owner = [slot objectForKey:OWNER];
@@ -58,11 +90,19 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
     else if ([segueName isEqualToString: @"newloadGame"]) {
+        if(self.timer != nil) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
         LoadGameViewController *controller = (LoadGameViewController *) [segue destinationViewController];
         controller.localAchievements = [self createLocalAchievementsForSlot:nil];
         controller.globalAchievements = self.globalAchievements;
     }
     else if ([segueName isEqualToString: @"achievements"]) {
+        if(self.timer != nil) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
         //ensure only the global achievements are shown
         AchievementViewController *controller = (AchievementViewController*) [segue destinationViewController];
         controller.globalAchievements = self.globalAchievements;
@@ -138,7 +178,7 @@
     a1.title = @"Critter beginner";
     a1.achievementDescription = @"Reach Level 3 with Critter";
     a1.progress = 1;
-    a1.rewardDescription = @"n/A";
+    a1.rewardDescription = @"none";
     a1.isAchieved = NO;
     a1.goal = 3;
     a1.scope = GLOBAL_ACHIEVEMENTS;
@@ -153,7 +193,7 @@
     a2.title = @"Montie beginner";
     a2.achievementDescription = @"Reach Level 3 with Critter";
     a2.progress = 1;
-    a2.rewardDescription = @"n/A";
+    a2.rewardDescription = @"none";
     a2.isAchieved = NO;
     a2.goal = 3;
     a2.scope = GLOBAL_ACHIEVEMENTS;
@@ -163,6 +203,52 @@
         
     };
     [achievements addObject:a2];
+    
+    Achievement *a3 = [[Achievement alloc] init];
+    a3.title = @"Critter master";
+    a3.achievementDescription = [NSString stringWithFormat:@"Reach Level %d with Critter", MAX_LEVEL];
+    a3.progress = 1;
+    a3.rewardDescription = @"none";
+    a3.isAchieved = NO;
+    a3.goal = MAX_LEVEL;
+    a3.scope = GLOBAL_ACHIEVEMENTS;
+    a3.affectionKey = PET_LEVEL_CRITTER;
+    a3.achievementImage = @"Critter_calm_1.png";
+    a3.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
+        
+    };
+    [achievements addObject:a3];
+    
+    Achievement *a4 = [[Achievement alloc] init];
+    a4.title = @"Montie master";
+    a4.achievementDescription = [NSString stringWithFormat:@"Reach Level %d with Montie", MAX_LEVEL];
+    a4.progress = 1;
+    a4.rewardDescription = @"none";
+    a4.isAchieved = NO;
+    a4.goal = MAX_LEVEL;
+    a4.scope = GLOBAL_ACHIEVEMENTS;
+    a4.affectionKey = PET_LEVEL_MONTIE;
+    a4.achievementImage = @"Montie_calm_1.png";
+    a4.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
+        
+    };
+    [achievements addObject:a4];
+    
+    Achievement *a5 = [[Achievement alloc] init];
+    a5.title = @"Horrible parent";
+    a5.achievementDescription = @"Let your pet die 3 times";
+    a5.progress = 0;
+    a5.rewardDescription = @"Horrible shame";
+    a5.isAchieved = NO;
+    a5.goal = 3;
+    a5.scope = GLOBAL_ACHIEVEMENTS;
+    a5.affectionKey = PET_DEATHS;
+    a5.achievementImage = @"gravestone.png";
+    a5.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
+        [Saver saveFlag:HORRIBLE_SHAME];
+    };
+    [achievements addObject:a5];
+    
     
     if([Loader loadGlobalAchievements] == nil)
         [Saver saveChangeOn:GLOBAL_ACHIEVEMENTS withValue:achievements atSaveSlot:nil];

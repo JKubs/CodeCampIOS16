@@ -28,6 +28,8 @@
 #define PET_LEVEL @"petlevel"
 #define PET_LEVEL_CRITTER @"petlevelCritter"
 #define PET_LEVEL_MONTIE @"petlevelMontie"
+#define PET_DEATHS @"petdeaths"
+#define HORRIBLE_SHAME @"SHAME"
 #define CURRENT_WISH @"wish"
 #define FOOD_APPLE @"apple"
 #define FOOD_SODA @"soda"

@@ -20,5 +20,6 @@
 +(BOOL)saveNotificationSchedules:(NSArray*)notifications toSlot:(NSString*)saveSlot;
 +(BOOL)deleteSlot:(NSString*)saveSlot;
 +(BOOL)deleteCurrentSlotReference;
-
++(BOOL)saveFlag:(NSString*)flagKeyword;
++(BOOL)removeFlag:(NSString*)flagKeyword;
 @end

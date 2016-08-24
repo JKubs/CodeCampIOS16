@@ -128,6 +128,25 @@
     return nil;
 }
 
++(BOOL)loadFlag:(NSString *)flagKey {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+        
+        return [save objectForKey:flagKey] != nil;
+    }
+    else {
+        //create empty save file
+        save = [[NSMutableDictionary alloc] init];
+        [save writeToFile:filePath atomically:YES];
+        return NO;
+    }
+}
+
 +(NSMutableArray *)loadGlobalAchievements {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory

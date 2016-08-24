@@ -61,6 +61,15 @@
         }
         return YES;
     }
+    else if([self.affectionKey isEqualToString:PET_DEATHS]) {
+        self.progress += newValue;
+        if(self.progress >= self.goal) {
+            self.progress = self.goal;
+            self.isAchieved = YES;
+            //[self rewardMethod];
+        }
+        return YES;
+    }
     else if(newValue > self.progress) {
         self.progress = newValue;
         if(self.progress >= self.goal) {
@@ -70,6 +79,7 @@
         }
         return YES;
     }
+    
     return NO;
 }
 

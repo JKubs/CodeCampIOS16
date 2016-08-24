@@ -87,6 +87,7 @@
                                                                  achievement.isAchieved = NO;
                                                              }
                                                              [ Saver saveChangeOn:GLOBAL_ACHIEVEMENTS withValue:self.globalAchievements atSaveSlot:nil];
+                                                             [Saver removeFlag:HORRIBLE_SHAME];
                                                              [self.achievementTable reloadData];
                                                          }];
     

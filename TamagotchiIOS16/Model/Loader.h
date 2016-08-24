@@ -20,5 +20,6 @@
 +(NSMutableArray*)loadSavedNotificationsFromSlot:(NSString*)saveSlot;
 +(NSMutableArray*)loadGlobalAchievements;
 +(NSMutableArray*)loadLocalAchievements:(NSString*)fromSlot;
++(BOOL)loadFlag:(NSString*)flagKey;
 
 @end

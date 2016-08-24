@@ -93,6 +93,7 @@
 - (void)updateHealth {
     if (self.pet.lives == 0) {
         [self gameOver:self];
+        [self.gameController updateAchievements:PET_DEATHS forValue:1];
     }
 }
 

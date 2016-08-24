@@ -24,9 +24,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIImageView *leftPetImage;
 @property (strong, nonatomic) IBOutlet UIImageView *rightPetImage;
+@property (strong, nonatomic) NSTimer *timer;
 
 - (BOOL)isClearStart;
 - (void)nextFrame:(NSTimer*)timer;
 -(NSMutableArray*)createLocalAchievementsForSlot:(NSString*)slot;
 -(NSMutableArray*)createGlobalAchievements;
+-(void)updateAchievementProgress;
 @end

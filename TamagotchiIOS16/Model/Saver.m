@@ -140,6 +140,38 @@
     return [[NSUserDefaults standardUserDefaults] synchronize];*/
 }
 
++(BOOL)saveFlag:(NSString *)flagKeyword {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+
+    [save setObject:@"YES" forKey:flagKeyword];
+    
+    BOOL succeed = [save writeToFile:filePath atomically:YES];
+    if (!succeed){
+        //error handling
+        return NO;
+    }
+    return YES;
+}
+
++(BOOL)removeFlag:(NSString *)flagKeyword {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    
+    [save removeObjectForKey:flagKeyword];
+    
+    BOOL succeed = [save writeToFile:filePath atomically:YES];
+    if (!succeed){
+        //error handling
+        return NO;
+    }
+    return YES;
+}
+
 +(BOOL)deleteSlot:(NSString *)saveSlot {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory

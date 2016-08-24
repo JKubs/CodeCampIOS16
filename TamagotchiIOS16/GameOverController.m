@@ -16,4 +16,11 @@
     self.petImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_dead.png", self.pet.type]];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"confirm"]) {
+        MenuViewController *menu = [segue destinationViewController];
+        menu.continueButton.enabled = NO;
+    }
+}
+
 @end
