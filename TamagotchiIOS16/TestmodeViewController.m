@@ -194,6 +194,8 @@
 
 - (IBAction)killPet:(UIButton *)sender {
     self.pet.lives = 0;
+    [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.gameController.saveSlot];
+    [Saver deleteCurrentSlotReference];
     [self updateHealth];
 }
 

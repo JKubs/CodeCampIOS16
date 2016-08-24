@@ -157,4 +157,13 @@
     
 }
 
++(BOOL)deleteCurrentSlotReference {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+    NSString *filePath = [documentsDirectory stringByAppendingString:SAVE_FILE_NAME];
+    NSMutableDictionary *save = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    [save removeObjectForKey:CURRENT_SLOT];
+    return [save writeToFile:filePath atomically:YES];
+}
+
 @end

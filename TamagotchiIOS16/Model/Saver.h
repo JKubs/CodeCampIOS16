@@ -19,5 +19,6 @@
 +(BOOL)completeSave:(GameViewController*)controller;
 +(BOOL)saveNotificationSchedules:(NSArray*)notifications toSlot:(NSString*)saveSlot;
 +(BOOL)deleteSlot:(NSString*)saveSlot;
++(BOOL)deleteCurrentSlotReference;
 
 @end

@@ -111,6 +111,8 @@
         }
     }
     
+    [Saver completeSave:self];
+    
     if (self.myTimer == nil) {
         [self startTimer];
     }

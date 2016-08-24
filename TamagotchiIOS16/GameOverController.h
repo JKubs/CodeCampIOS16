@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Pet.h"
+#import "Saver.h"
 
 @interface GameOverController : UIViewController
 
