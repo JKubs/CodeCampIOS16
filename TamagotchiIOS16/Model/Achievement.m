@@ -62,7 +62,9 @@
         return YES;
     }
     else if([self.affectionKey isEqualToString:PET_DEATHS]) {
+        NSLog(@"old progress: %ld", self.progress);
         self.progress += newValue;
+        NSLog(@"new progress: %ld", self.progress);
         if(self.progress >= self.goal) {
             self.progress = self.goal;
             self.isAchieved = YES;

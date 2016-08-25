@@ -41,7 +41,14 @@
     for (Achievement* emptyAchv in self.globalAchievements) {
         Achievement *fillingAchv = [loadedGlobal objectAtIndex:i];
         if([emptyAchv.title isEqualToString:fillingAchv.title]) {
-            [emptyAchv bookProgress:fillingAchv.progress];
+            if([emptyAchv.affectionKey isEqualToString:PET_DEATHS]) {
+                emptyAchv.progress = fillingAchv.progress;
+                if(emptyAchv.progress >= emptyAchv.goal) {
+                    emptyAchv.progress = emptyAchv.goal;
+                    emptyAchv.isAchieved = YES;
+                }
+            }
+            else [emptyAchv bookProgress:fillingAchv.progress];
         }
         i++;
     }
@@ -130,7 +137,7 @@
         if(pet.lvl < MAX_LEVEL)
             pet.exp += 2;
     };
-    [achievements addObject:a1];
+    
     
     Achievement *a2 = [[Achievement alloc] init];
     a2.title = @"Getting richer";
@@ -146,7 +153,7 @@
         if(pet.lvl < MAX_LEVEL)
             pet.exp += 5;
     };
-    [achievements addObject:a2];
+    
     
     Achievement *a3 = [[Achievement alloc] init];
     a3.title = @"You shouldn't drink so much";
@@ -164,6 +171,9 @@
         NSNumber *number = [NSNumber numberWithInteger:quantity];
         [storage setValue:number forKey:FOOD_WATER];
     };
+    
+    [achievements addObject:a1];
+    [achievements addObject:a2];
     [achievements addObject:a3];
     
     if(slot != nil && [Loader loadLocalAchievements:slot] == nil)
@@ -187,7 +197,6 @@
     a1.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
         
     };
-    [achievements addObject:a1];
     
     Achievement *a2 = [[Achievement alloc] init];
     a2.title = @"Montie beginner";
@@ -202,7 +211,7 @@
     a2.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
         
     };
-    [achievements addObject:a2];
+    
     
     Achievement *a3 = [[Achievement alloc] init];
     a3.title = @"Critter master";
@@ -217,7 +226,7 @@
     a3.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
         
     };
-    [achievements addObject:a3];
+    
     
     Achievement *a4 = [[Achievement alloc] init];
     a4.title = @"Montie master";
@@ -232,7 +241,7 @@
     a4.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
         
     };
-    [achievements addObject:a4];
+    
     
     Achievement *a5 = [[Achievement alloc] init];
     a5.title = @"Horrible parent";
@@ -247,6 +256,12 @@
     a5.rewardMethod = ^(Owner *owner, Pet *pet, NSMutableDictionary *storage) {
         [Saver saveFlag:HORRIBLE_SHAME];
     };
+    
+    
+    [achievements addObject:a1];
+    [achievements addObject:a3];
+    [achievements addObject:a2];
+    [achievements addObject:a4];
     [achievements addObject:a5];
     
     

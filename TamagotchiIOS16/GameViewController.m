@@ -101,7 +101,14 @@
     for (Achievement* emptyAchv in self.globalAchievements) {
         Achievement *fillingAchv = [loadedGlobal objectAtIndex:i];
         if([emptyAchv.title isEqualToString:fillingAchv.title]) {
-            [emptyAchv bookProgress:fillingAchv.progress];
+            if([emptyAchv.affectionKey isEqualToString:PET_DEATHS]) {
+                emptyAchv.progress = fillingAchv.progress;
+                if(emptyAchv.progress >= emptyAchv.goal) {
+                    emptyAchv.progress = emptyAchv.goal;
+                    emptyAchv.isAchieved = YES;
+                }
+            }
+            else [emptyAchv bookProgress:fillingAchv.progress];
         }
         i++;
     }
@@ -384,6 +391,11 @@
         controller.localAchievements = self.localAchievements;
         controller.globalAchievements = self.globalAchievements;
     }  else if ([segueName isEqualToString:@"showMoneyFarm"]) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+        [Saver completeSave:self];
+    }
+    else if ([segueName isEqualToString:@"showMenu"]) {
         [self.myTimer invalidate];
         self.myTimer = nil;
         [Saver completeSave:self];
