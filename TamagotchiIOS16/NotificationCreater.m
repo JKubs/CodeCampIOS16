@@ -79,6 +79,18 @@
     return missedNotis;
 }
 
++ (void)generateFromNotiRequests:(NSMutableArray*) notificationRequests{
+    for (NotificationRequest *nR in notificationRequests) {
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = nR.timestamp;
+        localNotification.alertBody = nR.message;
+        localNotification.alertAction = @"Show me the item";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+}
+
 
 + (NSMutableArray*)createNotifications:(NSMutableArray*) notificationRequests{
     int dist = 1800;

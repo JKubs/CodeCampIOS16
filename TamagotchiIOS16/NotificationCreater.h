@@ -16,5 +16,6 @@
 + (NSMutableArray*)generateRandomNeed:(NSDate*) date andNoti: (NSMutableArray*) notificationRequests;
 + (NSMutableArray*)createNotifications:(NSMutableArray*) notificationRequests;
 + (NSMutableArray*)deleteMissedNotifications:(NSMutableArray*) notificationRequests;
++ (void)generateFromNotiRequests:(NSMutableArray*) notificationRequests;
 
 @end

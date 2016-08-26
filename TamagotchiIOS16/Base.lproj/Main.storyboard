@@ -8,6 +8,7 @@
         <!--Testmode View Controller-->
         <scene sceneID="dUb-uW-KSS">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PpU-7q-PQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="cfc-WT-PLY" userLabel="Testmode View Controller" customClass="TestmodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nvv-oe-dgf"/>
@@ -25,10 +26,11 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CEJ-pS-6kp">
-                                <rect key="frame" x="20" y="49" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="49" width="400" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="491213569.37658799">
                                     <!--2016-07-26 08:12:49 +0000-->
                                 </date>
+                                <locale key="locale" localeIdentifier="en_DE"/>
                             </datePicker>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rCP-lh-B2u">
                                 <rect key="frame" x="20" y="273" width="240" height="128"/>
@@ -66,7 +68,6 @@
                         <segue destination="NbX-Tr-qfC" kind="show" identifier="TestToOver" id="Hdy-Q0-wJP"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PpU-7q-PQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047" y="-291"/>
         </scene>
@@ -1226,9 +1227,9 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Hdy-Q0-wJP"/>
         <segue reference="zIs-k9-Tz8"/>
         <segue reference="D6K-LR-Z8m"/>
-        <segue reference="trl-Ub-J3W"/>
         <segue reference="D7L-Zi-1CE"/>
     </inferredMetricsTieBreakers>
 </document>

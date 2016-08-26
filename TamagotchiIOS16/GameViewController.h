@@ -71,7 +71,7 @@
 - (void)removeTooLateNotiFromPushNoti:(NSDate *) date;
 - (IBAction)feedAction:(UIButton *)sender;
 - (IBAction)enterShop:(UIButton *)sender;
-
+- (BOOL)stillSameSlot;
 - (void)feed:(NSString*)food;
 - (void)addExp:(NSInteger)exp;
 - (void)updateExp;

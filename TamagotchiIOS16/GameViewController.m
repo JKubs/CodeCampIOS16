@@ -57,10 +57,16 @@
     }
     
     //notification stuff
-
-    self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
     
     NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.notificationRequests];
+    
+    if (!self.stillSameSlot) {
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
+        [NotificationCreater generateFromNotiRequests:self.notificationRequests];
+        NSLog(@"other slot than b4 or new 1");
+    }
     
     NotificationRequest *lastMissed = [missedNotis lastObject];
     
@@ -88,9 +94,11 @@
         self.pet.currentWish = randFood.name;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"petHungry" object:self.pet];
     }
+    
+    //create new notis
+    self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
+    
     [Saver saveChangeOn:PET withValue:self.pet atSaveSlot:self.saveSlot];
-    //BUG: Wont save or load -> weil keine notis übergeben werden:
-    NSLog(@"notis created: %@", self.notificationRequests);
     [Saver saveNotificationSchedules:self.notificationRequests toSlot:self.saveSlot];
     
     
@@ -98,6 +106,7 @@
     NSMutableArray* loadedGlobal = [Loader loadGlobalAchievements];
     NSMutableArray* loadedLocal = [Loader loadLocalAchievements:self.saveSlot];
     int i = 0;
+    
     for (Achievement* emptyAchv in self.globalAchievements) {
         Achievement *fillingAchv = [loadedGlobal objectAtIndex:i];
         if([emptyAchv.title isEqualToString:fillingAchv.title]) {
@@ -150,6 +159,19 @@
 
 - (IBAction)feedAction:(UIButton *)sender {
     [self feed:self.pet.currentWish];
+}
+
+- (BOOL)stillSameSlot{
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    for (UILocalNotification* localNotification in localNotifications) {
+        for (NotificationRequest *nr in self.notificationRequests) {
+            if([localNotification.fireDate isEqualToDate:nr.timestamp]){
+                return YES;
+            }
+        }
+    }
+    return NO;
 }
 
 - (void)feed:(NSString*)food {
