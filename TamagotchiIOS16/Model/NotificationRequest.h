@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *subject;
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSDate *timestamp;
+@property (nonatomic) NSTimeInterval diff;
 
 -(void)encodeWithCoder:(NSCoder *)aCoder;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder;

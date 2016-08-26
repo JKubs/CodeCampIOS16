@@ -58,6 +58,11 @@
     
     //notification stuff
 
+    //beispiel fuer abfrage, ob der slot gewechselt hat
+    if(self.slotChanged) {
+        
+    }
+    
     self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
     
     NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.notificationRequests];

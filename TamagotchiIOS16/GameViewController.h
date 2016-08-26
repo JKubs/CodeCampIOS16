@@ -48,6 +48,7 @@
 @property NSInteger currentFrame;
 @property (strong, nonatomic) NSString *petState;
 @property (strong, nonatomic) NSString *saveSlot;
+@property BOOL slotChanged;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;
 @property (strong, nonatomic) NSMutableArray *localAchievements;

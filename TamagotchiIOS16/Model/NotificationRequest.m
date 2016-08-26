@@ -16,6 +16,7 @@
     [coder encodeObject:self.subject forKey:@"subject"];
     [coder encodeObject:self.message forKey:@"message"];
     [coder encodeObject:self.timestamp forKey:@"timestamp"];
+    [coder encodeDouble:self.diff forKey:@"interval"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -25,6 +26,7 @@
         self.subject = [coder decodeObjectForKey:@"subject"];
         self.message = [coder decodeObjectForKey:@"message"];
         self.timestamp = [coder decodeObjectForKey:@"timestamp"];
+        self.diff = [coder decodeDoubleForKey:@"interval"];
     }
     return self;
 }
