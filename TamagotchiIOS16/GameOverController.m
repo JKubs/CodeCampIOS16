@@ -14,12 +14,13 @@
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
     self.petImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_dead.png", self.pet.type]];
-    [Saver deleteCurrentSlotReference];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"confirm"]) {
         MenuViewController *menu = [segue destinationViewController];
+        [Saver deleteCurrentSlotReference];
         menu.continueButton.enabled = NO;
     }
 }
