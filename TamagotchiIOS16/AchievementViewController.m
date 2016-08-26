@@ -77,7 +77,7 @@
 
 - (IBAction)deleteProgress:(UIButton *)sender {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Deletion"
-                                                                   message:@"Are you sure you want to delete your Achievement progress?"
+                                                                   message:@"Are you sure? All account achievements' progress will be deleted"
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault
