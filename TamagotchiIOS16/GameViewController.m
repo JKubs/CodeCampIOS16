@@ -80,7 +80,7 @@
     for (NotificationRequest *notiR in missedNotis) {
         if([notiR.message isEqualToString:WISH_TOO_LATE]){
             self.pet.lives--;
-            self.pet.currentWish = NULL;
+            self.pet.currentWish = nil;
             self.speechFood.hidden = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
         }
