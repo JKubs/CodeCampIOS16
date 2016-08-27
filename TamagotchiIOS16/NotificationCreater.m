@@ -81,6 +81,7 @@
 
 + (void)generateFromNotiRequests:(NSMutableArray*) notificationRequests{
     for (NotificationRequest *nR in notificationRequests) {
+        NSLog(@"got %@ to create a new local notification", nR);
         UILocalNotification* localNotification = [[UILocalNotification alloc] init];
         localNotification.fireDate = nR.timestamp;
         localNotification.alertBody = nR.message;
@@ -110,8 +111,8 @@
     }
     
     
-    NSLog(@"locnotiCount %ld", [wishLocNoti count]);
-    NSLog(@"locnotiCount %ld", [notificationRequests count]);
+    NSLog(@"locnotiCount %ld (+TooLateNotis)", [wishLocNoti count]);
+    NSLog(@"notiReqCount %ld", [notificationRequests count]);
     if([wishLocNoti count] == 0){
         //same stuff as in testmodeViewControllwe TODO make a global method
         int numberOfNotifications = 5;

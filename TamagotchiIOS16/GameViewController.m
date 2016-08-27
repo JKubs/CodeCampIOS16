@@ -58,9 +58,13 @@
     
     //notification stuff
     
-    self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
+   // self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
     
     NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.notificationRequests];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [NotificationCreater generateFromNotiRequests:self.notificationRequests];
+    
     
     //beispiel fuer abfrage, ob der slot gewechselt hat
     if(self.slotChanged) {
