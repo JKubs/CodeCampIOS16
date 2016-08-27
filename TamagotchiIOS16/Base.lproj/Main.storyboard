@@ -8,7 +8,6 @@
         <!--Testmode View Controller-->
         <scene sceneID="dUb-uW-KSS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PpU-7q-PQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="cfc-WT-PLY" userLabel="Testmode View Controller" customClass="TestmodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nvv-oe-dgf"/>
@@ -26,11 +25,10 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CEJ-pS-6kp">
-                                <rect key="frame" x="0.0" y="49" width="400" height="216"/>
+                                <rect key="frame" x="20" y="49" width="600" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="491213569.37658799">
                                     <!--2016-07-26 08:12:49 +0000-->
                                 </date>
-                                <locale key="locale" localeIdentifier="en_DE"/>
                             </datePicker>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rCP-lh-B2u">
                                 <rect key="frame" x="20" y="273" width="240" height="128"/>
@@ -68,6 +66,7 @@
                         <segue destination="NbX-Tr-qfC" kind="show" identifier="TestToOver" id="Hdy-Q0-wJP"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PpU-7q-PQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047" y="-291"/>
         </scene>
@@ -418,14 +417,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcu-XK-59c">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9J-5B-5hJ">
-                                        <rect key="frame" x="166" y="19" width="68" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.99661474829999996" blue="0.98935768739999996" alpha="0.8476023707" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Testmode"/>
-                                        <connections>
-                                            <segue destination="cfc-WT-PLY" kind="show" identifier="showTestmode" id="75t-rR-lNK"/>
-                                        </connections>
-                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="critter1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VEJ-DN-UaE">
                                         <rect key="frame" x="80" y="98" width="240" height="240"/>
                                         <accessibility key="accessibilityConfiguration">
@@ -534,6 +525,22 @@
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YcO-wQ-EBV">
                                         <rect key="frame" x="85" y="61" width="175" height="2"/>
                                     </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfR-mw-baN">
+                                        <rect key="frame" x="214" y="15" width="106" height="30"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Return to menu"/>
+                                        <connections>
+                                            <segue destination="C17-Dk-bpw" kind="show" identifier="showMenu" id="yWU-Jw-PM2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9J-5B-5hJ">
+                                        <rect key="frame" x="112" y="15" width="68" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.99661474829999996" blue="0.98935768739999996" alpha="0.8476023707" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Testmode"/>
+                                        <connections>
+                                            <segue destination="cfc-WT-PLY" kind="show" identifier="showTestmode" id="75t-rR-lNK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98323474578453318" green="1" blue="0.72257942424978083" alpha="0.72815193965517244" colorSpace="calibratedRGB"/>
                             </view>
@@ -552,7 +559,6 @@
                         <outlet property="statsButton" destination="wnH-Kd-gnt" id="6kM-8h-glJ"/>
                         <outlet property="storeButton" destination="kVL-nf-idg" id="vdd-b5-Kqu"/>
                         <segue destination="NbX-Tr-qfC" kind="show" identifier="GameToOver" id="trl-Ub-J3W"/>
-                        <segue destination="C17-Dk-bpw" kind="show" identifier="showMenu" id="DLf-70-DEn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eML-y3-kLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1227,9 +1233,9 @@
         <image name="store_background.png" width="592" height="443"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hdy-Q0-wJP"/>
-        <segue reference="zIs-k9-Tz8"/>
-        <segue reference="D6K-LR-Z8m"/>
         <segue reference="D7L-Zi-1CE"/>
+        <segue reference="zIs-k9-Tz8"/>
+        <segue reference="yWU-Jw-PM2"/>
+        <segue reference="trl-Ub-J3W"/>
     </inferredMetricsTieBreakers>
 </document>

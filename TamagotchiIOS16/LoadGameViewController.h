@@ -10,6 +10,7 @@
 #import "Saver.h"
 #import "Loader.h"
 #import "Constants.h"
+#import "NotificationRequest.h"
 
 @interface LoadGameViewController : UIViewController {
     

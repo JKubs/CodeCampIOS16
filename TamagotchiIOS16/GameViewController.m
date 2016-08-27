@@ -58,9 +58,12 @@
     
     //notification stuff
     
+    self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
+    
     NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.notificationRequests];
     
-    if (!self.stillSameSlot) {
+    //beispiel fuer abfrage, ob der slot gewechselt hat
+    if(self.slotChanged) {
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
@@ -110,7 +113,14 @@
     for (Achievement* emptyAchv in self.globalAchievements) {
         Achievement *fillingAchv = [loadedGlobal objectAtIndex:i];
         if([emptyAchv.title isEqualToString:fillingAchv.title]) {
-            [emptyAchv bookProgress:fillingAchv.progress];
+            if([emptyAchv.affectionKey isEqualToString:PET_DEATHS]) {
+                emptyAchv.progress = fillingAchv.progress;
+                if(emptyAchv.progress >= emptyAchv.goal) {
+                    emptyAchv.progress = emptyAchv.goal;
+                    emptyAchv.isAchieved = YES;
+                }
+            }
+            else [emptyAchv bookProgress:fillingAchv.progress];
         }
         i++;
     }
@@ -159,19 +169,6 @@
 
 - (IBAction)feedAction:(UIButton *)sender {
     [self feed:self.pet.currentWish];
-}
-
-- (BOOL)stillSameSlot{
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    
-    for (UILocalNotification* localNotification in localNotifications) {
-        for (NotificationRequest *nr in self.notificationRequests) {
-            if([localNotification.fireDate isEqualToDate:nr.timestamp]){
-                return YES;
-            }
-        }
-    }
-    return NO;
 }
 
 - (void)feed:(NSString*)food {
@@ -406,6 +403,11 @@
         controller.localAchievements = self.localAchievements;
         controller.globalAchievements = self.globalAchievements;
     }  else if ([segueName isEqualToString:@"showMoneyFarm"]) {
+        [self.myTimer invalidate];
+        self.myTimer = nil;
+        [Saver completeSave:self];
+    }
+    else if ([segueName isEqualToString:@"showMenu"]) {
         [self.myTimer invalidate];
         self.myTimer = nil;
         [Saver completeSave:self];

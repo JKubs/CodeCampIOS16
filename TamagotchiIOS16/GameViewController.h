@@ -48,6 +48,7 @@
 @property NSInteger currentFrame;
 @property (strong, nonatomic) NSString *petState;
 @property (strong, nonatomic) NSString *saveSlot;
+@property BOOL slotChanged;
 @property (strong, nonatomic) Owner *owner;
 @property (strong, nonatomic) NSMutableDictionary *storage;
 @property (strong, nonatomic) NSMutableArray *localAchievements;
@@ -71,7 +72,6 @@
 - (void)removeTooLateNotiFromPushNoti:(NSDate *) date;
 - (IBAction)feedAction:(UIButton *)sender;
 - (IBAction)enterShop:(UIButton *)sender;
-- (BOOL)stillSameSlot;
 - (void)feed:(NSString*)food;
 - (void)addExp:(NSInteger)exp;
 - (void)updateExp;

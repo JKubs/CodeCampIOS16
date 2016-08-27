@@ -124,14 +124,34 @@
         Owner *owner = [slot objectForKey:OWNER];
         Pet *pet = [slot objectForKey:PET];
         NSMutableDictionary *storage = [slot objectForKey:STORAGE];
-        NSMutableArray *notificationRequests = [Loader loadSavedNotificationsFromSlot:self.selectedSlot];
-        NSLog(@"Loaded NotificationRequests: %@", notificationRequests);
         GameViewController *gameViewController = (GameViewController *) [segue destinationViewController];
         gameViewController.owner = owner;
         gameViewController.pet = pet;
         gameViewController.storage = storage;
-        gameViewController.notificationRequests = notificationRequests;
         gameViewController.saveSlot = self.selectedSlot;
+        
+        NSMutableArray *notificationRequests = [Loader loadSavedNotificationsFromSlot:self.selectedSlot];
+        NSLog(@"Loaded NotificationRequests: %@", notificationRequests);
+        NSString *lastUsedSlot = [Loader loadLastUsedSlotString];
+        if([lastUsedSlot isEqualToString:self.selectedSlot]) {
+            gameViewController.slotChanged = NO;
+        } else {
+            gameViewController.slotChanged = YES;
+            if(lastUsedSlot != nil) {
+                NSMutableArray *lastUsedNotis = [Loader loadSavedNotificationsFromSlot:lastUsedSlot];
+                for (NotificationRequest* notif in lastUsedNotis) {
+                    notif.diff = notif.timestamp.timeIntervalSinceNow;
+                    NSLog(@"created difference for old noti: %f", notif.diff);
+                }
+                [Saver saveNotificationSchedules:notificationRequests toSlot:lastUsedSlot];
+                for (NotificationRequest*notif in notificationRequests) {
+                    notif.timestamp = [NSDate dateWithTimeIntervalSinceNow:notif.diff];
+                    NSLog(@"new timestamp for current noti: %@",notif.timestamp);
+                }
+            }
+        }
+        gameViewController.notificationRequests = notificationRequests;
+        
         gameViewController.localAchievements = self.localAchievements;
         gameViewController.globalAchievements = self.globalAchievements;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
