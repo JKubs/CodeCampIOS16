@@ -143,7 +143,7 @@
                     notif.diff = notif.timestamp.timeIntervalSinceNow;
                     NSLog(@"created difference for old noti: %f", notif.diff);
                 }
-                [Saver saveNotificationSchedules:notificationRequests toSlot:lastUsedSlot];
+                [Saver saveNotificationSchedules:lastUsedNotis toSlot:lastUsedSlot];
                 for (NotificationRequest*notif in notificationRequests) {
                     notif.timestamp = [NSDate dateWithTimeIntervalSinceNow:notif.diff];
                     NSLog(@"new timestamp for current noti: %@",notif.timestamp);

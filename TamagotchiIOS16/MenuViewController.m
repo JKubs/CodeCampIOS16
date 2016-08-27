@@ -89,6 +89,7 @@
         gameViewController.pet = pet;
         gameViewController.storage = storage;
         gameViewController.saveSlot = lastUsedSlot;
+        gameViewController.slotChanged = NO;
         gameViewController.globalAchievements = self.globalAchievements;
         gameViewController.notificationRequests = [Loader loadSavedNotificationsFromSlot:lastUsedSlot];
         //self.localAchievements = [Loader loadLocalAchievements:lastUsedSlot];

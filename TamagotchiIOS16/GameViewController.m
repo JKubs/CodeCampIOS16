@@ -66,7 +66,6 @@
     [NotificationCreater generateFromNotiRequests:self.notificationRequests];
     
     
-    //beispiel fuer abfrage, ob der slot gewechselt hat
     if(self.slotChanged) {
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
         [[UIApplication sharedApplication] cancelAllLocalNotifications];

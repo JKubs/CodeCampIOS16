@@ -69,6 +69,20 @@
         gameViewController.localAchievements = self.localAchievements;
         gameViewController.globalAchievements = self.globalAchievements;
         
+        NSString *lastUsedSlot = [Loader loadLastUsedSlotString];
+        if(lastUsedSlot == nil) {
+            gameViewController.slotChanged = NO;
+        } else {
+            NSMutableArray *lastUsedNotis = [Loader loadSavedNotificationsFromSlot:lastUsedSlot];
+            for (NotificationRequest* notif in lastUsedNotis) {
+                notif.diff = notif.timestamp.timeIntervalSinceNow;
+                NSLog(@"created difference for old noti: %f", notif.diff);
+            }
+            [Saver saveNotificationSchedules:lastUsedNotis toSlot:lastUsedSlot];
+            
+            gameViewController.slotChanged = YES;
+        }
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PetAnimation" object:self];
     }
 }
