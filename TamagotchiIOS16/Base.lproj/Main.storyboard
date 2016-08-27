@@ -18,40 +18,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2N-D2-2ba">
-                                <rect key="frame" x="281" y="402" width="39" height="30"/>
+                                <rect key="frame" x="282" y="285" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="resetNotis:" destination="cfc-WT-PLY" eventType="touchDown" id="hua-U9-bMa"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CEJ-pS-6kp">
-                                <rect key="frame" x="20" y="49" width="600" height="216"/>
+                                <rect key="frame" x="20" y="49" width="400" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="491213569.37658799">
                                     <!--2016-07-26 08:12:49 +0000-->
                                 </date>
+                                <locale key="locale" localeIdentifier="en_DE"/>
                             </datePicker>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rCP-lh-B2u">
-                                <rect key="frame" x="20" y="273" width="240" height="128"/>
+                                <rect key="frame" x="37" y="323" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUu-zC-Ifp">
-                                <rect key="frame" x="20" y="402" width="215" height="30"/>
-                                <state key="normal" title="Generate Random Notifications"/>
-                                <connections>
-                                    <action selector="genRandNoti:" destination="cfc-WT-PLY" eventType="touchDown" id="SF2-3w-3NU"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-Z6-PZQ">
-                                <rect key="frame" x="63" y="453" width="129" height="30"/>
+                                <rect key="frame" x="37" y="285" width="129" height="30"/>
                                 <state key="normal" title="Create Notification"/>
                                 <connections>
                                     <action selector="sendNotification:" destination="cfc-WT-PLY" eventType="touchDown" id="DLK-39-wPw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWU-qo-nrG">
-                                <rect key="frame" x="274" y="453" width="47" height="30"/>
+                                <rect key="frame" x="37" y="474" width="47" height="30"/>
                                 <state key="normal" title="Kill Pet"/>
                                 <connections>
                                     <action selector="killPet:" destination="cfc-WT-PLY" eventType="touchUpInside" id="OJD-jn-xpA"/>
