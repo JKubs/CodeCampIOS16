@@ -82,9 +82,9 @@
             self.pet.lives--;
             self.pet.currentWish = nil;
             self.speechFood.hidden = YES;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
         }
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
     
     if(self.pet.lives <= 0){
         NSLog(@"your pet died -.- ");
