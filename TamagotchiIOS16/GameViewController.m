@@ -58,8 +58,6 @@
     
     //notification stuff
     
-   // self.notificationRequests = [NotificationCreater createNotifications:self.notificationRequests];
-    
     NSMutableArray *missedNotis = [NotificationCreater deleteMissedNotifications:self.notificationRequests];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -78,13 +76,13 @@
     
     //remove 1 live for each missed "too late" notification
     for (NotificationRequest *notiR in missedNotis) {
-        if([notiR.message isEqualToString:WISH_TOO_LATE]){
+        if([notiR.message isEqualToString:WISH_TOO_LATE] && self.pet.lives >= 0){
             self.pet.lives--;
             self.pet.currentWish = nil;
             self.speechFood.hidden = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
     
     if(self.pet.lives <= 0){
         NSLog(@"your pet died -.- ");
@@ -349,7 +347,8 @@
 }
 
 - (void)updateHealth {
-    if (self.pet.lives == 0) {
+    if (self.pet.lives <= 0) {
+        self.pet.lives = 0;
         [self gameOver:self];
     }
 }

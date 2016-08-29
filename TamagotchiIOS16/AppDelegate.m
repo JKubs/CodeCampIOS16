@@ -67,12 +67,12 @@
         NotificationRequest *lastMissed = [missedNotis lastObject];
         
         for (NotificationRequest *notiR in missedNotis) {
-            if([notiR.message isEqualToString:WISH_TOO_LATE]){
+            if([notiR.message isEqualToString:WISH_TOO_LATE] && self.gameController.pet.lives >= 0){
                 self.gameController.pet.lives--;
                 self.gameController.pet.currentWish = NULL;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
             }
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PetHealth" object:self];
         
         NSLog(@"last missed noti text: %@", lastMissed.message);
         if(self.gameController.pet.lives <= 0){
